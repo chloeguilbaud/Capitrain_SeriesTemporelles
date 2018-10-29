@@ -15,6 +15,7 @@ des indicateurs sur des series temporelles.
 
 ![Série temporelle](img/serie_temporelle.png)
 
+
 ## Description genérale
 
 1. Le travail consistera dans un premier temps a comprendre l’article "Using Finite
@@ -33,12 +34,14 @@ de genération de code doit utiliser les tables de décorations qui vous seront 
 des informations sur des donnees de votre choix.
 L’article mis a part, vous pouvez aussi consulter les transparents présentant cet article.
 
+
 ## Travail attendu
 
 On attend une description du genérateur de code que vous avez implémenté, une justification
 des choix que vous avez fait, ainsi que des arguments etayant la validité de votre
 implementation et un commentaire sur l’utilisation que vous en avez faite pour analyser 
 des données. 
+
 
 ## Liens
 

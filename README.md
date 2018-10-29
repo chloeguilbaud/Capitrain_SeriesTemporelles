@@ -6,10 +6,13 @@ Projet Sensibilisation à la recherche - Genération de Code pour des Séries Te
 
 N. Beldiceanu, TASC (CNRS) IMT Atlantique, France, nicolas.beldiceanu@imt-atlantique.fr
 
+
 ## Table des matières
+
 1. [Contexte](docs/Context.md)
 2. [Installation](docs/Installation.md)
 3. [Utilisation](docs/Utilisation.md)
+
 
 ## Contexte
 
@@ -28,3 +31,8 @@ des indicateurs sur des series temporelles.
 
 ![Série temporelle](docs/img/serie_temporelle.png)
 
+
+## Liens
+
+- Document de recherche
+<a href="http://google.com">https://link.springer.com/article/10.1007%2Fs10601-015-9200-3</a>
