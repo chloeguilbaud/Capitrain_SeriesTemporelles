@@ -8,7 +8,7 @@ public class JavaClass implements Language {
 
     @Override
     public StringBuffer generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable) {
-        return null;
+        throw new RuntimeException("Not Implemented yet");
     }
 
 }
