@@ -13,7 +13,6 @@ log.txt
 npm-debug.log*
 
 .idea/*
-.ionic/
 .sourcemaps/
 .sass-cache/
 .tmp/
@@ -25,11 +24,6 @@ tmp/
 temp/
 platforms/
 plugins/
-plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
-
-.DS_Store
-Thumbs.db
-UserInterfaceState.xcuserstate
