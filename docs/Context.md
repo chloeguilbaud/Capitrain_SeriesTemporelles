@@ -13,7 +13,7 @@ de diminution des valeurs de mesures consecutives). Comme il existe un nombre im
 d’indicateurs calculables on s’interesse à une approche systématique pour calculer
 des indicateurs sur des series temporelles.
 
-![Série temporelle](docs/img/serie_temporelle.png)
+![Série temporelle](img/serie_temporelle.png)
 
 ## Description genérale
 
