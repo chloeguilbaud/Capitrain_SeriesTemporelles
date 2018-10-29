@@ -7,11 +7,11 @@ Projet Sensibilisation à la recherche - Genération de Code pour des Séries Te
 N. Beldiceanu, TASC (CNRS) IMT Atlantique, France, nicolas.beldiceanu@imt-atlantique.fr
 
 ## Table des matières
-1. [Context](docs/Context.md)
+1. [Contexte](docs/Context.md)
 2. [Installation](docs/Installation.md)
 3. [Utilisation](docs/Utilisation.md)
 
-## Context
+## Contexte
 
 Une serie temporelle est une séquence d’entiers correspondant à des mesures effectuées
 a intervalles réguliers. Les séries temporelles se rencontrent dans un grand nombre 

@@ -1,4 +1,4 @@
-# Context
+# Contexte
 
 Une serie temporelle est une séquence d’entiers correspondant à des mesures effectuées
 a intervalles réguliers. Les séries temporelles se rencontrent dans un grand nombre 
