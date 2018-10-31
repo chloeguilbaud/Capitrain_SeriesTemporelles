@@ -12,6 +12,7 @@ N. Beldiceanu, TASC (CNRS) IMT Atlantique, France, nicolas.beldiceanu@imt-atlant
 1. [Contexte](docs/Context.md)
 2. [Installation](docs/Installation.md)
 3. [Utilisation](docs/Utilisation.md)
+4. [Syntaxe du Seed Transducer](docs/SeedTransducer.md)
 
 
 ## Contexte
