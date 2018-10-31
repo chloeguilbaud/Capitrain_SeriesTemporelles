@@ -3,7 +3,7 @@
 ## Syntaxe du Seed Transducer
 
 Le Seed Transducer est formalisé sous forme d'un objet JSON décrivant : 
-- `seed_templates` : liste des seed templates
+- `seed_transducer` : liste des seed templates
     - `name` : nom
     - `init_state`
     - `states` : liste des états
@@ -16,7 +16,7 @@ Le Seed Transducer est formalisé sous forme d'un objet JSON décrivant :
 ### Exemple 
 ```json
 {
- "seed_templates": [
+ "seed_transducer": [
   {
     "name": "bump_on_decreasing_sequence",
     "init_state": "s",
