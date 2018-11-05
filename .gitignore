@@ -27,3 +27,9 @@ plugins/
 plugins/ios.json
 www/
 $RECYCLE.BIN/
+/target/
+
+.classpath
+.project
+.settings/
+bin/    

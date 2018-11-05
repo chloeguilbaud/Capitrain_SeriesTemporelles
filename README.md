@@ -13,7 +13,8 @@ N. Beldiceanu, TASC (CNRS) IMT Atlantique, France, nicolas.beldiceanu@imt-atlant
 2. [Installation](docs/Installation.md)
 3. [Utilisation](docs/Utilisation.md)
 4. [Syntaxe du Seed Transducer](docs/SeedTransducer.md)
-4. [Syntaxe de la table de décoration](docs/DecorationTable.md)
+5. [Syntaxe de la table de décoration](docs/DecorationTable.md)
+6. [Librairie](docs/Library.md)
 
 
 ## Contexte
