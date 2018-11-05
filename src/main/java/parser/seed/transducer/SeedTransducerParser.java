@@ -13,11 +13,7 @@ public class SeedTransducerParser {
 
     public static void parse(File jsonFile) throws IOException {
 
-        ObjectMapper mapper = new ObjectMapper();
-        SeedTransducerPOJO seed = mapper.readValue(jsonFile, SeedTransducerPOJO.class);
-        System.out.println("coucou" + seed);
-
-        Map<String, Integer> scoreByName = mapper.readValue(jsonFile, Map.class);
+        SeedTransducerConverter.convert(jsonFile);
 
     }
 
