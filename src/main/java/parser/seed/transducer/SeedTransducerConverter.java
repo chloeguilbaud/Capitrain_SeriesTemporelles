@@ -1,21 +1,102 @@
 package parser.seed.transducer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.seed.transducer.*;
 import parser.seed.transducer.model.SeedTransducerPOJO;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.Optional;
+
+import static parser.seed.transducer.model.SeedTransducerJSONElements.*;
 
 public class SeedTransducerConverter {
 
-    public static void convert(File jsonFile) throws IOException {
+    public static SeedTransducer convert(File jsonFile) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
         SeedTransducerPOJO pojo = mapper.readValue(jsonFile, SeedTransducerPOJO.class);
-        System.out.println(pojo);
 
+        // TODO - id pojo contains null element - error
+
+        // Seed Transducer initialisation
+        SeedTransducer seed = new SeedTransducer(pojo.getName());
+
+        // Adding states to seed transducer
+        for (String st : pojo.getStates()) {
+            seed.addState(st, new State(st));
+        }
+
+        // Setting initial state
+        Optional<State> initStOp = seed.getStateFromName(pojo.getInitState());
+        if(initStOp.isPresent()) {
+            seed.setInitState(initStOp.get());
+        } else {
+            // TODO error
+        }
+
+        // Converting and checking arcs
+        for(LinkedHashMap mp : pojo.getArcs()) {
+            if (mp.values().size() != 4) {
+                // TODO - error
+            } else {
+
+                Arc arc = new Arc();
+
+                setArcFromState(seed, mp, arc);
+                setArcToState(seed, mp, arc);
+                setArcOperatorState(mp, arc);
+                setArcSemanticLetter(seed, mp, arc);
+
+                seed.addArc(arc);
+
+            }
+        }
+
+        return seed;
+
+    }
+
+    private static void setArcSemanticLetter(SeedTransducer seed, LinkedHashMap mp, Arc arc) {
+        String letter = (String) mp.get(SEED_TEMPLATE_ARC_LETTER.getLabel());
+        Optional<SemanticLetter> arcLetterOpt = SemanticLetter.fromLabel(letter);
+        if(arcLetterOpt.isPresent()) {
+            arc.setSemanticLetter(arcLetterOpt.get());
+        } else {
+            // TODO - Missing value error
+        }
+
+    }
+
+    private static void setArcOperatorState(LinkedHashMap mp, Arc arc) {
+        String op = (String) mp.get(SEED_TEMPLATE_ARC_OPERATOR.getLabel());
+        Optional<Operator> arcOpOpt = Operator.fromLabel(op);
+        if(arcOpOpt.isPresent()) {
+            arc.setOperator(arcOpOpt.get());
+        } else {
+            // TODO - Missing value error
+        }
+    }
+
+    private static void setArcFromState(SeedTransducer seed, LinkedHashMap mp, Arc arc) {
+        String from = (String) mp.get(SEED_TEMPLATE_ARC_FROM.getLabel());
+        Optional<State> fromStateOpt = seed.getStateFromName(from);
+        if(fromStateOpt.isPresent()) {
+            arc.setFrom(fromStateOpt.get());
+        } else {
+            // TODO - Missing value error
+        }
+    }
+
+    private static void setArcToState(SeedTransducer seed, LinkedHashMap mp, Arc arc) {
+        String to = (String) mp.get(SEED_TEMPLATE_ARC_TO.getLabel());
+        Optional<State> toStateOpt = seed.getStateFromName(to);
+        if(toStateOpt.isPresent()) {
+            arc.setTo(toStateOpt.get());
+        } else {
+            // TODO - Missing value error
+        }
     }
 
 }
