@@ -1,6 +1,6 @@
 package model.element;
 
-public class Variable {
+public class Variable extends Element {
 
     private String name;
 

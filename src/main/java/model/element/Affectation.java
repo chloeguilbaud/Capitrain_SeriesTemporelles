@@ -1,6 +1,6 @@
 package model.element;
 
-public class Affectation {
+public class Affectation extends Element {
 
     private Variable variable;
     private Element value;

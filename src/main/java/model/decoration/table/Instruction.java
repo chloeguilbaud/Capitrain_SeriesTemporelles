@@ -6,16 +6,24 @@ import model.element.Element;
 
 public class Instruction {
 
-    private Element guard;
+    private HashMap<String, Element> guards;
     private HashMap<String, Element> updates;
 
-    public Instruction(Element guard, HashMap<String, Element> updates) {
-        this.guard = guard;
-        this.updates = updates;
+    public Instruction() {
+        this.guards = new HashMap<>();
+        this.updates = new HashMap<>();
     }
 
-    public Element getGuard() {
-        return this.guard;
+    public void addGuard(String variable, Element change) {
+        this.guards.put(variable, change);
+    }
+
+    public void addUpdate(String register, Element change) {
+        this.guards.put(register, change);
+    }
+
+    public Element getGuard(String key) {
+        return this.guards.get(key);
     }
 
     public Element getUpdate(String key) {

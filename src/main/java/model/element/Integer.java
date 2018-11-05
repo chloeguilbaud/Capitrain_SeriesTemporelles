@@ -1,6 +1,6 @@
 package model.element;
 
-public class Integer {
+public class Integer extends Element {
     
     private int value;
 

@@ -1,6 +1,6 @@
 package model.element;
 
-public class Sum {
+public class Sum extends Element {
 
     private Element leftElement;
     private Element rightElement;

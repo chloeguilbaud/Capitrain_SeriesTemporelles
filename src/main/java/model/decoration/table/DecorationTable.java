@@ -11,7 +11,11 @@ public class DecorationTable {
     private HashMap<String, Element> returns;
     private HashMap<InstructionKey, Instruction> instructions;
 
-    public DecorationTable() {}
+    public DecorationTable() {
+        this.registers = new HashMap<>();
+        this.returns = new HashMap<>();
+        this.instructions = new HashMap<>();
+    }
 
     public void addRegister(String key, Element register) {
         this.registers.put(key, register);
