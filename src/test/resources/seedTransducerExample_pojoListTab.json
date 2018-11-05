@@ -1,0 +1,9 @@
+{
+  "init_state": "Mael",
+  "name": "Chloe",
+  "testlist" : {
+    "prenom": "Sarah",
+    "alias": "Bob"
+  },
+  "testTab": ["je", "suis", "un", "test"]
+}

@@ -6,6 +6,7 @@ import parser.seed.transducer.model.SeedTransducerPOJO;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 public class SeedTransducerParser {
 
@@ -16,6 +17,7 @@ public class SeedTransducerParser {
         SeedTransducerPOJO seed = mapper.readValue(jsonFile, SeedTransducerPOJO.class);
         System.out.println("coucou" + seed);
 
+        Map<String, Integer> scoreByName = mapper.readValue(jsonFile, Map.class);
 
     }
 
