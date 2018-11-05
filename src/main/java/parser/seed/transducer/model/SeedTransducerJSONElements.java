@@ -13,8 +13,8 @@ public enum SeedTransducerJSONElements {
 
     SEED_TEMPLATE_ARC_FROM("from"),
     SEED_TEMPLATE_ARC_TO("to"),
-    SEED_TEMPLATE_OPERATOR("operator"),
-    SEED_TEMPLATE_LETTER("letter");
+    SEED_TEMPLATE_ARC_OPERATOR("operator"),
+    SEED_TEMPLATE_ARC_LETTER("letter");
 
     private String label;
 
