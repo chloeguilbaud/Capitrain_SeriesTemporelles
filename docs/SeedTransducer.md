@@ -2,7 +2,6 @@
 
 ## Format
 Le Seed Transducer est formalisé sous forme d'un objet JSON décrivant : 
-- `seed_transducer` : seed template
     - `name` : nom
     - `init_state` : état initial
     - `states` : liste des états
@@ -15,8 +14,6 @@ Le Seed Transducer est formalisé sous forme d'un objet JSON décrivant :
 ## Exemple 
 ```json
 {
- "seed_transducer":
-  {
     "name": "bump_on_decreasing_sequence",
     "init_state": "s",
     "states": ["s", "r", "t", "u", "v"],
@@ -88,6 +85,5 @@ Le Seed Transducer est formalisé sous forme d'un objet JSON décrivant :
             "letter": "found_end"
         }
     ]
-  }
 }
 ```

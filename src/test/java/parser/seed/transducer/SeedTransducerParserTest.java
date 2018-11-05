@@ -32,63 +32,6 @@ public class SeedTransducerParserTest {
      */
 
 
-    @Test
-    public void testing() throws IOException {
-
-        File jsonFile = new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample.json");
-        ObjectMapper mapper = new ObjectMapper();
-        SeedTransducerPOJO seed = mapper.readValue(jsonFile, SeedTransducerPOJO.class);
-        System.out.println("----------- POJO -----------");
-        System.out.println(seed);
-
-        Map<String, Integer> scoreByName = mapper.readValue(jsonFile, Map.class);
-        System.out.println("----------- Map -----------");
-        System.out.println(scoreByName);
-
-        jsonFile = new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample_map.json");
-        Map<String, Object> scoreByName2 = mapper.readValue(jsonFile, Map.class);
-        System.out.println("----------- Map JSON obj And list -----------");
-        System.out.println(scoreByName2);
-        Object lhm = ((LinkedHashMap) (scoreByName2.get("testlist"))).get("prenom");
-        System.out.println(scoreByName2.get("testlist").getClass());
-        System.out.println("Sarah expected : " + lhm);
-
-        Object tab = scoreByName2.get("testTab");
-        System.out.println(scoreByName2.get("testTab").getClass());
-        System.out.println("testTab : " + tab.getClass());
-
-        System.out.println("----------- JSON Node -----------");
-        jsonFile = new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample_jsonNode.json");
-        ObjectNode root = (ObjectNode) mapper.readTree(jsonFile);
-        String name = root.get("name").asText();
-        int age = root.get("num").asInt();
-        System.out.println("name : " + name);
-        System.out.println("num : " + age);
-
-        System.out.println("----------- Writting -----------");
-        // can modify as well: this adds child Object as property 'other', set property 'type'
-        root.with("other").put("type", "student");
-        String json = mapper.writeValueAsString(root);
-        System.out.println(json);
-
-
-        System.out.println("----------- POJO List -----------");
-        jsonFile = new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample_pojolist.json");
-        mapper = new ObjectMapper();
-        POJO pojo = mapper.readValue(jsonFile, POJO.class);
-        System.out.println(pojo);
-
-        System.out.println("----------- POJO List + Tab -----------");
-        jsonFile = new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample_pojoListTab.json");
-        mapper = new ObjectMapper();
-        pojo = mapper.readValue(jsonFile, POJO.class);
-        System.out.println(pojo);
-
-
-
-    }
-
-
     /**
      * com.fasterxml.jackson.databind.JsonMappingException: No content to map due to end-of-input
      *java.io.FileNotFoundException: src\resources\seedTransducerExample.json (Le chemin d’accès spécifié est introuvable)
@@ -98,8 +41,6 @@ public class SeedTransducerParserTest {
     @Test
     public void parseTest() throws IOException {
         SeedTransducerParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample.json"));
-
-
     }
 
 }
