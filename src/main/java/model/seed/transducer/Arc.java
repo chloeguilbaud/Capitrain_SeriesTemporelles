@@ -22,4 +22,17 @@ public class Arc {
     public void setSemanticLetter(SemanticLetter semanticLetter) {
         this.semanticLetter = semanticLetter;
     }
+
+    @Override
+    public String toString() {
+        return "{from:'"
+            + this.from
+            + "', to:'"
+            + this.to
+            + "', operator='"
+            + this.operator.getLabel()
+            + "', Letter='"
+            + this.semanticLetter.getLabel()
+            + "'}";
+    }
 }
