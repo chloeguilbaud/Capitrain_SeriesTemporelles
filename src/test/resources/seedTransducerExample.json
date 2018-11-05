@@ -43,31 +43,31 @@
       "from": "t",
       "to": "u",
       "operator": "lt",
-      "letter": "maybe_b"
+      "letter": "maybe(before)"
     },
     {
       "from": "u",
       "to": "s",
       "operator": "leq",
-      "letter": "out_r"
+      "letter": "out(reset)"
     },
     {
       "from": "u",
       "to": "v",
       "operator": "gt",
-      "letter": "maybe_b"
+      "letter": "maybe(before)"
     },
     {
       "from": "v",
       "to": "s",
       "operator": "leq",
-      "letter": "out_r"
+      "letter": "out(reset)"
     },
     {
       "from": "v",
       "to": "t",
       "operator": "gt",
-      "letter": "found_end"
+      "letter": "found(end)"
     }
   ]
 }
