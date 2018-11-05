@@ -18,4 +18,9 @@ public class Sum extends Element {
         return this.rightElement;
     }
 
+    @Override
+    public String toString() {
+        return this.leftElement.toString() + " + " + this.rightElement.toString();
+    }
+
 }

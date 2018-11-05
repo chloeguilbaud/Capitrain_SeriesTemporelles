@@ -2,6 +2,8 @@ package model.decoration.table;
 
 import java.util.HashMap;
 
+import com.sun.javafx.collections.MappingChange.Map;
+
 import model.element.Element;
 
 public class Instruction {
@@ -19,7 +21,7 @@ public class Instruction {
     }
 
     public void addUpdate(String register, Element change) {
-        this.guards.put(register, change);
+        this.updates.put(register, change);
     }
 
     public Element getGuard(String key) {
@@ -28,5 +30,18 @@ public class Instruction {
 
     public Element getUpdate(String key) {
         return this.updates.get(key);
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        this.guards.forEach((key, value) -> {
+            buffer.append(value.toString() + ", ");
+        });
+        buffer.append(" || ");
+        this.updates.forEach((key, value) -> {
+            buffer.append(value.toString() + ", ");
+        });
+        return buffer.toString();
     }
 }

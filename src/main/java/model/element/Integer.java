@@ -15,4 +15,9 @@ public class Integer extends Element {
     public void setValue(int value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return this.value + "";
+    }
 }

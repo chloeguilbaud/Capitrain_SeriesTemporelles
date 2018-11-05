@@ -16,4 +16,14 @@ public class IndexedVariable extends Variable {
     public void setRelativeElementDistance(int relativeElementDistance) {
         this.relativeElementDistance = relativeElementDistance;
     }
+
+    @Override
+    public String toString() {
+        if (this.relativeElementDistance > 0) {
+            return this.getName() + "(i+" + this.relativeElementDistance + ")";    
+        } else if (this.relativeElementDistance < 0) {
+            return this.getName() + "(i-" + this.relativeElementDistance + ")";    
+        }
+        return this.getName() + "(i)";
+    }
 }

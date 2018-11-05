@@ -40,4 +40,13 @@ public class DecorationTable {
     public Instruction getInstruction(SemanticLetter letter, int after) {
         return this.instructions.get(new InstructionKey(letter, after));
     }
+
+    @Override
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        this.instructions.forEach((key, value) -> {
+            buffer.append(key.toString() + " || " + value.toString() + "\n");
+        });
+        return buffer.toString();
+    }
 }

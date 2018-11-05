@@ -1,4 +1,4 @@
 package model.element;
 
-public class Element {
+public abstract class Element {
 }

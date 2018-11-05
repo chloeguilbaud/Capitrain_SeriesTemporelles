@@ -14,11 +14,11 @@ public class InstructionKey {
 
     @Override
     public int hashCode() {
-        System.out.println(this.semanticLetter);
-        System.out.println(this.after);
-        System.out.println(this.semanticLetter.hashCode());
-        return this.semanticLetter.getLabel()
-        .hashCode() +
-                this.after.hashCode();
+        return this.semanticLetter.getLabel().hashCode() + this.after.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return this.semanticLetter.getLabel() + " || " + this.after;
     }
 }

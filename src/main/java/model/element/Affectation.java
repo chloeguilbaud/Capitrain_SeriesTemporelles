@@ -18,4 +18,9 @@ public class Affectation extends Element {
         return this.value;
     }
 
+    @Override
+    public String toString() {
+        return this.variable.toString() + " = " + this.value.toString();
+    }
+
 }

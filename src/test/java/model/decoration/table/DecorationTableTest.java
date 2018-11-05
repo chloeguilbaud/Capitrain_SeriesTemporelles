@@ -67,6 +67,8 @@ public class DecorationTableTest {
         footprint.addInstruction(SemanticLetter.FOUND, -1, found);
         footprint.addInstruction(SemanticLetter.FOUND_END, -1, found);
         footprint.addInstruction(SemanticLetter.IN, -1, in);
+
+        System.out.println(footprint);
     }
 
 }
