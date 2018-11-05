@@ -11,6 +11,26 @@ Le Seed Transducer est formalisé sous forme d'un objet JSON décrivant :
         - `operator`: opérateur 
         - `letter` : lettre de l'alphabet syntaxique
 
+### Opérateurs
+Le champs `operator` peut prendre les valeurs suivantes :
+- `eq`
+- `lt`
+- `gt`
+- `leq`
+- `geq`
+
+### Lettres sémantiques
+Le champs `letter` peut prendre les valeurs suivantes :
+- `found`
+- `found(end)`
+- `maybe(before)`
+- `maybe(after)`
+- `out(reset)`
+- `in`
+- `out(after)`
+- `out`
+
+
 ## Exemple 
 ```json
 {
