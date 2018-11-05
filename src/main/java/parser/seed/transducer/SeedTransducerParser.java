@@ -12,9 +12,7 @@ public class SeedTransducerParser {
 
 
     public static void parse(File jsonFile) throws IOException {
-
         SeedTransducerConverter.convert(jsonFile);
-
     }
 
 }

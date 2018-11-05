@@ -19,6 +19,7 @@ public class SeedTransducerConverter {
         SeedTransducerPOJO pojo = mapper.readValue(jsonFile, SeedTransducerPOJO.class);
 
         // TODO - id pojo contains null element - error
+        // TODO - Mapper configuration and testing
 
         // Seed Transducer initialisation
         SeedTransducer seed = new SeedTransducer(pojo.getName());
@@ -29,14 +30,25 @@ public class SeedTransducerConverter {
         }
 
         // Setting initial state
-        Optional<State> initStOp = seed.getStateFromName(pojo.getInitState());
+        setInitialState(pojo, seed);
+
+        // Converting and checking arcs
+        checkAndConvertArcs(pojo, seed);
+
+        return seed;
+
+    }
+
+    private static void setInitialState(SeedTransducerPOJO pojo, SeedTransducer seed) {
+        Optional<State> initStOp = seed.getStateFromName(pojo.getInit_state());
         if(initStOp.isPresent()) {
             seed.setInitState(initStOp.get());
         } else {
             // TODO error
         }
+    }
 
-        // Converting and checking arcs
+    private static void checkAndConvertArcs(SeedTransducerPOJO pojo, SeedTransducer seed) {
         for(LinkedHashMap mp : pojo.getArcs()) {
             if (mp.values().size() != 4) {
                 // TODO - error
@@ -53,9 +65,6 @@ public class SeedTransducerConverter {
 
             }
         }
-
-        return seed;
-
     }
 
     private static void setArcSemanticLetter(SeedTransducer seed, LinkedHashMap mp, Arc arc) {
