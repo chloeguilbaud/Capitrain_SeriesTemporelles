@@ -40,6 +40,7 @@ public class SeedTransducerParserTest {
      */
     @Test
     public void parseTest() throws IOException {
+        // TODO - IOException
         SeedTransducerParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample.json"));
     }
 

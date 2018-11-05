@@ -4,28 +4,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public enum SemanticLetter {
+public enum Operator {
 
-    FOUND("found"),
-    FOUND_END("found(end)"),
-    MAYBE_BEFORE("maybe(before)"),
-    MAYBE_AFTER("maybe(after)"),
-    OUT_RESET("out(reset)"),
-    IN("in"),
-    OUT_AFTER("out(after)"),
-    OUT("out");
+    EQ("eq"),
+    LT("lt"),
+    GT("gt"),
+    LEQ("leq"),
+    GEQ("geq");
 
     private String label;
 
-    SemanticLetter(String lab) {
+    Operator(String lab) {
         this.label = lab;
     }
 
-    public static Optional<SemanticLetter> fromLabel(String lab) {
+    public static Optional<Operator> fromLabel(String lab) {
         return Optional.ofNullable(valuesAsList().stream().filter(m -> m.getLabel().equalsIgnoreCase(lab)).findAny().orElse(null));
     }
 
-    public static List<SemanticLetter> valuesAsList() {
+    public static List<Operator> valuesAsList() {
         return Arrays.asList(values());
     }
 
