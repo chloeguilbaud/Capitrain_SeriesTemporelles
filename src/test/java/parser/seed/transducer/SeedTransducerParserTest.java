@@ -1,18 +1,13 @@
 package parser.seed.transducer;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import conf.TestConfiguration;
 import model.seed.transducer.*;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import parser.seed.transducer.model.SeedTransducerPOJO;
+import parser.seed.transducer.model.SeedTransducerParsingResult;
 import utils.Comparator;
 import utils.SeedTransducerMock;
 
-import javax.swing.plaf.synth.SynthEditorPaneUI;
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;

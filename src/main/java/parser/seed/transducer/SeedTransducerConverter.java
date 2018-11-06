@@ -3,6 +3,7 @@ package parser.seed.transducer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.seed.transducer.*;
 import parser.seed.transducer.model.SeedTransducerPOJO;
+import parser.seed.transducer.model.SeedTransducerParsingResult;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,9 +16,10 @@ public class SeedTransducerConverter {
 
     public static SeedTransducerParsingResult convert(File jsonFile) throws IOException {
 
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = confMapper();
         SeedTransducerPOJO pojo = mapper.readValue(jsonFile, SeedTransducerPOJO.class);
 
+        // TODO - unknown values
         // TODO - id pojo contains null element - error
         // TODO - Mapper configuration and testing
 
@@ -37,6 +39,11 @@ public class SeedTransducerConverter {
 
         return new SeedTransducerParsingResult(seed, null);
 
+    }
+
+    private static ObjectMapper confMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper;
     }
 
     private static void setInitialState(SeedTransducerPOJO pojo, SeedTransducer seed) {
@@ -59,7 +66,7 @@ public class SeedTransducerConverter {
                 setArcFromState(seed, mp, arc);
                 setArcToState(seed, mp, arc);
                 setArcOperatorState(mp, arc);
-                setArcSemanticLetter(seed, mp, arc);
+                setArcSemanticLetter(mp, arc);
 
                 seed.addArc(arc);
 
@@ -67,7 +74,7 @@ public class SeedTransducerConverter {
         }
     }
 
-    private static void setArcSemanticLetter(SeedTransducer seed, LinkedHashMap mp, Arc arc) {
+    private static void setArcSemanticLetter(LinkedHashMap mp, Arc arc) {
         String letter = (String) mp.get(SEED_TEMPLATE_ARC_LETTER.getLabel());
         Optional<SemanticLetter> arcLetterOpt = SemanticLetter.fromLabel(letter);
         if(arcLetterOpt.isPresent()) {

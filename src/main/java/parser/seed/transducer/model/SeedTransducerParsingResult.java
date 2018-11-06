@@ -1,6 +1,6 @@
-package parser.seed.transducer;
+package parser.seed.transducer.model;
 
-import errors.seed.transducer.SeedTransducerParsingError;
+import parser.seed.transducer.error.manager.SeedTransducerParsingError;
 import model.seed.transducer.SeedTransducer;
 
 import java.util.List;
