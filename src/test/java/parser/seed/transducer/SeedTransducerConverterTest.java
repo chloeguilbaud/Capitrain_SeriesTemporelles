@@ -3,6 +3,8 @@ package parser.seed.transducer;
 import conf.TestConfiguration;
 import model.seed.transducer.SeedTransducer;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import parser.seed.transducer.error.manager.SeedTransducerParsingErrorType;
 import parser.seed.transducer.model.SeedTransducerParsingResult;
 import utils.Comparator;
@@ -10,6 +12,9 @@ import utils.SeedTransducerMock;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -32,23 +37,5 @@ public class SeedTransducerConverterTest {
 
     }
 
-    @Test
-    public void convertTest_unknownElement() throws IOException {
-
-        SeedTransducer seed = SeedTransducerMock.get();
-
-        File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_SEED_TRANSDUCER_PARSER.getValue() + "convertTest_unknownElement.json");
-        SeedTransducerParsingResult res = SeedTransducerConverter.convert(jsonFile);
-
-        assertFalse("No parsing so errors - unexpected element in json file", res.getSeedTransducer().isPresent());
-        assertTrue("Parsing KO so errors", res.hasErrors());
-        assertEquals("Unexpected JSON element error", 1, res.getParsingErrors().size());
-        assertEquals("Unexpected JSON element error", SeedTransducerParsingErrorType.UNRECOGNIZED_PROPERTY_IN_JSON, res.getParsingErrors().get(0).getErrorType());
-
-        assertTrue("Unexpected JSON element error - msg",
-                res.getParsingErrors().get(0).getErrorMsg().contains("Unrecognized field \"je suis un intrus"));
-
-
-    }
 
 }
