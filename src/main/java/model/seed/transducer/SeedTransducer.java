@@ -31,8 +31,8 @@ public class SeedTransducer {
         this.states = states;
     }
 
-    public void addState(String stateName, State state) {
-        this.states.put(stateName, state);
+    public void addState(State state) {
+        this.states.put(state.getName(), state);
     }
 
     public Optional<State> getStateFromName(String name) {
@@ -52,4 +52,21 @@ public class SeedTransducer {
                 ", arcs=" + arcs +
                 '}';
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public State getInitState() {
+        return initState;
+    }
+
+    public HashMap<String, State> getStates() {
+        return states;
+    }
+
+    public HashSet<Arc> getArcs() {
+        return arcs;
+    }
+
 }
