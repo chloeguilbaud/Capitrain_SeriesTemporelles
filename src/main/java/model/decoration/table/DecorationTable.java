@@ -7,14 +7,20 @@ import model.seed.transducer.SemanticLetter;
 
 public class DecorationTable {
 
+    private String name;
     private HashMap<String, Element> registers;
     private HashMap<String, Element> returns;
     private HashMap<InstructionKey, Instruction> instructions;
 
-    public DecorationTable() {
+    public DecorationTable(String name) {
+        this.name = name;
         this.registers = new HashMap<>();
         this.returns = new HashMap<>();
         this.instructions = new HashMap<>();
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public void addRegister(String key, Element register) {
@@ -39,6 +45,18 @@ public class DecorationTable {
 
     public Instruction getInstruction(SemanticLetter letter, int after) {
         return this.instructions.get(new InstructionKey(letter, after));
+    }
+
+    public HashMap<String, Element> getRegisters() {
+        return this.registers;
+    }
+
+    public HashMap<String, Element> getReturns() {
+        return this.returns;
+    }
+
+    public HashMap<InstructionKey, Instruction> getInstructions() {
+        return this.instructions;
     }
 
     @Override

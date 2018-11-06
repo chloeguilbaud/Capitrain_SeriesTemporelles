@@ -22,16 +22,32 @@ public class Arc {
         this.from = from;
     }
 
+    public State getFrom(){
+        return this.from;
+    }
+
     public void setTo(State to) {
         this.to = to;
+    }
+
+    public State getTo() {
+        return this.to;
     }
 
     public void setOperator(Operator operator) {
         this.operator = operator;
     }
 
+    public Operator getOperator() {
+        return this.operator;
+    }
+
     public void setSemanticLetter(SemanticLetter semanticLetter) {
         this.semanticLetter = semanticLetter;
+    }
+
+    public SemanticLetter getSemanticLetter() {
+        return this.semanticLetter;
     }
 
     @Override

@@ -26,7 +26,7 @@ public class DecorationTableTest {
         String C_identifier = "C";
 
         // Decoration table init
-        DecorationTable footprint = new DecorationTable();
+        DecorationTable footprint = new DecorationTable("footprint");
         footprint.addRegister(C_identifier, new Integer(0));
         footprint.addReturns(p_indentifier, new Integer(0));
 

@@ -27,7 +27,7 @@ public class GeneratorManager {
         String C_identifier = "C";
 
         // Decoration table init
-        DecorationTable footprint = new DecorationTable();
+        DecorationTable footprint = new DecorationTable("footprint");
         footprint.addRegister(C_identifier, new Integer(0));
         footprint.addReturns(p_indentifier, new Integer(0));
 
@@ -87,37 +87,37 @@ public class GeneratorManager {
 
         Arc dr = new Arc();
         dr.setFrom(d);
-        dr.setTo(d);
+        dr.setTo(r);
         dr.setOperator(Operator.LT);
         dr.setSemanticLetter(SemanticLetter.OUT);
 
         Arc rr = new Arc();
-        rr.setFrom(d);
-        rr.setTo(d);
+        rr.setFrom(r);
+        rr.setTo(r);
         rr.setOperator(Operator.LEQ);
         rr.setSemanticLetter(SemanticLetter.MAYBE_BEFORE);
 
         Arc rt = new Arc();
-        rt.setFrom(d);
-        rt.setTo(d);
+        rt.setFrom(r);
+        rt.setTo(t);
         rt.setOperator(Operator.GT);
         rt.setSemanticLetter(SemanticLetter.FOUND);
 
         Arc tr = new Arc();
-        tr.setFrom(d);
-        tr.setTo(d);
+        tr.setFrom(t);
+        tr.setTo(r);
         tr.setOperator(Operator.LT);
         tr.setSemanticLetter(SemanticLetter.OUT_AFTER);
 
         Arc tt1 = new Arc();
-        tt1.setFrom(d);
-        tt1.setTo(d);
+        tt1.setFrom(t);
+        tt1.setTo(t);
         tt1.setOperator(Operator.GT);
         tt1.setSemanticLetter(SemanticLetter.IN);
 
         Arc tt2 = new Arc();
-        tt2.setFrom(d);
-        tt2.setTo(d);
+        tt2.setFrom(t);
+        tt2.setTo(t);
         tt2.setOperator(Operator.EQ);
         tt2.setSemanticLetter(SemanticLetter.MAYBE_AFTER);
 
