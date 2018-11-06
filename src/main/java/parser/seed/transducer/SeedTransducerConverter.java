@@ -13,7 +13,7 @@ import static parser.seed.transducer.model.SeedTransducerJSONElements.*;
 
 public class SeedTransducerConverter {
 
-    public static SeedTransducer convert(File jsonFile) throws IOException {
+    public static SeedTransducerParsingResult convert(File jsonFile) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
         SeedTransducerPOJO pojo = mapper.readValue(jsonFile, SeedTransducerPOJO.class);
@@ -26,7 +26,7 @@ public class SeedTransducerConverter {
 
         // Adding states to seed transducer
         for (String st : pojo.getStates()) {
-            seed.addState(st, new State(st));
+            seed.addState(new State(st));
         }
 
         // Setting initial state
@@ -35,7 +35,7 @@ public class SeedTransducerConverter {
         // Converting and checking arcs
         checkAndConvertArcs(pojo, seed);
 
-        return seed;
+        return new SeedTransducerParsingResult(seed, null);
 
     }
 

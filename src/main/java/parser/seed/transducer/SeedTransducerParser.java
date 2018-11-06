@@ -11,8 +11,8 @@ import java.util.Map;
 public class SeedTransducerParser {
 
 
-    public static void parse(File jsonFile) throws IOException {
-        SeedTransducerConverter.convert(jsonFile);
+    public static SeedTransducerParsingResult parse(File jsonFile) throws IOException {
+        return SeedTransducerConverter.convert(jsonFile);
     }
 
 }
