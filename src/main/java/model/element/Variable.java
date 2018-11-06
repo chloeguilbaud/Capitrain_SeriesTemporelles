@@ -1,6 +1,6 @@
 package model.element;
 
-public class Variable {
+public class Variable extends Element {
 
     private String name;
 
@@ -14,5 +14,10 @@ public class Variable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

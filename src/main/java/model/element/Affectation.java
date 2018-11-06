@@ -1,6 +1,6 @@
 package model.element;
 
-public class Affectation {
+public class Affectation extends Element {
 
     private Variable variable;
     private Element value;
@@ -16,6 +16,11 @@ public class Affectation {
 
     public Element getValue() {
         return this.value;
+    }
+
+    @Override
+    public String toString() {
+        return this.variable.toString() + " = " + this.value.toString();
     }
 
 }

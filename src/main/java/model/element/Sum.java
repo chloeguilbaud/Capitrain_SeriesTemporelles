@@ -1,6 +1,6 @@
 package model.element;
 
-public class Sum {
+public class Sum extends Element {
 
     private Element leftElement;
     private Element rightElement;
@@ -16,6 +16,11 @@ public class Sum {
 
     public Element getRight() {
         return this.rightElement;
+    }
+
+    @Override
+    public String toString() {
+        return this.leftElement.toString() + " + " + this.rightElement.toString();
     }
 
 }

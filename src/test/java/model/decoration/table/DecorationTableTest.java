@@ -1,8 +1,7 @@
-package generator;
+package model.decoration.table;
 
-import generator.java.JavaGenerator;
-import model.decoration.table.DecorationTable;
-import model.decoration.table.Instruction;
+import org.junit.Test;
+
 import model.element.Affectation;
 import model.element.IndexedVariable;
 import model.element.Integer;
@@ -14,11 +13,11 @@ import model.seed.transducer.SeedTransducer;
 import model.seed.transducer.SemanticLetter;
 import model.seed.transducer.State;
 
-public class GeneratorManager {
+public class DecorationTableTest {
 
-    public static void main(String[] args) {
-        JavaGenerator javacode = new JavaGenerator();
-        System.out.println(javacode.generateCode(initTransducer(), initDecorationTable()).toString());
+    @Test
+    public void initTest() {
+        System.out.println("Test");
     }
 
     static DecorationTable initDecorationTable() {
@@ -137,4 +136,18 @@ public class GeneratorManager {
 
         return peak;
     }
+
+    /**
+     * Case test for footprit_constraint
+     */
+    public static void main(String[] args) {
+        // Seed transducer init
+        SeedTransducer peak = initTransducer();
+        System.out.println(peak);
+
+        // Decoration table init
+        DecorationTable footprint = initDecorationTable();
+        System.out.println(footprint);
+    }
+
 }

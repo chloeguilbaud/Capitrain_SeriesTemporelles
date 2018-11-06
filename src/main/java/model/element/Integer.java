@@ -1,6 +1,6 @@
 package model.element;
 
-public class Integer {
+public class Integer extends Element {
     
     private int value;
 
@@ -14,5 +14,10 @@ public class Integer {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return this.value + "";
     }
 }
