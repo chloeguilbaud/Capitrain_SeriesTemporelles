@@ -34,4 +34,8 @@ public enum SeedTransducerJSONElements {
         return label;
     }
 
+    @Override
+    public String toString() {
+        return label;
+    }
 }
