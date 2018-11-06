@@ -12,9 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class SeedTransducerParserTest {
 
@@ -38,9 +36,9 @@ public class SeedTransducerParserTest {
 
     /**
      * com.fasterxml.jackson.databind.JsonMappingException: No content to map due to end-of-input
-     *java.io.FileNotFoundException: src\resources\seedTransducerExample.json (Le chemin d’accès spécifié est introuvable)
+     *java.io.FileNotFoundException: src\resources\convertTest_unknownElement.json (Le chemin d’accès spécifié est introuvable)
      * com.fasterxml.jackson.databind.JsonMappingException: Can not construct instance of parser.seed.transducer.model.SeedTransducerPOJO: no suitable constructor found, can not deserialize from Object value (missing default constructor or creator, or perhaps need to add/enable type information?)
-     *  at [Source: src\test\resources\seedTransducerExample.json; line: 2, column: 3]
+     *  at [Source: src\test\resources\convertTest_unknownElement.json; line: 2, column: 3]
      */
     @Test
     public void parseTest() throws IOException {
@@ -49,10 +47,12 @@ public class SeedTransducerParserTest {
         SeedTransducer seed = SeedTransducerMock.get();
         
         SeedTransducerParsingResult res = SeedTransducerParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample.json"));
-        assertEquals("", seed.getName(), res.getSeedTransducer().getName());
-        assertEquals("", seed.getInitState(), res.getSeedTransducer().getInitState());
-        assertEquals("", seed.getStates(), res.getSeedTransducer().getStates());
-        assertTrue("", Comparator.compare(seed, res.getSeedTransducer()));
+        assertTrue("Seed is present so no errors", res.getSeedTransducer().isPresent());
+        assertFalse("Parsing OK so no errors", res.hasErrors());
+        assertEquals("Seed Name", seed.getName(), res.getSeedTransducer().get().getName());
+        assertEquals("Seed init state", seed.getInitState(), res.getSeedTransducer().get().getInitState());
+        assertEquals("Seed states", seed.getStates(), res.getSeedTransducer().get().getStates());
+        assertTrue("Seed arcs", Comparator.compare(seed, res.getSeedTransducer().get()));
 
     }
 
