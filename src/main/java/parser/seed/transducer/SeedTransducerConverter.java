@@ -1,7 +1,10 @@
 package parser.seed.transducer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import model.seed.transducer.*;
+import parser.seed.transducer.error.manager.SeedTransducerParsingError;
+import parser.seed.transducer.error.manager.SeedTransducerParsingErrorType;
 import parser.seed.transducer.model.SeedTransducerPOJO;
 import parser.seed.transducer.model.SeedTransducerParsingResult;
 
@@ -16,13 +19,28 @@ public class SeedTransducerConverter {
 
     public static SeedTransducerParsingResult convert(File jsonFile) throws IOException {
 
+        SeedTransducerParsingResult res = new SeedTransducerParsingResult();
         ObjectMapper mapper = confMapper();
-        SeedTransducerPOJO pojo = mapper.readValue(jsonFile, SeedTransducerPOJO.class);
-
+        try {
+            SeedTransducerPOJO pojo = mapper.readValue(jsonFile, SeedTransducerPOJO.class);
+            return process(pojo);
+        } catch (UnrecognizedPropertyException ex) {
+            System.out.println(ex.getMessage());
+            SeedTransducerParsingError err = new SeedTransducerParsingError(
+                    SeedTransducerParsingErrorType.UNRECOGNIZED_PROPERTY_IN_JSON,
+                    ex.getMessage());
+            res.addParsingError(err);
+        }
         // TODO - unknown values
         // TODO - id pojo contains null element - error
         // TODO - Mapper configuration and testing
 
+
+        // TODO - res.addParsingError(SeedTransducerParsingErrorType.UNKNOWN_ERROR);
+        return res;
+    }
+
+    private static SeedTransducerParsingResult process(SeedTransducerPOJO pojo) {
         // Seed Transducer initialisation
         SeedTransducer seed = new SeedTransducer(pojo.getName());
 
@@ -37,8 +55,9 @@ public class SeedTransducerConverter {
         // Converting and checking arcs
         checkAndConvertArcs(pojo, seed);
 
-        return new SeedTransducerParsingResult(seed, null);
-
+        SeedTransducerParsingResult res = new SeedTransducerParsingResult();
+        res.setSeedTransducer(seed);
+        return res;
     }
 
     private static ObjectMapper confMapper() {
