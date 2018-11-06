@@ -67,7 +67,7 @@ public class SeedTransducerParserTest {
         HashSet<Arc> hash2= new HashSet<>();
 
         hash1.add(new Arc(new State("s1"), new State("s2"), Operator.LEQ, SemanticLetter.MAYBE_AFTER));
-        hash1.add(new Arc(new State("s1"), new State("s3"), Operator.LEQ, SemanticLetter.MAYBE_AFTER));
+        //hash1.add(new Arc(new State("s1"), new State("s3"), Operator.LEQ, SemanticLetter.MAYBE_AFTER));
         hash2.add(new Arc(new State("s1"), new State("s2"), Operator.LEQ, SemanticLetter.MAYBE_AFTER));
 
         Arc a1 = new Arc(new State("s1"), new State("s2"), Operator.LEQ, SemanticLetter.MAYBE_AFTER);

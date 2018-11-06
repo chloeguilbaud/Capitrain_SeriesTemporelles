@@ -2,8 +2,6 @@ package model.decoration.table;
 
 import java.util.HashMap;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
 import model.element.Element;
 
 public class Instruction {

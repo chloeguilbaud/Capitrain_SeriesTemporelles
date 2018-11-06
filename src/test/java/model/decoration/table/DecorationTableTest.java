@@ -120,9 +120,9 @@ public class DecorationTableTest {
         tt2.setOperator(Operator.EQ);
         tt2.setSemanticLetter(SemanticLetter.MAYBE_AFTER);
 
-        peak.addState("d", d);
-        peak.addState("r", r);
-        peak.addState("t", t);
+        peak.addState(d);
+        peak.addState(r);
+        peak.addState(t);
 
         peak.setInitState(d);
 
