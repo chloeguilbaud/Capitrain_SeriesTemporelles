@@ -12,6 +12,14 @@ public class InstructionKey {
         this.after = new Integer(after);
     }
 
+    public SemanticLetter getSemanticLetter() {
+        return this.semanticLetter;
+    }
+
+    public Integer getAfter() {
+        return this.after;
+    }
+
     @Override
     public int hashCode() {
         return this.semanticLetter.getLabel().hashCode() + this.after.hashCode();

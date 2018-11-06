@@ -1,4 +1,4 @@
 package generator.java;
 
-public class JavaLink {
+public class JavaArc {
 }
