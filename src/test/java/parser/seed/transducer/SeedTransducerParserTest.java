@@ -3,16 +3,25 @@ package parser.seed.transducer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import conf.TestConfiguration;
-import org.junit.Test;
-import parser.seed.transducer.model.SeedTransducerPOJO;
+import model.seed.transducer.*;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import parser.seed.transducer.model.SeedTransducerPOJO;
+import utils.Comparator;
+import utils.SeedTransducerMock;
+
+import javax.swing.plaf.synth.SynthEditorPaneUI;
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class SeedTransducerParserTest {
-
 
     /**
      * // JsonParser.Feature for configuring parsing settings:
@@ -41,7 +50,39 @@ public class SeedTransducerParserTest {
     @Test
     public void parseTest() throws IOException {
         // TODO - IOException
-        SeedTransducerParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample.json"));
+
+        SeedTransducer seed = SeedTransducerMock.get();
+        
+        SeedTransducerParsingResult res = SeedTransducerParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample.json"));
+        assertEquals("", seed.getName(), res.getSeedTransducer().getName());
+        assertEquals("", seed.getInitState(), res.getSeedTransducer().getInitState());
+        assertEquals("", seed.getStates(), res.getSeedTransducer().getStates());
+        assertTrue("", Comparator.compare(seed, res.getSeedTransducer()));
+
+    }
+
+    @Test
+    public void compTest() {
+        HashSet<Arc> hash1 = new HashSet<>();
+        HashSet<Arc> hash2= new HashSet<>();
+
+        hash1.add(new Arc(new State("s1"), new State("s2"), Operator.LEQ, SemanticLetter.MAYBE_AFTER));
+        hash1.add(new Arc(new State("s1"), new State("s3"), Operator.LEQ, SemanticLetter.MAYBE_AFTER));
+        hash2.add(new Arc(new State("s1"), new State("s2"), Operator.LEQ, SemanticLetter.MAYBE_AFTER));
+
+        Arc a1 = new Arc(new State("s1"), new State("s2"), Operator.LEQ, SemanticLetter.MAYBE_AFTER);
+        Arc a2 = new Arc(new State("s1"), new State("s2"), Operator.LEQ, SemanticLetter.MAYBE_AFTER);
+
+        System.out.println("hash - " + hash1.equals(hash2));
+        System.out.println("contains - " + hash1.containsAll(Arrays.asList(a1)));
+        System.out.println("arcs - " + a1.equals(a2));
+
+        SeedTransducer s1 = new SeedTransducer("s1");
+        s1.setArcs(hash1);
+        SeedTransducer s2 = new SeedTransducer("s2");
+        s2.setArcs(hash2);
+        System.out.println(Comparator.compare(s1, s2));
+
     }
 
 }

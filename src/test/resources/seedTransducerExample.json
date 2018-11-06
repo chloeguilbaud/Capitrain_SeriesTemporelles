@@ -1,5 +1,5 @@
 {
-  "name": "bump_on_decreasing_sequence",
+  "name": "test_seed",
   "init_state": "s",
   "states": ["s", "r", "t", "u", "v"],
   "arcs": [
@@ -25,19 +25,7 @@
       "from": "r",
       "to": "t",
       "operator": "gt",
-      "letter": "out"
-    },
-    {
-      "from": "t",
-      "to": "t",
-      "operator": "gt",
-      "letter": "out"
-    },
-    {
-      "from": "t",
-      "to": "s",
-      "operator": "eq",
-      "letter": "out"
+      "letter": "out(after)"
     },
     {
       "from": "t",
@@ -68,6 +56,24 @@
       "to": "t",
       "operator": "gt",
       "letter": "found(end)"
+    },
+    {
+      "from": "v",
+      "to": "t",
+      "operator": "eq",
+      "letter": "found"
+    },
+    {
+      "from": "v",
+      "to": "t",
+      "operator": "geq",
+      "letter": "in"
+    },
+    {
+      "from": "v",
+      "to": "t",
+      "operator": "gt",
+      "letter": "maybe(after)"
     }
   ]
 }
