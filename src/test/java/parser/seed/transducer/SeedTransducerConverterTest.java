@@ -3,18 +3,12 @@ package parser.seed.transducer;
 import conf.TestConfiguration;
 import model.seed.transducer.SeedTransducer;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import parser.seed.transducer.error.manager.SeedTransducerParsingErrorType;
 import parser.seed.transducer.model.SeedTransducerParsingResult;
 import utils.Comparator;
 import utils.SeedTransducerMock;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -23,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 public class SeedTransducerConverterTest {
 
     @Test
-    public void convertTest() throws IOException {
+    public void convertTest() {
 
         SeedTransducer seed = SeedTransducerMock.get();
 
@@ -34,6 +28,21 @@ public class SeedTransducerConverterTest {
         assertEquals("Seed init state", seed.getInitState(), res.getSeedTransducer().get().getInitState());
         assertEquals("Seed states", seed.getStates(), res.getSeedTransducer().get().getStates());
         assertTrue("Seed arcs", Comparator.compare(seed, res.getSeedTransducer().get()));
+
+    }
+
+    @Test
+    public void convertTest_missingStates() {
+
+        File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_SEED_TRANSDUCER_PARSER.getValue() + "convertTest_missingStates.json");
+        SeedTransducerParsingResult res = SeedTransducerConverter.convert(jsonFile);
+
+        assertFalse("No parsing because errors", res.getSeedTransducer().isPresent());
+        assertTrue("Parsing KO so errors", res.hasErrors());
+        assertEquals("Error amount checking", 26, res.getParsingErrors().size());
+
+        assertEquals("Error checking ", SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER, res.getParsingErrors().get(0).getErrorType());
+        assertTrue("Error message ", res.getParsingErrors().get(0).getErrorMsg().contains("\"states\""));
 
     }
 

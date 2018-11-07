@@ -1,5 +1,6 @@
 package model.decoration.table;
 
+import model.seed.transducer.*;
 import org.junit.Test;
 
 import model.element.Affectation;
@@ -7,11 +8,7 @@ import model.element.IndexedVariable;
 import model.element.Integer;
 import model.element.Sum;
 import model.element.Variable;
-import model.seed.transducer.Arc;
-import model.seed.transducer.Operator;
-import model.seed.transducer.SeedTransducer;
-import model.seed.transducer.SemanticLetter;
-import model.seed.transducer.State;
+import model.seed.transducer.ArcOperator;
 
 public class DecorationTableTest {
 
@@ -59,14 +56,14 @@ public class DecorationTableTest {
         in.addGuard(p_indentifier, p_i_equals_C);
 
         // Adding instructions to table
-        footprint.addInstruction(SemanticLetter.OUT, -1, out);
-        footprint.addInstruction(SemanticLetter.OUT_AFTER, -1, out);
-        footprint.addInstruction(SemanticLetter.OUT_RESET, -1, out);
-        footprint.addInstruction(SemanticLetter.MAYBE_AFTER, -1, maybe);
-        footprint.addInstruction(SemanticLetter.MAYBE_BEFORE, -1, maybe);
-        footprint.addInstruction(SemanticLetter.FOUND, -1, found);
-        footprint.addInstruction(SemanticLetter.FOUND_END, -1, found);
-        footprint.addInstruction(SemanticLetter.IN, -1, in);
+        footprint.addInstruction(ArcSemanticLetter.OUT, -1, out);
+        footprint.addInstruction(ArcSemanticLetter.OUT_AFTER, -1, out);
+        footprint.addInstruction(ArcSemanticLetter.OUT_RESET, -1, out);
+        footprint.addInstruction(ArcSemanticLetter.MAYBE_AFTER, -1, maybe);
+        footprint.addInstruction(ArcSemanticLetter.MAYBE_BEFORE, -1, maybe);
+        footprint.addInstruction(ArcSemanticLetter.FOUND, -1, found);
+        footprint.addInstruction(ArcSemanticLetter.FOUND_END, -1, found);
+        footprint.addInstruction(ArcSemanticLetter.IN, -1, in);
 
        return footprint;
     }
@@ -81,44 +78,44 @@ public class DecorationTableTest {
         Arc dd = new Arc();
         dd.setFrom(d);
         dd.setTo(d);
-        dd.setOperator(Operator.GEQ);
-        dd.setSemanticLetter(SemanticLetter.OUT);
+        dd.setArcOperator(ArcOperator.GEQ);
+        dd.setArcSemanticLetter(ArcSemanticLetter.OUT);
 
         Arc dr = new Arc();
         dr.setFrom(d);
         dr.setTo(d);
-        dr.setOperator(Operator.LT);
-        dr.setSemanticLetter(SemanticLetter.OUT);
+        dr.setArcOperator(ArcOperator.LT);
+        dr.setArcSemanticLetter(ArcSemanticLetter.OUT);
 
         Arc rr = new Arc();
         rr.setFrom(d);
         rr.setTo(d);
-        rr.setOperator(Operator.LEQ);
-        rr.setSemanticLetter(SemanticLetter.MAYBE_BEFORE);
+        rr.setArcOperator(ArcOperator.LEQ);
+        rr.setArcSemanticLetter(ArcSemanticLetter.MAYBE_BEFORE);
 
         Arc rt = new Arc();
         rt.setFrom(d);
         rt.setTo(d);
-        rt.setOperator(Operator.GT);
-        rt.setSemanticLetter(SemanticLetter.FOUND);
+        rt.setArcOperator(ArcOperator.GT);
+        rt.setArcSemanticLetter(ArcSemanticLetter.FOUND);
 
         Arc tr = new Arc();
         tr.setFrom(d);
         tr.setTo(d);
-        tr.setOperator(Operator.LT);
-        tr.setSemanticLetter(SemanticLetter.OUT_AFTER);
+        tr.setArcOperator(ArcOperator.LT);
+        tr.setArcSemanticLetter(ArcSemanticLetter.OUT_AFTER);
 
         Arc tt1 = new Arc();
         tt1.setFrom(d);
         tt1.setTo(d);
-        tt1.setOperator(Operator.GT);
-        tt1.setSemanticLetter(SemanticLetter.IN);
+        tt1.setArcOperator(ArcOperator.GT);
+        tt1.setArcSemanticLetter(ArcSemanticLetter.IN);
 
         Arc tt2 = new Arc();
         tt2.setFrom(d);
         tt2.setTo(d);
-        tt2.setOperator(Operator.EQ);
-        tt2.setSemanticLetter(SemanticLetter.MAYBE_AFTER);
+        tt2.setArcOperator(ArcOperator.EQ);
+        tt2.setArcSemanticLetter(ArcSemanticLetter.MAYBE_AFTER);
 
         peak.addState(d);
         peak.addState(r);
