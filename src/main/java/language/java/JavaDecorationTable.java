@@ -1,4 +1,4 @@
-package generator.java;
+package language.java;
 
 import java.util.HashMap;
 
@@ -9,13 +9,11 @@ import model.element.Element;
 
 public class JavaDecorationTable {
 
-    private String name;
     private HashMap<String, Element> registers;
     private HashMap<String, Element> returns;
     private HashMap<InstructionKey, Instruction> instructions;
 
     public JavaDecorationTable(DecorationTable decorationTable) {
-        this.name = decorationTable.getName();
         this.registers = decorationTable.getRegisters();
         this.returns = decorationTable.getReturns();
         this.instructions = decorationTable.getInstructions();

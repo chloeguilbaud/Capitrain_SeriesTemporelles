@@ -1,4 +1,4 @@
-package generator.java;
+package language.java;
 
 import generator.Language;
 import model.decoration.table.DecorationTable;

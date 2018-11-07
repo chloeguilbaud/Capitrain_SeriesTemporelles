@@ -1,4 +1,4 @@
-package generator.java;
+package language.java;
 
 public class JavaArc {
 }
