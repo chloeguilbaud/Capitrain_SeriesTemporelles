@@ -19,20 +19,20 @@ public class SeedTransducerMock {
         Optional<State> op = seed.getStateFromName("s");
         seed.setInitState(op.get());
 
-        seed.addArc(new Arc(seed.getStateFromName("s").get(), seed.getStateFromName("s").get(), Operator.LEQ, SemanticLetter.OUT));
-        seed.addArc(new Arc(seed.getStateFromName("s").get(), seed.getStateFromName("r").get(), Operator.GT, SemanticLetter.OUT));
-        seed.addArc(new Arc(seed.getStateFromName("r").get(), seed.getStateFromName("s").get(), Operator.LEQ, SemanticLetter.OUT));
-        seed.addArc(new Arc(seed.getStateFromName("r").get(), seed.getStateFromName("t").get(), Operator.GT, SemanticLetter.OUT_AFTER));
-        seed.addArc(new Arc(seed.getStateFromName("t").get(), seed.getStateFromName("u").get(), Operator.LT, SemanticLetter.MAYBE_BEFORE));
+        seed.addArc(new Arc(seed.getStateFromName("s").get(), seed.getStateFromName("s").get(), ArcOperator.LEQ, ArcSemanticLetter.OUT));
+        seed.addArc(new Arc(seed.getStateFromName("s").get(), seed.getStateFromName("r").get(), ArcOperator.GT, ArcSemanticLetter.OUT));
+        seed.addArc(new Arc(seed.getStateFromName("r").get(), seed.getStateFromName("s").get(), ArcOperator.LEQ, ArcSemanticLetter.OUT));
+        seed.addArc(new Arc(seed.getStateFromName("r").get(), seed.getStateFromName("t").get(), ArcOperator.GT, ArcSemanticLetter.OUT_AFTER));
+        seed.addArc(new Arc(seed.getStateFromName("t").get(), seed.getStateFromName("u").get(), ArcOperator.LT, ArcSemanticLetter.MAYBE_BEFORE));
 
-        seed.addArc(new Arc(seed.getStateFromName("u").get(), seed.getStateFromName("s").get(), Operator.LEQ, SemanticLetter.OUT_RESET));
-        seed.addArc(new Arc(seed.getStateFromName("u").get(), seed.getStateFromName("v").get(), Operator.GT, SemanticLetter.MAYBE_BEFORE));
-        seed.addArc(new Arc(seed.getStateFromName("v").get(), seed.getStateFromName("s").get(), Operator.LEQ, SemanticLetter.OUT_RESET));
-        seed.addArc(new Arc(seed.getStateFromName("v").get(), seed.getStateFromName("t").get(), Operator.GT, SemanticLetter.FOUND_END));
+        seed.addArc(new Arc(seed.getStateFromName("u").get(), seed.getStateFromName("s").get(), ArcOperator.LEQ, ArcSemanticLetter.OUT_RESET));
+        seed.addArc(new Arc(seed.getStateFromName("u").get(), seed.getStateFromName("v").get(), ArcOperator.GT, ArcSemanticLetter.MAYBE_BEFORE));
+        seed.addArc(new Arc(seed.getStateFromName("v").get(), seed.getStateFromName("s").get(), ArcOperator.LEQ, ArcSemanticLetter.OUT_RESET));
+        seed.addArc(new Arc(seed.getStateFromName("v").get(), seed.getStateFromName("t").get(), ArcOperator.GT, ArcSemanticLetter.FOUND_END));
 
-        seed.addArc(new Arc(seed.getStateFromName("v").get(), seed.getStateFromName("t").get(), Operator.EQ, SemanticLetter.FOUND));
-        seed.addArc(new Arc(seed.getStateFromName("v").get(), seed.getStateFromName("t").get(), Operator.GEQ, SemanticLetter.IN));
-        seed.addArc(new Arc(seed.getStateFromName("v").get(), seed.getStateFromName("t").get(), Operator.GT, SemanticLetter.MAYBE_AFTER));
+        seed.addArc(new Arc(seed.getStateFromName("v").get(), seed.getStateFromName("t").get(), ArcOperator.EQ, ArcSemanticLetter.FOUND));
+        seed.addArc(new Arc(seed.getStateFromName("v").get(), seed.getStateFromName("t").get(), ArcOperator.GEQ, ArcSemanticLetter.IN));
+        seed.addArc(new Arc(seed.getStateFromName("v").get(), seed.getStateFromName("t").get(), ArcOperator.GT, ArcSemanticLetter.MAYBE_AFTER));
 
         return seed;
     }

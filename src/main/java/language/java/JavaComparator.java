@@ -4,37 +4,37 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import model.seed.transducer.Operator;
+import model.seed.transducer.ArcOperator;
 
 public enum JavaComparator {
 
-    EQ("==", Operator.EQ),
-    LT("<", Operator.LT),
-    GT(">", Operator.GT),
-    LEQ("<=", Operator.LEQ),
-    GEQ(">=", Operator.GEQ);
+    EQ("==", ArcOperator.EQ),
+    LT("<", ArcOperator.LT),
+    GT(">", ArcOperator.GT),
+    LEQ("<=", ArcOperator.LEQ),
+    GEQ(">=", ArcOperator.GEQ);
 
     private String label;
-    private Operator op;
+    private ArcOperator op;
 
-    JavaComparator(String lab, Operator op) {
+    JavaComparator(String lab, ArcOperator op) {
         this.label = lab;
         this.op = op;
     }
 
     public static Optional<JavaComparator> fromLabel(String lab) {
-        return Optional.ofNullable(valuesAsList().stream().filter(m -> m.getLabel().equalsIgnoreCase(lab)).findAny().orElse(null));
+        return valuesAsList().stream().filter(m -> m.getLabel().equalsIgnoreCase(lab)).findAny();
     }
 
-    public static Optional<JavaComparator> fromOperator(Operator op) {
-        return Optional.ofNullable(valuesAsList().stream().filter(m -> m.getOperator().equals(op)).findAny().orElse(null));
+    public static Optional<JavaComparator> fromOperator(ArcOperator op) {
+        return valuesAsList().stream().filter(m -> m.getOperator().equals(op)).findAny();
     }
 
     public static List<JavaComparator> valuesAsList() {
         return Arrays.asList(values());
     }
 
-    public Operator getOperator() {
+    public ArcOperator getOperator() {
         return op;
     }
 

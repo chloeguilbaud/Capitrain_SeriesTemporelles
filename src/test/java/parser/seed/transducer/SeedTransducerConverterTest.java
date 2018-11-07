@@ -9,7 +9,6 @@ import utils.Comparator;
 import utils.SeedTransducerMock;
 
 import java.io.File;
-import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -18,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 public class SeedTransducerConverterTest {
 
     @Test
-    public void convertTest() throws IOException {
+    public void convertTest() {
 
         SeedTransducer seed = SeedTransducerMock.get();
 
@@ -33,22 +32,19 @@ public class SeedTransducerConverterTest {
     }
 
     @Test
-    public void convertTest_unknownElement() throws IOException {
+    public void convertTest_missingStates() {
 
-        SeedTransducer seed = SeedTransducerMock.get();
-
-        File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_SEED_TRANSDUCER_PARSER.getValue() + "convertTest_unknownElement.json");
+        File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_SEED_TRANSDUCER_PARSER.getValue() + "convertTest_missingStates.json");
         SeedTransducerParsingResult res = SeedTransducerConverter.convert(jsonFile);
 
-        assertFalse("No parsing so errors - unexpected element in json file", res.getSeedTransducer().isPresent());
+        assertFalse("No parsing because errors", res.getSeedTransducer().isPresent());
         assertTrue("Parsing KO so errors", res.hasErrors());
-        assertEquals("Unexpected JSON element error", 1, res.getParsingErrors().size());
-        assertEquals("Unexpected JSON element error", SeedTransducerParsingErrorType.UNRECOGNIZED_PROPERTY_IN_JSON, res.getParsingErrors().get(0).getErrorType());
+        assertEquals("Error amount checking", 26, res.getParsingErrors().size());
 
-        assertTrue("Unexpected JSON element error - msg",
-                res.getParsingErrors().get(0).getErrorMsg().contains("Unrecognized field \"je suis un intrus"));
-
+        assertEquals("Error checking ", SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER, res.getParsingErrors().get(0).getErrorType());
+        assertTrue("Error message ", res.getParsingErrors().get(0).getErrorMsg().contains("\"states\""));
 
     }
+
 
 }

@@ -20,7 +20,7 @@ public class JavaSeedTransducer {
 
     public void appendCode(String indent, StringBuffer buffer) {
         this.states.forEach((key, value) -> {
-            buffer.append(indent + "\n");
+            buffer.append(indent).append("\n");
             value.appendCode(indent, buffer);
         });
     }

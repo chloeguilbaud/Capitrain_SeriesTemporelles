@@ -3,6 +3,10 @@ package parser.seed.transducer.model;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Seed transducer enumeration listing the seed transducer JSON file's elements.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public enum SeedTransducerJSONElements {
 
     SEED_TEMPLATE("seed_template"),
@@ -34,4 +38,8 @@ public enum SeedTransducerJSONElements {
         return label;
     }
 
+    @Override
+    public String toString() {
+        return label;
+    }
 }

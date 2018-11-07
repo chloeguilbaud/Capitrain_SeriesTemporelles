@@ -1,10 +1,14 @@
 package parser.seed.transducer.model;
 
-import model.seed.transducer.State;
+import model.seed.transducer.SeedTransducer;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+/**
+ * POJO used for {@link SeedTransducer} JSON file representation. Enables easy mapping.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class SeedTransducerPOJO {
 
     private String name;

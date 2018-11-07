@@ -14,7 +14,11 @@ N. Beldiceanu, TASC (CNRS) IMT Atlantique, France, nicolas.beldiceanu@imt-atlant
 3. [Utilisation](docs/Utilisation.md)
 4. [Syntaxe du Seed Transducer](docs/SeedTransducer.md)
 5. [Syntaxe de la table de décoration](docs/DecorationTable.md)
-6. [Librairie](docs/Library.md)
+6. [Erreur de parsing](docs/ParsingErrors.md)
+7. [Conception](docs/Conception.md)
+7. [Contrôle qualité](docs/Testing.md)
+8. [Gestion de projet](docs/ProjectManagement.md)
+9. [Librairie](docs/Library.md)
 
 
 ## Contexte

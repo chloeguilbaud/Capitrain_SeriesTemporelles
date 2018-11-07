@@ -23,7 +23,7 @@ public class JavaDecorationTable {
         buffer.append(indent + "\n");
         this.instructions.forEach((key, value) -> {
             buffer.append(indent + "\n");
-            buffer.append(indent + JavaSemanticLetter.fromSemanticLetter(key.getSemanticLetter()).get().getLabel() + "() {\n");
+            buffer.append(indent + JavaSemanticLetter.fromSemanticLetter(key.getArcSemanticLetter()).get().getLabel() + "() {\n");
             buffer.append(indent + "\t// TODO\n");
             buffer.append(indent + "}\n");
         });

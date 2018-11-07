@@ -20,29 +20,6 @@ public class Comparator {
             }
         }
         return true;
-        /*
-        if(s1.getArcs().size() != s2.getArcs().size()) {
-            Assert.assertFalse(true);
-        } else {
-            for (Arc arc : s2.getArcs()) {
-                if(!s1.getArcs().contains(arc)) {
-                    //Assert
-                }
-            }
-        }
-        //return arcsAreEqual;
-        return false;
-        /*boolean arcsAreEqual = true;
-        if(s1.getArcs().size() != s2.getArcs().size()) {
-            arcsAreEqual = false;
-        } else {
-            for (Arc arc : s2.getArcs()) {
-                if(!s1.getArcs().contains(arc)) {
-                    arcsAreEqual = false;
-                }
-            }
-        }
-        return arcsAreEqual;*/
     }
 
 }
