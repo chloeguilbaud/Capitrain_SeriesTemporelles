@@ -1,4 +1,4 @@
-package generator.java;
+package language.java;
 
 import generator.Generator;
 import model.decoration.table.DecorationTable;
@@ -20,8 +20,8 @@ public class JavaGenerator implements Generator {
         javaBuffer.append("\tpublic int[][] entryPoint(int[][] timeSerie) {\n");
         javaBuffer.append("\t\tthis.timeSerie = timeSerie;\n");
         javaBuffer.append("\t\tthis.i = 0;\n");
-        javaBuffer.append("\t\t" + seedTransducer.getInitState().getName() + "();\n");
         javaBuffer.append("\t\tthis.returns = new int[timeSerie.length - 1][" + decorationTable.getRegisters().size() + "];\n");
+        javaBuffer.append("\t\t" + seedTransducer.getInitState().getName() + "();\n");
         javaBuffer.append("\t\treturn this.returns;\n");
         javaBuffer.append("\t}\n");
         javaSeedTransducer.appendCode("\t", javaBuffer);

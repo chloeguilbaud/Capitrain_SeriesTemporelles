@@ -1,6 +1,6 @@
 package generator;
 
-import generator.java.JavaGenerator;
+import language.java.JavaGenerator;
 import model.decoration.table.DecorationTable;
 import model.decoration.table.Instruction;
 import model.element.Affectation;
