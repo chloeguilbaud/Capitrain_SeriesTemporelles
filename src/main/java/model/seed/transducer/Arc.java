@@ -6,14 +6,14 @@ public class Arc {
 
     private State from;
     private State to;
-    private Operator operator;
-    private SemanticLetter semanticLetter;
+    private ArcOperator arcOperator;
+    private ArcSemanticLetter arcSemanticLetter;
 
-    public Arc(State from, State to, Operator operator, SemanticLetter semanticLetter) {
+    public Arc(State from, State to, ArcOperator arcOperator, ArcSemanticLetter arcSemanticLetter) {
         this.from = from;
         this.to = to;
-        this.operator = operator;
-        this.semanticLetter = semanticLetter;
+        this.arcOperator = arcOperator;
+        this.arcSemanticLetter = arcSemanticLetter;
     }
 
     public Arc() { }
@@ -34,20 +34,20 @@ public class Arc {
         return this.to;
     }
 
-    public void setOperator(Operator operator) {
-        this.operator = operator;
+    public void setArcOperator(ArcOperator arcOperator) {
+        this.arcOperator = arcOperator;
     }
 
-    public Operator getOperator() {
-        return this.operator;
+    public ArcOperator getArcOperator() {
+        return this.arcOperator;
     }
 
-    public void setSemanticLetter(SemanticLetter semanticLetter) {
-        this.semanticLetter = semanticLetter;
+    public void setArcSemanticLetter(ArcSemanticLetter arcSemanticLetter) {
+        this.arcSemanticLetter = arcSemanticLetter;
     }
 
-    public SemanticLetter getSemanticLetter() {
-        return this.semanticLetter;
+    public ArcSemanticLetter getArcSemanticLetter() {
+        return this.arcSemanticLetter;
     }
 
     @Override
@@ -55,8 +55,8 @@ public class Arc {
         return "Arc{" +
                 "from=" + from +
                 ", to=" + to +
-                ", operator=" + operator +
-                ", semanticLetter=" + semanticLetter +
+                ", operator=" + arcOperator +
+                ", semanticLetter=" + arcSemanticLetter +
                 '}';
     }
 
@@ -67,8 +67,8 @@ public class Arc {
         Arc arc = (Arc) o;
         return Objects.equals(from, arc.from) &&
                 Objects.equals(to, arc.to) &&
-                operator == arc.operator &&
-                semanticLetter == arc.semanticLetter;
+                arcOperator == arc.arcOperator &&
+                arcSemanticLetter == arc.arcSemanticLetter;
     }
 
 }

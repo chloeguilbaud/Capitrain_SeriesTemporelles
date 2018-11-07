@@ -17,4 +17,12 @@ public class SeedTransducerParsingError {
     public String getErrorMsg() {
         return errorMsg;
     }
+
+    @Override
+    public String toString() {
+        return "SeedTransducerParsingError{" +
+                "errorType=" + errorType +
+                ", errorMsg='" + errorMsg + '\'' +
+                '}';
+    }
 }

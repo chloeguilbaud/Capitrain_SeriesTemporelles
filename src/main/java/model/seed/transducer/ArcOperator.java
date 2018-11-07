@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public enum Operator {
+public enum ArcOperator {
 
     EQ("eq"),
     LT("lt"),
@@ -14,15 +14,15 @@ public enum Operator {
 
     private String label;
 
-    Operator(String lab) {
+    ArcOperator(String lab) {
         this.label = lab;
     }
 
-    public static Optional<Operator> fromLabel(String lab) {
+    public static Optional<ArcOperator> fromLabel(String lab) {
         return Optional.ofNullable(valuesAsList().stream().filter(m -> m.getLabel().equalsIgnoreCase(lab)).findAny().orElse(null));
     }
 
-    public static List<Operator> valuesAsList() {
+    public static List<ArcOperator> valuesAsList() {
         return Arrays.asList(values());
     }
 
@@ -30,4 +30,8 @@ public enum Operator {
         return label;
     }
 
+    @Override
+    public String toString() {
+        return label;
+    }
 }
