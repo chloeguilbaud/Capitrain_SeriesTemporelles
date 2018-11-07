@@ -3,7 +3,7 @@ package model.decoration.table;
 import java.util.HashMap;
 
 import model.element.Element;
-import model.seed.transducer.SemanticLetter;
+import model.seed.transducer.ArcSemanticLetter;
 
 public class DecorationTable {
 
@@ -31,7 +31,7 @@ public class DecorationTable {
         this.returns.put(key, returnElement);
     }
 
-    public void addInstruction(SemanticLetter letter, int after, Instruction instruction) {
+    public void addInstruction(ArcSemanticLetter letter, int after, Instruction instruction) {
         this.instructions.put(new InstructionKey(letter, after), instruction);
     }
 
@@ -43,7 +43,7 @@ public class DecorationTable {
         return this.returns.get(key);
     }
 
-    public Instruction getInstruction(SemanticLetter letter, int after) {
+    public Instruction getInstruction(ArcSemanticLetter letter, int after) {
         return this.instructions.get(new InstructionKey(letter, after));
     }
 

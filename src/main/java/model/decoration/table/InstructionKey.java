@@ -1,19 +1,19 @@
 package model.decoration.table;
 
-import model.seed.transducer.SemanticLetter;
+import model.seed.transducer.ArcSemanticLetter;
 
 public class InstructionKey {
 
-    private SemanticLetter semanticLetter;
+    private ArcSemanticLetter arcSemanticLetter;
     private Integer after;
 
-    public InstructionKey(SemanticLetter semanticLetter, int after) {
-        this.semanticLetter = semanticLetter;
+    public InstructionKey(ArcSemanticLetter arcSemanticLetter, int after) {
+        this.arcSemanticLetter = arcSemanticLetter;
         this.after = new Integer(after);
     }
 
-    public SemanticLetter getSemanticLetter() {
-        return this.semanticLetter;
+    public ArcSemanticLetter getArcSemanticLetter() {
+        return this.arcSemanticLetter;
     }
 
     public Integer getAfter() {
@@ -22,11 +22,11 @@ public class InstructionKey {
 
     @Override
     public int hashCode() {
-        return this.semanticLetter.getLabel().hashCode() + this.after.hashCode();
+        return this.arcSemanticLetter.getLabel().hashCode() + this.after.hashCode();
     }
 
     @Override
     public String toString() {
-        return this.semanticLetter.getLabel() + " || " + this.after;
+        return this.arcSemanticLetter.getLabel() + " || " + this.after;
     }
 }
