@@ -1,0 +1,27 @@
+table(footprint,vars,_,-,[c]).
+table(footprint,init,_,-,[0]).
+table(footprint,final,_,-,'Fn' #= 0).
+table(footprint,out,_,'Fi' #= 0,[c]).
+table(footprint,out(r),_,'Fi' #= 0,[c]).
+table(footprint,out(a),_,'Fi' #= 0, [c]).
+table(footprint,maybe(b),_,'Fi' #= 'Fj', [c]).
+table(footprint,maybe(a),_,'Fi' #= 'Fj', [c]).
+table(footprint,found_end,_,'Fi' #= 'C'+1, [c+1]).
+table(footprint,found,_,'Fi' #= 'C'+1, [c+1]).
+table(footprint,in,_,'Fi' #= 'C' ,[c]).
+
+table(features,vars,_,-,[c,d]).
+table(features,init,_,-,[neutral,neutral]).
+table(features,final,_,-,[fn #= default_f, en #= cn]).
+table(features,out,_,[fi #=default_f, ei #= default_f], [c,d]).
+table(features,out(r),_, [fi #=default_f, ei #= default_f], [c,neutral]).
+table(features,out(a),_, [fi #=default_f, ei #=c], [default,neutral]).
+table(features,maybe(b),_, [fi #=default_f, ei #= ej], [c,f(d,delta)]).
+table(features,maybe(a),_-0, [fi #=default_f, ei #= ej], [c,f(d,deltaprime)]).
+table(features,maybe(a),_-1, [fi #=default_f, ei #= ej], [c,f(d,delta)]).
+table(features,found,_-0, [fi #=ei, ei #=ej], [f(f(d,delta),deltaprime),neutral]).
+table(features,found,_-1, [fi #=ei, ei #=ej], [f(d,delta),neutral]).
+table(features,in,_-0, [fi #=default_f, ei #= ej], [f(c,f(d,deltaprime)),neutral]).
+table(features,in,_-1, [fi #=default_f, ei #= ej], [f(c,f(d,delta)),neutral]).
+table(features,found_end,_-0, [fi #= f(f(d,delta),deltaprime), ei #= default_f], [c,neutral]).
+table(features,found_end,_-1, [fi #= f(d,delta), ei #= default_f], [c,neutral]).
