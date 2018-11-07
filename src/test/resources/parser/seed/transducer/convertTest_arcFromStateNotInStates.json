@@ -1,10 +1,10 @@
 {
   "name": "test_seed",
-  "init_state": [45],
+  "init_state": "s",
   "states": ["s", "r", "t", "u", "v"],
   "arcs": [
     {
-      "from": "s",
+      "from": "a",
       "to": "s",
       "operator": "leq",
       "letter": "out"

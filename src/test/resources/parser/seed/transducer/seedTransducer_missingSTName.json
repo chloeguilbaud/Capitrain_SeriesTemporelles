@@ -1,6 +1,5 @@
 {
-  "name": "test_seed",
-  "init_state": [45],
+  "init_state": "s",
   "states": ["s", "r", "t", "u", "v"],
   "arcs": [
     {

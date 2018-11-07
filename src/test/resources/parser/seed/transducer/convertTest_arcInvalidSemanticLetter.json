@@ -1,6 +1,6 @@
 {
   "name": "test_seed",
-  "init_state": [45],
+  "init_state": "s",
   "states": ["s", "r", "t", "u", "v"],
   "arcs": [
     {
@@ -19,7 +19,7 @@
       "from": "r",
       "to": "s",
       "operator": "leq",
-      "letter": "out"
+      "letter": "hello world"
     },
     {
       "from": "r",

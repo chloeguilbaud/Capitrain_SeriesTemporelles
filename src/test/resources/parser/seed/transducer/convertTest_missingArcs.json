@@ -1,0 +1,5 @@
+{
+  "name": "test_seed",
+  "init_state": "s",
+  "states": ["s", "r", "t", "u", "v"]
+}

@@ -1,6 +1,6 @@
 {
   "name": "test_seed",
-  "init_state": [45],
+  "init_state": "s",
   "states": ["s", "r", "t", "u", "v"],
   "arcs": [
     {
@@ -30,7 +30,7 @@
     {
       "from": "t",
       "to": "u",
-      "operator": "lt",
+      "operator": "op",
       "letter": "maybe(before)"
     },
     {
