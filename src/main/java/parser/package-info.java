@@ -1,4 +1,4 @@
 /**
- * Package contenant les parser de decoration table et de seed transducer.
+ * Package containing the seed transducer parser based on a JSON file.
  */
 package parser;

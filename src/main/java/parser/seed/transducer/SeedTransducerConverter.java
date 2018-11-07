@@ -17,9 +17,23 @@ import java.util.Optional;
 
 import static parser.seed.transducer.model.SeedTransducerJSONElements.*;
 
-public class SeedTransducerConverter {
+/**
+ * Enables Seed Transducer's transformation from JSON to POJO.
+ * It is then transformed into a {@link SeedTransducerParsingResult} containing the {@link SeedTransducer}
+ * or errors.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
+class SeedTransducerConverter {
 
-    public static SeedTransducerParsingResult convert(File jsonFile) {
+    /**
+     * Transforms seed transducer JSON file into POJO before creating a {@link SeedTransducerParsingResult}.
+     * If a parsing error occurs the result will not contain ant {@link SeedTransducer}. Errors are added to the result.
+     * If the error is not a proper parsing error, processing errors can be notified.
+     * @param jsonFile - path to the seed transducer JSON file representation
+     * @return {@link SeedTransducerParsingResult} containing the {@link SeedTransducer} result or an empty {@link Optional}
+     *         object and errors if the parsing did't go through
+     */
+    static SeedTransducerParsingResult convert(File jsonFile) {
 
         SeedTransducerParsingResult res = new SeedTransducerParsingResult();
         ObjectMapper mapper = new ObjectMapper();
@@ -48,6 +62,13 @@ public class SeedTransducerConverter {
         return res;
     }
 
+    /**
+     * Process the parsing and converting.
+     * @param pojo The mapped {@link SeedTransducerPOJO} related to the Seed Transducer JSON file.
+     * @param res The {@link SeedTransducerParsingResult} parsing result
+     * @return {@link SeedTransducerParsingResult} containing the {@link SeedTransducer} result or an empty {@link Optional}
+     *      object and errors if the parsing did't go through
+     */
     private static SeedTransducerParsingResult process(SeedTransducerPOJO pojo, SeedTransducerParsingResult res) {
 
         // Seed Transducer initialisation
@@ -79,6 +100,13 @@ public class SeedTransducerConverter {
         return res;
     }
 
+    /**
+     * Adds the parsed seed transducer states to the result object.
+     * Adds errors if need to the {@link SeedTransducerParsingResult}
+     * @param pojo The mapped {@link SeedTransducerPOJO} extracted from seed transducer JSON file
+     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
+     * @param seed The {@link SeedTransducer} to produce (modified)
+     */
     private static void addStatesToSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res, SeedTransducer seed) {
         if(pojo.getStates() == null) {
             manageError(res,
@@ -91,13 +119,16 @@ public class SeedTransducerConverter {
         }
     }
 
-    private static void manageError(SeedTransducerParsingResult res, SeedTransducerParsingErrorType err, String msg) {
-        res.addParsingError(new SeedTransducerParsingError(err, msg));
-    }
-
-
+    /**
+     * Sets the initial state given from the pojo into the {@link SeedTransducer}.
+     * Adds errors if need to the {@link SeedTransducerParsingResult}.
+     * @param pojo The mapped {@link SeedTransducerPOJO} extracted from seed transducer JSON file
+     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
+     * @param seed The {@link SeedTransducer} to produce (modified)
+     */
     private static void setInitialState(SeedTransducerPOJO pojo, SeedTransducer seed, SeedTransducerParsingResult res) {
         String initState = pojo.getInit_state();
+        // Checking if the initial state given in the JSON File
         if(initState == null) {
             manageError(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER,
@@ -115,7 +146,15 @@ public class SeedTransducerConverter {
         }
     }
 
+    /**
+     * Adds the arcs given from the pojo into the {@link SeedTransducer} if valid.
+     * Adds errors if need to the {@link SeedTransducerParsingResult}.
+     * @param pojo The mapped {@link SeedTransducerPOJO} extracted from seed transducer JSON file
+     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
+     * @param seed The {@link SeedTransducer} to produce (modified)
+     */
     private static void checkAndConvertArcs(SeedTransducerPOJO pojo, SeedTransducer seed, SeedTransducerParsingResult res) {
+        // Checking if arcs are given in the JSON File
         if(pojo.getArcs() == null) {
             manageError(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER,
@@ -134,7 +173,7 @@ public class SeedTransducerConverter {
 
                     setArcFromState(seed, mp, arc, res, pojo);
                     setArcToState(seed, mp, arc, res, pojo);
-                    setArcOperatorState(mp, arc, res);
+                    setArcOperator(mp, arc, res);
                     setArcSemanticLetter(mp, arc, res);
 
                     seed.addArc(arc);
@@ -144,6 +183,13 @@ public class SeedTransducerConverter {
         }
     }
 
+    /**
+     * Adds the {@link ArcSemanticLetter} given from the JSON arc representation into the given {@link Arc}.
+     * Adds errors if need to the {@link SeedTransducerParsingResult}.
+     * @param mp JSON arc representation
+     * @param arc {@link Arc} object to be added (modified)
+     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
+     */
     private static void setArcSemanticLetter(LinkedHashMap mp, Arc arc, SeedTransducerParsingResult res) {
         String letter = (String) mp.get(SEED_TEMPLATE_ARC_LETTER.getLabel());
         Optional<ArcSemanticLetter> arcLetterOpt = ArcSemanticLetter.fromLabel(letter);
@@ -158,7 +204,14 @@ public class SeedTransducerConverter {
 
     }
 
-    private static void setArcOperatorState(LinkedHashMap mp, Arc arc, SeedTransducerParsingResult res) {
+    /**
+     * Adds the {@link ArcOperator} given from the JSON arc representation into the given {@link Arc}.
+     * Adds errors if need to the {@link SeedTransducerParsingResult}.
+     * @param mp JSON arc representation
+     * @param arc {@link Arc} object to be added (modified)
+     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
+     */
+    private static void setArcOperator(LinkedHashMap mp, Arc arc, SeedTransducerParsingResult res) {
         String op = (String) mp.get(SEED_TEMPLATE_ARC_OPERATOR.getLabel());
         Optional<ArcOperator> arcOpOpt = ArcOperator.fromLabel(op);
         if(arcOpOpt.isPresent()) {
@@ -171,6 +224,15 @@ public class SeedTransducerConverter {
         }
     }
 
+     /**
+     * Adds the "from" {@link State} given from the JSON arc representation into the given {@link Arc}.
+     * Adds errors if need to the {@link SeedTransducerParsingResult}.
+     * @param seed {@link SeedTransducer} parse result object (modified)
+     * @param mp JSON arc representation
+     * @param arc {@link Arc} object to be added (modified)
+     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
+     * @param pojo The {@link SeedTransducerPOJO} mapped from the seed transducer JSON file
+     */
     private static void setArcFromState(SeedTransducer seed, LinkedHashMap mp, Arc arc, SeedTransducerParsingResult res, SeedTransducerPOJO pojo) {
         String from = (String) mp.get(SEED_TEMPLATE_ARC_FROM.getLabel());
         Optional<State> fromStateOpt = seed.getStateFromName(from);
@@ -184,6 +246,15 @@ public class SeedTransducerConverter {
         }
     }
 
+    /**
+     * Adds the "to" {@link State} given from the JSON arc representation into the given {@link Arc}.
+     * Adds errors if need to the {@link SeedTransducerParsingResult}.
+     * @param seed {@link SeedTransducer} parse result object (modified)
+     * @param mp JSON arc representation
+     * @param arc {@link Arc} object to be added (modified)
+     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
+     * @param pojo The {@link SeedTransducerPOJO} mapped from the seed transducer JSON file
+     */
     private static void setArcToState(SeedTransducer seed, LinkedHashMap mp, Arc arc, SeedTransducerParsingResult res, SeedTransducerPOJO pojo) {
         String to = (String) mp.get(SEED_TEMPLATE_ARC_TO.getLabel());
         Optional<State> toStateOpt = seed.getStateFromName(to);
@@ -195,6 +266,16 @@ public class SeedTransducerConverter {
                             + "\nArc: " + mp
                             + "\nSeed transducer states: " + pojo.getStates());
         }
+    }
+
+    /**
+     * Enables parsing error management.
+     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
+     * @param err The {@link SeedTransducerParsingErrorType} occurred error
+     * @param msg The related error message
+     */
+    private static void manageError(SeedTransducerParsingResult res, SeedTransducerParsingErrorType err, String msg) {
+        res.addParsingError(new SeedTransducerParsingError(err, msg));
     }
 
 }

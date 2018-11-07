@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Seed transducer parsing result containing the {@link SeedTransducer} extracted from the given JSON file.
+ * If general error occur during the parsing, the result will contain it. If further error occur they will also
+ * be listed. In that cas, the {@link Optional} {@link SeedTransducer} should be empty.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class SeedTransducerParsingResult {
 
     private Optional<SeedTransducer> seedTransducer;
@@ -33,8 +39,8 @@ public class SeedTransducerParsingResult {
         return parsingErrors;
     }
 
-    public boolean addParsingError(SeedTransducerParsingError er) {
-        return this.parsingErrors.add(er);
+    public void addParsingError(SeedTransducerParsingError er) {
+        this.parsingErrors.add(er);
     }
 
     public boolean removeParsingError(SeedTransducerParsingError er) {

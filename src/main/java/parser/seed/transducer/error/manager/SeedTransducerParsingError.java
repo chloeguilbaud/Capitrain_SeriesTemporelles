@@ -1,5 +1,10 @@
 package parser.seed.transducer.error.manager;
 
+/**
+ * Seed transducer parsing error representation containing error type ({@link SeedTransducerParsingErrorType})
+ * and error message.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class SeedTransducerParsingError {
 
     private SeedTransducerParsingErrorType errorType;

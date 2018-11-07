@@ -2,11 +2,15 @@ package parser.seed.transducer.error.manager;
 
 import parser.seed.transducer.model.SeedTransducerJSONElements;
 
+/**
+ * Seed transducer parsing error type enumeration.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public enum SeedTransducerParsingErrorType {
 
-    UNKNOWN_ERROR("Erreur de parsing iconnue."),
-    UNRECOGNIZED_PROPERTY("UnrecognizedProperty"),
-    JSON_MAPPING_EXCEPTION("JsonMappingException"),
+    UNKNOWN_ERROR("Erreur de parsing iconnue"),
+    UNRECOGNIZED_PROPERTY("Unexpected JSON element in file"),
+    JSON_MAPPING_EXCEPTION("One of the JSON element has not the right type"),
     FILE_NOT_FOUND("File not found"),
 
     MISSING_PROPERTY_IN_SEED_TRANSDUCER("Expecting seed transducer element but missing in JSON file"),
@@ -26,8 +30,6 @@ public enum SeedTransducerParsingErrorType {
     SeedTransducerParsingErrorType(String lab) {
         this.label = lab;
     }
-
-    SeedTransducerParsingErrorType() { label = ""; }
 
     public String getLabel() {
         return label;
