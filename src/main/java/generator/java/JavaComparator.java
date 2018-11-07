@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import model.seed.transducer.Operator;
+import model.seed.transducer.ArcOperator;
 
 public enum JavaComparator {
 
@@ -28,7 +28,7 @@ public enum JavaComparator {
         return Arrays.asList(values());
     }
 
-    public static JavaComparator getFromOperator(Operator o) {
+    public static JavaComparator getFromOperator(ArcOperator o) {
         switch(o) {
             case EQ:
                 return EQ;

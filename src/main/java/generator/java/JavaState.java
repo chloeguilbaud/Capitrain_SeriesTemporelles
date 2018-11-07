@@ -23,8 +23,8 @@ public class JavaState {
         buffer.append(indent + "public void " + this.name + "() {\n");
         this.exitingArcs.forEach((value) -> {
             buffer.append(indent + "\t" + "if (i >= timeSerie.length) return;\n");
-            buffer.append(indent + "\t" + "if (timeSerie[i][1] "+ JavaComparator.getFromOperator(value.getOperator()).getLabel() +" timeSerie[i+1][1]) {\n");
-            buffer.append(indent + "\t\t" + value.getSemanticLetter().getLabel() + "();\n");
+            buffer.append(indent + "\t" + "if (timeSerie[i][1] "+ JavaComparator.getFromOperator(value.getArcOperator()).getLabel() +" timeSerie[i+1][1]) {\n");
+            buffer.append(indent + "\t\t" + value.getArcSemanticLetter().getLabel() + "();\n");
             buffer.append(indent + "\t\t" + "i++;\n");
             buffer.append(indent + "\t\t" + value.getTo().getName() + "();\n");
             buffer.append(indent + "\t\t" + "return;\n");
