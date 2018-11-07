@@ -1,6 +1,6 @@
 package parser.seed.transducer.error.manager;
 
-import parser.seed.transducer.model.SeedTransducerJSONElements;
+import parser.seed.transducer.json.SeedTransducerJSONElements;
 
 /**
  * Seed transducer parsing error type enumeration.

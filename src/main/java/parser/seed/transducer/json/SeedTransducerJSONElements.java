@@ -1,4 +1,4 @@
-package parser.seed.transducer.model;
+package parser.seed.transducer.json;
 
 import java.util.Arrays;
 import java.util.List;

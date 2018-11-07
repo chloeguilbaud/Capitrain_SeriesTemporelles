@@ -1,4 +1,4 @@
-package parser.seed.transducer;
+package parser.seed.transducer.process;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Optional;
 
-import static parser.seed.transducer.model.SeedTransducerJSONElements.*;
+import static parser.seed.transducer.json.SeedTransducerJSONElements.*;
 
 /**
  * Enables Seed Transducer's transformation from JSON to POJO.
