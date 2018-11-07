@@ -8,11 +8,11 @@ Le Seed Transducer est formalisé sous forme d'un objet JSON décrivant :
     - `arcs` : liste des arcs
         - `from` : état de départ
         - `to` : état d'arrivé
-        - `operator`: opérateur 
+        - `arcOperator`: opérateur 
         - `letter` : lettre de l'alphabet syntaxique
 
 ### Opérateurs
-Le champs `operator` peut prendre les valeurs suivantes :
+Le champs `arcOperator` peut prendre les valeurs suivantes :
 - `eq`
 - `lt`
 - `gt`
@@ -41,67 +41,67 @@ Le champs `letter` peut prendre les valeurs suivantes :
         {
             "from": "s", 
             "to": "s",
-            "operator": "leq",
+            "arcOperator": "leq",
             "letter": "out"
         },
         {
             "from": "s", 
             "to": "r",
-            "operator": "gt",
+            "arcOperator": "gt",
             "letter": "out"
         }, 
         {
             "from": "r", 
             "to": "s",
-            "operator": "leq",
+            "arcOperator": "leq",
             "letter": "out"
         },
         {
             "from": "r", 
             "to": "t",
-            "operator": "gt",
+            "arcOperator": "gt",
             "letter": "out"
         },
         {
             "from": "t", 
             "to": "t",
-            "operator": "gt",
+            "arcOperator": "gt",
             "letter": "out"
         },
         {
             "from": "t", 
             "to": "s",
-            "operator": "eq",
+            "arcOperator": "eq",
             "letter": "out"
         },
         {
             "from": "t", 
             "to": "u",
-            "operator": "lt",
+            "arcOperator": "lt",
             "letter": "maybe_b"
         },
         {
             "from": "u", 
             "to": "s",
-            "operator": "leq",
+            "arcOperator": "leq",
             "letter": "out_r"
         },
         {
             "from": "u", 
             "to": "v",
-            "operator": "gt",
+            "arcOperator": "gt",
             "letter": "maybe_b"
         },
         {
             "from": "v", 
             "to": "s",
-            "operator": "leq",
+            "arcOperator": "leq",
             "letter": "out_r"
         },
         {
             "from": "v", 
             "to": "t",
-            "operator": "gt",
+            "arcOperator": "gt",
             "letter": "found_end"
         }
     ]
