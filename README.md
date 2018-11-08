@@ -42,4 +42,6 @@ des indicateurs sur des series temporelles.
 ## Liens
 
 - Document de recherche
-<a href="http://google.com">https://link.springer.com/article/10.1007%2Fs10601-015-9200-3</a>
+<a href="https://link.springer.com/article/10.1007%2Fs10601-015-9200-3">https://link.springer.com/article/10.1007%2Fs10601-015-9200-3</a>
+- Catalogue de contraintes
+<a href="https://arxiv.org/ftp/arxiv/papers/1609/1609.08925.pdf">https://arxiv.org/ftp/arxiv/papers/1609/1609.08925.pdf</a>
