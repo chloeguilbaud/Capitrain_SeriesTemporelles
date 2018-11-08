@@ -5,98 +5,120 @@
       "registers": [
         {
           "name": "C",
-          "value": 0
+          "function": "idf"
+        },
+        {
+          "name": "D",
+          "function": "idf"
         }
       ]
     },
     {
       "variables": [
         {
-          "name": "p",
-          "value": 0
+          "name": "f",
+          "function": "default"
+        },
+        {
+          "name": "e",
+          "value": "C"
         }
       ]
     }
   ],
-  "return": {
-    "variable": "p",
-    "index": "n"
-  },
+  "return": [{
+      "variable": "e",
+      "index": "n"
+    },
+    {
+      "variable": "f",
+      "index": "n"
+    }
+  ],
   "table": [
     {
       "letter": "out",
       "guard": [{
-          "variable": "p",
+          "variable": "f",
           "index": "i",
-          "value": 0
+          "function": {
+            "name": "default"
+          }
+        },
+        {
+          "variable": "e",
+          "index": "i",
+          "function": {
+            "name": "default"
+          }
         }]
     },
     {
       "letter": "out(reset)",
       "guard": [{
-        "variable": "p",
+        "variable": "f",
         "index": "i",
-        "value": 0
-      }]
+        "function": {
+          "name": "default"
+        }
+      },{
+        "variable": "e",
+        "index": "i",
+        "function": {
+          "name": "default"
+        }
+      }],
+      "update": [
+        {
+          "variable": "D",
+          "function": {
+            "name": "id",
+            "parameters": ["f"]
+          }
+        }]
     },
     {
       "letter": "out(after)",
       "guard": [{
-        "variable": "p",
+        "variable": "f",
         "index": "i",
-        "value": 0
+        "function": {
+          "name": "default"
+        }
+      },
+      {
+        "variable": "e",
+        "index": "i",
+        "value": "C"
+      }],
+      "update": [{
+        "variable": "C",
+        "function": {
+          "name": "default",
+          "parameters": ["g","f"]
+      }}, {
+        "variable": "D",
+        "function": {
+          "name": "default",
+          "parameters": ["f"]
+        }
       }]
     },
     {
       "letter": "maybe(before)",
       "guard": [{
-        "variable": "p",
-        "index": "i+1",
-        "value": 0
-      }]
-    },
-    {
-      "letter": "maybe(after)",
-      "guard": [{
-        "variable": "p",
-        "index": "i+1",
-        "value": 0
-      }]
-    },
-    {
-      "letter": "found(end)",
-      "guard": [{
-        "variable": "p",
-        "index": "i+1",
-        "value": "C+1"
-      }],
-      "updates" : [
-        {
-          "variable": "C",
-          "value": "C+1"
-        }
-      ]
-    },
-    {
-      "letter": "found",
-      "guard": [{
-        "variable": "p",
-        "index": "i+1",
-        "value": "C+1"
-      }],
-      "updates" : [
-        {
-          "variable": "C",
-          "value": "C+1"
-        }
-      ]
-    },
-    {
-      "letter": "in",
-      "guard": [{
-        "variable": "p",
+        "variable": "f",
         "index": "i",
-        "value": "C"
+        "function": {
+          "name": "default"
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "variable": "e",
+          "index": "i+1"
+        }
       }]
     }
   ]
