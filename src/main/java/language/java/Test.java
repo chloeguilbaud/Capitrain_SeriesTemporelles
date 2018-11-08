@@ -1,5 +1,7 @@
 package language.java;
 
+import java.util.HashMap;
+
 public class Test {
 
     public static void main(String[] args) {
@@ -25,6 +27,12 @@ public class Test {
             {17,1}
         };
         // System.out.println(serie[1][1]);
-        t.entryPoint(serie);
+        HashMap<String, int[]> results = t.entryPoint(serie);
+        results.forEach((key, value) -> {
+            System.out.println("Value : " + key);
+            for (int i = 0; i < value.length; i++) {
+                System.out.println(value[i]);
+            }
+        });
     }
 }

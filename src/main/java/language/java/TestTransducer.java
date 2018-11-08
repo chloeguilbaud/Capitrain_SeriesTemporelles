@@ -4,69 +4,41 @@ import java.util.HashMap;
 
 public class TestTransducer {
 
+    // Fixed ----------
     interface I {
         int func();
     }
-    // TO REMOVE
-    int[][] returns;
-    I[] p;
-    int[] result;
-    int[] c;
-    int C;
-    // ---------
 
     int[][] timeSerie;
 	int i;
     HashMap<String, I[]> indexedVariablesFunctions;
     HashMap<String, Integer> registers;
     HashMap<String, int[]> results;
+    // ----------------
 	
 	public HashMap<String, int[]> entryPoint(int[][] timeSerie) {
+        // Fixed ----------
 		this.timeSerie = timeSerie;
         this.i = 0;
         this.results = new HashMap<>();
         this.indexedVariablesFunctions = new HashMap<>();
-        // List all indexedVariables
+        this.registers = new HashMap<>();
+        // ----------------
+        // Variables ------
         this.indexedVariablesFunctions.put("p", new I[timeSerie.length - 1]);
         this.results.put("p", new int[timeSerie.length - 1]);
-        this.registers = new HashMap<>();
-        // List all registers
         this.registers.put("C", 0);
         this.results.put("C", new int[timeSerie.length - 1]);
-
-        
-        // TO REMOVE WHEN REMPLACED
-		this.returns = new int[timeSerie.length - 1][1];
-        this.p = new I[timeSerie.length - 1];
-        this.C = 0;
-        this.result = new int[timeSerie.length - 1];
-        this.c = new int[timeSerie.length - 1];
-        // ------------------------
-
+        // ----------------
+        // Fixed ----------
         d();
-        
         this.indexedVariablesFunctions.forEach((key, value) -> {
             for (int i = value.length - 1; i >= 0; i--) {
                 this.results.get(key)[i] = value[i].func();
             }
         });
-
-        // TO REMOVE WHEN REMPLACED
-        for (int j = p.length - 1; j >= 0; j--) {
-            result[j] = p[j].func();
-        }
-        System.out.println("C:");
-        for (int j = 0; j < c.length; j++) {
-            System.out.println(c[j]);
-        }
-        System.out.println("");
-        System.out.println("p:");
-        for (int j = 0; j < result.length; j++) {
-            System.out.println(result[j]);
-        }
-        // -------------------------
-        
-		return this.results;
+        return this.results;
+        // ----------------
 	}
 	
 	public void r() {
@@ -124,57 +96,57 @@ public class TestTransducer {
 	}
 	
 	void found() {
-        int localC = C;
-        I lambda = () -> localC + 1;
-        p[i] = lambda;
-        C++;
-        c[i] = C;
+        int C = this.registers.get("C");
+        I lambda = () -> C + 1;
+        this.indexedVariablesFunctions.get("p")[i] = lambda;
+        this.registers.put("C", C + 1);
+        this.results.get("C")[i] = this.registers.get("C");
 	}
 	
 	void maybe_after() {
-        int locali = i;
-        I lambda = () -> result[locali+1];
-        p[i] = lambda;
-        c[i] = C;
+        int i = this.i;
+        I lambda = () -> this.results.get("p")[i+1];
+        this.indexedVariablesFunctions.get("p")[i] = lambda;
+        this.results.get("C")[i] = this.registers.get("C");
 	}
 	
 	void maybe_before() {
-        int locali = i;
-        I lambda = () -> result[locali+1];
-        p[i] = lambda;
-        c[i] = C;
+        int i = this.i;
+        I lambda = () -> this.results.get("p")[i+1];
+        this.indexedVariablesFunctions.get("p")[i] = lambda;
+        this.results.get("C")[i] = this.registers.get("C");
 	}
 	
 	void in() {
-        int localC = C;
-        I lambda = () -> localC;
-        p[i] = lambda;
-        c[i] = C;
+        int C = this.registers.get("C");
+        I lambda = () -> C;
+        this.indexedVariablesFunctions.get("p")[i] = lambda;
+        this.results.get("C")[i] = this.registers.get("C");
 	}
 	
 	void out() {
-        c[i] = C;
         I lambda = () -> 0;
-        p[i] = lambda;
+        this.indexedVariablesFunctions.get("p")[i] = lambda;
+        this.results.get("C")[i] = this.registers.get("C");
 	}
 	
 	void out_after() {
         I lambda = () -> 0;
-        p[i] = lambda;
-        c[i] = C;
+        this.indexedVariablesFunctions.get("p")[i] = lambda;
+        this.results.get("C")[i] = this.registers.get("C");
 	}
 	
 	void found_end() {
-        int localC = C;
-        I lambda = () -> localC + 1;
-        p[i] = lambda;
-        C++;
-        c[i] = C;
+        int C = this.registers.get("C");
+        I lambda = () -> C + 1;
+        this.indexedVariablesFunctions.get("p")[i] = lambda;
+        this.registers.put("C", C + 1);
+        this.results.get("C")[i] = this.registers.get("C");
 	}
 	
 	void out_reset() {
         I lambda = () -> 0;
-        p[i] = lambda;
-        c[i] = C;
+        this.indexedVariablesFunctions.get("p")[i] = lambda;
+        this.results.get("C")[i] = this.registers.get("C");
 	}
 }
