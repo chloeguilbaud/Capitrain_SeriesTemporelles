@@ -119,7 +119,21 @@
           "variable": "e",
           "index": "i+1"
         }
-      }]
+      }],
+      "update": [
+        {
+          "variable": "D",
+          "function": {
+            "name": "teta",
+            "parameters": ["D", "sigma(i, f)"]
+          }
+        }
+      ]
+    },
+    {
+      "letter": "maybe(after)",
+      "after": 0 //,
+      //""
     }
   ]
 }
