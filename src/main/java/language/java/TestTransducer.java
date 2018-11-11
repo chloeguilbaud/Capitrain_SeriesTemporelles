@@ -96,10 +96,14 @@ public class TestTransducer {
 	}
 	
 	void found() {
+        // Toutes les variables à portée locale utilisées
         int C = this.registers.get("C");
+        // Pour chaque update de variables
         I lambda = () -> C + 1;
         this.indexedVariablesFunctions.get("p")[i] = lambda;
+        // Pour chaque update de registre
         this.registers.put("C", C + 1);
+        // Pour chaque registre
         this.results.get("C")[i] = this.registers.get("C");
 	}
 	

@@ -19,12 +19,20 @@ public class JavaDecorationTable {
         this.instructions = decorationTable.getInstructions();
     }
 
+    // TODO: gérer les afters
     public void appendCode(String indent, StringBuffer buffer) {
         buffer.append(indent + "\n");
         this.instructions.forEach((key, value) -> {
             buffer.append(indent + "\n");
             buffer.append(indent + JavaSemanticLetter.fromSemanticLetter(key.getArcSemanticLetter()).get().getLabel() + "() {\n");
-            buffer.append(indent + "\t// TODO\n");
+            value.getGuards().forEach((variable, instruction) -> {
+                (new JavaGuard(instruction)).appendCode(indent + "\t", buffer);
+            });
+
+
+            this.registers.forEach((variable, init) -> {
+                buffer.append(indent + "\tthis.results.get(\"" + variable + "\")[i] = this.registers.get(\"" + variable + "\");\n");
+            });
             buffer.append(indent + "}\n");
         });
     }

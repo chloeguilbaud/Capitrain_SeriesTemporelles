@@ -30,6 +30,14 @@ public class Instruction {
         return this.updates.get(key);
     }
 
+    public HashMap<String, Element> getGuards() {
+        return this.guards;
+    }
+
+    public HashMap<String, Element> getUpdates() {
+        return this.updates;
+    }
+
     @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer();
