@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import model.seed.transducer.*;
-import parser.common.ParsingError;
-import parser.common.ParsingErrorType;
 import parser.seed.transducer.errors.SeedTransducerParsingError;
 import parser.seed.transducer.errors.SeedTransducerParsingErrorType;
 import parser.seed.transducer.model.SeedTransducerPOJO;
