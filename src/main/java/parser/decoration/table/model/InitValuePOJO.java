@@ -2,22 +2,22 @@ package parser.decoration.table.model;
 
 public class InitValuePOJO {
 
-    public String function;
     public String variable;
-
-    public String getFunction() {
-        return function;
-    }
+    public String function;
 
     public String getVariable() {
         return variable;
     }
 
+    public String getFunction() {
+        return function;
+    }
+
     @Override
     public String toString() {
-        return "InitValuePOJO{" +
-                "function='" + function + '\'' +
-                ", variable='" + variable + '\'' +
+        return "InitValue{" +
+                "variable='" + variable + '\'' +
+                ", function='" + function + '\'' +
                 '}';
     }
 }
