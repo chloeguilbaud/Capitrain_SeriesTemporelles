@@ -5,11 +5,15 @@
       "registers": [
         {
           "name": "C",
-          "function": "idf"
+          "function": {
+            "name": "idf"
+          }
         },
         {
           "name": "D",
-          "function": "idf"
+          "function": {
+            "name": "idf"
+          }
         }
       ]
     },
@@ -17,11 +21,17 @@
       "variables": [
         {
           "name": "f",
-          "function": "default"
+          "index": "n",
+          "value": {
+            "function": "default"
+          }
         },
         {
           "name": "e",
-          "value": "C"
+          "index": "n",
+          "value": {
+            "variable": "C"
+          }
         }
       ]
     }
@@ -38,107 +48,95 @@
   "table": [
     {
       "letter": "out",
-      "guard": [{
+      "guards": [{
           "variable": "f",
           "index": "i",
-          "function": {
-            "name": "default"
+          "value": {
+            "function": {
+              "name": "default"
+            }
           }
         },
         {
           "variable": "e",
           "index": "i",
-          "function": {
-            "name": "default"
+          "value": {
+            "function": {
+              "name": "default"
+            }
           }
         }]
     },
     {
       "letter": "out(reset)",
-      "guard": [{
+      "guards": [{
         "variable": "f",
         "index": "i",
-        "function": {
-          "name": "default"
+        "value": {
+          "function": {
+            "name": "default"
+          }
         }
       },{
         "variable": "e",
         "index": "i",
-        "function": {
-          "name": "default"
+        "value": {
+          "function": {
+            "name": "default"
+          }
         }
       }],
-      "update": [
+      "updates": [
         {
           "variable": "D",
-          "function": {
-            "name": "id",
-            "parameters": ["f"]
+          "value": {
+            "function": {
+              "name": "id",
+              "parameters": ["f"]
+            }
           }
         }]
     },
     {
       "letter": "out(after)",
-      "guard": [{
+      "guards": [{
         "variable": "f",
         "index": "i",
-        "function": {
-          "name": "default"
+        "value": {
+          "function": {
+            "name": "default"
+          }
         }
       },
       {
         "variable": "e",
         "index": "i",
-        "value": "C"
+        "value": {
+          "variable": {
+            "name": "C"
+          }
+        }
       }],
-      "update": [{
+      "updates": [{
         "variable": "C",
-        "function": {
-          "name": "default",
-          "parameters": ["g","f"]
-      }}, {
+        "value": {
+          "function": {
+            "name": "default",
+            "parameters": ["g","f"]
+          }
+        }}, {
         "variable": "D",
-        "function": {
-          "name": "default",
-          "parameters": ["f"]
+        "value": {
+          "function": {
+            "name": "default",
+            "parameters": ["f"]
+          }
         }
       }]
     },
     {
       "letter": "maybe(before)",
-      "guard": [{
-        "variable": "f",
-        "index": "i",
-        "function": {
-          "name": "default"
-        }
-      }, {
-        "variable": "e",
-        "index": "i",
-        "value": {
-          "variable": "e",
-          "index": "i+1"
-        }
-      }],
-      "update": [
-        {
-          "variable": "D",
-          "function": {
-            "name": "teta",
-            "parameters": ["D", {
-              "function": {
-                "name": "sigma",
-                "parameters": ["i", "f"]
-              }
-            }]
-          }
-        }
-      ]
-    },
-    {
-      "letter": "maybe(after)",
-      "after": 0,
-      "guard": [{
+      "guards": [{
         "variable": "f",
         "index": "i",
         "value": {
@@ -150,29 +148,33 @@
         "variable": "e",
         "index": "i",
         "value": {
-          "variable": "e",
-          "index": "i+1"
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
         }
       }],
-      "update": [
+      "updates": [
         {
           "variable": "D",
-          "function": {
-            "name": "teta",
-            "parameters": ["D", {
-              "function": {
-                "name": "sigma",
-                "parameters": "i+1"
-              }
-            }]
+          "value": {
+            "function": {
+              "name": "teta",
+              "parameters": ["D", {
+                "function": {
+                  "name": "sigma",
+                  "parameters": ["i", "f"]
+                }
+              }]
+            }
           }
         }
       ]
     },
     {
       "letter": "maybe(after)",
-      "after": 1,
-      "guard": [{
+      "after": 0,
+      "guards": [{
         "variable": "f",
         "index": "i",
         "value": {
@@ -184,21 +186,63 @@
         "variable": "e",
         "index": "i",
         "value": {
-          "variable": "e",
-          "index": "i+1"
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
         }
       }],
-      "update": [
+      "updates": [
         {
           "variable": "D",
+          "value": {
+            "function": {
+              "name": "teta",
+              "parameters": ["D", {
+                "function": {
+                  "name": "sigma",
+                  "parameters": "i+1"
+                }
+              }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "letter": "maybe(after)",
+      "after": 1,
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
           "function": {
-            "name": "teta",
-            "parameters": ["D", {
-              "function": {
-                "name": "sigma",
-                "parameters": ["i", "f"]
-              }
-            }]
+            "name": "default"
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "teta",
+              "parameters": ["D", {
+                "function": {
+                  "name": "sigma",
+                  "parameters": ["i", "f"]
+                }
+              }]
+            }
           }
         }
       ]
@@ -206,48 +250,56 @@
     {
       "letter": "found",
       "after": 0,
-      "guard": [{
+      "guards": [{
         "variable": "f",
         "index": "i",
         "value": {
-          "variable": "e",
-          "index": "i"
+          "variable": {
+            "name": "e",
+            "index": "i"
+          }
         }
       }, {
         "variable": "e",
         "index": "i",
         "value": {
-          "variable": "e",
-          "index": "i+1"
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
         }
       }],
-      "update": [
+      "updates": [
         {
           "variable": "C",
-          "function": {
-            "name": "sigma",
-            "parameters": [{
-              "function": {
-                "name": "sigma",
-                "parameters": ["D", {
-                  "function": {
-                    "name": "sigma",
-                    "parameters": ["i", "f"]
-                  }
-                }]
-              }
-            }, {
-              "function": {
-                "name": "sigma",
-                "parameters": ["i+1", "f"]
-              }
-            }]
+          "value": {
+            "function": {
+              "name": "sigma",
+              "parameters": [{
+                "function": {
+                  "name": "sigma",
+                  "parameters": ["D", {
+                    "function": {
+                      "name": "sigma",
+                      "parameters": ["i", "f"]
+                    }
+                  }]
+                }
+              }, {
+                "function": {
+                  "name": "sigma",
+                  "parameters": ["i+1", "f"]
+                }
+              }]
+            }
           }
         }, {
           "variable": "D",
-          "function": {
-            "name": "id",
-            "parameters": ["f"]
+          "value": {
+            "function": {
+              "name": "id",
+              "parameters": ["f"]
+            }
           }
         }
       ]
@@ -255,38 +307,46 @@
     {
       "letter": "found",
       "after": 1,
-      "guard": [{
+      "guards": [{
         "variable": "f",
         "index": "i",
         "value": {
-          "variable": "e",
-          "index": "i"
+          "variable": {
+            "name": "e",
+            "index": "i"
+          }
         }
       }, {
         "variable": "e",
         "index": "i",
         "value": {
-          "variable": "e",
-          "index": "i+1"
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
         }
       }],
-      "update": [
+      "updates": [
         {
           "variable": "C",
-          "function": {
-            "name": "teta",
-            "parameters": ["D", {
-              "function": {
-                "name": "sigma",
-                "parameters": ["i", "f"]
-              }
-            }]
+          "value": {
+            "function": {
+              "name": "teta",
+              "parameters": ["D", {
+                "function": {
+                  "name": "sigma",
+                  "parameters": ["i", "f"]
+                }
+              }]
+            }
           }
         }, {
           "variable": "D",
-          "function": {
-            "name": "id",
-            "parameters": ["f"]
+          "value": {
+            "function": {
+              "name": "id",
+              "parameters": ["f"]
+            }
           }
         }
       ]
@@ -294,7 +354,7 @@
     {
       "letter": "in",
       "after": 0,
-      "guard": [{
+      "guards": [{
         "variable": "f",
         "index": "i",
         "value": {
@@ -306,38 +366,44 @@
         "variable": "e",
         "index": "i",
         "value": {
-          "variable": "e",
-          "index": "i+1"
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
         }
       }],
-      "update": [
+      "updates": [
         {
           "variable": "C",
-          "function": {
-            "name": "teta",
-            "parameters": ["C",
-              {"function": {
-                "name": "teta",
-                "parameters": ["D", {
-                  "function": {
-                    "name": "sigma",
-                    "parameters": ["i+1", "f"]
-                  }
-                }]
-              }}]
+          "value": {
+            "function": {
+              "name": "teta",
+              "parameters": ["C",
+                {"function": {
+                  "name": "teta",
+                  "parameters": ["D", {
+                    "function": {
+                      "name": "sigma",
+                      "parameters": ["i+1", "f"]
+                    }
+                  }]
+                }}]
+            }
           }
         }, {
           "variable": "D",
-          "function": {
-            "name": "id",
-            "parameters": ["f"]
+          "value": {
+            "function": {
+              "name": "id",
+              "parameters": ["f"]
+            }
           }
         }
       ]
     },{
       "letter": "in",
       "after": 1,
-      "guard": [{
+      "guards": [{
         "variable": "f",
         "index": "i",
         "value": {
@@ -349,31 +415,37 @@
         "variable": "e",
         "index": "i",
         "value": {
-          "variable": "e",
-          "index": "i+1"
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
         }
       }],
-      "update": [
+      "updates": [
         {
           "variable": "C",
-          "function": {
-            "name": "teta",
-            "parameters": ["C",
-              {"function": {
-                "name": "teta",
-                "parameters": ["D", {
-                  "function": {
-                    "name": "sigma",
-                    "parameters": ["i", "f"]
-                  }
-                }]
-              }}]
+          "value": {
+            "function": {
+              "name": "teta",
+              "parameters": ["C",
+                {"function": {
+                  "name": "teta",
+                  "parameters": ["D", {
+                    "function": {
+                      "name": "sigma",
+                      "parameters": ["i", "f"]
+                    }
+                  }]
+                }}]
+            }
           }
         }, {
           "variable": "D",
-          "function": {
-            "name": "id",
-            "parameters": ["f"]
+          "value": {
+            "function": {
+              "name": "id",
+              "parameters": ["f"]
+            }
           }
         }
       ]
@@ -381,7 +453,7 @@
     {
       "letter": "found(end)",
       "after": 0,
-      "guard": [{
+      "guards": [{
         "variable": "f",
         "index": "i",
         "value": {
@@ -414,11 +486,13 @@
           }
         }
       }],
-      "update": [{
+      "updates": [{
         "variable": "D",
-        "function": {
-          "name": "id",
-          "parameters": ["f"]
+        "value": {
+          "function": {
+            "name": "id",
+            "parameters": ["f"]
+          }
         }
         }
       ]
@@ -426,7 +500,7 @@
     {
       "letter": "found(end)",
       "after": 1,
-      "guard": [{
+      "guards": [{
         "variable": "f",
         "index": "i",
         "value": {
@@ -449,12 +523,14 @@
           }
         }
       }],
-      "update": [
+      "updates": [
         {
           "variable": "D",
-          "function": {
-            "name": "id",
-            "parameters": ["f"]
+          "value": {
+            "function": {
+              "name": "id",
+              "parameters": ["f"]
+            }
           }
         }
       ]

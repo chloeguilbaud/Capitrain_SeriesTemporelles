@@ -1,7 +1,39 @@
 {
-  "name": "Mael",
-  "initialisation": {
-    "name": "InitName"
-  }
-
+  "name": "features",
+  "initialisation": [
+    {
+      "registers": [
+        {
+          "name": "C",
+          "function": {
+            "name": "idf"
+          }
+        },
+        {
+          "name": "D",
+          "function": {
+            "name": "idf"
+          }
+        }
+      ]
+    },
+    {
+      "variables": [
+        {
+          "name": "f",
+          "value": {
+            "function": {
+              "name": "default"
+            }
+          }
+        },
+        {
+          "name": "e",
+          "value": {
+            "variable": "C"
+          }
+        }
+      ]
+    }
+  ]
 }
