@@ -4,7 +4,7 @@ import conf.TestConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import parser.seed.transducer.error.manager.SeedTransducerParsingErrorType;
+import parser.seed.transducer.errors.SeedTransducerParsingErrorType;
 import parser.seed.transducer.model.SeedTransducerParsingResult;
 import parser.seed.transducer.process.SeedTransducerConverter;
 

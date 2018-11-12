@@ -3,7 +3,7 @@ package parser.seed.transducer;
 import conf.TestConfiguration;
 import model.seed.transducer.SeedTransducer;
 import org.junit.Test;
-import parser.seed.transducer.error.manager.SeedTransducerParsingErrorType;
+import parser.seed.transducer.errors.SeedTransducerParsingErrorType;
 import parser.seed.transducer.model.SeedTransducerParsingResult;
 import parser.seed.transducer.process.SeedTransducerConverter;
 import utils.Comparator;

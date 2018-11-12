@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import model.seed.transducer.*;
-import parser.seed.transducer.error.manager.SeedTransducerParsingError;
-import parser.seed.transducer.error.manager.SeedTransducerParsingErrorType;
+import parser.common.ParsingError;
+import parser.common.ParsingErrorType;
+import parser.seed.transducer.errors.SeedTransducerParsingError;
+import parser.seed.transducer.errors.SeedTransducerParsingErrorType;
 import parser.seed.transducer.model.SeedTransducerPOJO;
 import parser.seed.transducer.model.SeedTransducerParsingResult;
 
@@ -92,9 +94,9 @@ public class SeedTransducerConverter {
 
         // If their is some errors, then the seed transducer Optional object is set to empty
         if (res.hasErrors()) {
-            res.removeSeedTransducer();
+            res.removeParsingResult();
         } else {
-            res.setSeedTransducer(seed);
+            res.setParsingResult(seed);
         }
 
         return res;

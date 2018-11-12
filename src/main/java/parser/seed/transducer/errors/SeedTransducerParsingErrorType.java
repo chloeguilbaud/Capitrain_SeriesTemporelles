@@ -1,4 +1,4 @@
-package parser.seed.transducer.error.manager;
+package parser.seed.transducer.errors;
 
 import parser.seed.transducer.json.SeedTransducerJSONElements;
 
