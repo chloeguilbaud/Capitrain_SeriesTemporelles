@@ -2,21 +2,28 @@ package model.decoration.table;
 
 import model.seed.transducer.ArcSemanticLetter;
 
+import java.util.Optional;
+
 public class InstructionKey {
 
     private ArcSemanticLetter arcSemanticLetter;
-    private Integer after;
+    private Optional<Integer> after;
 
-    public InstructionKey(ArcSemanticLetter arcSemanticLetter, int after) {
+    InstructionKey(ArcSemanticLetter arcSemanticLetter, Integer after) {
         this.arcSemanticLetter = arcSemanticLetter;
-        this.after = new Integer(after);
+        this.after = Optional.of(after);
+    }
+
+    InstructionKey(ArcSemanticLetter arcSemanticLetter) {
+        this.arcSemanticLetter = arcSemanticLetter;
+        this.after = Optional.empty();
     }
 
     public ArcSemanticLetter getArcSemanticLetter() {
         return this.arcSemanticLetter;
     }
 
-    public Integer getAfter() {
+    public Optional<Integer> getAfter() {
         return this.after;
     }
 

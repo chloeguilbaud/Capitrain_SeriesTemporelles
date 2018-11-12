@@ -1,6 +1,7 @@
 package model.decoration.table;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 import model.decoration.table.element.Element;
 import model.seed.transducer.ArcSemanticLetter;
@@ -31,8 +32,12 @@ public class DecorationTable {
         this.returns.put(key, returnElement);
     }
 
-    public void addInstruction(ArcSemanticLetter letter, int after, Instruction instruction) {
+    public void addInstruction(ArcSemanticLetter letter, Integer after, Instruction instruction) {
         this.instructions.put(new InstructionKey(letter, after), instruction);
+    }
+
+    public void addInstruction(ArcSemanticLetter letter, Instruction instruction) {
+        this.instructions.put(new InstructionKey(letter), instruction);
     }
 
     public Element getRegister(String key) {
