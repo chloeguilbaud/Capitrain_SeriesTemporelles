@@ -18,7 +18,8 @@ N. Beldiceanu, TASC (CNRS) IMT Atlantique, France, nicolas.beldiceanu@imt-atlant
 7. [Conception](docs/Conception.md)
 7. [Contrôle qualité](docs/Testing.md)
 8. [Gestion de projet](docs/ProjectManagement.md)
-9. [Librairie](docs/Library.md)
+9. [Compte rendu hebdomadaire](docs/WeeklyReport.md)
+10. [Librairie](docs/Library.md)
 
 
 ## Contexte
