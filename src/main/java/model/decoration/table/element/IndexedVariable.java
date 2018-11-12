@@ -1,4 +1,4 @@
-package model.element;
+package model.decoration.table.element;
 
 public class IndexedVariable extends Variable {
 

@@ -2,7 +2,7 @@ package model.decoration.table;
 
 import java.util.HashMap;
 
-import model.element.Element;
+import model.decoration.table.element.Element;
 
 public class Instruction {
 
