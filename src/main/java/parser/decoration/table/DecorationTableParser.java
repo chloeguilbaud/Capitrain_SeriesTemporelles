@@ -1,8 +1,7 @@
 package parser.decoration.table;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import parser.seed.transducer.model.SeedTransducerPOJO;
-import parser.seed.transducer.model.SeedTransducerParsingResult;
+import parser.decoration.table.model.DecorationTablePOJO;
 
 import java.io.File;
 import java.io.IOException;
