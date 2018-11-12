@@ -3,11 +3,11 @@ package model.decoration.table;
 import model.seed.transducer.*;
 import org.junit.Test;
 
-import model.element.Affectation;
-import model.element.IndexedVariable;
-import model.element.Integer;
-import model.element.Sum;
-import model.element.Variable;
+import model.decoration.table.element.Affectation;
+import model.decoration.table.element.IndexedVariable;
+import model.decoration.table.element.Integer;
+import model.decoration.table.element.Sum;
+import model.decoration.table.element.Variable;
 import model.seed.transducer.ArcOperator;
 
 public class DecorationTableTest {
