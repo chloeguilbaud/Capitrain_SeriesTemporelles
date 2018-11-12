@@ -8,7 +8,6 @@ import java.io.IOException;
 
 class DecorationTableParser {
 
-
     static void parse(File jsonFile) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         DecorationTablePOJO res = mapper.readValue(jsonFile, DecorationTablePOJO.class);

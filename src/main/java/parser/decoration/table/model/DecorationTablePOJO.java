@@ -9,6 +9,7 @@ public class DecorationTablePOJO {
     public String name;
     public List<InitialisationPOJO> initialisation;
     public List<TablePOJO> table;
+
     @JsonProperty("return")
     public List<ReturnPOJO> returnStatement;
 
