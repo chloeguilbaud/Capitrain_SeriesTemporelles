@@ -23,7 +23,7 @@ import static parser.seed.transducer.json.SeedTransducerJSONElements.*;
  * or errors.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-class SeedTransducerConverter {
+public class SeedTransducerConverter {
 
     /**
      * Transforms seed transducer JSON file into POJO before creating a {@link SeedTransducerParsingResult}.
@@ -33,7 +33,7 @@ class SeedTransducerConverter {
      * @return {@link SeedTransducerParsingResult} containing the {@link SeedTransducer} result or an empty {@link Optional}
      *         object and errors if the parsing did't go through
      */
-    static SeedTransducerParsingResult convert(File jsonFile) {
+    public static SeedTransducerParsingResult convert(File jsonFile) {
 
         SeedTransducerParsingResult res = new SeedTransducerParsingResult();
         ObjectMapper mapper = new ObjectMapper();
