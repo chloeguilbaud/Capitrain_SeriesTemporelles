@@ -5,7 +5,7 @@ import java.util.HashMap;
 import model.decoration.table.DecorationTable;
 import model.decoration.table.Instruction;
 import model.decoration.table.InstructionKey;
-import model.element.Element;
+import model.decoration.table.element.Element;
 
 public class JavaDecorationTable {
 

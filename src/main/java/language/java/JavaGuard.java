@@ -2,12 +2,12 @@ package language.java;
 
 import java.util.ArrayList;
 
-import model.element.Affectation;
-import model.element.Element;
-import model.element.IndexedVariable;
-import model.element.Integer;
-import model.element.Sum;
-import model.element.Variable;
+import model.decoration.table.element.Affectation;
+import model.decoration.table.element.Element;
+import model.decoration.table.element.IndexedVariable;
+import model.decoration.table.element.Integer;
+import model.decoration.table.element.Sum;
+import model.decoration.table.element.Variable;
 
 public class JavaGuard {
 
@@ -36,13 +36,13 @@ public class JavaGuard {
     private String parseToJava(Element e) {
         // Construit le calcul en java
         switch (e.getClass().getName()) {
-            case "model.element.Variable":
+            case "model.decoration.table.element.Variable":
                 return ((Variable) e).getName();
-            case "model.element.IndexedVariable":
+            case "model.decoration.table.element.IndexedVariable":
                 return "this.results.get(\""+((IndexedVariable) e).getName()+"\")[i+"+((IndexedVariable) e).getRelativeElementDistance()+"]";
-            case "model.element.Integer":
+            case "model.decoration.table.element.Integer":
                 return ((Integer) e).getValue() + "";
-            case "model.element.Sum":
+            case "model.decoration.table.element.Sum":
                 return "(" + parseToJava(((Sum) e).getLeft()) + " + " + parseToJava(((Sum) e).getRight()) + ")";
             default:
                 // System.err.println("Erreur de parsing");
