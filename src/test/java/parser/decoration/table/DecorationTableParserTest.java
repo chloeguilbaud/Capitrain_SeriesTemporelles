@@ -15,7 +15,7 @@ public class DecorationTableParserTest {
 
     @Test
     public void test_model() throws IOException {
-        DecorationTableParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "decorationTableExampleComplet.json"));
+        DecorationTableParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "decorationTableExampleComplet_features.json"));
     }
 
     /**
