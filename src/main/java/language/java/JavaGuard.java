@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import model.decoration.table.element.Affectation;
 import model.decoration.table.element.Element;
 import model.decoration.table.element.IndexedVariable;
-import model.decoration.table.element.Integer;
+import model.decoration.table.element.IntegerVal;
 import model.decoration.table.element.Sum;
 import model.decoration.table.element.Variable;
 
@@ -41,7 +41,7 @@ public class JavaGuard {
             case "model.decoration.table.element.IndexedVariable":
                 return "this.results.get(\""+((IndexedVariable) e).getName()+"\")[i+"+((IndexedVariable) e).getRelativeElementDistance()+"]";
             case "model.decoration.table.element.Integer":
-                return ((Integer) e).getValue() + "";
+                return ((IntegerVal) e).getValue() + "";
             case "model.decoration.table.element.Sum":
                 return "(" + parseToJava(((Sum) e).getLeft()) + " + " + parseToJava(((Sum) e).getRight()) + ")";
             default:

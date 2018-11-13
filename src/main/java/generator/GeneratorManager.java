@@ -5,7 +5,7 @@ import model.decoration.table.DecorationTable;
 import model.decoration.table.Instruction;
 import model.decoration.table.element.Affectation;
 import model.decoration.table.element.IndexedVariable;
-import model.decoration.table.element.Integer;
+import model.decoration.table.element.IntegerVal;
 import model.decoration.table.element.Sum;
 import model.decoration.table.element.Variable;
 import model.seed.transducer.*;
@@ -25,8 +25,8 @@ public class GeneratorManager {
 
         // Decoration table init
         DecorationTable footprint = new DecorationTable("footprint");
-        footprint.addRegister(C_identifier, new Integer(0));
-        footprint.addReturns(p_indentifier, new Integer(0));
+        footprint.addRegister(C_identifier, new IntegerVal(0));
+        footprint.addReturn(p_indentifier, new IntegerVal(0));
 
         // Variable declaration
         Variable C = new Variable(C_identifier);
@@ -36,10 +36,10 @@ public class GeneratorManager {
         // Functions declaration
 
         // Operations declaration
-        Sum C_plus_1 = new Sum(C, new Integer(1));
+        Sum C_plus_1 = new Sum(C, new IntegerVal(1));
 
         // Affectation declaration
-        Affectation p_i_equals_0 = new Affectation(p_i, new Integer(0));
+        Affectation p_i_equals_0 = new Affectation(p_i, new IntegerVal(0));
         Affectation p_i_equals_p_1 = new Affectation(p_i, p_1);
         Affectation p_i_equals_C_plus_1 = new Affectation(p_i, C_plus_1);
         Affectation C_equals_C_plus_1 = new Affectation(C, C_plus_1);
