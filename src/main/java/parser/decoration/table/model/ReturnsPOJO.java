@@ -1,9 +1,6 @@
 package parser.decoration.table.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-public class RegistersPOJO {
+public class ReturnsPOJO {
 
     private String name;
     private String index;
@@ -23,10 +20,11 @@ public class RegistersPOJO {
 
     @Override
     public String toString() {
-        return "RegistersPOJO{" +
+        return "ReturnsPOJO{" +
                 "name='" + name + '\'' +
                 ", index='" + index + '\'' +
                 ", value=" + value +
                 '}';
     }
+
 }

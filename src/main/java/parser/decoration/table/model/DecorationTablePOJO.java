@@ -7,35 +7,33 @@ import java.util.List;
 public class DecorationTablePOJO {
 
     private String name;
-    private InitialisationPOJO initialisation;
+    private List<RegistersPOJO> registers;
+    private List<ReturnsPOJO> returns;
     private List<TablePOJO> table;
-
-    @JsonProperty("return")
-    public List<ReturnPOJO> returnStatement;
 
     public String getName() {
         return name;
     }
 
-    public InitialisationPOJO getInitialisation() {
-        return initialisation;
+    public List<RegistersPOJO> getRegisters() {
+        return registers;
+    }
+
+    public List<ReturnsPOJO> getReturns() {
+        return returns;
     }
 
     public List<TablePOJO> getTable() {
         return table;
     }
 
-    public List<ReturnPOJO> getReturnStatement() {
-        return returnStatement;
-    }
-
     @Override
     public String toString() {
         return "DecorationTablePOJO{" +
                 "name='" + name + '\'' +
-                ", initialisation=" + initialisation +
+                ", registers=" + registers +
+                ", returns=" + returns +
                 ", table=" + table +
-                ", returnStatement=" + returnStatement +
                 '}';
     }
 }
