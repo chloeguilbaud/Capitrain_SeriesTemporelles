@@ -94,8 +94,7 @@ public class DecorationTableConverter {
                         DecorationTableParsingErrorType.MISSING_RETURN_VALUE, "" + index);
             } else if ((val.getFunction() == null) == (val.getVariable() == null)) {
                 manageError(res,
-                        DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE,
-                        DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE.getLabel() + index);
+                        DecorationTableParsingErrorType.BOTH_RETURNS_FUNCTION_AND_VARIABLE_IN_VALUE, "" + index);
             } else if (val.getFunction() != null) {
                 decorationTable.addReturn(name, DecorationTableMapper.parseToInitialisationFunction(val.getFunction(), res));
             } else if (val.getVariable() != null) {

@@ -21,7 +21,8 @@ public enum DecorationTableParsingErrorType {
 
     MISSING_RETURN_NAME("Return element in JSON, missing name, in return n°"),
     MISSING_RETURN_INDEX("Return element in JSON, missing index, in return n°"),
-    MISSING_RETURN_VALUE("Expected return value in return n°");
+    MISSING_RETURN_VALUE("Expected return value in return n°"),
+    BOTH_RETURNS_FUNCTION_AND_VARIABLE_IN_VALUE("Both function and variable in return statement value n°");
 
     private String label;
 
