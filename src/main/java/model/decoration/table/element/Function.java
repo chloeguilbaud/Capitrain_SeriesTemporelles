@@ -1,4 +1,4 @@
-package model.decoration.table;
+package model.decoration.table.element;
 
 import model.decoration.table.element.Element;
 

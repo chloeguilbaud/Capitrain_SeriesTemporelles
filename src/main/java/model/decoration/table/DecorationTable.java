@@ -28,7 +28,7 @@ public class DecorationTable {
         this.registers.put(key, register);
     }
 
-    public void addReturns(String key, Element returnElement) {
+    public void addReturn(String key, Element returnElement) {
         this.returns.put(key, returnElement);
     }
 

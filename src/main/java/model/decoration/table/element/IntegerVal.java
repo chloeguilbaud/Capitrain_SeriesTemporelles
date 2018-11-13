@@ -1,10 +1,10 @@
 package model.decoration.table.element;
 
-public class Integer extends Element {
+public class IntegerVal extends Element {
     
     private int value;
 
-    public Integer(int value) {
+    public IntegerVal(int value) {
         this.value = value;
     }
 
