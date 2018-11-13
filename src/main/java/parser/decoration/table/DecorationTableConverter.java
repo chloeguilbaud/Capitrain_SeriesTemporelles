@@ -3,23 +3,29 @@ package parser.decoration.table;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import parser.decoration.table.errors.DecorationTableParsingError;
+import model.decoration.table.DecorationTable;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
+import parser.decoration.table.mapper.DecorationTableMapper;
 import parser.decoration.table.model.DecorationTablePOJO;
+import parser.decoration.table.model.RegistersPOJO;
+import parser.decoration.table.model.ReturnsPOJO;
+import parser.decoration.table.model.ValuePOJO;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import static parser.decoration.table.DecorationTableUtils.manageError;
+
 public class DecorationTableConverter {
 
-    public static DecorationTableParsingResult convert(File jsonFile) {
+    public static DecorationTableParsingResult convert(File jsonFile) throws IOException {
 
         DecorationTableParsingResult res = new DecorationTableParsingResult();
         ObjectMapper mapper = new ObjectMapper();
         try {
             DecorationTablePOJO pojo = mapper.readValue(jsonFile, DecorationTablePOJO.class);
-            System.out.println(res);
+            System.out.println(pojo);
             return process(pojo, res);
         } catch (UnrecognizedPropertyException ex) {
             manageError(res,
@@ -39,23 +45,66 @@ public class DecorationTableConverter {
                     ex.getMessage());
         }
 
-       return res;
+        System.out.println(res);
+        return res;
 
     }
 
     private static DecorationTableParsingResult process(DecorationTablePOJO pojo, DecorationTableParsingResult res) {
-        return null;
-    }
 
+        System.out.println(pojo);
+        DecorationTable decorationTable = new DecorationTable(pojo.getName());
 
-    /**
-     * Enables parsing error management.
-     * @param res The {@link DecorationTableParsingResult} parsing result object (modified)
-     * @param err The {@link DecorationTableParsingErrorType} occurred error
-     * @param msg The related error message
-     */
-    private static void manageError(DecorationTableParsingResult res, DecorationTableParsingErrorType err, String msg) {
-        res.addParsingError(new DecorationTableParsingError(err, msg));
+        for (int index = 0; index < pojo.getRegisters().size(); index++) {
+            RegistersPOJO item = pojo.getRegisters().get(index);
+            String name = item.getName();
+            ValuePOJO val = item.getValue();
+            if (name == null) {
+                manageError(res,
+                        DecorationTableParsingErrorType.MISSING_REGISTER_NAME,
+                        DecorationTableParsingErrorType.MISSING_REGISTER_NAME.getLabel() + index);
+            } else if (val == null) {
+                manageError(res,
+                        DecorationTableParsingErrorType.MISSING_REGISTER_VALUE,
+                        DecorationTableParsingErrorType.MISSING_REGISTER_VALUE.getLabel() + index);
+            } else if ((val.getFunction() == null) == (val.getVariable() == null)) {
+                manageError(res,
+                        DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE,
+                        DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE.getLabel() + index);
+            } else if (val.getFunction() != null) {
+                decorationTable.addRegister(name, DecorationTableMapper.parseToInitialisationFunction(val.getFunction(), res));
+            } else if (val.getVariable() != null) {
+                decorationTable.addRegister(name, DecorationTableMapper.parseToInitialisationVariable(val.getVariable(), res));
+            }
+
+        }
+
+        for (int index = 0; index < pojo.getReturns().size(); index++) {
+            ReturnsPOJO item = pojo.getReturns().get(index);
+            String name = item.getName();
+            ValuePOJO val = item.getValue();
+            if (name == null) {
+                manageError(res,
+                        DecorationTableParsingErrorType.MISSING_RETURN_NAME, "" + index);
+            } else if (item.getIndex() == null) {
+                manageError(res,
+                        DecorationTableParsingErrorType.MISSING_RETURN_INDEX, "" + index + ", " + name);
+            } else if (val == null) {
+                manageError(res,
+                        DecorationTableParsingErrorType.MISSING_RETURN_VALUE, "" + index);
+            } else if ((val.getFunction() == null) == (val.getVariable() == null)) {
+                manageError(res,
+                        DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE,
+                        DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE.getLabel() + index);
+            } else if (val.getFunction() != null) {
+                decorationTable.addReturn(name, DecorationTableMapper.parseToInitialisationFunction(val.getFunction(), res));
+            } else if (val.getVariable() != null) {
+                decorationTable.addReturn(name, DecorationTableMapper.parseToInitialisationVariable(val.getVariable(), res));
+            }
+
+        }
+
+        return res;
     }
 
 

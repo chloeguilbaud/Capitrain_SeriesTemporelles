@@ -1,48 +1,41 @@
 {
   "name": "features",
-  "initialisation": [
+  "registers": [
     {
-      "registers": [
-        {
-          "name": "C",
-          "function": {
-            "name": "idf"
-          }
-        },
-        {
-          "name": "D",
-          "function": {
-            "name": "idf"
-          }
+      "name": "C",
+      "value": {
+        "function": {
+          "name": "idf"
         }
-      ]
+      }
     },
     {
-      "variables": [
-        {
-          "name": "f",
-          "index": "n",
-          "value": {
-            "function": "default"
-          }
-        },
-        {
-          "name": "e",
-          "index": "n",
-          "value": {
-            "variable": "C"
-          }
+      "name": "D",
+      "value": {
+        "function": {
+          "name": "idf"
         }
-      ]
+      }
     }
   ],
-  "return": [{
-      "variable": "e",
-      "index": "n"
+  "returns": [
+    {
+      "name": "f",
+      "index": "n",
+      "value": {
+        "function": {
+          "name": "default"
+        }
+      }
     },
     {
-      "variable": "f",
-      "index": "n"
+      "name": "e",
+      "index": "n",
+      "value": {
+        "variable": {
+          "name": "C"
+        }
+      }
     }
   ],
   "table": [
