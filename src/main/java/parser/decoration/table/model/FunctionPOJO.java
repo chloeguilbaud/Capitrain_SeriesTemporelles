@@ -4,8 +4,8 @@ import java.util.List;
 
 public class FunctionPOJO {
 
-    public String name;
-    public List<Object> parameters;
+    private String name;
+    private List<Object> parameters;
 
     public String getName() {
         return name;

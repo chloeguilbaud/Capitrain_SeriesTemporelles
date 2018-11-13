@@ -4,10 +4,10 @@ import java.util.List;
 
 public class TablePOJO {
 
-    public String letter;
-    public int after;
-    public List<GuardPOJO> guards;
-    public List<UpdatePOJO> updates;
+    private String letter;
+    private int after;
+    private List<GuardPOJO> guards;
+    private List<UpdatePOJO> updates;
 
     public String getLetter() {
         return letter;

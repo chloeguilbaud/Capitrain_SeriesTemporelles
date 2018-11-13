@@ -2,9 +2,9 @@ package parser.decoration.table.model;
 
 public class GuardPOJO {
 
-    public String variable;
-    public String index;
-    public ValuePOJO value;
+    private String variable;
+    private String index;
+    private ValuePOJO value;
 
     public String getVariable() {
         return variable;

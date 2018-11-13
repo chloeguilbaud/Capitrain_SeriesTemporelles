@@ -4,8 +4,8 @@ import java.util.List;
 
 public class InitialisationPOJO {
 
-    public List<RegistersPOJO> registers;
-    public List<InitVariablesPOJO> variables;
+    private List<RegistersPOJO> registers;
+    private List<InitVariablesPOJO> variables;
 
     public List<RegistersPOJO> getRegisters() {
         return registers;

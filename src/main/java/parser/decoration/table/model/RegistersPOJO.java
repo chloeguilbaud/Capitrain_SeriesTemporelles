@@ -2,8 +2,8 @@ package parser.decoration.table.model;
 
 public class RegistersPOJO {
 
-    public String name;
-    public FunctionPOJO function;
+    private String name;
+    private FunctionPOJO function;
 
     public String getName() {
         return name;

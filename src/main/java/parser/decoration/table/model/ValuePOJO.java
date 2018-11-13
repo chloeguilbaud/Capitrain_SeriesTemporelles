@@ -2,8 +2,8 @@ package parser.decoration.table.model;
 
 public class ValuePOJO {
 
-    public FunctionPOJO function;
-    public VariablePOJO variable;
+    private FunctionPOJO function;
+    private VariablePOJO variable;
 
     public FunctionPOJO getFunction() {
         return function;

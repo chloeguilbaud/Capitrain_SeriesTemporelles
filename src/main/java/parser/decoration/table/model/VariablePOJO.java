@@ -2,8 +2,8 @@ package parser.decoration.table.model;
 
 public class VariablePOJO {
 
-    public String name;
-    public String index;
+    private String name;
+    private String index;
 
     public String getName() {
         return name;

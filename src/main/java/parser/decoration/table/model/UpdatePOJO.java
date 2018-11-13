@@ -2,8 +2,8 @@ package parser.decoration.table.model;
 
 public class UpdatePOJO {
 
-    public String variable;
-    public ValuePOJO value;
+    private String variable;
+    private ValuePOJO value;
 
     public String getVariable() {
         return variable;

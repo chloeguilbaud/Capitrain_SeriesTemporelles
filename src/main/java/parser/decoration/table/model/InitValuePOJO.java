@@ -2,8 +2,8 @@ package parser.decoration.table.model;
 
 public class InitValuePOJO {
 
-    public String variable;
-    public String function;
+    private String variable;
+    private String function;
 
     public String getVariable() {
         return variable;

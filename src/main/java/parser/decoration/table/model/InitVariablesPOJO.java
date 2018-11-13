@@ -2,9 +2,9 @@ package parser.decoration.table.model;
 
 public class InitVariablesPOJO {
 
-    public String name;
-    public String index;
-    public InitValuePOJO value;
+    private String name;
+    private String index;
+    private InitValuePOJO value;
 
     public String getName() {
         return name;
