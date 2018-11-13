@@ -9,6 +9,11 @@ public class Function extends Element {
     private String name;
     private List<Element> parameters;
 
+    public Function(String name, List<Element> parameters) {
+        this.name = name;
+        this.parameters = parameters;
+    }
+
     public String getName() {
         return name;
     }
