@@ -12,13 +12,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static parser.decoration.table.DecorationTableUtils.manageError;
-import static parser.decoration.table.mapper.DecorationTableMapper.parseDecorationTableContent;
-import static parser.decoration.table.mapper.DecorationTableMapper.parseRegisters;
-import static parser.decoration.table.mapper.DecorationTableMapper.parseReturns;
+import static parser.decoration.table.mapper.DecorationTableContentMapper.parseDecorationTableContent;
+import static parser.decoration.table.mapper.InitialisationMapper.parseRegisters;
+import static parser.decoration.table.mapper.InitialisationMapper.parseReturns;
 
-public class DecorationTableConverter {
+class DecorationTableConverter {
 
-    public static DecorationTableParsingResult convert(File jsonFile) throws IOException {
+    static DecorationTableParsingResult convert(File jsonFile) throws IOException {
 
         DecorationTableParsingResult res = new DecorationTableParsingResult();
         ObjectMapper mapper = new ObjectMapper();
