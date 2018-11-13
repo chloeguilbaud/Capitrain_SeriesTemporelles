@@ -7,13 +7,17 @@ public enum DecorationTableParsingErrorType {
     JSON_MAPPING_EXCEPTION("One of the JSON element has not the right type"),
     FILE_NOT_FOUND("File not found"),
 
-    INITIALISATION_VARIABLE_UNEXPECTED_INDEX("Declaration in initialisation section should not have index field for variable"),
+    INITIALISATION_REGISTER_VARIABLE_UNEXPECTED_INDEX("Declaration in initialisation section should not have index field for variable"),
+    INITIALISATION_REGISTER_VALUE_VARIABLE_MISSING_NAME("No name given to variable in register n°"),
+
+    INITIALISATION_RETURN_VALUE_VARIABLE_MISSING_NAME("No name given to variable in return n°"),
+    INITIALISATION_RETURN_VARIABLE_MISSING_INDEX("No index given to variable in return n°"),
 
     MISSING_REGISTER_NAME("Expected register name in register n°"),
     MISSING_REGISTER_VALUE("Expected register value in register n°"),
     BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE("Both function and variable in register value n°"),
 
-    VARIABLE_NAME_WHEN_MISSING("Error in variable JSON definition"),
+    VARIABLE_NAME_WHEN_ERROR("Error in variable JSON definition"),
 
     FUNCTION_MISSING_NAME("Function element in JSON, missing name"),
     FUNCTION_NAME_WHEN_MISSING("Error in function JSON definition"),
