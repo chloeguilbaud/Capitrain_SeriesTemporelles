@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static parser.decoration.table.DecorationTableUtils.manageError;
+import static parser.decoration.table.mapper.DecorationTableMapper.parseDecorationTableContent;
 import static parser.decoration.table.mapper.DecorationTableMapper.parseRegisters;
 import static parser.decoration.table.mapper.DecorationTableMapper.parseReturns;
 
@@ -57,6 +58,8 @@ public class DecorationTableConverter {
         parseRegisters(pojo, res, decorationTable);
         parseReturns(pojo, res, decorationTable);
 
+        // Parsing table
+        parseDecorationTableContent(pojo, res, decorationTable);
 
         return res;
     }

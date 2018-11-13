@@ -7,7 +7,7 @@ public class DecorationTableConverterTest {
 
     @Test
     public void test() {
-
+        // TODO - une seul entré par semantic letter
     }
 
 }

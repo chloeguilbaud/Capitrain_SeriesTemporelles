@@ -2,6 +2,8 @@ package parser.decoration.table.errors;
 
 public enum DecorationTableParsingErrorType {
 
+    // TODO - utliser {} pour valeur msg à compléter
+
     UNKNOWN_ERROR("Erreur de parsing iconnue"),
     UNRECOGNIZED_PROPERTY("Unexpected JSON element in file"),
     JSON_MAPPING_EXCEPTION("One of the JSON element has not the right type"),
@@ -26,7 +28,15 @@ public enum DecorationTableParsingErrorType {
     MISSING_RETURN_NAME("Return element in JSON, missing name, in return n°"),
     MISSING_RETURN_INDEX("Return element in JSON, missing index, in return n°"),
     MISSING_RETURN_VALUE("Expected return value in return n°"),
-    BOTH_RETURNS_FUNCTION_AND_VARIABLE_IN_VALUE("Both function and variable in return statement value n°");
+    BOTH_RETURNS_FUNCTION_AND_VARIABLE_IN_VALUE("Both function and variable in return statement value n°"),
+
+    INSTRUCTION_MISSING_SEMANTIC_LETTER("Semantic letter missing"),
+    INSTRUCTION_INVALID_SEMANTIQUE_LETTER("Invalid given semantic letter"),
+
+    VARIABLE_VALUE_MISSING("\"value\" field missing in JSON for semantic letter"),
+    VALUE_MISSING_NAME("Missing \"value\" field in JSON"),
+    VARIABLE_MISSING_NAME("Missing \"name\" in \"variable\" in JSON"),
+    VARIABLE_VALUE_UNEXPECTED_INDEX("Index is not allowed for this variable value");
 
     private String label;
 
