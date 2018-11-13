@@ -43,4 +43,11 @@ public class ParsingResult<T, E> {
         return this.parsingErrors.size() > 0;
     }
 
+    @Override
+    public String toString() {
+        return "ParsingResult{" +
+                "result=" + result +
+                ", parsingErrors=" + parsingErrors +
+                '}';
+    }
 }

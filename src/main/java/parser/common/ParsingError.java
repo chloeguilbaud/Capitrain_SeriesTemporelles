@@ -18,5 +18,11 @@ public class ParsingError<T> {
         return errorMsg;
     }
 
-
+    @Override
+    public String toString() {
+        return "ParsingError{" +
+                "errorType=" + errorType +
+                ", errorMsg='" + errorMsg + '\'' +
+                '}';
+    }
 }
