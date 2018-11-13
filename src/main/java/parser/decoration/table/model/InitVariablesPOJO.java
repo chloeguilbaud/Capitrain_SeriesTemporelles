@@ -4,7 +4,7 @@ public class InitVariablesPOJO {
 
     private String name;
     private String index;
-    private InitValuePOJO value;
+    private ValuePOJO value;
 
     public String getName() {
         return name;
@@ -14,7 +14,7 @@ public class InitVariablesPOJO {
         return index;
     }
 
-    public InitValuePOJO getValue() {
+    public ValuePOJO getValue() {
         return value;
     }
 

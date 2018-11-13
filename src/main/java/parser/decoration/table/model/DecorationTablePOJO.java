@@ -7,7 +7,7 @@ import java.util.List;
 public class DecorationTablePOJO {
 
     private String name;
-    private List<InitialisationPOJO> initialisation;
+    private InitialisationPOJO initialisation;
     private List<TablePOJO> table;
 
     @JsonProperty("return")
@@ -17,7 +17,7 @@ public class DecorationTablePOJO {
         return name;
     }
 
-    public List<InitialisationPOJO> getInitialisation() {
+    public InitialisationPOJO getInitialisation() {
         return initialisation;
     }
 
