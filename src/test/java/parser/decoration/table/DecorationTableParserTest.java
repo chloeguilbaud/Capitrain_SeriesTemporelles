@@ -1,6 +1,7 @@
 package parser.decoration.table;
 
 import conf.TestConfiguration;
+import model.decoration.table.DecorationTable;
 import org.junit.Test;
 
 import java.io.File;
@@ -9,8 +10,12 @@ import java.io.IOException;
 public class DecorationTableParserTest {
 
     @Test
-    public void test() throws IOException {
-        DecorationTableParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "testDT.json"));
+    public void testParse() throws IOException {
+
+        DecorationTableParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "decorationTableExampleComplet_features.json"));
+
+
+
     }
 
     @Test

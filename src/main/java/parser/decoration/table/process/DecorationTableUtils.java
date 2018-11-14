@@ -1,7 +1,8 @@
-package parser.decoration.table;
+package parser.decoration.table.process;
 
 import parser.decoration.table.errors.DecorationTableParsingError;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
+import parser.decoration.table.process.DecorationTableParsingResult;
 
 public class DecorationTableUtils {
 

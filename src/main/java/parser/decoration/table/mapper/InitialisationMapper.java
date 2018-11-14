@@ -4,13 +4,13 @@ import model.decoration.table.DecorationTable;
 import model.decoration.table.element.Function;
 import model.decoration.table.element.IndexedVariable;
 import model.decoration.table.element.Variable;
-import parser.decoration.table.DecorationTableParsingResult;
+import parser.decoration.table.process.DecorationTableParsingResult;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
 import parser.decoration.table.model.*;
 
 import java.util.ArrayList;
 
-import static parser.decoration.table.DecorationTableUtils.manageError;
+import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
 public class InitialisationMapper {
 

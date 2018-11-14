@@ -6,7 +6,7 @@ import model.decoration.table.element.Affectation;
 import model.decoration.table.element.IndexedVariable;
 import model.decoration.table.element.Variable;
 import model.seed.transducer.ArcSemanticLetter;
-import parser.decoration.table.DecorationTableParsingResult;
+import parser.decoration.table.process.DecorationTableParsingResult;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
 import parser.decoration.table.model.DecorationTablePOJO;
 import parser.decoration.table.model.GuardPOJO;
@@ -15,7 +15,7 @@ import parser.decoration.table.model.UpdatePOJO;
 
 import java.util.Optional;
 
-import static parser.decoration.table.DecorationTableUtils.manageError;
+import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
 public class DecorationTableContentMapper {
 

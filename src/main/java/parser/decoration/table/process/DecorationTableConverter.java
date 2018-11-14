@@ -1,4 +1,4 @@
-package parser.decoration.table;
+package parser.decoration.table.process;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,14 +11,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static parser.decoration.table.DecorationTableUtils.manageError;
+import static parser.decoration.table.process.DecorationTableUtils.manageError;
 import static parser.decoration.table.mapper.DecorationTableContentMapper.mapDecorationTableContent;
 import static parser.decoration.table.mapper.InitialisationMapper.mapRegisters;
 import static parser.decoration.table.mapper.InitialisationMapper.mapReturns;
 
-class DecorationTableConverter {
+public class DecorationTableConverter {
 
-    static DecorationTableParsingResult convert(File jsonFile) throws IOException {
+    public static DecorationTableParsingResult convert(File jsonFile) throws IOException {
 
         DecorationTableParsingResult res = new DecorationTableParsingResult();
         ObjectMapper mapper = new ObjectMapper();

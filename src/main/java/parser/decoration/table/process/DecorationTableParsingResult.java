@@ -1,4 +1,4 @@
-package parser.decoration.table;
+package parser.decoration.table.process;
 
 import model.decoration.table.DecorationTable;
 import parser.common.ParsingResult;

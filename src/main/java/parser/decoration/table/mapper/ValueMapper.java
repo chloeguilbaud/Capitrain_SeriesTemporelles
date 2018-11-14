@@ -1,7 +1,7 @@
 package parser.decoration.table.mapper;
 
 import model.decoration.table.element.*;
-import parser.decoration.table.DecorationTableParsingResult;
+import parser.decoration.table.process.DecorationTableParsingResult;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
 import parser.decoration.table.model.FunctionPOJO;
 import parser.decoration.table.model.ValuePOJO;
@@ -10,7 +10,7 @@ import parser.decoration.table.model.VariablePOJO;
 import java.util.ArrayList;
 import java.util.List;
 
-import static parser.decoration.table.DecorationTableUtils.manageError;
+import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
 class ValueMapper {
 
