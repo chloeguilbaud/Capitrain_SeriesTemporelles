@@ -91,17 +91,14 @@ public class InitialisationMapper {
     }
 
     // index obligatoire
-    private static IndexedVariable mapReturnValueToVariable(VariablePOJO pojo, String tabIndexSemanticLetter, String tabColumn, DecorationTableParsingResult res) {
+    private static Variable mapReturnValueToVariable(VariablePOJO pojo, String tabIndexSemanticLetter, String tabColumn, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
             manageError(res, DecorationTableParsingErrorType.INITIALISATION_RETURN_VALUE_VARIABLE_MISSING_NAME,
                     pojo.getName());
-        } else if (pojo.getIndex() == null) {
-            manageError(res, DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_INDEX,
-                    pojo.getName());
         } else {
-            return new IndexedVariable(pojo.getName(), ValueMapper.parseVariableIndex(pojo.getIndex(), tabIndexSemanticLetter, pojo.getName(), tabColumn, res));
+            return new Variable(pojo.getName());
         }
-        return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
+        return new Variable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel());
     }
 
 }

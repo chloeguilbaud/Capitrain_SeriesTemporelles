@@ -21,6 +21,7 @@
   "returns": [
     {
       "name": "f",
+      "index": "n",
       "value": {
         "function": {
           "name": "default"
@@ -29,6 +30,7 @@
     },
     {
       "name": "e",
+      "index": "n",
       "value": {
         "variable": {
           "name": "C"

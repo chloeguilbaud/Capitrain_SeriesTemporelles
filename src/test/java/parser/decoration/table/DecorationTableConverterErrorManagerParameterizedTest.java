@@ -196,6 +196,7 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
     // TODO - cf if de mappers
     // TODO - several errors
     // TODO - vars in table = vars in declaration - idem for updates
+    // TODO - given semantic letter has to be valid and not given before
 
 
     @Test
@@ -205,6 +206,8 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
 
         File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_DECORATION_TABLE_PARSER.getValue() + file);
         DecorationTableParsingResult res = DecorationTableConverter.convert(jsonFile);
+
+        System.out.println(res);
 
         assertFalse("No parsing because errors", res.getSeedTransducer().isPresent());
         assertTrue("Parsing KO so errors", res.hasErrors());

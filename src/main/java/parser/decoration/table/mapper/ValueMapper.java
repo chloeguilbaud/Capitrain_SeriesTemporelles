@@ -1,5 +1,6 @@
 package parser.decoration.table.mapper;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.decoration.table.element.*;
 import parser.decoration.table.process.DecorationTableParsingResult;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
@@ -7,7 +8,9 @@ import parser.decoration.table.model.FunctionPOJO;
 import parser.decoration.table.model.ValuePOJO;
 import parser.decoration.table.model.VariablePOJO;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import static parser.decoration.table.process.DecorationTableUtils.manageError;
@@ -23,7 +26,7 @@ class ValueMapper {
         } else if(var != null) {
             return mapValueToVariable(tabColumn, tabIndexSemanticLetter, var, res);
         } else {
-            return mapValueToFunction(func, res);
+            return mapValueToFunction(func, tabIndexSemanticLetter, tabColumn, res);
         }
         return new Variable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel());
     }
@@ -41,23 +44,35 @@ class ValueMapper {
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
 
-    private static Function mapValueToFunction(FunctionPOJO pojo, DecorationTableParsingResult res) {
+    private static Function mapValueToFunction(FunctionPOJO pojo, String semanticLetter, String tabColumn, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
             manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"name: " + null);
         } else {
             Function function = new Function(pojo.getName());
             if(pojo.getParameters() != null) {
-                pojo.getParameters().forEach((param) -> {
-                    if (param instanceof FunctionPOJO) {
-                        function.addParameter(ValueMapper.mapValueToFunction((FunctionPOJO) param, res));
-                    } else if (param instanceof String) {
-                        function.addParameter(new Variable((String) param));
-                    } else if (param instanceof Integer) {
-                        function.addParameter(new IntegerVal((Integer) param));
-                    } else {
-                        manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, pojo.getName());
-                    }
-                });
+                try {
+                    pojo.getParameters().forEach((param) -> {
+                        System.out.println("param " + param);
+                        if (param instanceof String) {
+                            function.addParameter(new Variable((String) param));
+                        } else if (param instanceof Integer) {
+                            function.addParameter(new IntegerVal((Integer) param));
+                        } else if (((LinkedHashMap) param).values().size() != 1) {
+                            manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, pojo.getName() + " in semantic letter " + semanticLetter + " in " + tabColumn);
+                        } else if (((LinkedHashMap) param).get("function") instanceof LinkedHashMap) {
+                            ObjectMapper mapper = new ObjectMapper();
+                            LinkedHashMap fonc2 = (LinkedHashMap) ((LinkedHashMap) param).get("function");
+
+                                FunctionPOJO fonc2Pojo = mapper.convertValue(fonc2, FunctionPOJO.class);
+                                function.addParameter(ValueMapper.mapValueToFunction(fonc2Pojo, semanticLetter, tabColumn,   res));
+
+                        } else {
+                            manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, pojo.getName() + " in semantic letter " + semanticLetter + " in " + tabColumn);
+                        }
+                    });
+                } catch (ClassCastException ex) {
+                    manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, pojo.getName() + " in semantic letter " + semanticLetter + " in " + tabColumn);
+                }
             }
             return function;
         }

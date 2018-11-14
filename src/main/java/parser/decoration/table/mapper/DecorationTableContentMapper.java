@@ -47,7 +47,7 @@ public class DecorationTableContentMapper {
             String semanticLetterLab = semanticLetter.get().getLabel();
 
             if (tabItem.getLetter() == null) {
-                manageError(res, DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER, "in table element n°" + tabIndex);
+                manageError(res, DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER, " in table element n° " + tabIndex);
             } else if (!semanticLetter.isPresent()) {
                 manageError(res, DecorationTableParsingErrorType.INSTRUCTION_INVALID_SEMANTIC_LETTER,
                         "- expected: " + ArcSemanticLetter.valuesAsList() + ", actual: " + letter);

@@ -25,7 +25,6 @@ public class DecorationTableConverter {
         ObjectMapper mapper = new ObjectMapper();
         try {
             DecorationTablePOJO pojo = mapper.readValue(jsonFile, DecorationTablePOJO.class);
-            System.out.println(pojo);
             return process(pojo, res);
         } catch (UnrecognizedPropertyException ex) {
             manageError(res,
