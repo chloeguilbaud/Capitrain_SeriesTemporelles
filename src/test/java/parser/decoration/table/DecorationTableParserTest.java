@@ -58,8 +58,8 @@ public class DecorationTableParserTest {
 
         // DecorationTable init
         DecorationTable feature = new DecorationTable("feature");
-        feature.addRegister(C_identifier, idf);
-        feature.addRegister(D_identifier, idf);
+       // feature.addRegister(C_identifier, idf);
+       // feature.addRegister(D_identifier, idf);
         feature.addReturn(f_identifier, defaut);
         feature.addReturn(e_identifier, defaut);
 

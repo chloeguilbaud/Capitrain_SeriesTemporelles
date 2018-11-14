@@ -45,8 +45,8 @@ class ValueMapper {
         if (pojo.getName() == null ){
             manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"name: " + null);
         } else {
-            Function function = new Function();
-            if(pojo.getParameters() == null) {
+            Function function = new Function(pojo.getName());
+            if(pojo.getParameters() != null) {
                 pojo.getParameters().forEach((param) -> {
                     if (param instanceof FunctionPOJO) {
                         function.addParameter(ValueMapper.mapValueToFunction((FunctionPOJO) param, res));
