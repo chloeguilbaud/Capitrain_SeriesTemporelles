@@ -77,7 +77,7 @@ public class DecorationTableContentMapper {
             return new Variable(pojoName);
         } else {
             String indexStr = pojoIndex.get();
-            Integer varIndex = Integer.parseInt(indexStr.substring(indexStr.indexOf("+"))); //TODO check var - 0 ou 1 ou plus
+            Integer varIndex = ValueMapper.parseVariableIndex(indexStr); //TODO check var - 0 ou 1 ou plus
             return new IndexedVariable(pojoName, varIndex);
         }
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);

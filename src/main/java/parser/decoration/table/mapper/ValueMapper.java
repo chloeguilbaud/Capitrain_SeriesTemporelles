@@ -9,6 +9,7 @@ import parser.decoration.table.model.VariablePOJO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
@@ -35,7 +36,7 @@ class ValueMapper {
         } else if (pojo.getIndex() == null) {
             return new Variable(pojo.getName());
         } else {
-            return new IndexedVariable(pojo.getName(), Integer.parseInt(pojo.getIndex())); // TODO - check index
+            return new IndexedVariable(pojo.getName(), ValueMapper.parseVariableIndex(pojo.getIndex())); // TODO - check index
         }
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
@@ -59,6 +60,31 @@ class ValueMapper {
             return new Function(pojo.getName(), params);
         }
         return new Function(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_MISSING.getLabel(), new ArrayList<>());
+    }
+
+    /**
+     * 0 si pas de i+ quelque chose
+     * val positive ou négative sinon
+     * @param indexedStr
+     * @return
+     */
+    public static Integer parseVariableIndex(String indexedStr) {
+        int tmp1 = 0;
+        if (indexedStr.contains("+")) {
+            tmp1 = indexedStr.indexOf("+");
+            String tmp2 = indexedStr.substring(tmp1+1);
+            Integer varIndex = Integer.parseInt(tmp2); //TODO check var - 0 ou 1 ou plus
+            return varIndex;
+        } else if (indexedStr.contains("-")) {
+            tmp1 = indexedStr.indexOf("-");
+            String tmp2 = indexedStr.substring(tmp1+1);
+            Integer varIndex = Integer.parseInt(tmp2); //TODO check var - 0 ou 1 ou plus
+            return -varIndex;
+        } else {
+            return 0;
+        }
+
+
     }
 
 }

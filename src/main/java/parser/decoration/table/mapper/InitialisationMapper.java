@@ -85,7 +85,7 @@ public class InitialisationMapper {
             manageError(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VARIABLE_UNEXPECTED_INDEX,
                     pojo.getName());
         } else {
-            return new IndexedVariable(pojo.getName(), Integer.parseInt(pojo.getIndex())); // TODO - check index
+            return new IndexedVariable(pojo.getName(), ValueMapper.parseVariableIndex(pojo.getIndex())); // TODO - check index
         }
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
@@ -99,7 +99,7 @@ public class InitialisationMapper {
             manageError(res, DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_INDEX,
                     pojo.getName());
         } else {
-            return new IndexedVariable(pojo.getName(), Integer.parseInt(pojo.getIndex())); // TODO - check index
+            return new IndexedVariable(pojo.getName(), ValueMapper.parseVariableIndex(pojo.getIndex())); // TODO - check index
         }
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
