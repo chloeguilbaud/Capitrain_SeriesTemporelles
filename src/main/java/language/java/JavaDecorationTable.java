@@ -25,11 +25,20 @@ public class JavaDecorationTable {
         this.instructions.forEach((key, value) -> {
             buffer.append(indent + "\n");
             buffer.append(indent + JavaSemanticLetter.fromSemanticLetter(key.getArcSemanticLetter()).get().getLabel() + "() {\n");
+            // Append declaration of local variables
+            buffer.append(indent + "\tint i = this.i;\n");
+            // Including all registers
+            this.registers.forEach((register, init) -> {
+                buffer.append(indent + "\tint " + register + " = this.registers.get(\"" + register + "\");\n");
+            });
+            // ----
             value.getGuards().forEach((variable, instruction) -> {
                 (new JavaGuard(instruction)).appendCode(indent + "\t", buffer);
             });
-
-
+            value.getUpdates().forEach((registre, instruction) -> {
+                (new JavaUpdate(instruction)).appendCode(indent + "\t", buffer);
+            });
+            // ----            
             this.registers.forEach((variable, init) -> {
                 buffer.append(indent + "\tthis.results.get(\"" + variable + "\")[i] = this.registers.get(\"" + variable + "\");\n");
             });
