@@ -9,7 +9,6 @@ import parser.decoration.table.model.VariablePOJO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
@@ -31,7 +30,7 @@ class ValueMapper {
 
     private static Variable mapValueToVariable(String tabColumn, String tabIndexSemanticLetter, VariablePOJO pojo, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
-            manageError(res, DecorationTableParsingErrorType.VALUE_MISSING_NAME,
+            manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING_NAME,
                     "in " + tabColumn + "at semantic letter " + tabIndexSemanticLetter);
         } else if (pojo.getIndex() == null) {
             return new Variable(pojo.getName());
@@ -46,21 +45,23 @@ class ValueMapper {
         if (pojo.getName() == null ){
             manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"name: " + null);
         } else {
-            List<Element> params = new ArrayList<>();
-            pojo.getParameters().forEach((param) -> {
-                if (param instanceof FunctionPOJO) {
-                    params.add(ValueMapper.mapValueToFunction((FunctionPOJO) param, res));
-                } else if (param instanceof String) {
-                    params.add(new Variable((String) param));
-                } else if (param instanceof Integer) {
-                    params.add(new IntegerVal((Integer) param));
-                } else {
-                    manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, pojo.getName());
-                }
-            });
-            return new Function(pojo.getName(), params);
+            Function function = new Function();
+            if(pojo.getParameters() == null) {
+                pojo.getParameters().forEach((param) -> {
+                    if (param instanceof FunctionPOJO) {
+                        function.addParameter(ValueMapper.mapValueToFunction((FunctionPOJO) param, res));
+                    } else if (param instanceof String) {
+                        function.addParameter(new Variable((String) param));
+                    } else if (param instanceof Integer) {
+                        function.addParameter(new IntegerVal((Integer) param));
+                    } else {
+                        manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, pojo.getName());
+                    }
+                });
+            }
+            return function;
         }
-        return new Function(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_MISSING.getLabel(), new ArrayList<>());
+        return new Function(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_ERROR.getLabel(), new ArrayList<>());
     }
 
     /**
@@ -71,7 +72,7 @@ class ValueMapper {
      * @return
      */
     public static Integer parseVariableIndex(String indexedStr, String semanticLetter, String varName, String tabColumn, DecorationTableParsingResult res) {
-        int tmp1 = 0;
+        int tmp1;
         if (indexedStr.contains("+")) {
             tmp1 = indexedStr.indexOf("+");
             String tmp2 = indexedStr.substring(tmp1+1);

@@ -31,7 +31,7 @@ public class InitialisationMapper {
                         DecorationTableParsingErrorType.MISSING_RETURN_VALUE, "" + index);
             } else if ((val.getFunction() == null) == (val.getVariable() == null)) {
                 manageError(res,
-                        DecorationTableParsingErrorType.BOTH_RETURNS_FUNCTION_AND_VARIABLE_IN_VALUE, "" + index);
+                        DecorationTableParsingErrorType.BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE, "" + index);
             } else if (val.getFunction() != null) {
                 decorationTable.addReturn(name, parseInitValueToFunction(val.getFunction(), res));
             } else if (val.getVariable() != null) {
@@ -73,7 +73,7 @@ public class InitialisationMapper {
         } else {
             return new Function(pojo.getName(), new ArrayList<>());
         }
-        return new Function(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_MISSING.getLabel(), new ArrayList<>());
+        return new Function(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_ERROR.getLabel(), new ArrayList<>());
     }
 
     // index interdit

@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-        SeedTransducerConvertErrorManagerParameterizedTest.class,
+        SeedTransducerConverterErrorManagerParameterizedTest.class,
         SeedTransducerConverterTest.class,
         SeedTransducerParserTest.class
 })

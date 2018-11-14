@@ -8,7 +8,7 @@ import parser.seed.transducer.json.SeedTransducerJSONElements;
  */
 public enum SeedTransducerParsingErrorType {
 
-    UNKNOWN_ERROR("Erreur de parsing iconnue"),
+    UNKNOWN_ERROR("Unknown JSON parsing error"),
     UNRECOGNIZED_PROPERTY("Unexpected JSON element in file"),
     JSON_MAPPING_EXCEPTION("One of the JSON element has not the right type"),
     FILE_NOT_FOUND("File not found"),

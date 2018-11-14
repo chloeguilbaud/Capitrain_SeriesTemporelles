@@ -19,7 +19,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class SeedTransducerConvertErrorManagerParameterizedTest {
+public class SeedTransducerConverterErrorManagerParameterizedTest {
 
     private final String file;
     private final List<SeedTransducerParsingErrorType> errorTypes;
@@ -27,7 +27,7 @@ public class SeedTransducerConvertErrorManagerParameterizedTest {
     private int errorAmount;
 
 
-    public SeedTransducerConvertErrorManagerParameterizedTest(String file, List<SeedTransducerParsingErrorType> errorTypes, List<String> errorMsgContents, int errorAmount) {
+    public SeedTransducerConverterErrorManagerParameterizedTest(String file, List<SeedTransducerParsingErrorType> errorTypes, List<String> errorMsgContents, int errorAmount) {
         this.file = file;
         this.errorTypes = errorTypes;
         this.errorMsgContents = errorMsgContents;

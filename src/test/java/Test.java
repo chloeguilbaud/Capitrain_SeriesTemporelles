@@ -1,3 +1,5 @@
+import parser.decoration.table.errors.DecorationTableParsingErrorType;
+
 public class Test {
 
     /*public static void main(String[] args) {
@@ -10,6 +12,7 @@ public class Test {
     }*/
 
     public static void main(String[] args) {
+        System.out.println(DecorationTableParsingErrorType.values().length);
         String indexStr = "i+12";
         int var1 = indexStr.indexOf("+");
         String var2 = indexStr.substring(var1+1);
