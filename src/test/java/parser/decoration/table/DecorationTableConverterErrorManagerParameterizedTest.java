@@ -1,7 +1,6 @@
 package parser.decoration.table;
 
 import conf.TestConfiguration;
-import model.decoration.table.DecorationTable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -209,6 +208,7 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
     // TODO - several errors
     // TODO - vars in table = vars in declaration - idem for updates
     // TODO - given semantic letter has to be valid and not given before
+    // TODO - pojo elements where only one attribute should be set
 
 
     @Test
@@ -220,7 +220,7 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
         DecorationTableParsingResult res = DecorationTableConverter.convert(jsonFile);
 
         System.out.println("Parsing result: " + res);
-        assertFalse("No parsing because errors", res.getSeedTransducer().isPresent());
+        assertFalse("No parsing because errors", res.getResult().isPresent());
         assertTrue("Parsing KO so errors", res.hasErrors());
         assertEquals("Error amount checking", this.errorAmount, res.getParsingErrors().size());
 

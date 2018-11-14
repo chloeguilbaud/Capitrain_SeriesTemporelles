@@ -144,7 +144,7 @@ public class SeedTransducerConverterErrorManagerParameterizedTest {
         File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_SEED_TRANSDUCER_PARSER.getValue() + file);
         SeedTransducerParsingResult res = SeedTransducerConverter.convert(jsonFile);
 
-        assertFalse("No parsing because errors", res.getSeedTransducer().isPresent());
+        assertFalse("No parsing because errors", res.getResult().isPresent());
         assertTrue("Parsing KO so errors", res.hasErrors());
         assertEquals("Error amount checking", this.errorAmount, res.getParsingErrors().size());
 

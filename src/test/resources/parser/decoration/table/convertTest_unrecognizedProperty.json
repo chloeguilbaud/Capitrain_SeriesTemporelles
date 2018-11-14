@@ -106,7 +106,8 @@
           "index": "i",
           "value": {
             "variable": {
-              "name": "C"
+              "name": "C",
+              "je suis un intrus": "coucou"
             }
           }
         }],

@@ -1,5 +1,5 @@
 {
-  "name": "features",
+  "name": "feature",
   "registers": [
     {
       "name": "C",
@@ -21,6 +21,7 @@
   "returns": [
     {
       "name": "f",
+      "index": "n",
       "value": {
         "function": {
           "name": "default"
@@ -29,6 +30,7 @@
     },
     {
       "name": "e",
+      "index": "n",
       "value": {
         "variable": {
           "name": "C"
@@ -40,14 +42,14 @@
     {
       "letter": "out",
       "guards": [{
-          "variable": "f",
-          "index": "i",
-          "value": {
-            "function": {
-              "name": "default"
-            }
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
           }
-        },
+        }
+      },
         {
           "variable": "e",
           "index": "i",
@@ -99,15 +101,15 @@
           }
         }
       },
-      {
-        "variable": "e",
-        "index": "i",
-        "value": {
-          "variable": {
-            "name": "C"
+        {
+          "variable": "e",
+          "index": "i",
+          "value": {
+            "variable": {
+              "name": "C"
+            }
           }
-        }
-      }],
+        }],
       "updates": [{
         "variable": "C",
         "value": {
@@ -192,7 +194,12 @@
               "parameters": ["D", {
                 "function": {
                   "name": "sigma",
-                  "parameters": "i+1"
+                  "parameters": [{
+                    "variable": {
+                      "name": "i",
+                      "index": "i+1"
+                    }
+                  }]
                 }
               }]
             }
@@ -485,7 +492,7 @@
             "parameters": ["f"]
           }
         }
-        }
+      }
       ]
     },
     {

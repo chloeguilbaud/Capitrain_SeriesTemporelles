@@ -60,7 +60,7 @@ public class DecorationTableConverter {
         mapDecorationTableContent(pojo, res, decorationTable);
 
         // Saving result
-        res.setParsingResult(decorationTable);
+        res.setResult(decorationTable);
 
         return res;
     }
