@@ -1,6 +1,7 @@
 package model.decoration.table;
 
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Optional;
 
 import model.decoration.table.element.Element;
@@ -71,5 +72,22 @@ public class DecorationTable {
             buffer.append(key.toString() + " || " + value.toString() + "\n");
         });
         return buffer.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DecorationTable that = (DecorationTable) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(registers, that.registers) &&
+                Objects.equals(returns, that.returns) &&
+                Objects.equals(instructions, that.instructions);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, registers, returns, instructions);
     }
 }

@@ -1,5 +1,7 @@
 package model.decoration.table.element;
 
+import java.util.Objects;
+
 public class IndexedVariable extends Variable {
 
     private int relativeElementDistance;
@@ -25,5 +27,19 @@ public class IndexedVariable extends Variable {
             return this.getName() + "(i-" + this.relativeElementDistance + ")";    
         }
         return this.getName() + "(i)";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IndexedVariable that = (IndexedVariable) o;
+        return relativeElementDistance == that.relativeElementDistance;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(relativeElementDistance);
     }
 }

@@ -1,5 +1,7 @@
 package model.decoration.table.element;
 
+import java.util.Objects;
+
 public class Affectation extends Element {
 
     private Variable variable;
@@ -23,4 +25,18 @@ public class Affectation extends Element {
         return this.variable.toString() + " = " + this.value.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Affectation that = (Affectation) o;
+        return Objects.equals(variable, that.variable) &&
+                Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(variable, value);
+    }
 }
