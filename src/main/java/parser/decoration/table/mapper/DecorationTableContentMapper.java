@@ -13,6 +13,7 @@ import parser.decoration.table.model.GuardPOJO;
 import parser.decoration.table.model.TablePOJO;
 import parser.decoration.table.model.UpdatePOJO;
 
+import java.util.List;
 import java.util.Optional;
 
 import static parser.decoration.table.process.DecorationTableUtils.manageError;
@@ -48,7 +49,7 @@ public class DecorationTableContentMapper {
             if (tabItem.getLetter() == null) {
                 manageError(res, DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER, "in table element n°" + tabIndex);
             } else if (!semanticLetter.isPresent()) {
-                manageError(res, DecorationTableParsingErrorType.INSTRUCTION_INVALID_SEMANTIQUE_LETTER,
+                manageError(res, DecorationTableParsingErrorType.INSTRUCTION_INVALID_SEMANTIC_LETTER,
                         "- expected: " + ArcSemanticLetter.valuesAsList() + ", actual: " + letter);
             } else {
 
@@ -67,13 +68,13 @@ public class DecorationTableContentMapper {
     }
 
 
-    private static Variable mapToVariable(String tabColumn, String semanticLetter, boolean canHaveIndex, String pojoName, Optional<String> pojoIndex, DecorationTableParsingResult res) {
+    private static Variable mapToVariable(String tabColumn, int guardIndex, String semanticLetter, boolean canHaveIndex, String pojoName, Optional<String> pojoIndex, DecorationTableParsingResult res) {
         if(pojoName == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_MISSING_NAME,
-                    "in " + tabColumn + "semantic letter " + semanticLetter);
+                    "in " + tabColumn + " n° " + guardIndex + " for semantic letter " + semanticLetter);
         } else if (pojoIndex.isPresent() && !canHaveIndex) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_UNEXPECTED_INDEX,
-                    "in " + tabColumn + "semantic letter " + semanticLetter);
+                    "in " + tabColumn + " n° " + guardIndex + " for semantic letter " + semanticLetter);
         }
         else if (!pojoIndex.isPresent()) {
             return new Variable(pojoName);
@@ -86,31 +87,37 @@ public class DecorationTableContentMapper {
     }
 
     private static void mapUpdates(DecorationTableParsingResult res, TablePOJO tabItem, Instruction inst, String semanticLetterLab) {
-        for (int updateIndex = 0; updateIndex < tabItem.getUpdates().size(); updateIndex++) {
+        List<UpdatePOJO> updates = tabItem.getUpdates();
+        if (updates != null) {
+            for (int updateIndex = 0; updateIndex < tabItem.getUpdates().size(); updateIndex++) {
 
-            UpdatePOJO updatePOJO = tabItem.getUpdates().get(updateIndex);
+                UpdatePOJO updatePOJO = tabItem.getUpdates().get(updateIndex);
 
-            String updateVarName = updatePOJO.getVariable();
-            Variable guardVar = mapToVariable(tabColumnUpdate, semanticLetterLab, false, updateVarName, Optional.empty(), res);
+                String updateVarName = updatePOJO.getVariable();
+                Variable guardVar = mapToVariable(tabColumnUpdate, updateIndex, semanticLetterLab, false, updateVarName, Optional.empty(), res);
 
-            Affectation aff = new Affectation(guardVar, ValueMapper.mapValue(tabColumnUpdate, semanticLetterLab, updatePOJO.getValue(), res));
-            inst.addUpdate(guardVar.getName(), aff);
+                Affectation aff = new Affectation(guardVar, ValueMapper.mapValue(tabColumnUpdate, semanticLetterLab, updatePOJO.getValue(), res));
+                inst.addUpdate(guardVar.getName(), aff);
 
+            }
         }
     }
 
     private static void mapGuards(DecorationTableParsingResult res, TablePOJO tabItem, Instruction inst, String semanticLetterLab) {
-        for (int guardIndex = 0; guardIndex < tabItem.getGuards().size(); guardIndex++) {
+        List<GuardPOJO> guards = tabItem.getGuards();
+        if (guards != null) {
+            for (int guardIndex = 0; guardIndex < tabItem.getGuards().size(); guardIndex++) {
 
-            GuardPOJO guardPOJO = tabItem.getGuards().get(guardIndex);
+                GuardPOJO guardPOJO = tabItem.getGuards().get(guardIndex);
 
-            String guardVarName = guardPOJO.getVariable();
-            String guardVarIndex = guardPOJO.getIndex();
-            Variable guardVar = mapToVariable(tabColumnGuard, semanticLetterLab, true, guardVarName, Optional.of(guardVarIndex), res);
+                String guardVarName = guardPOJO.getVariable();
+                String guardVarIndex = guardPOJO.getIndex();
+                Variable guardVar = mapToVariable(tabColumnGuard, guardIndex, semanticLetterLab, true, guardVarName, Optional.of(guardVarIndex), res);
 
-            Affectation aff = new Affectation(guardVar, ValueMapper.mapValue(tabColumnGuard, semanticLetterLab, guardPOJO.getValue(), res));
-            inst.addGuard(guardVar.getName(), aff);
+                Affectation aff = new Affectation(guardVar, ValueMapper.mapValue(tabColumnGuard, semanticLetterLab, guardPOJO.getValue(), res));
+                inst.addGuard(guardVar.getName(), aff);
 
+            }
         }
     }
 

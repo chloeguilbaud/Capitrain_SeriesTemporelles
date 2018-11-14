@@ -19,7 +19,7 @@ import static parser.decoration.table.mapper.InitialisationMapper.mapReturns;
 
 public class DecorationTableConverter {
 
-    public static DecorationTableParsingResult convert(File jsonFile) throws IOException {
+    public static DecorationTableParsingResult convert(File jsonFile) {
 
         DecorationTableParsingResult res = new DecorationTableParsingResult();
         ObjectMapper mapper = new ObjectMapper();
