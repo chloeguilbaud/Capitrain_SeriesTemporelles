@@ -15,20 +15,20 @@ import static parser.decoration.table.DecorationTableUtils.manageError;
 class ValueMapper {
 
 
-    static Element parseValue(String tabColumn, String tabIndexSemanticLetter, ValuePOJO pojo, DecorationTableParsingResult res) {
+    static Element mapValue(String tabColumn, String tabIndexSemanticLetter, ValuePOJO pojo, DecorationTableParsingResult res) {
         VariablePOJO var = pojo.getVariable();
         FunctionPOJO func = pojo.getFunction();
         if(func == null && var == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, "in " + tabColumn + "semantic letter " + tabIndexSemanticLetter);
         } else if(var != null) {
-            return parseValueToVariable(tabColumn, tabIndexSemanticLetter, var, res);
+            return mapValueToVariable(tabColumn, tabIndexSemanticLetter, var, res);
         } else {
-            return parseValueToFunction(func, res);
+            return mapValueToFunction(func, res);
         }
         return new Variable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel());
     }
 
-    private static Variable parseValueToVariable(String tabColumn, String tabIndexSemanticLetter, VariablePOJO pojo, DecorationTableParsingResult res) {
+    private static Variable mapValueToVariable(String tabColumn, String tabIndexSemanticLetter, VariablePOJO pojo, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
             manageError(res, DecorationTableParsingErrorType.VALUE_MISSING_NAME,
                     "in " + tabColumn + "at semantic letter " + tabIndexSemanticLetter);
@@ -40,14 +40,14 @@ class ValueMapper {
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
 
-    private static Function parseValueToFunction(FunctionPOJO pojo, DecorationTableParsingResult res) {
+    private static Function mapValueToFunction(FunctionPOJO pojo, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
             manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"name: " + null);
         } else {
             List<Element> params = new ArrayList<>();
             pojo.getParameters().forEach((param) -> {
                 if (param instanceof FunctionPOJO) {
-                    params.add(ValueMapper.parseValueToFunction((FunctionPOJO) param, res));
+                    params.add(ValueMapper.mapValueToFunction((FunctionPOJO) param, res));
                 } else if (param instanceof String) {
                     params.add(new Variable((String) param));
                 } else if (param instanceof Integer) {

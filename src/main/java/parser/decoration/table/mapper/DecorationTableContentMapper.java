@@ -30,7 +30,7 @@ public class DecorationTableContentMapper {
      * @param res
      * @param decorationTable
      */
-    public static void parseDecorationTableContent(DecorationTablePOJO pojo, DecorationTableParsingResult res, DecorationTable decorationTable) {
+    public static void mapDecorationTableContent(DecorationTablePOJO pojo, DecorationTableParsingResult res, DecorationTable decorationTable) {
 
         // Going through the decoration table instructions
         for(int tabIndex = 0; tabIndex < pojo.getTable().size(); tabIndex++) {
@@ -51,10 +51,10 @@ public class DecorationTableContentMapper {
             } else {
 
                 // Getting table line guards
-                parserGuards(res, tabItem, inst, semanticLetterLab);
+                mapGuards(res, tabItem, inst, semanticLetterLab);
 
                 // Getting table line updates
-                parseUpdates(res, tabItem, inst, semanticLetterLab);
+                mapUpdates(res, tabItem, inst, semanticLetterLab);
 
                 decorationTable.addInstruction(semanticLetter.get(), inst);
 
@@ -65,7 +65,7 @@ public class DecorationTableContentMapper {
     }
 
 
-    private static Variable parseToVariable(String tabColumn, String semanticLetter, boolean canHaveIndex, String pojoName, Optional<String> pojoIndex, DecorationTableParsingResult res) {
+    private static Variable mapToVariable(String tabColumn, String semanticLetter, boolean canHaveIndex, String pojoName, Optional<String> pojoIndex, DecorationTableParsingResult res) {
         if(pojoName == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_MISSING_NAME,
                     "in " + tabColumn + "semantic letter " + semanticLetter);
@@ -83,30 +83,30 @@ public class DecorationTableContentMapper {
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
 
-    private static void parseUpdates(DecorationTableParsingResult res, TablePOJO tabItem, Instruction inst, String semanticLetterLab) {
+    private static void mapUpdates(DecorationTableParsingResult res, TablePOJO tabItem, Instruction inst, String semanticLetterLab) {
         for (int updateIndex = 0; updateIndex < tabItem.getUpdates().size(); updateIndex++) {
 
             UpdatePOJO updatePOJO = tabItem.getUpdates().get(updateIndex);
 
             String updateVarName = updatePOJO.getVariable();
-            Variable guardVar = parseToVariable(tabColumnUpdate, semanticLetterLab, false, updateVarName, Optional.empty(), res);
+            Variable guardVar = mapToVariable(tabColumnUpdate, semanticLetterLab, false, updateVarName, Optional.empty(), res);
 
-            Affectation aff = new Affectation(guardVar, ValueMapper.parseValue(tabColumnUpdate, semanticLetterLab, updatePOJO.getValue(), res));
+            Affectation aff = new Affectation(guardVar, ValueMapper.mapValue(tabColumnUpdate, semanticLetterLab, updatePOJO.getValue(), res));
             inst.addUpdate(guardVar.getName(), aff);
 
         }
     }
 
-    private static void parserGuards(DecorationTableParsingResult res, TablePOJO tabItem, Instruction inst, String semanticLetterLab) {
+    private static void mapGuards(DecorationTableParsingResult res, TablePOJO tabItem, Instruction inst, String semanticLetterLab) {
         for (int guardIndex = 0; guardIndex < tabItem.getGuards().size(); guardIndex++) {
 
             GuardPOJO guardPOJO = tabItem.getGuards().get(guardIndex);
 
             String guardVarName = guardPOJO.getVariable();
             String guardVarIndex = guardPOJO.getIndex();
-            Variable guardVar = parseToVariable(tabColumnGuard, semanticLetterLab, true, guardVarName, Optional.of(guardVarIndex), res);
+            Variable guardVar = mapToVariable(tabColumnGuard, semanticLetterLab, true, guardVarName, Optional.of(guardVarIndex), res);
 
-            Affectation aff = new Affectation(guardVar, ValueMapper.parseValue(tabColumnGuard, semanticLetterLab, guardPOJO.getValue(), res));
+            Affectation aff = new Affectation(guardVar, ValueMapper.mapValue(tabColumnGuard, semanticLetterLab, guardPOJO.getValue(), res));
             inst.addGuard(guardVar.getName(), aff);
 
         }
