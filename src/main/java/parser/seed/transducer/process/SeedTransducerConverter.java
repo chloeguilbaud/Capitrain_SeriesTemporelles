@@ -94,7 +94,7 @@ public class SeedTransducerConverter {
         if (res.hasErrors()) {
             res.removeParsingResult();
         } else {
-            res.setParsingResult(seed);
+            res.setResult(seed);
         }
 
         return res;

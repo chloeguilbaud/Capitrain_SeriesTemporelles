@@ -1,5 +1,7 @@
 package model.decoration.table.element;
 
+import java.util.Objects;
+
 public class IntegerVal extends Element {
     
     private int value;
@@ -19,5 +21,19 @@ public class IntegerVal extends Element {
     @Override
     public String toString() {
         return this.value + "";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IntegerVal that = (IntegerVal) o;
+        return value == that.value;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(value);
     }
 }

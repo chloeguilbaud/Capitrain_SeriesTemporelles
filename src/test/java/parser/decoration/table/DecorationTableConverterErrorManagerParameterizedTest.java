@@ -1,7 +1,6 @@
 package parser.decoration.table;
 
 import conf.TestConfiguration;
-import model.decoration.table.DecorationTable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -189,6 +188,18 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                         Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX),
                         Collections.singletonList("TODO"),
                         1
+                },
+                new Object[] {
+                        "convertTest_functionInvalidParameterTypeFunction.json",
+                        Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE),
+                        Collections.singletonList("function teta in semantic letter maybe(after) in UPDATE"),
+                        1
+                },
+                new Object[] {
+                        "convertTest_functionParameterAsFunction.json",
+                        Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE),
+                        Collections.singletonList("TODO"), // TODO - pas d'erreur
+                        1
                 }
         );
     }
@@ -196,6 +207,8 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
     // TODO - cf if de mappers
     // TODO - several errors
     // TODO - vars in table = vars in declaration - idem for updates
+    // TODO - given semantic letter has to be valid and not given before
+    // TODO - pojo elements where only one attribute should be set
 
 
     @Test
@@ -206,7 +219,8 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
         File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_DECORATION_TABLE_PARSER.getValue() + file);
         DecorationTableParsingResult res = DecorationTableConverter.convert(jsonFile);
 
-        assertFalse("No parsing because errors", res.getSeedTransducer().isPresent());
+        System.out.println("Parsing result: " + res);
+        assertFalse("No parsing because errors", res.getResult().isPresent());
         assertTrue("Parsing KO so errors", res.hasErrors());
         assertEquals("Error amount checking", this.errorAmount, res.getParsingErrors().size());
 

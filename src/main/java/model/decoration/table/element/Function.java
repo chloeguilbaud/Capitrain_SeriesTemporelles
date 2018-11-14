@@ -1,9 +1,8 @@
 package model.decoration.table.element;
 
-import model.decoration.table.element.Element;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Function extends Element {
 
@@ -48,4 +47,18 @@ public class Function extends Element {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Function function = (Function) o;
+        return Objects.equals(name, function.name) &&
+                Objects.equals(parameters, function.parameters);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, parameters);
+    }
 }

@@ -23,12 +23,12 @@ public class SeedTransducerConverterTest {
         SeedTransducer seed = SeedTransducerMock.get();
 
         SeedTransducerParsingResult res = SeedTransducerConverter.convert(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample.json"));
-        assertTrue("Seed is present so no errors", res.getSeedTransducer().isPresent());
+        assertTrue("Seed is present so no errors", res.getResult().isPresent());
         assertFalse("Parsing OK so no errors", res.hasErrors());
-        assertEquals("Seed Name", seed.getName(), res.getSeedTransducer().get().getName());
-        assertEquals("Seed init state", seed.getInitState(), res.getSeedTransducer().get().getInitState());
-        assertEquals("Seed states", seed.getStates(), res.getSeedTransducer().get().getStates());
-        assertTrue("Seed arcs", Comparator.compare(seed, res.getSeedTransducer().get()));
+        assertEquals("Seed Name", seed.getName(), res.getResult().get().getName());
+        assertEquals("Seed init state", seed.getInitState(), res.getResult().get().getInitState());
+        assertEquals("Seed states", seed.getStates(), res.getResult().get().getStates());
+        assertTrue("Seed arcs", Comparator.compare(seed, res.getResult().get()));
 
     }
 
@@ -38,7 +38,7 @@ public class SeedTransducerConverterTest {
         File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_SEED_TRANSDUCER_PARSER.getValue() + "convertTest_missingStates.json");
         SeedTransducerParsingResult res = SeedTransducerConverter.convert(jsonFile);
 
-        assertFalse("No parsing because errors", res.getSeedTransducer().isPresent());
+        assertFalse("No parsing because errors", res.getResult().isPresent());
         assertTrue("Parsing KO so errors", res.hasErrors());
         assertEquals("Error amount checking", 26, res.getParsingErrors().size());
 

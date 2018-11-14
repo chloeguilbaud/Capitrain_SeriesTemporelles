@@ -25,7 +25,6 @@ public class DecorationTableConverter {
         ObjectMapper mapper = new ObjectMapper();
         try {
             DecorationTablePOJO pojo = mapper.readValue(jsonFile, DecorationTablePOJO.class);
-            System.out.println(pojo);
             return process(pojo, res);
         } catch (UnrecognizedPropertyException ex) {
             manageError(res,
@@ -45,14 +44,12 @@ public class DecorationTableConverter {
                     ex.getMessage());
         }
 
-        System.out.println(res);
         return res;
 
     }
 
     private static DecorationTableParsingResult process(DecorationTablePOJO pojo, DecorationTableParsingResult res) {
 
-        System.out.println(pojo);
         DecorationTable decorationTable = new DecorationTable(pojo.getName());
 
         // Parsing initialisation fields
@@ -61,6 +58,9 @@ public class DecorationTableConverter {
 
         // Parsing table
         mapDecorationTableContent(pojo, res, decorationTable);
+
+        // Saving result
+        res.setResult(decorationTable);
 
         return res;
     }

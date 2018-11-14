@@ -15,11 +15,11 @@ public class ParsingResult<T, E> {
         this.parsingErrors = new ArrayList<>();
     }
 
-    public Optional<T> getSeedTransducer() {
+    public Optional<T> getResult() {
         return result;
     }
 
-    public void setParsingResult(T result) {
+    public void setResult(T result) {
         this.result = Optional.of(result);
     }
 

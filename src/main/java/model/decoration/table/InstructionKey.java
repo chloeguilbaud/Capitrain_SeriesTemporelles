@@ -2,6 +2,7 @@ package model.decoration.table;
 
 import model.seed.transducer.ArcSemanticLetter;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class InstructionKey {
@@ -35,5 +36,14 @@ public class InstructionKey {
     @Override
     public String toString() {
         return this.arcSemanticLetter.getLabel() + " || " + this.after;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InstructionKey that = (InstructionKey) o;
+        return arcSemanticLetter == that.arcSemanticLetter &&
+                Objects.equals(after, that.after);
     }
 }
