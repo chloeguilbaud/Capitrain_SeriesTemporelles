@@ -16,8 +16,12 @@ import java.util.ArrayList;
 public class DecorationTableParserTest {
 
     @Test
-    public void test() throws IOException {
-        DecorationTableParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "testDT.json"));
+    public void testParse() throws IOException {
+
+        DecorationTableParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "decorationTableExampleComplet_features.json"));
+
+
+
     }
 
     @Test

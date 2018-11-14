@@ -1,7 +1,7 @@
 package parser.decoration.table.mapper;
 
 import model.decoration.table.element.*;
-import parser.decoration.table.DecorationTableParsingResult;
+import parser.decoration.table.process.DecorationTableParsingResult;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
 import parser.decoration.table.model.FunctionPOJO;
 import parser.decoration.table.model.ValuePOJO;
@@ -9,8 +9,9 @@ import parser.decoration.table.model.VariablePOJO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static parser.decoration.table.DecorationTableUtils.manageError;
+import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
 class ValueMapper {
 
@@ -35,7 +36,8 @@ class ValueMapper {
         } else if (pojo.getIndex() == null) {
             return new Variable(pojo.getName());
         } else {
-            return new IndexedVariable(pojo.getName(), Integer.parseInt(pojo.getIndex())); // TODO - check index
+            Integer varIndex = ValueMapper.parseVariableIndex(pojo.getIndex(), tabIndexSemanticLetter, pojo.getName(), tabColumn, res);
+            return new IndexedVariable(pojo.getName(), varIndex);
         }
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
@@ -59,6 +61,37 @@ class ValueMapper {
             return new Function(pojo.getName(), params);
         }
         return new Function(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_MISSING.getLabel(), new ArrayList<>());
+    }
+
+    /**
+     * 0 si pas de i+ quelque chose
+     * val positive ou négative sinon
+     * @param indexedStr
+     * @param tabColumn
+     * @return
+     */
+    public static Integer parseVariableIndex(String indexedStr, String semanticLetter, String varName, String tabColumn, DecorationTableParsingResult res) {
+        int tmp1 = 0;
+        if (indexedStr.contains("+")) {
+            tmp1 = indexedStr.indexOf("+");
+            String tmp2 = indexedStr.substring(tmp1+1);
+            Integer varIndex = Integer.parseInt(tmp2);
+            return varIndex;
+        } else if (indexedStr.contains("-")) {
+            tmp1 = indexedStr.indexOf("-");
+            String tmp2 = indexedStr.substring(tmp1+1);
+            try {
+                Integer varIndex = Integer.parseInt(tmp2);
+                return -varIndex;
+            } catch (NumberFormatException ex) {
+                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName + "for semantic letter " + semanticLetter + " in " + tabColumn);
+                return Integer.MAX_VALUE;
+            }
+        } else {
+            return 0;
+        }
+
+
     }
 
 }

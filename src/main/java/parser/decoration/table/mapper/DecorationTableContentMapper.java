@@ -6,7 +6,7 @@ import model.decoration.table.element.Affectation;
 import model.decoration.table.element.IndexedVariable;
 import model.decoration.table.element.Variable;
 import model.seed.transducer.ArcSemanticLetter;
-import parser.decoration.table.DecorationTableParsingResult;
+import parser.decoration.table.process.DecorationTableParsingResult;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
 import parser.decoration.table.model.DecorationTablePOJO;
 import parser.decoration.table.model.GuardPOJO;
@@ -15,12 +15,14 @@ import parser.decoration.table.model.UpdatePOJO;
 
 import java.util.Optional;
 
-import static parser.decoration.table.DecorationTableUtils.manageError;
+import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
 public class DecorationTableContentMapper {
 
-    private static final String tabColumnGuard = "GUARD";
-    private static final String tabColumnUpdate = "UPDATE";
+    public static final String tabColumnGuard = "GUARD";
+    public static final String tabColumnUpdate = "UPDATE";
+    public static final String tabColumnReturn = "RETURN";
+    public static final String tabColumnRegister = "REGISTER";
 
     // TODO - add semantic letter in parser
 
@@ -77,7 +79,7 @@ public class DecorationTableContentMapper {
             return new Variable(pojoName);
         } else {
             String indexStr = pojoIndex.get();
-            Integer varIndex = Integer.parseInt(indexStr.substring(indexStr.indexOf("+"))); //TODO check var - 0 ou 1 ou plus
+            Integer varIndex = ValueMapper.parseVariableIndex(indexStr, semanticLetter, pojoName, tabColumn, res);
             return new IndexedVariable(pojoName, varIndex);
         }
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
