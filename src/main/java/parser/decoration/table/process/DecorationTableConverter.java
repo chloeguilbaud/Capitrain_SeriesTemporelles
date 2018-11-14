@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import model.decoration.table.DecorationTable;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
+import parser.decoration.table.mapper.DecorationTableContentMapper;
 import parser.decoration.table.model.DecorationTablePOJO;
 
 import java.io.File;
@@ -55,8 +56,8 @@ public class DecorationTableConverter {
         DecorationTable decorationTable = new DecorationTable(pojo.getName());
 
         // Parsing initialisation fields
-        mapRegisters(pojo, res, decorationTable);
-        mapReturns(pojo, res, decorationTable);
+        mapRegisters(pojo, DecorationTableContentMapper.tabColumnRegister, res, decorationTable);
+        mapReturns(pojo, DecorationTableContentMapper.tabColumnReturn, res, decorationTable);
 
         // Parsing table
         mapDecorationTableContent(pojo, res, decorationTable);

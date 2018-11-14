@@ -19,8 +19,10 @@ import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
 public class DecorationTableContentMapper {
 
-    private static final String tabColumnGuard = "GUARD";
-    private static final String tabColumnUpdate = "UPDATE";
+    public static final String tabColumnGuard = "GUARD";
+    public static final String tabColumnUpdate = "UPDATE";
+    public static final String tabColumnReturn = "RETURN";
+    public static final String tabColumnRegister = "REGISTER";
 
     // TODO - add semantic letter in parser
 
@@ -77,7 +79,7 @@ public class DecorationTableContentMapper {
             return new Variable(pojoName);
         } else {
             String indexStr = pojoIndex.get();
-            Integer varIndex = ValueMapper.parseVariableIndex(indexStr); //TODO check var - 0 ou 1 ou plus
+            Integer varIndex = ValueMapper.parseVariableIndex(indexStr, semanticLetter, pojoName, tabColumn, res);
             return new IndexedVariable(pojoName, varIndex);
         }
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);

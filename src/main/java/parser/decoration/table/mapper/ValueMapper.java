@@ -36,7 +36,8 @@ class ValueMapper {
         } else if (pojo.getIndex() == null) {
             return new Variable(pojo.getName());
         } else {
-            return new IndexedVariable(pojo.getName(), ValueMapper.parseVariableIndex(pojo.getIndex())); // TODO - check index
+            Integer varIndex = ValueMapper.parseVariableIndex(pojo.getIndex(), tabIndexSemanticLetter, pojo.getName(), tabColumn, res);
+            return new IndexedVariable(pojo.getName(), varIndex);
         }
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
@@ -66,20 +67,26 @@ class ValueMapper {
      * 0 si pas de i+ quelque chose
      * val positive ou négative sinon
      * @param indexedStr
+     * @param tabColumn
      * @return
      */
-    public static Integer parseVariableIndex(String indexedStr) {
+    public static Integer parseVariableIndex(String indexedStr, String semanticLetter, String varName, String tabColumn, DecorationTableParsingResult res) {
         int tmp1 = 0;
         if (indexedStr.contains("+")) {
             tmp1 = indexedStr.indexOf("+");
             String tmp2 = indexedStr.substring(tmp1+1);
-            Integer varIndex = Integer.parseInt(tmp2); //TODO check var - 0 ou 1 ou plus
+            Integer varIndex = Integer.parseInt(tmp2);
             return varIndex;
         } else if (indexedStr.contains("-")) {
             tmp1 = indexedStr.indexOf("-");
             String tmp2 = indexedStr.substring(tmp1+1);
-            Integer varIndex = Integer.parseInt(tmp2); //TODO check var - 0 ou 1 ou plus
-            return -varIndex;
+            try {
+                Integer varIndex = Integer.parseInt(tmp2);
+                return -varIndex;
+            } catch (NumberFormatException ex) {
+                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName + "for semantic letter " + semanticLetter + " in " + tabColumn);
+                return Integer.MAX_VALUE;
+            }
         } else {
             return 0;
         }

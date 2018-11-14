@@ -36,7 +36,8 @@ public enum DecorationTableParsingErrorType {
     VARIABLE_VALUE_MISSING("\"value\" field missing in JSON for semantic letter"),
     VALUE_MISSING_NAME("Missing \"value\" field in JSON"),
     VARIABLE_MISSING_NAME("Missing \"name\" in \"variable\" in JSON"),
-    VARIABLE_VALUE_UNEXPECTED_INDEX("Index is not allowed for this variable value");
+    VARIABLE_VALUE_UNEXPECTED_INDEX("Index is not allowed for this variable value"),
+    VARIABLE_INVALID_INDEX("Invalid index given for variable");
 
     private String label;
 
