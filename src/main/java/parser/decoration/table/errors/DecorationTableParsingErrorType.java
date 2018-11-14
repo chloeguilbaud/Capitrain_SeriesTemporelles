@@ -18,6 +18,7 @@ public enum DecorationTableParsingErrorType {
     MISSING_REGISTER_NAME("Expected register name in register n°"),
     MISSING_REGISTER_VALUE("Expected register value in register n°"),
     BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE("Both function and variable in register value n°"),
+    FUNCTION_UNEXPECTED_PARAMETTER_IN_INITIALISATION("Functions in register or returns should not have parameters, in function"),
 
     VARIABLE_NAME_WHEN_ERROR("Error in variable JSON definition"),
 

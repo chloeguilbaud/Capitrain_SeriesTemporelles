@@ -67,7 +67,6 @@ public class DecorationTableContentMapper {
 
     }
 
-
     private static Variable mapToVariable(String tabColumn, int guardIndex, String semanticLetter, boolean canHaveIndex, String pojoName, Optional<String> pojoIndex, DecorationTableParsingResult res) {
         if(pojoName == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_MISSING_NAME,

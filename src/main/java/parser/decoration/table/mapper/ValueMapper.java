@@ -8,10 +8,8 @@ import parser.decoration.table.model.FunctionPOJO;
 import parser.decoration.table.model.ValuePOJO;
 import parser.decoration.table.model.VariablePOJO;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
@@ -44,7 +42,7 @@ class ValueMapper {
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
 
-    private static Function mapValueToFunction(FunctionPOJO pojo, String semanticLetter, String tabColumn, DecorationTableParsingResult res) {
+    public static Function mapValueToFunction(FunctionPOJO pojo, String semanticLetter, String tabColumn, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
             manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"name: " + null);
         } else {
