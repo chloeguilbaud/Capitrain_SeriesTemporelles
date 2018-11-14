@@ -48,30 +48,41 @@ class ValueMapper {
         if (pojo.getName() == null ){
             manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"name: " + null);
         } else {
+            String invalidFunctionParamTypeErrMsg = pojo.getName() + " in semantic letter " + semanticLetter + " in " + tabColumn;
             Function function = new Function(pojo.getName());
             if(pojo.getParameters() != null) {
                 try {
                     pojo.getParameters().forEach((param) -> {
-                        System.out.println("param " + param);
                         if (param instanceof String) {
                             function.addParameter(new Variable((String) param));
                         } else if (param instanceof Integer) {
                             function.addParameter(new IntegerVal((Integer) param));
                         } else if (((LinkedHashMap) param).values().size() != 1) {
-                            manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, pojo.getName() + " in semantic letter " + semanticLetter + " in " + tabColumn);
+                            manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
                         } else if (((LinkedHashMap) param).get("function") instanceof LinkedHashMap) {
                             ObjectMapper mapper = new ObjectMapper();
-                            LinkedHashMap fonc2 = (LinkedHashMap) ((LinkedHashMap) param).get("function");
-
-                                FunctionPOJO fonc2Pojo = mapper.convertValue(fonc2, FunctionPOJO.class);
-                                function.addParameter(ValueMapper.mapValueToFunction(fonc2Pojo, semanticLetter, tabColumn,   res));
-
+                            LinkedHashMap function2 = (LinkedHashMap) ((LinkedHashMap) param).get("function");
+                            try {
+                                FunctionPOJO function2Pojo = mapper.convertValue(function2, FunctionPOJO.class);
+                                function.addParameter(ValueMapper.mapValueToFunction(function2Pojo, semanticLetter, tabColumn, res));
+                            } catch (IllegalArgumentException ex ) {
+                                manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
+                            }
+                        } else if (((LinkedHashMap) param).get("variable") instanceof LinkedHashMap) {
+                            ObjectMapper mapper = new ObjectMapper();
+                            LinkedHashMap variable = (LinkedHashMap) ((LinkedHashMap) param).get("variable");
+                            try {
+                                VariablePOJO var2 = mapper.convertValue(variable, VariablePOJO.class);
+                                function.addParameter(ValueMapper.mapValueToVariable(tabColumn, semanticLetter, var2, res));
+                            } catch (IllegalArgumentException ex ) {
+                                manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
+                            }
                         } else {
-                            manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, pojo.getName() + " in semantic letter " + semanticLetter + " in " + tabColumn);
+                            manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
                         }
                     });
                 } catch (ClassCastException ex) {
-                    manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, pojo.getName() + " in semantic letter " + semanticLetter + " in " + tabColumn);
+                    manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
                 }
             }
             return function;

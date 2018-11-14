@@ -1,0 +1,72 @@
+{
+  "name": "features",
+  "registers": [
+    {
+      "name": "C",
+      "value": {
+        "function": {
+          "name": "idf"
+        }
+      }
+    },
+    {
+      "name": "D",
+      "value": {
+        "function": {
+          "name": "idf"
+        }
+      }
+    }
+  ],
+  "returns": [
+    {
+      "name": "f",
+      "index": "n",
+      "value": {
+        "function": {
+          "name": "default"
+        }
+      }
+    },
+    {
+      "name": "e",
+      "index": "n",
+      "value": {
+        "variable": {
+          "name": "C"
+        }
+      }
+    }
+  ],
+  "table": [
+    {
+      "letter": "maybe(after)",
+      "after": 0,
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "teta",
+              "parameters": ["D", {
+                "function": {
+                  "name": "sigma",
+                  "parameters": "i+1"
+                }
+              }]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
