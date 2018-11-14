@@ -94,7 +94,7 @@ public class InitialisationMapper {
     private static Variable mapReturnValueToVariable(VariablePOJO pojo, String tabIndexSemanticLetter, String tabColumn, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
             manageError(res, DecorationTableParsingErrorType.INITIALISATION_RETURN_VALUE_VARIABLE_MISSING_NAME,
-                    pojo.getName());
+                    pojo.getName() + " for semantic letter " + tabIndexSemanticLetter + " in " + tabColumn);
         } else {
             return new Variable(pojo.getName());
         }
