@@ -91,12 +91,12 @@ public class DecorationTableMock {
         maybeb.addUpdate(D_identifier, D_equals_phi_D_delta_f_i);
         Instruction maybea0 = new Instruction();
         maybea0.addGuard(f_identifier, f_i_equals_default);
-        maybea0.addGuard(e_identifier, e_i_equals_e_1);
-        maybea0.addGuard(D_identifier, D_equals_phi_D_delta_f_1);
+        /*maybea0.addGuard(e_identifier, e_i_equals_e_1);
+        maybea0.addGuard(D_identifier, D_equals_phi_D_delta_f_1);*/
         Instruction maybea1 = new Instruction();
         maybea1.addGuard(f_identifier, f_i_equals_default);
         maybea1.addGuard(e_identifier, e_i_equals_e_1);
-        maybea0.addGuard(D_identifier, D_equals_phi_D_delta_f_i);
+        //maybea0.addGuard(D_identifier, D_equals_phi_D_delta_f_i);
         Instruction found0 = new Instruction();
         found0.addGuard(f_identifier, f_i_equals_e_i);
         found0.addGuard(e_identifier, e_i_equals_e_1);
@@ -132,18 +132,18 @@ public class DecorationTableMock {
         feature.addRegister(D_identifier, id_f);
         feature.addReturn(f_identifier, defaut);
         feature.addReturn(e_identifier, C);
-        feature.addInstruction(ArcSemanticLetter.OUT, out);
+        /*feature.addInstruction(ArcSemanticLetter.OUT, out);
         feature.addInstruction(ArcSemanticLetter.OUT_RESET, outr);
         feature.addInstruction(ArcSemanticLetter.OUT_AFTER, outa);
-        feature.addInstruction(ArcSemanticLetter.MAYBE_BEFORE, maybeb);
+        feature.addInstruction(ArcSemanticLetter.MAYBE_BEFORE, maybeb);*/
         feature.addInstruction(ArcSemanticLetter.MAYBE_AFTER, 0, maybea0);
-        feature.addInstruction(ArcSemanticLetter.MAYBE_AFTER, 1, maybea1);
+        /*feature.addInstruction(ArcSemanticLetter.MAYBE_AFTER, 1, maybea1);
         feature.addInstruction(ArcSemanticLetter.FOUND, 0, found0);
         feature.addInstruction(ArcSemanticLetter.FOUND, 1, found1);
         feature.addInstruction(ArcSemanticLetter.IN, 0, in0);
         feature.addInstruction(ArcSemanticLetter.IN, 1, in1);
         feature.addInstruction(ArcSemanticLetter.FOUND_END, 0, founde0);
-        feature.addInstruction(ArcSemanticLetter.FOUND_END, 1, founde1);
+        feature.addInstruction(ArcSemanticLetter.FOUND_END, 1, founde1);*/
 
         return feature;
     }

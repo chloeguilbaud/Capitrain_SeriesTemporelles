@@ -53,14 +53,20 @@ public class DecorationTableContentMapper {
                         "- expected: " + ArcSemanticLetter.valuesAsList() + ", actual: " + letter);
             } else {
 
+                // Parsing after statement
+
                 // Getting table line guards
                 mapGuards(res, tabItem, inst, semanticLetterLab);
 
                 // Getting table line updates
                 mapUpdates(res, tabItem, inst, semanticLetterLab);
 
-                decorationTable.addInstruction(semanticLetter.get(), inst);
+                if (tabItem.getAfter() != null) {
+                    decorationTable.addInstruction(semanticLetter.get(), tabItem.getAfter(), inst);
+                } else {
+                    decorationTable.addInstruction(semanticLetter.get(), inst);
 
+                }
             }
 
         }
