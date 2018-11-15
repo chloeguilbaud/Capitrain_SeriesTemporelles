@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Java representation of a Seed Transducer. It is mainly a list of {@link State},
- * with a list of {@link Arc}
+ * with a list of {@link Arc} and an after value
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
 public class SeedTransducer {
@@ -13,6 +13,10 @@ public class SeedTransducer {
      * Name of the {@link SeedTransducer}
      */
     private String name;
+    /**
+     * After's value of the {@link SeedTransducer}
+     */
+    private int after;
     /**
      * Initial {@link State} of the {@link SeedTransducer}
      */
@@ -29,7 +33,16 @@ public class SeedTransducer {
     /**
      * Constructor
      * @param name Name of the {@link SeedTransducer}
+     * @param after after's value of the {@link SeedTransducer}
      */
+    public SeedTransducer(String name, int after) {
+        this.name = name;
+        this.after = after;
+        this.states = new HashMap<>();
+        this.arcs = new HashSet<>();
+    }
+
+    // TODO: To delete after full refactoring
     public SeedTransducer(String name) {
         this.name = name;
         this.states = new HashMap<>();
@@ -38,6 +51,10 @@ public class SeedTransducer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setAfter(int after) {
+        this.after = after;
     }
 
     public void setInitState(State initState) {
@@ -76,6 +93,10 @@ public class SeedTransducer {
 
     public String getName() {
         return name;
+    }
+
+    public int getAfter() {
+        return after;
     }
 
     public State getInitState() {

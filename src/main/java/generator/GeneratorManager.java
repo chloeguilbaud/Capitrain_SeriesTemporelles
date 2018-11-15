@@ -62,20 +62,20 @@ public class GeneratorManager {
         in.addGuard(p_indentifier, p_i_equals_C);
 
         // Adding instructions to table
-        footprint.addInstruction(ArcSemanticLetter.OUT, -1, out);
-        footprint.addInstruction(ArcSemanticLetter.OUT_AFTER, -1, out);
-        footprint.addInstruction(ArcSemanticLetter.OUT_RESET, -1, out);
-        footprint.addInstruction(ArcSemanticLetter.MAYBE_AFTER, -1, maybe);
-        footprint.addInstruction(ArcSemanticLetter.MAYBE_BEFORE, -1, maybe);
-        footprint.addInstruction(ArcSemanticLetter.FOUND, -1, found);
-        footprint.addInstruction(ArcSemanticLetter.FOUND_END, -1, found);
-        footprint.addInstruction(ArcSemanticLetter.IN, -1, in);
+        footprint.addInstruction(ArcSemanticLetter.OUT, out);
+        footprint.addInstruction(ArcSemanticLetter.OUT_AFTER, out);
+        footprint.addInstruction(ArcSemanticLetter.OUT_RESET, out);
+        footprint.addInstruction(ArcSemanticLetter.MAYBE_AFTER, maybe);
+        footprint.addInstruction(ArcSemanticLetter.MAYBE_BEFORE, maybe);
+        footprint.addInstruction(ArcSemanticLetter.FOUND, found);
+        footprint.addInstruction(ArcSemanticLetter.FOUND_END, found);
+        footprint.addInstruction(ArcSemanticLetter.IN, in);
 
        return footprint;
     }
 
     static SeedTransducer initTransducer() {
-        SeedTransducer peak = new SeedTransducer("peak");
+        SeedTransducer peak = new SeedTransducer("peak", 0);
 
         State d = new State("d");
         State r = new State("r");
