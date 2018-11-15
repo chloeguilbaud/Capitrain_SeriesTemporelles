@@ -2,13 +2,34 @@ package model.seed.transducer;
 
 import java.util.*;
 
+/**
+ * Java representation of a Seed Transducer. It is mainly a list of {@link State},
+ * with a list of {@link Arc}
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class SeedTransducer {
 
+    /**
+     * Name of the {@link SeedTransducer}
+     */
     private String name;
+    /**
+     * Initial {@link State} of the {@link SeedTransducer}
+     */
     private State initState;
+    /**
+     * List of the {@link State} ordered by their names
+     */
     private HashMap<String, State> states;
+    /**
+     * List of the {@link Arc} of the {@link SeedTransducer}
+     */
     private HashSet<Arc> arcs;
 
+    /**
+     * Constructor
+     * @param name Name of the {@link SeedTransducer}
+     */
     public SeedTransducer(String name) {
         this.name = name;
         this.states = new HashMap<>();

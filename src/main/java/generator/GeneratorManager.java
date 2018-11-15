@@ -11,6 +11,11 @@ import model.decoration.table.element.Variable;
 import model.seed.transducer.*;
 import model.seed.transducer.ArcOperator;
 
+/**
+ * Handle all the generators and offers a black box program
+ * for every user of the languages generations
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class GeneratorManager {
 
     public static void main(String[] args) {

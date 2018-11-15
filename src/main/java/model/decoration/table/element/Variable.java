@@ -2,8 +2,16 @@ package model.decoration.table.element;
 
 import java.util.Objects;
 
+/**
+ * Implementation of a Variable as {@link Element}
+ * Identified by a name
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class Variable extends Element {
 
+    /**
+     * Name of the variable
+     */
     private String name;
 
     public Variable(String name) {

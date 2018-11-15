@@ -2,9 +2,21 @@ package model.decoration.table.element;
 
 import java.util.Objects;
 
+/**
+ * Implementation of an Affection
+ * An Affectation is an {@link Element}
+ * It's also an affectation of an {@link Element} in a {@link Variable}
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class Affectation extends Element {
 
+    /**
+     * Target {@link Variable}
+     */
     private Variable variable;
+    /**
+     * {@link Element} given to the {@link Variable}
+     */
     private Element value;
 
     public Affectation(Variable variable, Element value) {

@@ -5,9 +5,21 @@ import model.seed.transducer.ArcSemanticLetter;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Key for {@link java.util.HashMap}, array an instruction
+ * by it's {@link ArcSemanticLetter} and ({@link Optional})
+ * an After value
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class InstructionKey {
 
+    /**
+     * Semantic letter related to the {@link Instruction}
+     */
     private ArcSemanticLetter arcSemanticLetter;
+    /**
+     * After value related to the {@link Instruction}
+     */
     private Optional<Integer> after;
 
     InstructionKey(ArcSemanticLetter arcSemanticLetter, Integer after) {

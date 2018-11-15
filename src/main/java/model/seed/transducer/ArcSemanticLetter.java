@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * SemanticLetter associated to an {@link Arc} in a {@link SeedTransducer}
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public enum ArcSemanticLetter {
 
     FOUND("found"),

@@ -5,9 +5,20 @@ import java.util.Objects;
 
 import model.decoration.table.element.Element;
 
+/**
+ * Instruction of a {@link DecorationTable}
+ * Contains many guards and updates (As {@link Element})
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class Instruction {
 
+    /**
+     * {@link HashMap} of guards implemented as {@link Element}
+     */
     private HashMap<String, Element> guards;
+    /**
+     * {@link HashMap} of updates implemented as {@link Element}
+     */
     private HashMap<String, Element> updates;
 
     public Instruction() {

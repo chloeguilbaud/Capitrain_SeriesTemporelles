@@ -2,8 +2,15 @@ package model.seed.transducer;
 
 import java.util.Objects;
 
+/**
+ * Details of a state
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class State {
 
+    /**
+     * Name of the {@link State}
+     */
     private String name;
 
     public State(String name) {

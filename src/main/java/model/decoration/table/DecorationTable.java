@@ -7,13 +7,35 @@ import java.util.Optional;
 import model.decoration.table.element.Element;
 import model.seed.transducer.ArcSemanticLetter;
 
+/**
+ * Java implementation of a Decoration Table
+ * Basically a list of {@link Instruction} with a list of Register and Returns
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class DecorationTable {
 
+    /**
+     * Name of the {@link DecorationTable}
+     */
     private String name;
+    /**
+     * {@link HashMap} of the registers, instantiates as {@link Element}
+     */
     private HashMap<String, Element> registers;
+    /**
+     * {@link HashMap} of the returns, instantiates as {@link Element}
+     */
     private HashMap<String, Element> returns;
+    /**
+     * {@link HashMap} of {@link Instruction}
+     * Sort with {@link InstructionKey}
+     */
     private HashMap<InstructionKey, Instruction> instructions;
 
+    /**
+     * Constructor
+     * @param name Name of the {@link DecorationTable}
+     */
     public DecorationTable(String name) {
         this.name = name;
         this.registers = new HashMap<>();
@@ -33,10 +55,24 @@ public class DecorationTable {
         this.returns.put(key, returnElement);
     }
 
+    /**
+     * Add an {@link Instruction} to the {@link Instruction}'s {@link HashMap}
+     * thanks to an {@link InstructionKey} built with an {@link ArcSemanticLetter}
+     * and an After
+     * @param letter    {@link ArcSemanticLetter}
+     * @param after     {@link Integer}
+     * @param instruction   {@link Instruction}
+     */
     public void addInstruction(ArcSemanticLetter letter, Integer after, Instruction instruction) {
         this.instructions.put(new InstructionKey(letter, after), instruction);
     }
 
+    /**
+     * Add an {@link Instruction} to the {@link Instruction}'s {@link HashMap}
+     * thanks to an {@link InstructionKey} built with an {@link ArcSemanticLetter}
+     * @param letter    {@link ArcSemanticLetter}
+     * @param instruction   {@link Instruction}
+     */
     public void addInstruction(ArcSemanticLetter letter, Instruction instruction) {
         this.instructions.put(new InstructionKey(letter), instruction);
     }
@@ -87,7 +123,6 @@ public class DecorationTable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(name, registers, returns, instructions);
     }
 }

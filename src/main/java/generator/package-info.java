@@ -1,4 +1,4 @@
 /**
- * Package contenant le gestionnaire de générateurs.
+ * Package containing the Generator managers.
  */
 package generator;
