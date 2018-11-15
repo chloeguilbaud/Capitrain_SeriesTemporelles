@@ -5,6 +5,8 @@ import model.decoration.table.Instruction;
 import model.decoration.table.element.Affectation;
 import model.decoration.table.element.Function;
 import model.decoration.table.element.IndexedVariable;
+import model.decoration.table.element.IntegerVal;
+import model.decoration.table.element.Sum;
 import model.decoration.table.element.Variable;
 import model.seed.transducer.ArcSemanticLetter;
 
@@ -33,10 +35,10 @@ public class DecorationTableMock {
         defaut_g_f.addParameter(new Variable("f"));
         Function delta_f_i = new Function("delta");
         delta_f_i.addParameter(new Variable("f"));
-        delta_f_i.addParameter(new IndexedVariable("i", 0));
+        delta_f_i.addParameter(new Variable("i"));
         Function delta_f_1 = new Function("delta");
         delta_f_1.addParameter(new Variable("f"));
-        delta_f_1.addParameter(new IndexedVariable("i", 1));
+        delta_f_i.addParameter(new Sum(new Variable("i"), new IntegerVal(1)));
         Function phi_f_D_delta_f_i = new Function("phi");
         phi_f_D_delta_f_i.addParameter(new Variable("f"));
         phi_f_D_delta_f_i.addParameter(D);
@@ -55,7 +57,7 @@ public class DecorationTableMock {
         phi_f_C_phi_f_D_delta_f_i.addParameter(C);
         phi_f_C_phi_f_D_delta_f_i.addParameter(phi_f_D_delta_f_i);
 
-        // Affectztion declaration
+        // Affectation declaration
         Affectation f_i_equals_default = new Affectation(f_i, defaut);
         Affectation e_i_equals_default = new Affectation(e_i, defaut);
         Affectation e_i_equals_e_1 = new Affectation(e_i, e_1);
@@ -92,11 +94,11 @@ public class DecorationTableMock {
         Instruction maybea0 = new Instruction();
         maybea0.addGuard(f_identifier, f_i_equals_default);
         maybea0.addGuard(e_identifier, e_i_equals_e_1);
-        maybea0.addGuard(D_identifier, D_equals_phi_D_delta_f_1);
+        maybea0.addUpdate(D_identifier, D_equals_phi_D_delta_f_1);
         Instruction maybea1 = new Instruction();
         maybea1.addGuard(f_identifier, f_i_equals_default);
         maybea1.addGuard(e_identifier, e_i_equals_e_1);
-        maybea0.addGuard(D_identifier, D_equals_phi_D_delta_f_i);
+        maybea1.addUpdate(D_identifier, D_equals_phi_D_delta_f_i);
         Instruction found0 = new Instruction();
         found0.addGuard(f_identifier, f_i_equals_e_i);
         found0.addGuard(e_identifier, e_i_equals_e_1);
