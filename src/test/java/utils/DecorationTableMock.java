@@ -28,23 +28,23 @@ public class DecorationTableMock {
         IndexedVariable e_1 = new IndexedVariable(e_identifier, 1);
 
         // Functions declaration
-        Function id_f = new Function("idf");
+        Function id_f = new Function("id");
         Function defaut = new Function("default");
         Function defaut_g_f = new Function("default");
-        defaut_g_f.addParameter(new Variable("g"));
-        defaut_g_f.addParameter(new Variable("f"));
+        // defaut_g_f.addParameter(new Variable("g"));
+        // defaut_g_f.addParameter(new Variable("f"));
         Function delta_f_i = new Function("delta");
-        delta_f_i.addParameter(new Variable("f"));
+        // delta_f_i.addParameter(new Variable("f"));
         delta_f_i.addParameter(new Variable("i"));
         Function delta_f_1 = new Function("delta");
-        delta_f_1.addParameter(new Variable("f"));
+        // delta_f_1.addParameter(new Variable("f"));
         delta_f_i.addParameter(new Sum(new Variable("i"), new IntegerVal(1)));
         Function phi_f_D_delta_f_i = new Function("phi");
-        phi_f_D_delta_f_i.addParameter(new Variable("f"));
+        // phi_f_D_delta_f_i.addParameter(new Variable("f"));
         phi_f_D_delta_f_i.addParameter(D);
         phi_f_D_delta_f_i.addParameter(delta_f_i);
         Function phi_f_D_delta_f_1 = new Function("phi");
-        phi_f_D_delta_f_1.addParameter(new Variable("f"));
+        // phi_f_D_delta_f_1.addParameter(new Variable("f"));
         phi_f_D_delta_f_1.addParameter(D);
         phi_f_D_delta_f_1.addParameter(delta_f_1);
         Function phi_f_phi_f_D_delta_f_i_delta_f_1 = new Function("phi");

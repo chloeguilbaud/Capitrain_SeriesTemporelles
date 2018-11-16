@@ -8,7 +8,7 @@ public class SeedTransducerMock {
 
     public static SeedTransducer get() {
 
-        SeedTransducer seed = new SeedTransducer("test_seed");
+        SeedTransducer seed = new SeedTransducer("test_seed", 1, 1);
 
         seed.addState(new State("s"));
         seed.addState(new State("r"));
