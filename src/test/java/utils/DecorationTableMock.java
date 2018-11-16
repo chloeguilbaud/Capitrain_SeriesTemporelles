@@ -31,7 +31,7 @@ public class DecorationTableMock {
         Function id_f = new Function("id");
         Function defaut = new Function("default");
         Function defaut_g_f = new Function("default");
-        defaut_g_f.addParameter(new Variable("g"));
+        // defaut_g_f.addParameter(new Variable("g"));
         // defaut_g_f.addParameter(new Variable("f"));
         Function delta_f_i = new Function("delta");
         // delta_f_i.addParameter(new Variable("f"));
