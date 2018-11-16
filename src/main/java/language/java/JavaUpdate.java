@@ -7,7 +7,7 @@ import model.decoration.table.element.Function;
 import model.decoration.table.element.IndexedVariable;
 import model.decoration.table.element.IntegerVal;
 import model.decoration.table.element.Product;
-import model.decoration.table.element.Soustraction;
+import model.decoration.table.element.Substraction;
 import model.decoration.table.element.Sum;
 import model.decoration.table.element.Variable;
 
@@ -38,21 +38,17 @@ public class JavaUpdate {
             case "model.decoration.table.element.Sum":
                 return "(" + parseToJava(((Sum) e).getLeft()) + " + " + parseToJava(((Sum) e).getRight()) + ")";
             case "model.decoration.table.element.Soustraction":
-                return "(" + parseToJava(((Soustraction) e).getLeft()) + " - " + parseToJava(((Soustraction) e).getRight()) + ")";
+                return "(" + parseToJava(((Substraction) e).getLeft()) + " - " + parseToJava(((Substraction) e).getRight()) + ")";
             case "model.decoration.table.element.Product":
                 return "(" + parseToJava(((Product) e).getLeft()) + " * " + parseToJava(((Product) e).getRight()) + ")";
             case "model.decoration.table.element.Division":
                 return "(" + parseToJava(((Division) e).getLeft()) + " / " + parseToJava(((Division) e).getRight()) + ")";
             case "model.decoration.table.element.Function":
                 StringBuffer parametersBuffer = new StringBuffer();
-                parametersBuffer.append(((Function) e).getName()).append("(");
-                boolean comaNeeded = false;
+                parametersBuffer.append(((Function) e).getName()).append("(this.feature");
                 for (Element parameter : ((Function) e).getParameters()) {
-                    if (comaNeeded) {
-                        parametersBuffer.append(", ");
-                    }
+                    parametersBuffer.append(", ");
                     parametersBuffer.append(parseToJava(parameter));
-                    comaNeeded = true;
                 }
                 parametersBuffer.append(")");
                 return parametersBuffer.toString();
