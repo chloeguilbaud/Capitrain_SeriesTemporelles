@@ -5,7 +5,7 @@ import java.util.List;
 public class TablePOJO {
 
     private String letter;
-    private int after;
+    private Integer after;
     private List<GuardPOJO> guards;
     private List<UpdatePOJO> updates;
 
@@ -13,7 +13,7 @@ public class TablePOJO {
         return letter;
     }
 
-    public int getAfter() {
+    public Integer getAfter() {
         return after;
     }
 

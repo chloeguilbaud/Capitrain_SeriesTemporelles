@@ -5,6 +5,7 @@ import model.decoration.table.DecorationTable;
 
 import model.decoration.table.Instruction;
 import model.decoration.table.InstructionKey;
+import model.seed.transducer.ArcSemanticLetter;
 import org.junit.Test;
 import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import parser.decoration.table.process.DecorationTableParsingResult;
@@ -14,6 +15,7 @@ import utils.DecorationTableMock;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Optional;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -36,16 +38,17 @@ public class DecorationTableParserTest {
 
         HashMap<InstructionKey, Instruction> getInstExpected = tab.getInstructions();
         HashMap<InstructionKey, Instruction> getInstActual = res.getResult().get().getInstructions();
-        System.out.println("expected: " + getInstExpected);
-        System.out.println("actual: " + getInstActual);
+
+        System.out.println("expected: " + getInstExpected.size() + " - " + getInstExpected);
+        System.out.println("actual: " + getInstActual.size() + " - " + getInstActual);
         getInstActual.forEach((key, val) -> {
             if (!getInstExpected.containsKey(key)) {
                 System.out.println("Actual key: " + key);
                 System.out.println("Actual val: " + val);
-                System.out.println("Expected val: " + getInstExpected.get(key));
+                System.out.println("Expect val: " + tab.getInstruction(ArcSemanticLetter.MAYBE_AFTER, 1));
             }
         });
-        assertEquals(tab.getInstructions().size(), res.getResult().get().getInstructions().size());
+//        assertEquals(tab.getInstructions().size(), res.getResult().get().getInstructions().size());
         System.out.println();
         assertEquals("Decoration table instructions", tab.getInstructions(), res.getResult().get().getInstructions());
 

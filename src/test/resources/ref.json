@@ -84,7 +84,8 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id"
+              "name": "id",
+              "parameters": ["f"]
             }
           }
         }]
@@ -113,13 +114,15 @@
         "variable": "C",
         "value": {
           "function": {
-            "name": "default"
+            "name": "default",
+            "parameters": ["g","f"]
           }
         }}, {
         "variable": "D",
         "value": {
           "function": {
-            "name": "default"
+            "name": "default",
+            "parameters": ["f"]
           }
         }
       }]
@@ -153,7 +156,7 @@
               "parameters": ["D", {
                 "function": {
                   "name": "delta",
-                  "parameters": ["i"]
+                  "parameters": ["i", "f"]
                 }
               }]
             }
@@ -234,7 +237,7 @@
               "parameters": ["D", {
                 "function": {
                   "name": "delta",
-                  "parameters": ["i"]
+                  "parameters": ["i", "f"]
                 }
               }]
             }
@@ -276,14 +279,14 @@
                   "parameters": ["D", {
                     "function": {
                       "name": "delta",
-                      "parameters": ["i"]
+                      "parameters": ["i", "f"]
                     }
                   }]
                 }
               }, {
                 "function": {
                   "name": "delta",
-                  "parameters": ["i+1"]
+                  "parameters": ["i+1", "f"]
                 }
               }]
             }
@@ -292,7 +295,8 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id"
+              "name": "id",
+              "parameters": ["f"]
             }
           }
         }
@@ -329,7 +333,7 @@
               "parameters": ["D", {
                 "function": {
                   "name": "delta",
-                  "parameters": ["i"]
+                  "parameters": ["i", "f"]
                 }
               }]
             }
@@ -338,7 +342,8 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id"
+              "name": "id",
+              "parameters": ["f"]
             }
           }
         }
@@ -377,7 +382,7 @@
                   "parameters": ["D", {
                     "function": {
                       "name": "delta",
-                      "parameters": ["i+1"]
+                      "parameters": ["i+1", "f"]
                     }
                   }]
                 }}]
@@ -387,7 +392,8 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id"
+              "name": "id",
+              "parameters": ["f"]
             }
           }
         }
@@ -425,7 +431,7 @@
                   "parameters": ["D", {
                     "function": {
                       "name": "delta",
-                      "parameters": ["i"]
+                      "parameters": ["i", "f"]
                     }
                   }]
                 }}]
@@ -435,7 +441,8 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id"
+              "name": "id",
+              "parameters": ["f"]
             }
           }
         }
@@ -456,14 +463,14 @@
                 "parameters": ["d", {
                   "function": {
                     "name": "delta",
-                    "parameters": ["i"]
+                    "parameters": ["i", "f"]
                   }
                 }]
               }
             }, {
               "function": {
                 "name": "delta",
-                "parameters": ["i+1"]
+                "parameters": ["i+1", "f"]
               }
             }]
           }
@@ -500,7 +507,7 @@
             "parameters": ["d", {
               "function": {
                 "name": "delta",
-                "parameters": ["i"]
+                "parameters": ["i", "f"]
               }
             }]
           }
@@ -519,7 +526,8 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id"
+              "name": "id",
+              "parameters": ["f"]
             }
           }
         }
