@@ -153,7 +153,7 @@
           "value": {
             "function": {
               "name": "phi",
-              "parameters": ["f", "D", {
+              "parameters": ["D", {
                 "function": {
                   "name": "delta",
                   "parameters": ["i", "f"]
@@ -191,10 +191,10 @@
           "value": {
             "function": {
               "name": "phi",
-              "parameters": ["f", "D", {
+              "parameters": ["D", {
                 "function": {
                   "name": "delta",
-                  "parameters": ["f", {
+                  "parameters": [{
                     "variable": {
                       "name": "i",
                       "index": "i+1"

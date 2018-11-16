@@ -45,7 +45,7 @@ public class DecorationTableParserTest {
             if (!getInstExpected.containsKey(key)) {
                 System.out.println("Actual key: " + key);
                 System.out.println("Actual val: " + val);
-                System.out.println("Expected val: " + tab.getInstruction(ArcSemanticLetter.MAYBE_AFTER, 0));
+                System.out.println("Expect val: " + tab.getInstruction(ArcSemanticLetter.MAYBE_AFTER, 1));
             }
         });
 //        assertEquals(tab.getInstructions().size(), res.getResult().get().getInstructions().size());
