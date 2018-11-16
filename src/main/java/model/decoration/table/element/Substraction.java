@@ -6,9 +6,9 @@ import java.util.Objects;
  * Implentation of a soustraction between two {@link Element}
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class Soustraction extends Operation {
+public class Substraction extends Operation {
 
-    public Soustraction(Element left, Element right) {
+    public Substraction(Element left, Element right) {
         super(left, right);
     }
 
@@ -21,7 +21,7 @@ public class Soustraction extends Operation {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Soustraction sum = (Soustraction) o;
+        Substraction sum = (Substraction) o;
         return Objects.equals(this.getLeft(), sum.getLeft()) &&
                 Objects.equals(this.getRight(), sum.getRight());
     }

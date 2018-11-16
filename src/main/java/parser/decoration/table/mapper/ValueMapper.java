@@ -2,6 +2,7 @@ package parser.decoration.table.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.decoration.table.element.*;
+import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 import parser.decoration.table.process.DecorationTableParsingResult;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
 import parser.decoration.table.model.FunctionPOJO;
@@ -10,6 +11,7 @@ import parser.decoration.table.model.VariablePOJO;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Optional;
 
 import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
@@ -52,7 +54,12 @@ class ValueMapper {
                 try {
                     pojo.getParameters().forEach((param) -> {
                         if (param instanceof String) {
-                            function.addParameter(new Variable((String) param));
+                            Optional<Operation> op = parseIndexedParameter((String) param, tabColumn, semanticLetter, res);
+                            if(op.isPresent()) {
+                                function.addParameter(op.get());
+                            } else {
+                                function.addParameter(new Variable((String) param));
+                            }
                         } else if (param instanceof Integer) {
                             function.addParameter(new IntegerVal((Integer) param));
                         } else if (((LinkedHashMap) param).values().size() != 1) {
@@ -86,6 +93,59 @@ class ValueMapper {
             return function;
         }
         return new Function(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_ERROR.getLabel(), new ArrayList<>());
+    }
+
+    private static Optional<Operation> parseIndexedParameter(String param, String functionName, String semanticLetter, DecorationTableParsingResult res) {
+        Optional<Operation> op = Optional.empty();
+        if (param.contains("+")) {
+            op = parseToOperation("+", param, functionName, semanticLetter, res);
+        } else if (param.contains("-")) {
+            op = parseToOperation("-", param, functionName, semanticLetter, res);
+        } else if (param.contains("/")) {
+            op = parseToOperation("/", param, functionName, semanticLetter, res);
+        } else if (param.contains("x")) {
+            op = parseToOperation("x", param, functionName, semanticLetter, res);
+        }
+        return op;
+    }
+
+    private static Optional<Operation> parseToOperation(String operationStr, String param, String functionName, String semanticLetter, DecorationTableParsingResult res) {
+        int tmp1 = operationStr.indexOf("+");
+        String leftVal = operationStr.substring(0, tmp1);
+        String rightVal = operationStr.substring(tmp1+1);
+        Optional<Element> opLeftElem = parseOperationElement(leftVal, param, functionName, semanticLetter, res);
+        Optional<Element> opRightElem = parseOperationElement(rightVal, param, functionName, semanticLetter, res);
+        return (!(opLeftElem.isPresent() && opRightElem.isPresent()))?toOperation(operationStr, opLeftElem, opRightElem):Optional.empty();
+    }
+
+    private static Optional<Operation> toOperation(String operationStr, Optional<Element> opLeftElem, Optional<Element> opRightElem) {
+        Optional<Operation> elem;
+        switch (operationStr) {
+            case "+" :  elem = Optional.of(new Sum(opLeftElem.get(), opRightElem.get()));
+                break;
+            case "-": elem = Optional.of(new Substraction(opLeftElem.get(), opRightElem.get()));
+                break;
+            case "/": elem = Optional.of(new Division(opLeftElem.get(), opRightElem.get()));
+                break;
+            case "x": elem = Optional.of(new Product(opLeftElem.get(), opRightElem.get()));
+                break;
+            default: elem = Optional.empty();
+        }
+        return elem;
+    }
+
+    private static Optional<Element> parseOperationElement(String elem, String param, String functionName, String semanticLetter, DecorationTableParsingResult res) {
+        try {
+            if(elem.isEmpty()) {
+                manageError(res, DecorationTableParsingErrorType.FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION,
+                        " in function " + functionName + " for semantic letter " + semanticLetter + ", given parameter " + param);
+                return Optional.empty();
+            }
+            return Optional.of(new IntegerVal(Integer.parseInt(elem)));
+        } catch (NumberFormatException ex ) {
+            return Optional.of(new Variable(elem));
+        }
+
     }
 
     /**
