@@ -1,11 +1,13 @@
 package language.java;
 
-import java.util.ArrayList;
-
 import model.decoration.table.element.Affectation;
+import model.decoration.table.element.Division;
 import model.decoration.table.element.Element;
+import model.decoration.table.element.Function;
 import model.decoration.table.element.IndexedVariable;
 import model.decoration.table.element.IntegerVal;
+import model.decoration.table.element.Product;
+import model.decoration.table.element.Soustraction;
 import model.decoration.table.element.Sum;
 import model.decoration.table.element.Variable;
 
@@ -29,27 +31,6 @@ public class JavaGuard {
     }
 
     // Reccursive
-    // private void getVariables(Element e) {
-    //     // Définir toutes les varaiables nécessaires
-    //     switch (e.getClass().getName()) {
-    //         case "model.decoration.table.element.Variable":
-    //             System.err.println(((Variable) e).getName());
-    //             this.localVariables.add(((Variable) e).getName());
-    //             return;
-    //         case "model.decoration.table.element.IndexedVariable":
-    //             System.err.println(((IndexedVariable) e).getName());
-    //             this.localVariables.add(((Variable) e).getName());
-    //             return;
-    //         case "model.decoration.table.element.Sum":
-    //             getVariables(((Sum) e).getLeft());
-    //             getVariables(((Sum) e).getRight());
-    //             return;
-    //         default:
-    //             System.err.println(e.getClass().getName());
-    //     }
-    // }
-
-    // Reccursive
     private String parseToJava(Element e) {
         // Construit le calcul en java
         switch (e.getClass().getName()) {
@@ -61,7 +42,26 @@ public class JavaGuard {
                 return ((IntegerVal) e).getValue() + "";
             case "model.decoration.table.element.Sum":
                 return "(" + parseToJava(((Sum) e).getLeft()) + " + " + parseToJava(((Sum) e).getRight()) + ")";
-            default:
+            case "model.decoration.table.element.Soustraction":
+                return "(" + parseToJava(((Soustraction) e).getLeft()) + " - " + parseToJava(((Sum) e).getRight()) + ")";
+            case "model.decoration.table.element.Product":
+                return "(" + parseToJava(((Product) e).getLeft()) + " * " + parseToJava(((Sum) e).getRight()) + ")";
+            case "model.decoration.table.element.Division":
+                return "(" + parseToJava(((Division) e).getLeft()) + " / " + parseToJava(((Sum) e).getRight()) + ")";
+            case "model.decoration.table.element.Function":
+                StringBuffer parametersBuffer = new StringBuffer();
+                parametersBuffer.append(((Function) e).getName()).append("(");
+                boolean comaNeeded = false;
+                for (Element parameter : ((Function) e).getParameters()) {
+                    if (comaNeeded) {
+                        parametersBuffer.append(", ");
+                    }
+                    parametersBuffer.append(parseToJava(parameter));
+                    comaNeeded = true;
+                }
+                parametersBuffer.append(")");
+            return parametersBuffer.toString();
+                default:
                 // System.err.println("Erreur de parsing");
                 return e.getClass().getName();
         }
