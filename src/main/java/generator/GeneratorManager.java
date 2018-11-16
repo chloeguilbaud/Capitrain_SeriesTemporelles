@@ -75,7 +75,7 @@ public class GeneratorManager {
     }
 
     static SeedTransducer initTransducer() {
-        SeedTransducer peak = new SeedTransducer("peak", 0);
+        SeedTransducer peak = new SeedTransducer("peak", 1, 0);
 
         State d = new State("d");
         State r = new State("r");
