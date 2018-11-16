@@ -5,7 +5,7 @@
       "name": "C",
       "value": {
         "function": {
-          "name": "idf"
+          "name": "id"
         }
       }
     },
@@ -13,7 +13,7 @@
       "name": "D",
       "value": {
         "function": {
-          "name": "idf"
+          "name": "id"
         }
       }
     }
