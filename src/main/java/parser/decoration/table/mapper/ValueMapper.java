@@ -2,7 +2,6 @@ package parser.decoration.table.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.decoration.table.element.*;
-import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 import parser.decoration.table.process.DecorationTableParsingResult;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
 import parser.decoration.table.model.FunctionPOJO;
