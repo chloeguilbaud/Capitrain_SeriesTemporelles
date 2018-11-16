@@ -3,27 +3,27 @@ package model.decoration.table.element;
 import java.util.Objects;
 
 /**
- * Implentation of a sum between two {@link Element}
+ * Implentation of a product between two {@link Element}
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class Sum extends Operation {
+public class Product extends Operation {
 
-    public Sum(Element left, Element right) {
+    public Product(Element left, Element right) {
         super(left, right);
     }
 
     @Override
     public String toString() {
-        return "(" + this.getLeft() + "+" + this.getRight() + ")";
+        return "(" + this.getLeft() + "*" + this.getRight() + ")";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Sum sum = (Sum) o;
-        return Objects.equals(this.getLeft(), sum.getLeft()) &&
-                Objects.equals(this.getRight(), sum.getRight());
+        Product product = (Product) o;
+        return Objects.equals(this.getLeft(), product.getLeft()) &&
+                Objects.equals(this.getRight(), product.getRight());
     }
 
     @Override

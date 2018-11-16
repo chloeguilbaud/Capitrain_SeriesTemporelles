@@ -3,25 +3,25 @@ package model.decoration.table.element;
 import java.util.Objects;
 
 /**
- * Implentation of a sum between two {@link Element}
+ * Implentation of a soustraction between two {@link Element}
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class Sum extends Operation {
+public class Soustraction extends Operation {
 
-    public Sum(Element left, Element right) {
+    public Soustraction(Element left, Element right) {
         super(left, right);
     }
 
     @Override
     public String toString() {
-        return "(" + this.getLeft() + "+" + this.getRight() + ")";
+        return "(" + this.getLeft() + "-" + this.getRight() + ")";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Sum sum = (Sum) o;
+        Soustraction sum = (Soustraction) o;
         return Objects.equals(this.getLeft(), sum.getLeft()) &&
                 Objects.equals(this.getRight(), sum.getRight());
     }
