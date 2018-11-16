@@ -2,9 +2,19 @@ package model.decoration.table.element;
 
 import java.util.Objects;
 
+/**
+ * Implentation of a sum between two {@link Element}
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class Sum extends Element {
 
+    /**
+     * Left {@link Element} of the sum operation
+     */
     private Element leftElement;
+    /**
+     * Right {@link Element} of the sum operation
+     */
     private Element rightElement;
 
     public Sum(Element left, Element right) {

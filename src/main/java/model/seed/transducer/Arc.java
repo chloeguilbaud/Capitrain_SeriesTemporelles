@@ -2,13 +2,36 @@ package model.seed.transducer;
 
 import java.util.Objects;
 
+/**
+ * Arc java class representing a state change for a {@link SeedTransducer}
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class Arc {
 
+    /**
+     * Starting {@link State}
+     */
     private State from;
+    /**
+     * Ending {@link State}
+     */
     private State to;
+    /**
+     * Corresponding {@link ArcOperator} needed to change state
+     */
     private ArcOperator arcOperator;
+    /**
+     * {@link ArcSemanticLetter} associated to the {@link Arc}
+     */
     private ArcSemanticLetter arcSemanticLetter;
 
+    /**
+     * Constructor
+     * @param from Starting {@link State}
+     * @param to Ending {@link State}
+     * @param arcOperator Corresponding {@link ArcOperator} needed to change state
+     * @param arcSemanticLetter {@link ArcSemanticLetter} associated to the {@link Arc}
+     */
     public Arc(State from, State to, ArcOperator arcOperator, ArcSemanticLetter arcSemanticLetter) {
         this.from = from;
         this.to = to;
@@ -16,6 +39,9 @@ public class Arc {
         this.arcSemanticLetter = arcSemanticLetter;
     }
 
+    /**
+     * Constructor
+     */
     public Arc() { }
 
     public void setFrom(State from) {

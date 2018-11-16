@@ -4,9 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Implementation of a function
+ * A Function is an {@link Element}
+ * Is described by its name and a {@link List} of parameters
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class Function extends Element {
 
+    /**
+     * Name of the function
+     */
     private String name;
+    /**
+     * {@link List} of parameters of the Function
+     */
     private List<Element> parameters;
 
     public Function(String name) {

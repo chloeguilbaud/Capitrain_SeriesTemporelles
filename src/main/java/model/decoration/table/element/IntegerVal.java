@@ -2,8 +2,16 @@ package model.decoration.table.element;
 
 import java.util.Objects;
 
+/**
+ * Implementation of an integer as an {@link Element}
+ * Basically just an {@link Integer}, but also an {@link Element}
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class IntegerVal extends Element {
-    
+
+    /**
+     * Value of the {@link Integer}
+     */
     private int value;
 
     public IntegerVal(int value) {

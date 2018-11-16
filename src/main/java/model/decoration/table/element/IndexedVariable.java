@@ -2,8 +2,18 @@ package model.decoration.table.element;
 
 import java.util.Objects;
 
+/**
+ * Implementation of an indexed {@link Variable}
+ * An IndexedVariable is also a {@link Variable} and obviously an {@link Element}
+ * An IndexedVariable is described by its name and a value representing the distance from
+ * the relative index
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class IndexedVariable extends Variable {
 
+    /**
+     * Distance of this instance from the relative index
+     */
     private int relativeElementDistance;
 
     public IndexedVariable(String name, int relativeElementDistance) {

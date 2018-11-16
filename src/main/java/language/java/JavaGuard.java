@@ -12,7 +12,7 @@ import model.decoration.table.element.Variable;
 public class JavaGuard {
 
     private Affectation baseAffectation;
-    private ArrayList<String> localVariables;
+    // private ArrayList<String> localVariables;
     private String javaExpression;
     private String uniqueLambdaName;
 
@@ -21,16 +21,33 @@ public class JavaGuard {
             System.err.println("Exception : l'élément de base doit être une affectation");
             return;
         }
+        // this.localVariables = new ArrayList<>();
         this.baseAffectation = (Affectation) baseElement;
         this.uniqueLambdaName = "lambda" + this.hashCode();
-        this.getVariables(this.baseAffectation.getValue());
+        // this.getVariables(this.baseAffectation.getValue());
         this.javaExpression = this.parseToJava(this.baseAffectation.getValue());
     }
 
     // Reccursive
-    private void getVariables(Element e) {
-        // Définir toutes les varaiables nécessaires
-    }
+    // private void getVariables(Element e) {
+    //     // Définir toutes les varaiables nécessaires
+    //     switch (e.getClass().getName()) {
+    //         case "model.decoration.table.element.Variable":
+    //             System.err.println(((Variable) e).getName());
+    //             this.localVariables.add(((Variable) e).getName());
+    //             return;
+    //         case "model.decoration.table.element.IndexedVariable":
+    //             System.err.println(((IndexedVariable) e).getName());
+    //             this.localVariables.add(((Variable) e).getName());
+    //             return;
+    //         case "model.decoration.table.element.Sum":
+    //             getVariables(((Sum) e).getLeft());
+    //             getVariables(((Sum) e).getRight());
+    //             return;
+    //         default:
+    //             System.err.println(e.getClass().getName());
+    //     }
+    // }
 
     // Reccursive
     private String parseToJava(Element e) {
@@ -40,7 +57,7 @@ public class JavaGuard {
                 return ((Variable) e).getName();
             case "model.decoration.table.element.IndexedVariable":
                 return "this.results.get(\""+((IndexedVariable) e).getName()+"\")[i+"+((IndexedVariable) e).getRelativeElementDistance()+"]";
-            case "model.decoration.table.element.Integer":
+            case "model.decoration.table.element.IntegerVal":
                 return ((IntegerVal) e).getValue() + "";
             case "model.decoration.table.element.Sum":
                 return "(" + parseToJava(((Sum) e).getLeft()) + " + " + parseToJava(((Sum) e).getRight()) + ")";
