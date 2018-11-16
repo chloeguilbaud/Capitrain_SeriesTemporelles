@@ -38,7 +38,7 @@ public class DecorationTableMock {
         delta_f_i.addParameter(new Variable("i"));
         Function delta_f_1 = new Function("delta");
         // delta_f_1.addParameter(new Variable("f"));
-        delta_f_i.addParameter(new Sum(new Variable("i"), new IntegerVal(1)));
+        delta_f_1.addParameter(new Sum(new Variable("i"), new IntegerVal(1)));
         Function phi_f_D_delta_f_i = new Function("phi");
         // phi_f_D_delta_f_i.addParameter(new Variable("f"));
         phi_f_D_delta_f_i.addParameter(D);
