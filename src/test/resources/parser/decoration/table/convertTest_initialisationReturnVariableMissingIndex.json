@@ -30,7 +30,6 @@
     },
     {
       "name": "e",
-      "index": "n",
       "value": {
         "variable": {
           "name": "C"

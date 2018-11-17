@@ -514,7 +514,6 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id"
             }
           }
         }

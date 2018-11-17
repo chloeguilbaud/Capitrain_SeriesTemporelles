@@ -25,6 +25,7 @@ public enum DecorationTableParsingErrorType {
 
     INSTRUCTION_MISSING_SEMANTIC_LETTER("Semantic letter missing"),
     INSTRUCTION_INVALID_SEMANTIC_LETTER("Invalid given semantic letter"),
+    BOTH_FUNCTION_AND_VARIABLE_IN_VALUE("Both function and variable declaration in value"),
 
     FUNCTION_NAME_WHEN_ERROR("Error in function JSON definition"),
     FUNCTION_MISSING_NAME("Function element in JSON, missing name"),

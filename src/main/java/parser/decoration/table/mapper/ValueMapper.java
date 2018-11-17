@@ -45,7 +45,7 @@ class ValueMapper {
 
     public static Function mapValueToFunction(FunctionPOJO pojo, String semanticLetter, String tabColumn, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
-            manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"name: " + null);
+            manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"for semantic letter " + semanticLetter + " in " + tabColumn);
         } else {
             String invalidFunctionParamTypeErrMsg = pojo.getName() + " in semantic letter " + semanticLetter + " in " + tabColumn;
             Function function = new Function(pojo.getName());

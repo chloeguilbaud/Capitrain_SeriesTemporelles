@@ -495,7 +495,7 @@
             "parameters": ["d", {
               "function": {
                 "name": "delta",
-                "parameters": ["i"]
+                "parameters": [[]]
               }
             }]
           }

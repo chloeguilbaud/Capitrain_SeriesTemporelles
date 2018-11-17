@@ -61,93 +61,99 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                 },
                 new Object[] {
                         "convertTest_initialisationRegisterVariableUnexpectedIndex.json",
-                        Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_REGISTER_VARIABLE_UNEXPECTED_INDEX),
+                        Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_UNEXPECTED_INDEX),
                         Collections.singletonList("Declaration in initialisation section should not have index field for variable id"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_initialisationRegisterValueVariableMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_MISSING_NAME),
-                        Collections.singletonList("variable in register n° 0"),
+                        Collections.singletonList("variable in register n° 1"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_initialisationReturnValueVariableMissingName.json",
-                        Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_RETURN_VALUE_VARIABLE_MISSING_NAME),
-                        Collections.singletonList("TODO"),
+                        Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_NAME),
+                        Collections.singletonList("No name given in return n° 1"),
+                        1, false
+                },
+                new Object[] {
+                        "convertTest_initialisationReturnVariableMissingValue.json",
+                        Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_VALUE),
+                        Collections.singletonList("No value given in return n° 1"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_initialisationReturnVariableMissingIndex.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_INDEX),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("No index given in return n° 2, for variable e"),
+                        1, false
                 },
                 new Object[] {
                         "convertTest_missingRegisterName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.MISSING_REGISTER_NAME),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("Expected register name in register n° 1"),
+                        1, false
                 },
                 new Object[] {
                         "convertTest_missingRegisterValue.json",
-                        Collections.singletonList(DecorationTableParsingErrorType.MISSING_REGISTER_VALUE),
-                        Collections.singletonList("TODO"),
-                        1
+                        Arrays.asList(DecorationTableParsingErrorType.MISSING_REGISTER_VALUE, DecorationTableParsingErrorType.MISSING_REGISTER_VALUE),
+                        Arrays.asList("Expected register value in register n° 1", "Expected register value in register n° 2"),
+                        2, false
                 },
                 new Object[] {
                         "convertTest_bothRegisterFunctionAndVariableInValue.json",
                         Collections.singletonList(DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("Both function and variable in register value n° 2"),
+                        1, false
                 },
                 new Object[] {
-                        "convertTest_invalidVariableName_variableNameWhenError.json",
-                        Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR),
-                        Collections.singletonList("TODO"),
-                        1
+                        "convertTest_bothRegisterAndReturnFunctionAndVariableInValue.json",
+                        Arrays.asList(
+                                DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE,
+                                DecorationTableParsingErrorType.BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE,
+                                DecorationTableParsingErrorType.BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE),
+                        Arrays.asList(
+                                "Both function and variable declaration in register value n° 1",
+                                "Both function and variable declaration in return statement value n° 1",
+                                "Both function and variable declaration in return statement value n° 2"),
+                        3, false
+                },
+                new Object[] {
+                        "convertTest_initialisationFunctionMissingName.json",
+                        Arrays.asList(
+                                DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME,
+                                DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME,
+                                DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME),
+                        Arrays.asList(
+                                "Function missing name in REGISTER n° 0",
+                                "Function missing name in REGISTER n° 1",
+                                "Function missing name in RETURN n° 0"),
+                        3, false
                 },
                 new Object[] {
                         "convertTest_functionMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_MISSING_NAME),
-                        Collections.singletonList("TODO"),
-                        1
-                },
-                new Object[] {
-                        "convertTest_functionMissingName_functionNameError.json",
-                        Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_ERROR),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("Function element in JSON, missing name for semantic letter found(end) in UPDATE"),
+                        1, false
                 },
                 new Object[] {
                         "convertTest_functionInvalidParameterType.json",
                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE),
-                        Collections.singletonList("TODO"),
-                        1
-                },
-                new Object[] {
-                        "convertTest_missingReturnName.json",
-                        Collections.singletonList(DecorationTableParsingErrorType.MISSING_RETURN_NAME),
-                        Collections.singletonList("TODO"),
-                        1
-                },
-                new Object[] {
-                        "convertTest_missingReturnIndex.json",
-                        Collections.singletonList(DecorationTableParsingErrorType.MISSING_RETURN_INDEX),
-                        Collections.singletonList("TODO"),
-                        1
-                },
-                new Object[] {
-                        "convertTest_missingReturnValue.json",
-                        Collections.singletonList(DecorationTableParsingErrorType.MISSING_RETURN_VALUE),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("Invalid parameter type given to function delta in semantic letter found(end) in GUARD"),
+                        1, false
                 },
                 new Object[] {
                         "convertTest_bothReturnFunctionAndVariableInValue.json",
                         Collections.singletonList(DecorationTableParsingErrorType.BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("Both function and variable declaration in return statement value n° 2"),
+                        1, false
+                },
+                new Object[] {
+                        "convertTest_bothFunctionAndVariableInValue.json",
+                        Collections.singletonList(DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE),
+                        Collections.singletonList("TODO"),//in guards e
+                        1, false
                 },
                 new Object[] {
                         "convertTest_instructionMissingSemanticLetter.json",
@@ -211,6 +217,26 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
     // TODO - vars in table = vars in declaration - idem for updates
     // TODO - given semantic letter has to be valid and not given before
     // TODO - pojo elements where only one attribute should be set
+
+    /**
+     * TODO
+     * ,
+     *                 new Object[] {
+     *                         "convertTest_invalidVariableName_variableNameWhenError.json",
+     *                         Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR),
+     *                         Collections.singletonList("TODO"),
+     *                         1
+     *                 },
+     *
+     *
+     *                 ,
+     *                 new Object[] {
+     *                         "convertTest_functionMissingName_functionNameError.json",
+     *                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_ERROR),
+     *                         Collections.singletonList("TODO"),
+     *                         1
+     *                 },
+     */
 
 
     @Test

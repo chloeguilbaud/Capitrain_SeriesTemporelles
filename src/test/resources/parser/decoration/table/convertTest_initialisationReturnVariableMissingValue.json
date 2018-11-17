@@ -2,6 +2,7 @@
   "name": "feature",
   "registers": [
     {
+      "name": "C",
       "value": {
         "function": {
           "name": "id"
@@ -20,12 +21,7 @@
   "returns": [
     {
       "name": "f",
-      "index": "n",
-      "value": {
-        "function": {
-          "name": "default"
-        }
-      }
+      "index": "n"
     },
     {
       "name": "e",

@@ -14,7 +14,7 @@ import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
 public class InitialisationMapper {
 
-    public static void mapReturns(DecorationTablePOJO pojo, String tabIndexSemanticLetter, DecorationTableParsingResult res, DecorationTable decorationTable) {
+    public static void mapReturns(DecorationTablePOJO pojo, DecorationTableParsingResult res, DecorationTable decorationTable) {
         // Parsing returns
         for (int index = 0; index < pojo.getReturns().size(); index++) {
             ReturnsPOJO item = pojo.getReturns().get(index);
@@ -22,26 +22,26 @@ public class InitialisationMapper {
             ValuePOJO val = item.getValue();
             if (name == null) {
                 manageError(res,
-                        DecorationTableParsingErrorType.MISSING_RETURN_NAME, "" + index);
+                        DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_NAME, "" + (index + 1));
             } else if (item.getIndex() == null) {
                 manageError(res,
-                        DecorationTableParsingErrorType.MISSING_RETURN_INDEX, "" + index + ", " + name);
+                        DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_INDEX, "" + (index + 1) + ", for variable " + name);
             } else if (val == null) {
                 manageError(res,
-                        DecorationTableParsingErrorType.MISSING_RETURN_VALUE, "" + index);
+                        DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_VALUE, "" + (index + 1));
             } else if ((val.getFunction() == null) == (val.getVariable() == null)) {
                 manageError(res,
-                        DecorationTableParsingErrorType.BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE, "" + index);
+                        DecorationTableParsingErrorType.BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE, "" + (index + 1));
             } else if (val.getFunction() != null) {
-                decorationTable.addReturn(name, parseInitValueToFunction(val.getFunction(), res));
+                decorationTable.addReturn(name, parseInitValueToFunction(val.getFunction(), DecorationTableContentMapper.tabColumnReturn, index, res));
             } else if (val.getVariable() != null) {
-                decorationTable.addReturn(name, mapReturnValueToVariable(val.getVariable(), tabIndexSemanticLetter, DecorationTableContentMapper.tabColumnReturn, res));
+                decorationTable.addReturn(name, mapReturnValueToVariable(val.getVariable(), res));
             }
 
         }
     }
 
-    public static void mapRegisters(DecorationTablePOJO pojo, String tabColumn, DecorationTableParsingResult res, DecorationTable decorationTable) {
+    public static void mapRegisters(DecorationTablePOJO pojo, DecorationTableParsingResult res, DecorationTable decorationTable) {
         for (int index = 0; index < pojo.getRegisters().size(); index++) {
             RegistersPOJO item = pojo.getRegisters().get(index);
             String name = item.getName();
@@ -49,29 +49,29 @@ public class InitialisationMapper {
             if (name == null) {
                 manageError(res,
                         DecorationTableParsingErrorType.MISSING_REGISTER_NAME,
-                        DecorationTableParsingErrorType.MISSING_REGISTER_NAME.getLabel() + index);
+                        "" + (index + 1));
             } else if (val == null) {
                 manageError(res,
                         DecorationTableParsingErrorType.MISSING_REGISTER_VALUE,
-                        DecorationTableParsingErrorType.MISSING_REGISTER_VALUE.getLabel() + index);
+                        "" + (index + 1));
             } else if ((val.getFunction() == null) == (val.getVariable() == null)) {
                 manageError(res,
                         DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE,
-                        DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE.getLabel() + index);
+                        "" + (index + 1));
             } else if (val.getFunction() != null) {
-                decorationTable.addRegister(name, parseInitValueToFunction(val.getFunction(), res));
+                decorationTable.addRegister(name, parseInitValueToFunction(val.getFunction(), DecorationTableContentMapper.tabColumnRegister, index, res));
             } else if (val.getVariable() != null) {
-                decorationTable.addRegister(name, mapRegisterValueToVariable(val.getVariable(), index, DecorationTableContentMapper.tabColumnRegister, res));
+                decorationTable.addRegister(name, mapRegisterValueToVariable(val.getVariable(), index, res));
             }
 
         }
     }
 
-    private static Function parseInitValueToFunction(FunctionPOJO pojo, DecorationTableParsingResult res) {
+    private static Function parseInitValueToFunction(FunctionPOJO pojo, String tabColumn, int tabIndex, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
-            manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"name: " + null);
+            manageError(res, DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME ,"in " + tabColumn + " n° " + (tabIndex + 1));
         } else if (pojo.getParameters() != null) {
-            manageError(res, DecorationTableParsingErrorType.FUNCTION_UNEXPECTED_PARAMETTER_IN_INITIALISATION,pojo.getName());
+            manageError(res, DecorationTableParsingErrorType.FUNCTION_UNEXPECTED_PARAMETER_IN_INITIALISATION,pojo.getName());
         } else {
             return new Function(pojo.getName(), new ArrayList<>());
         }
@@ -79,24 +79,27 @@ public class InitialisationMapper {
     }
 
     // index interdit
-    private static Variable mapRegisterValueToVariable(VariablePOJO pojo, int registerIndex, String tabColumn, DecorationTableParsingResult res) {
+    private static Variable mapRegisterValueToVariable(VariablePOJO pojo, int registerIndex, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
             manageError(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_MISSING_NAME,
-                    "" + registerIndex);
+                    "" + (registerIndex + 1));
         } else if (pojo.getIndex() != null) {
-            manageError(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VARIABLE_UNEXPECTED_INDEX,
+            manageError(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_UNEXPECTED_INDEX,
                     pojo.getName());
         } else {
-            return new IndexedVariable(pojo.getName(), ValueMapper.parseVariableIndex(pojo.getIndex(), tabColumn, pojo.getName(), tabColumn, res));
+            return new IndexedVariable(pojo.getName(),
+                    ValueMapper.parseVariableIndex(pojo.getIndex(),
+                            DecorationTableContentMapper.tabColumnRegister, pojo.getName(), DecorationTableContentMapper.tabColumnRegister, res));
         }
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
 
     // index obligatoire
-    private static Variable mapReturnValueToVariable(VariablePOJO pojo, String tabIndexSemanticLetter, String tabColumn, DecorationTableParsingResult res) {
+    private static Variable mapReturnValueToVariable(VariablePOJO pojo, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
-            manageError(res, DecorationTableParsingErrorType.INITIALISATION_RETURN_VALUE_VARIABLE_MISSING_NAME,
-                    pojo.getName() + " for semantic letter " + tabIndexSemanticLetter + " in " + tabColumn);
+            manageError(res, DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_NAME,
+                    pojo.getName() + " for semantic letter " + DecorationTableContentMapper.tabColumnReturn
+                            + " in " + DecorationTableContentMapper.tabColumnReturn);
         } else {
             return new Variable(pojo.getName());
         }

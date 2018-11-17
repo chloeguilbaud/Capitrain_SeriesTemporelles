@@ -14,6 +14,10 @@
       "value": {
         "function": {
           "name": "id"
+        },
+        "variable": {
+          "name": "intrus",
+          "index": 45
         }
       }
     }

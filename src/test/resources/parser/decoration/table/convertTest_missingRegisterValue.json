@@ -2,20 +2,10 @@
   "name": "feature",
   "registers": [
     {
-      "name": "C",
-      "value": {
-        "function": {
-          "name": "id"
-        }
-      }
+      "name": "C"
     },
     {
-      "name": "D",
-      "value": {
-        "function": {
-          "name": "id"
-        }
-      }
+      "name": "D"
     }
   ],
   "returns": [
