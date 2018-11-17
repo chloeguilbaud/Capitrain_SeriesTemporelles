@@ -25,7 +25,7 @@ public enum DecorationTableParsingErrorType {
     FUNCTION_MISSING_NAME("Function element in JSON, missing name"),
     FUNCTION_NAME_WHEN_ERROR("Error in function JSON definition"),
     FUNCTION_INVALID_PARAMETER_TYPE("Invalid parameter type given to function"),
-    FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION("A parameter given to function %s is missing a value on the side of an operation (-, +, / or x"),
+    FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION("A parameter given to function %s is missing a value on the side of an operation (-, +, / or x)"),
 
     MISSING_RETURN_NAME("Return element in JSON, missing name, in return n°"),
     MISSING_RETURN_INDEX("Return element in JSON, missing index, in return n°"),

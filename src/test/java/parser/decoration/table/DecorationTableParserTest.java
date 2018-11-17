@@ -42,7 +42,7 @@ public class DecorationTableParserTest {
         System.out.println("expected: " + getInstExpected.size() + " - " + getInstExpected);
         System.out.println("actual: " + getInstActual.size() + " - " + getInstActual);
         getInstActual.forEach((key, val) -> {
-            if (!getInstExpected.containsKey(key)) {
+            if (!getInstExpected.containsValue(val)) {
                 System.out.println("Actual key: " + key);
                 System.out.println("Actual val: " + val);
                 System.out.println("Expect val: " + tab.getInstruction(ArcSemanticLetter.MAYBE_AFTER, 1));
@@ -68,5 +68,7 @@ public class DecorationTableParserTest {
      * unexeoected element in json
      * Mappe parser errors
      * InitVaruablesPOJO : var or function
+     * double définition pour une meme lettre sémantique
+     * nom de fonction utilisée
      */
 }
