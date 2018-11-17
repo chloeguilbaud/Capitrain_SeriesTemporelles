@@ -484,7 +484,6 @@
       ]
     },
     {
-      "letter": "found(end)",
       "after": 1,
       "guards": [{
         "variable": "f",

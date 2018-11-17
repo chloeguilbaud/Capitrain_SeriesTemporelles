@@ -44,14 +44,15 @@ public class DecorationTableContentMapper {
             String letter = tabItem.getLetter();
 
             Optional<ArcSemanticLetter> semanticLetter = ArcSemanticLetter.fromLabel(letter);
-            String semanticLetterLab = semanticLetter.get().getLabel();
 
-            if (tabItem.getLetter() == null) {
-                manageError(res, DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER, " in table element n° " + tabIndex);
+            if (letter == null) {
+                manageError(res, DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER, "in table element n° " + (tabIndex+1));
             } else if (!semanticLetter.isPresent()) {
                 manageError(res, DecorationTableParsingErrorType.INSTRUCTION_INVALID_SEMANTIC_LETTER,
-                        "- expected: " + ArcSemanticLetter.valuesAsList() + ", actual: " + letter);
+                        "in table line n° " + (tabIndex+1) + "\n- expected: " + ArcSemanticLetter.valuesAsList() + ", actual: " + letter);
             } else {
+
+                String semanticLetterLab = semanticLetter.get().getLabel();
 
                 // Parsing after statement
 
@@ -76,10 +77,10 @@ public class DecorationTableContentMapper {
     private static Variable mapToVariable(String tabColumn, int guardIndex, String semanticLetter, boolean canHaveIndex, String pojoName, Optional<String> pojoIndex, DecorationTableParsingResult res) {
         if(pojoName == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_MISSING_NAME,
-                    "in " + tabColumn + " n° " + guardIndex + " for semantic letter " + semanticLetter);
+                    "in " + tabColumn + " n° " + (guardIndex+1) + " for semantic letter " + semanticLetter);
         } else if (pojoIndex.isPresent() && !canHaveIndex) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_UNEXPECTED_INDEX,
-                    "in " + tabColumn + " n° " + guardIndex + " for semantic letter " + semanticLetter);
+                    "in " + tabColumn + " n° " + (guardIndex+1) + " for semantic letter " + semanticLetter);
         }
         else if (!pojoIndex.isPresent()) {
             return new Variable(pojoName);

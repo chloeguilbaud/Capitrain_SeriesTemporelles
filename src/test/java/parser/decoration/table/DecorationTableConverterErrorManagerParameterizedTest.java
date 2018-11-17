@@ -152,20 +152,21 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                 new Object[] {
                         "convertTest_bothFunctionAndVariableInValue.json",
                         Collections.singletonList(DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE),
-                        Collections.singletonList("TODO"),//in guards e
+                        Collections.singletonList("Both function and variable declaration in value in GUARD for semantic letter in"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_instructionMissingSemanticLetter.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("Semantic letter missing in table element n° 12"),
+                        1, false
                 },
                 new Object[] {
                         "convertTest_instructionInvalidSemanticLetter.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INSTRUCTION_INVALID_SEMANTIC_LETTER),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("Invalid given semantic letter in table line n° 11\n" +
+                                "- expected: [found, found(end), maybe(before), maybe(after), out(reset), in, out(after), out], actual: invalidSemanticLetter"),
+                        1, false
                 },
                 new Object[] {
                         "convertTest_variableValueMissing.json",

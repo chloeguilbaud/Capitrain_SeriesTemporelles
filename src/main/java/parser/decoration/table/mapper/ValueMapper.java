@@ -21,7 +21,9 @@ class ValueMapper {
         VariablePOJO var = pojo.getVariable();
         FunctionPOJO func = pojo.getFunction();
         if(func == null && var == null) {
-            manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, "in " + tabColumn + "semantic letter " + tabIndexSemanticLetter);
+            manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
+        } else if (func != null && var != null) {
+            manageError(res, DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
         } else if(var != null) {
             return mapValueToVariable(tabColumn, tabIndexSemanticLetter, var, res);
         } else {

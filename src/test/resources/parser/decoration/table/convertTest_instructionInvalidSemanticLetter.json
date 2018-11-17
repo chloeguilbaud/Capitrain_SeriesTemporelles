@@ -437,7 +437,7 @@
       ]
     },
     {
-      "letter": "found(end)",
+      "letter": "invalidSemanticLetter",
       "after": 0,
       "guards": [{
         "variable": "f",
