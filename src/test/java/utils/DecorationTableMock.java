@@ -64,7 +64,7 @@ public class DecorationTableMock {
         Affectation e_i_equals_C = new Affectation(e_i, C);
         Affectation f_i_equals_e_i = new Affectation(f_i, e_i);
         Affectation f_i_equals_phi_phi_delta = new Affectation(f_i, phi_f_phi_f_D_delta_f_i_delta_f_1);
-        Affectation f_i_equals_phi_D_delta = new Affectation(f_i, phi_f_D_delta_f_1);
+        Affectation f_i_equals_phi_D_delta = new Affectation(f_i, phi_f_D_delta_f_i);
         Affectation C_equals_default_g_f = new Affectation(C, defaut_g_f);
         Affectation C_equals_phi_phi_delta = new Affectation(C, phi_f_phi_f_D_delta_f_i_delta_f_1);
         Affectation C_equals_phi_D_delta = new Affectation(C, phi_f_D_delta_f_i);
