@@ -171,44 +171,48 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                 new Object[] {
                         "convertTest_variableValueMissing.json",
                         Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("\"value\" field missing in JSON for semantic letter in UPDATE for semantic letter found(end)"),
+                        1, false
                 },
                 new Object[] {
                         "convertTest_variableValueMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING_NAME),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("Missing \"value\" field in JSON in GUARD at semantic letter in"),
+                        1, false // in GUARD 2
                 },
                 new Object[] {
                         "convertTest_variableMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_MISSING_NAME),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("Missing \"name\" in \"variable\" in JSON in GUARD n° 1 for semantic letter in"),
+                        1, false
                 },
                 new Object[] {
-                        "convertTest_variableValueUnexpectedIndex.json",
+                        "convertTest_variableValueUnexpectedIndex_updateValue.json",
                         Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_VALUE_UNEXPECTED_INDEX),
                         Collections.singletonList("TODO"),
                         1
                 },
                 new Object[] {
                         "convertTest_variableInvalidIndex.json",
-                        Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX),
-                        Collections.singletonList("TODO"),
-                        1
+                        Arrays.asList(
+                                DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX,
+                                DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX),
+                        Arrays.asList(
+                                "Invalid index given for variable f for semantic letter in in GUARD",
+                                "Invalid index given for variable e for semantic letter in in GUARD"),
+                        2, false
                 },
                 new Object[] {
                         "convertTest_functionInvalidParameterTypeFunction.json",
                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE),
-                        Collections.singletonList("function teta in semantic letter maybe(after) in UPDATE"),
-                        1
+                        Collections.singletonList("Invalid parameter type given to function phi in semantic letter found(end) in GUARD"),
+                        1, false
                 },
                 new Object[] {
                         "convertTest_functionParameterAsFunction.json",
                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE),
-                        Collections.singletonList("TODO"), // TODO - pas d'erreur
-                        1
+                        Collections.singletonList("Invalid parameter type given to function delta in semantic letter maybe(after) in UPDATE"),
+                        1, false
                 }
         );
     }
@@ -218,6 +222,7 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
     // TODO - vars in table = vars in declaration - idem for updates
     // TODO - given semantic letter has to be valid and not given before
     // TODO - pojo elements where only one attribute should be set
+    // TODO - guillmet autour semantic letter value in message
 
     /**
      * TODO

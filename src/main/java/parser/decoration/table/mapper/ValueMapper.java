@@ -18,16 +18,20 @@ class ValueMapper {
 
 
     static Element mapValue(String tabColumn, String tabIndexSemanticLetter, ValuePOJO pojo, DecorationTableParsingResult res) {
-        VariablePOJO var = pojo.getVariable();
-        FunctionPOJO func = pojo.getFunction();
-        if(func == null && var == null) {
+        if (pojo == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
-        } else if (func != null && var != null) {
-            manageError(res, DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
-        } else if(var != null) {
-            return mapValueToVariable(tabColumn, tabIndexSemanticLetter, var, res);
         } else {
-            return mapValueToFunction(func, tabIndexSemanticLetter, tabColumn, res);
+            VariablePOJO var = pojo.getVariable();
+            FunctionPOJO func = pojo.getFunction();
+            if (func == null && var == null) {
+                manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
+            } else if (func != null && var != null) {
+                manageError(res, DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
+            } else if (var != null) {
+                return mapValueToVariable(tabColumn, tabIndexSemanticLetter, var, res);
+            } else {
+                return mapValueToFunction(func, tabIndexSemanticLetter, tabColumn, res);
+            }
         }
         return new Variable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel());
     }
@@ -35,7 +39,7 @@ class ValueMapper {
     private static Variable mapValueToVariable(String tabColumn, String tabIndexSemanticLetter, VariablePOJO pojo, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING_NAME,
-                    "in " + tabColumn + "at semantic letter " + tabIndexSemanticLetter);
+                    "in " + tabColumn + " at semantic letter " + tabIndexSemanticLetter);
         } else if (pojo.getIndex() == null) {
             return new Variable(pojo.getName());
         } else {
@@ -170,8 +174,12 @@ class ValueMapper {
         if (indexedStr.contains("+")) {
             tmp1 = indexedStr.indexOf("+");
             String tmp2 = indexedStr.substring(tmp1+1);
-            Integer varIndex = Integer.parseInt(tmp2);
-            return varIndex;
+            try {
+                return Integer.parseInt(tmp2);
+            } catch (NumberFormatException ex) {
+                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName + " for semantic letter " + semanticLetter + " in " + tabColumn);
+                return Integer.MAX_VALUE;
+            }
         } else if (indexedStr.contains("-")) {
             tmp1 = indexedStr.indexOf("-");
             String tmp2 = indexedStr.substring(tmp1+1);
@@ -179,7 +187,7 @@ class ValueMapper {
                 Integer varIndex = Integer.parseInt(tmp2);
                 return -varIndex;
             } catch (NumberFormatException ex) {
-                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName + "for semantic letter " + semanticLetter + " in " + tabColumn);
+                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName + " for semantic letter " + semanticLetter + " in " + tabColumn);
                 return Integer.MAX_VALUE;
             }
         } else {

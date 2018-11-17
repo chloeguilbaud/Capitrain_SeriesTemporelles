@@ -191,7 +191,9 @@
               "parameters": ["D", {
                 "function": {
                   "name": "delta",
-                  "parameters": ["i+1"]
+                  "parameters": [{
+                    "guard": "coucou"
+                  }]
                 }
               }]
             }

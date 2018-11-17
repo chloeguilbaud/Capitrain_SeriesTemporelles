@@ -511,12 +511,7 @@
       }],
       "updates": [
         {
-          "variable": "D",
-          "value": {
-            "function": {
-              "name": "id"
-            }
-          }
+          "variable": "D"
         }
       ]
     }

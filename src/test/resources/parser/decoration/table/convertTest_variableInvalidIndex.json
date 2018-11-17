@@ -344,7 +344,7 @@
       "after": 0,
       "guards": [{
         "variable": "f",
-        "index": "i",
+        "index": "i+",
         "value": {
           "function": {
             "name": "default"
@@ -356,7 +356,7 @@
         "value": {
           "variable": {
             "name": "e",
-            "index": "i+1"
+            "index": "+abc"
           }
         }
       }],

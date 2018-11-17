@@ -343,7 +343,6 @@
       "letter": "in",
       "after": 0,
       "guards": [{
-        "variable": "f",
         "index": "i",
         "value": {
           "function": {

@@ -492,7 +492,7 @@
         "value": {
           "function": {
             "name": "phi",
-            "parameters": ["d", {
+            "parameters": [[], {
               "function": {
                 "name": "delta",
                 "parameters": ["i"]
