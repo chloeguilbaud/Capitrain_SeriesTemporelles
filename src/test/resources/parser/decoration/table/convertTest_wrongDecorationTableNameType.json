@@ -1,11 +1,11 @@
 {
-  "name": "features",
+  "name": ["ha!"],
   "registers": [
     {
       "name": "C",
       "value": {
         "function": {
-          "name": "idf"
+          "name": "id"
         }
       }
     },
@@ -13,7 +13,7 @@
       "name": "D",
       "value": {
         "function": {
-          "name": "idf"
+          "name": "id"
         }
       }
     }
@@ -42,14 +42,14 @@
     {
       "letter": "out",
       "guards": [{
-          "variable": "f",
-          "index": "i",
-          "value": {
-            "function": {
-              "name": "default"
-            }
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
           }
-        },
+        }
+      },
         {
           "variable": "e",
           "index": "i",
@@ -84,8 +84,7 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id",
-              "parameters": ["f"]
+              "name": "id"
             }
           }
         }]
@@ -101,28 +100,26 @@
           }
         }
       },
-      {
-        "variable": "e",
-        "index": "i",
-        "value": {
-          "variable": {
-            "name": "C"
+        {
+          "variable": "e",
+          "index": "i",
+          "value": {
+            "variable": {
+              "name": "C"
+            }
           }
-        }
-      }],
+        }],
       "updates": [{
         "variable": "C",
         "value": {
           "function": {
-            "name": "default",
-            "parameters": ["g","f"]
+            "name": "default"
           }
         }}, {
         "variable": "D",
         "value": {
           "function": {
-            "name": "default",
-            "parameters": ["f"]
+            "name": "default"
           }
         }
       }]
@@ -152,11 +149,11 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "teta",
+              "name": "phi",
               "parameters": ["D", {
                 "function": {
-                  "name": "sigma",
-                  "parameters": ["i", "f"]
+                  "name": "delta",
+                  "parameters": ["i"]
                 }
               }]
             }
@@ -190,11 +187,11 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "teta",
+              "name": "phi",
               "parameters": ["D", {
                 "function": {
-                  "name": "sigma",
-                  "parameters": "i+1"
+                  "name": "delta",
+                  "parameters": ["i+1"]
                 }
               }]
             }
@@ -228,11 +225,11 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "teta",
+              "name": "phi",
               "parameters": ["D", {
                 "function": {
-                  "name": "sigma",
-                  "parameters": ["i", "f"]
+                  "name": "delta",
+                  "parameters": ["i"]
                 }
               }]
             }
@@ -267,21 +264,21 @@
           "variable": "C",
           "value": {
             "function": {
-              "name": "sigma",
+              "name": "delta",
               "parameters": [{
                 "function": {
-                  "name": "sigma",
+                  "name": "delta",
                   "parameters": ["D", {
                     "function": {
-                      "name": "sigma",
-                      "parameters": ["i", "f"]
+                      "name": "delta",
+                      "parameters": ["i+1"]
                     }
                   }]
                 }
               }, {
                 "function": {
-                  "name": "sigma",
-                  "parameters": ["i+1", "f"]
+                  "name": "delta",
+                  "parameters": ["i+1"]
                 }
               }]
             }
@@ -290,8 +287,7 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id",
-              "parameters": ["f"]
+              "name": "id"
             }
           }
         }
@@ -324,11 +320,11 @@
           "variable": "C",
           "value": {
             "function": {
-              "name": "teta",
+              "name": "phi",
               "parameters": ["D", {
                 "function": {
-                  "name": "sigma",
-                  "parameters": ["i", "f"]
+                  "name": "delta",
+                  "parameters": ["i"]
                 }
               }]
             }
@@ -337,8 +333,7 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id",
-              "parameters": ["f"]
+              "name": "id"
             }
           }
         }
@@ -370,14 +365,14 @@
           "variable": "C",
           "value": {
             "function": {
-              "name": "teta",
+              "name": "phi",
               "parameters": ["C",
                 {"function": {
-                  "name": "teta",
+                  "name": "phi",
                   "parameters": ["D", {
                     "function": {
-                      "name": "sigma",
-                      "parameters": ["i+1", "f"]
+                      "name": "delta",
+                      "parameters": ["i+1"]
                     }
                   }]
                 }}]
@@ -387,8 +382,7 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id",
-              "parameters": ["f"]
+              "name": "id"
             }
           }
         }
@@ -419,14 +413,14 @@
           "variable": "C",
           "value": {
             "function": {
-              "name": "teta",
+              "name": "phi",
               "parameters": ["C",
                 {"function": {
-                  "name": "teta",
+                  "name": "phi",
                   "parameters": ["D", {
                     "function": {
-                      "name": "sigma",
-                      "parameters": ["i", "f"]
+                      "name": "delta",
+                      "parameters": ["i"]
                     }
                   }]
                 }}]
@@ -436,8 +430,7 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id",
-              "parameters": ["f"]
+              "name": "id"
             }
           }
         }
@@ -451,21 +444,21 @@
         "index": "i",
         "value": {
           "function": {
-            "name": "teta",
+            "name": "phi",
             "parameters": [{
               "function": {
-                "name": "teta",
+                "name": "phi",
                 "parameters": ["d", {
                   "function": {
-                    "name": "sigma",
-                    "parameters": ["i", "f"]
+                    "name": "delta",
+                    "parameters": ["i"]
                   }
                 }]
               }
             }, {
               "function": {
-                "name": "sigma",
-                "parameters": ["i+1", "f"]
+                "name": "delta",
+                "parameters": ["i+1"]
               }
             }]
           }
@@ -487,7 +480,7 @@
             "parameters": ["f"]
           }
         }
-        }
+      }
       ]
     },
     {
@@ -498,11 +491,11 @@
         "index": "i",
         "value": {
           "function": {
-            "name": "teta",
+            "name": "phi",
             "parameters": ["d", {
               "function": {
-                "name": "sigma",
-                "parameters": ["i", "f"]
+                "name": "delta",
+                "parameters": ["i"]
               }
             }]
           }
@@ -521,8 +514,7 @@
           "variable": "D",
           "value": {
             "function": {
-              "name": "id",
-              "parameters": ["f"]
+              "name": "id"
             }
           }
         }

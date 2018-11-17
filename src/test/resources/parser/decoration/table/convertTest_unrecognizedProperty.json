@@ -63,6 +63,7 @@
       "updates": [
         {
           "variable": "D",
+          "je suis un intrus": "coucou, c'est moi <3",
           "value": {
             "function": {
               "name": "phi",

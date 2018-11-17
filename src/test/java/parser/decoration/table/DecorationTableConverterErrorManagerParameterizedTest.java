@@ -48,13 +48,13 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                 new Object[] {
                         "convertTest_wrongDecorationTableNameType.json",
                         Collections.singletonList(DecorationTableParsingErrorType.JSON_MAPPING_EXCEPTION),
-                        Collections.singletonList("TODO"),
+                        Collections.singletonList("line: 2, column: 11] (through reference chain: parser.decoration.table.model.DecorationTablePOJO[\"name\"]"),
                         1
                 },
                 new Object[] {
                         "convertTest_fileNotFound.json",
                         Collections.singletonList(DecorationTableParsingErrorType.FILE_NOT_FOUND),
-                        Collections.singletonList("TODO"),
+                        Collections.singletonList("Le fichier spécifié est introuvable"),
                         1
                 },
                 new Object[] {
