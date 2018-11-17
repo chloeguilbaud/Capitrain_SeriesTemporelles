@@ -4,7 +4,11 @@
     {
       "name": "C",
       "value": {
+        "function": {
+          "name": "id"
+        },
         "variable": {
+          "name": "intru1"
         }
       }
     },
@@ -24,6 +28,9 @@
       "value": {
         "function": {
           "name": "default"
+        },
+        "variable": {
+          "name": "intru2"
         }
       }
     },
@@ -33,6 +40,9 @@
       "value": {
         "variable": {
           "name": "C"
+        },
+        "function" : {
+          "name": "intru3"
         }
       }
     }

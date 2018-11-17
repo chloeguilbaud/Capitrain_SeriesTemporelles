@@ -119,7 +119,7 @@
         "variable": "D",
         "value": {
           "function": {
-            "name": "default"
+            "name": "id"
           }
         }
       }]
@@ -191,12 +191,7 @@
               "parameters": ["D", {
                 "function": {
                   "name": "delta",
-                  "parameters": [{
-                    "variable": {
-                      "name": "i",
-                      "index": "i+1"
-                    }
-                  }]
+                  "parameters": ["i+1"]
                 }
               }]
             }
@@ -269,10 +264,10 @@
           "variable": "C",
           "value": {
             "function": {
-              "name": "delta",
+              "name": "phi",
               "parameters": [{
                 "function": {
-                  "name": "delta",
+                  "name": "phi",
                   "parameters": ["D", {
                     "function": {
                       "name": "delta",
@@ -453,7 +448,7 @@
             "parameters": [{
               "function": {
                 "name": "phi",
-                "parameters": ["d", {
+                "parameters": ["D", {
                   "function": {
                     "name": "delta",
                     "parameters": ["i"]
@@ -481,8 +476,7 @@
         "variable": "D",
         "value": {
           "function": {
-            "name": "id",
-            "parameters": ["f"]
+            "name": "id"
           }
         }
       }
@@ -497,10 +491,10 @@
         "value": {
           "function": {
             "name": "phi",
-            "parameters": ["d", {
+            "parameters": ["D", {
               "function": {
                 "name": "delta",
-                "parameters": ["i"]
+                "parameters": ["i+1"]
               }
             }]
           }

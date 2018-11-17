@@ -4,7 +4,8 @@
     {
       "name": "C",
       "value": {
-        "variable": {
+        "function": {
+          "name": "id"
         }
       }
     },
@@ -356,6 +357,9 @@
           "variable": {
             "name": "e",
             "index": "i+1"
+          },
+          "function": {
+            "name": "default"
           }
         }
       }],

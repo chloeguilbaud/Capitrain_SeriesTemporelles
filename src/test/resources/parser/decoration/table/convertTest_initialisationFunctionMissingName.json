@@ -4,7 +4,7 @@
     {
       "name": "C",
       "value": {
-        "variable": {
+        "function": {
         }
       }
     },
@@ -12,7 +12,6 @@
       "name": "D",
       "value": {
         "function": {
-          "name": "id"
         }
       }
     }
@@ -23,7 +22,6 @@
       "index": "n",
       "value": {
         "function": {
-          "name": "default"
         }
       }
     },

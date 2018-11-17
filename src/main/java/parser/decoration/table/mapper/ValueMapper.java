@@ -21,7 +21,9 @@ class ValueMapper {
         VariablePOJO var = pojo.getVariable();
         FunctionPOJO func = pojo.getFunction();
         if(func == null && var == null) {
-            manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, "in " + tabColumn + "semantic letter " + tabIndexSemanticLetter);
+            manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
+        } else if (func != null && var != null) {
+            manageError(res, DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
         } else if(var != null) {
             return mapValueToVariable(tabColumn, tabIndexSemanticLetter, var, res);
         } else {
@@ -45,7 +47,7 @@ class ValueMapper {
 
     public static Function mapValueToFunction(FunctionPOJO pojo, String semanticLetter, String tabColumn, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
-            manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"name: " + null);
+            manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"for semantic letter " + semanticLetter + " in " + tabColumn);
         } else {
             String invalidFunctionParamTypeErrMsg = pojo.getName() + " in semantic letter " + semanticLetter + " in " + tabColumn;
             Function function = new Function(pojo.getName());
@@ -104,31 +106,40 @@ class ValueMapper {
             op = parseToOperation("/", param, functionName, semanticLetter, res);
         } else if (param.contains("x")) {
             op = parseToOperation("x", param, functionName, semanticLetter, res);
+        } else {
+            op = Optional.empty();
         }
         return op;
     }
 
     private static Optional<Operation> parseToOperation(String operationStr, String param, String functionName, String semanticLetter, DecorationTableParsingResult res) {
-        int tmp1 = operationStr.indexOf("+");
-        String leftVal = operationStr.substring(0, tmp1);
-        String rightVal = operationStr.substring(tmp1+1);
+        int tmp1 = param.indexOf(operationStr);
+        String leftVal = param.substring(0, tmp1);
+        String rightVal = param.substring(tmp1+1);
         Optional<Element> opLeftElem = parseOperationElement(leftVal, param, functionName, semanticLetter, res);
         Optional<Element> opRightElem = parseOperationElement(rightVal, param, functionName, semanticLetter, res);
-        return (!(opLeftElem.isPresent() && opRightElem.isPresent()))?toOperation(operationStr, opLeftElem, opRightElem):Optional.empty();
+        return ((opLeftElem.isPresent() && opRightElem.isPresent()))?toOperation(operationStr, opLeftElem, opRightElem):Optional.empty();
     }
 
     private static Optional<Operation> toOperation(String operationStr, Optional<Element> opLeftElem, Optional<Element> opRightElem) {
-        Optional<Operation> elem;
-        switch (operationStr) {
-            case "+" :  elem = Optional.of(new Sum(opLeftElem.get(), opRightElem.get()));
-                break;
-            case "-": elem = Optional.of(new Substraction(opLeftElem.get(), opRightElem.get()));
-                break;
-            case "/": elem = Optional.of(new Division(opLeftElem.get(), opRightElem.get()));
-                break;
-            case "x": elem = Optional.of(new Product(opLeftElem.get(), opRightElem.get()));
-                break;
-            default: elem = Optional.empty();
+        Optional<Operation> elem = Optional.empty();
+        if (opLeftElem.isPresent() && opRightElem.isPresent()) {
+            switch (operationStr) {
+                case "+":
+                    elem = Optional.of(new Sum(opLeftElem.get(), opRightElem.get()));
+                    break;
+                case "-":
+                    elem = Optional.of(new Substraction(opLeftElem.get(), opRightElem.get()));
+                    break;
+                case "/":
+                    elem = Optional.of(new Division(opLeftElem.get(), opRightElem.get()));
+                    break;
+                case "x":
+                    elem = Optional.of(new Product(opLeftElem.get(), opRightElem.get()));
+                    break;
+                default:
+                    elem = Optional.empty();
+            }
         }
         return elem;
     }

@@ -28,8 +28,7 @@ public class DecorationTableParserTest {
 
         DecorationTable tab = DecorationTableMock.getFeatures();
         DecorationTableParsingResult res = DecorationTableParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "decorationTableExampleComplete_feature.json"));
-
-        System.out.println(res.getParsingErrors());
+        
         assertFalse("Parsing OK so no errors", res.hasErrors());
         assertTrue("Decoration table is present so no errors", res.getResult().isPresent());
         assertEquals("Decoration table Name", tab.getName(), res.getResult().get().getName());
@@ -38,18 +37,7 @@ public class DecorationTableParserTest {
 
         HashMap<InstructionKey, Instruction> getInstExpected = tab.getInstructions();
         HashMap<InstructionKey, Instruction> getInstActual = res.getResult().get().getInstructions();
-
-        System.out.println("expected: " + getInstExpected.size() + " - " + getInstExpected);
-        System.out.println("actual: " + getInstActual.size() + " - " + getInstActual);
-        getInstActual.forEach((key, val) -> {
-            if (!getInstExpected.containsKey(key)) {
-                System.out.println("Actual key: " + key);
-                System.out.println("Actual val: " + val);
-                System.out.println("Expect val: " + tab.getInstruction(ArcSemanticLetter.MAYBE_AFTER, 1));
-            }
-        });
-//        assertEquals(tab.getInstructions().size(), res.getResult().get().getInstructions().size());
-        System.out.println();
+        assertEquals(tab.getInstructions().size(), res.getResult().get().getInstructions().size());
         assertEquals("Decoration table instructions", tab.getInstructions(), res.getResult().get().getInstructions());
 
     }
@@ -68,5 +56,7 @@ public class DecorationTableParserTest {
      * unexeoected element in json
      * Mappe parser errors
      * InitVaruablesPOJO : var or function
+     * double définition pour une meme lettre sémantique
+     * nom de fonction utilisée
      */
 }

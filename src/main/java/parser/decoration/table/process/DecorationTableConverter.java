@@ -53,8 +53,8 @@ public class DecorationTableConverter {
         DecorationTable decorationTable = new DecorationTable(pojo.getName());
 
         // Parsing initialisation fields
-        mapRegisters(pojo, DecorationTableContentMapper.tabColumnRegister, res, decorationTable);
-        mapReturns(pojo, DecorationTableContentMapper.tabColumnReturn, res, decorationTable);
+        mapRegisters(pojo, res, decorationTable);
+        mapReturns(pojo, res, decorationTable);
 
         // Parsing table
         mapDecorationTableContent(pojo, res, decorationTable);
