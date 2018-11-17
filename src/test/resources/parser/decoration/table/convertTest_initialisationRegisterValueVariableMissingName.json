@@ -4,8 +4,7 @@
     {
       "name": "C",
       "value": {
-        "function": {
-          "name": "id"
+        "variable": {
         }
       }
     },

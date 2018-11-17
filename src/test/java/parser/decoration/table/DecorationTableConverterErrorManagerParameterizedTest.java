@@ -26,14 +26,16 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
     private final List<DecorationTableParsingErrorType> errorTypes;
     private final List<String> errorMsgContents;
     private int errorAmount;
+    private boolean majorParsingErrors;
 
 
     public DecorationTableConverterErrorManagerParameterizedTest(String file, List<DecorationTableParsingErrorType> errorTypes,
-                                                                 List<String> errorMsgContents, int errorAmount) {
+                                                                 List<String> errorMsgContents, int errorAmount, boolean majorParsingErrors) {
         this.file = file;
         this.errorTypes = errorTypes;
         this.errorMsgContents = errorMsgContents;
         this.errorAmount = errorAmount;
+        this.majorParsingErrors = majorParsingErrors;
     }
 
     @Parameterized.Parameters
@@ -43,37 +45,37 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                         "convertTest_unrecognizedProperty.json",
                         Collections.singletonList(DecorationTableParsingErrorType.UNRECOGNIZED_PROPERTY),
                         Collections.singletonList("Unrecognized field \"je suis un intrus\""),
-                        1
+                        1, true
                 },
                 new Object[] {
                         "convertTest_wrongDecorationTableNameType.json",
                         Collections.singletonList(DecorationTableParsingErrorType.JSON_MAPPING_EXCEPTION),
                         Collections.singletonList("line: 2, column: 11] (through reference chain: parser.decoration.table.model.DecorationTablePOJO[\"name\"]"),
-                        1
+                        1, true
                 },
                 new Object[] {
                         "convertTest_fileNotFound.json",
                         Collections.singletonList(DecorationTableParsingErrorType.FILE_NOT_FOUND),
                         Collections.singletonList("Le fichier spécifié est introuvable"),
-                        1
+                        1, true
                 },
                 new Object[] {
                         "convertTest_initialisationRegisterVariableUnexpectedIndex.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_REGISTER_VARIABLE_UNEXPECTED_INDEX),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("Declaration in initialisation section should not have index field for variable id"),
+                        1, false
                 },
                 new Object[] {
                         "convertTest_initialisationRegisterValueVariableMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_MISSING_NAME),
-                        Collections.singletonList("TODO"),
-                        1
+                        Collections.singletonList("variable in register n° 0"),
+                        1, false
                 },
                 new Object[] {
                         "convertTest_initialisationReturnValueVariableMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_RETURN_VALUE_VARIABLE_MISSING_NAME),
                         Collections.singletonList("TODO"),
-                        1
+                        1, false
                 },
                 new Object[] {
                         "convertTest_initialisationReturnVariableMissingIndex.json",
@@ -220,7 +222,7 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
         DecorationTableParsingResult res = DecorationTableConverter.convert(jsonFile);
 
         System.out.println("Parsing result: " + res);
-        assertFalse("No parsing because errors", res.getResult().isPresent());
+        assertEquals("No parsing because parse errors", !this.majorParsingErrors, res.getResult().isPresent());
         assertTrue("Parsing KO so errors", res.hasErrors());
         assertEquals("Error amount checking", this.errorAmount, res.getParsingErrors().size());
 

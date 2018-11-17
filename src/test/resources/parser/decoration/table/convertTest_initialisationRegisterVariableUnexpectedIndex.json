@@ -4,8 +4,9 @@
     {
       "name": "C",
       "value": {
-        "function": {
-          "name": "id"
+        "variable": {
+          "name": "id",
+          "index": 45
         }
       }
     },

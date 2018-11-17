@@ -41,7 +41,7 @@ public class InitialisationMapper {
         }
     }
 
-    public static void mapRegisters(DecorationTablePOJO pojo, String tabIndexSemanticLetter, DecorationTableParsingResult res, DecorationTable decorationTable) {
+    public static void mapRegisters(DecorationTablePOJO pojo, String tabColumn, DecorationTableParsingResult res, DecorationTable decorationTable) {
         for (int index = 0; index < pojo.getRegisters().size(); index++) {
             RegistersPOJO item = pojo.getRegisters().get(index);
             String name = item.getName();
@@ -61,7 +61,7 @@ public class InitialisationMapper {
             } else if (val.getFunction() != null) {
                 decorationTable.addRegister(name, parseInitValueToFunction(val.getFunction(), res));
             } else if (val.getVariable() != null) {
-                decorationTable.addRegister(name, mapRegisterValueToVariable(val.getVariable(), tabIndexSemanticLetter, DecorationTableContentMapper.tabColumnRegister, res));
+                decorationTable.addRegister(name, mapRegisterValueToVariable(val.getVariable(), index, DecorationTableContentMapper.tabColumnRegister, res));
             }
 
         }
@@ -79,15 +79,15 @@ public class InitialisationMapper {
     }
 
     // index interdit
-    private static Variable mapRegisterValueToVariable(VariablePOJO pojo, String tabIndexSemanticLetter, String tabColumn, DecorationTableParsingResult res) {
+    private static Variable mapRegisterValueToVariable(VariablePOJO pojo, int registerIndex, String tabColumn, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
             manageError(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_MISSING_NAME,
-                    pojo.getName());
+                    "" + registerIndex);
         } else if (pojo.getIndex() != null) {
             manageError(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VARIABLE_UNEXPECTED_INDEX,
                     pojo.getName());
         } else {
-            return new IndexedVariable(pojo.getName(), ValueMapper.parseVariableIndex(pojo.getIndex(), tabIndexSemanticLetter, pojo.getName(), tabColumn, res));
+            return new IndexedVariable(pojo.getName(), ValueMapper.parseVariableIndex(pojo.getIndex(), tabColumn, pojo.getName(), tabColumn, res));
         }
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
