@@ -104,7 +104,7 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                 new Object[] {
                         "convertTest_bothRegisterFunctionAndVariableInValue.json",
                         Collections.singletonList(DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE),
-                        Collections.singletonList("Both function and variable in register value n° 2"),
+                        Collections.singletonList("Both function and variable declaration in register value n° 2"),
                         1, false
                 },
                 new Object[] {
@@ -126,9 +126,9 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                                 DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME,
                                 DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME),
                         Arrays.asList(
-                                "Function missing name in REGISTER n° 0",
                                 "Function missing name in REGISTER n° 1",
-                                "Function missing name in RETURN n° 0"),
+                                "Function missing name in REGISTER n° 2",
+                                "Function missing name in RETURN n° 1"),
                         3, false
                 },
                 new Object[] {
