@@ -19,9 +19,12 @@ public class JavaSeedTransducer {
     }
 
     public void appendCode(String indent, StringBuffer buffer) {
+        buffer.append(indent);
         this.states.forEach((key, value) -> {
-            buffer.append(indent).append("\n");
             value.appendCode(indent, buffer);
         });
+        buffer.append("{\n");
+        buffer.append(indent + "\tbreak;\n");
+        buffer.append(indent + "}\n");
     }
 }

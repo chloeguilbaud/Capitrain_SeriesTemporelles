@@ -20,17 +20,21 @@ public class JavaState {
     }
 
     public void appendCode(String indent, StringBuffer buffer) {
-        buffer.append(indent + "public void " + this.name + "() {\n");
-        buffer.append(indent + "\t" + "if (i >= timeSerie.length) return;\n");
-        this.exitingArcs.forEach((value) -> {
-            buffer.append(indent + "\t" + "if (timeSerie[i][1] "+ JavaComparator.fromOperator(value.getArcOperator()).get().getLabel() +" timeSerie[i+1][1]) {\n");
-            buffer.append(indent + "\t\t" + JavaSemanticLetter.fromSemanticLetter(value.getArcSemanticLetter()).get().getLabel() + "();\n");
+
+        buffer.append("if (currentState.equals(\"" + this.name + "\")) {\n");
+        boolean addElse = false;
+        for(Arc arc : this.exitingArcs) {
+            if (addElse) buffer.append(indent + "\telse\n");
+            buffer.append(indent + "\t" + "if (timeSerie[i] "+ JavaComparator.fromOperator(arc.getArcOperator()).get().getLabel() +" timeSerie[i+1]) {\n");
+            buffer.append(indent + "\t\t" + JavaSemanticLetter.fromSemanticLetter(arc.getArcSemanticLetter()).get().getLabel() + "();\n");
             buffer.append(indent + "\t\t" + "i++;\n");
-            buffer.append(indent + "\t\t" + value.getTo().getName() + "();\n");
-            buffer.append(indent + "\t\t" + "return;\n");
+            buffer.append(indent + "\t\tcurrentState = \"" + arc.getTo().getName() + "\";\n");
             buffer.append(indent + "\t" + "}\n");
+            addElse = true;
+        }
+        this.exitingArcs.forEach((value) -> {
         });
-        buffer.append(indent + "}\n");
+        buffer.append(indent + "} else ");
     }
 
     public String getName() {

@@ -26,7 +26,7 @@ public class JavaDecorationTable {
         this.instructions.forEach((key, value) -> {
             if (!key.getAfter().isPresent() || key.getAfter().get() == this.after) {
                 buffer.append(indent + "\n");
-                buffer.append(indent + JavaSemanticLetter.fromSemanticLetter(key.getArcSemanticLetter()).get().getLabel() + "() {\n");
+                buffer.append(indent + "private void " + JavaSemanticLetter.fromSemanticLetter(key.getArcSemanticLetter()).get().getLabel() + "() {\n");
                 // Append declaration of local variables
                 buffer.append(indent + "\tint i = this.i;\n");
                 // Including all registers
@@ -40,7 +40,7 @@ public class JavaDecorationTable {
                     (new JavaUpdate(instruction)).appendCode(indent + "\t", buffer);
                 });         
                 this.registers.forEach((variable, init) -> {
-                    buffer.append(indent + "\tthis.results.get(\"" + variable + "\")[i] = this.registers.get(\"" + variable + "\");\n");
+                    buffer.append(indent + "\tthis.results.get(\"" + variable + "\").set(i, this.registers.get(\"" + variable + "\"));\n");
                 });
                 buffer.append(indent + "}\n");
             }
