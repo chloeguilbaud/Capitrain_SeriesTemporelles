@@ -68,43 +68,43 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                 new Object[] {
                         "convertTest_initialisationRegisterValueVariableMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_MISSING_NAME),
-                        Collections.singletonList("variable in register n° 1"),
+                        Collections.singletonList("variable in register n°1"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_initialisationReturnValueVariableMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_NAME),
-                        Collections.singletonList("No name given in return n° 1"),
+                        Collections.singletonList("No name given in return n°1"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_initialisationReturnVariableMissingValue.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_VALUE),
-                        Collections.singletonList("No value given in return n° 1"),
+                        Collections.singletonList("No value given in return n°1"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_initialisationReturnVariableMissingIndex.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_INDEX),
-                        Collections.singletonList("No index given in return n° 2, for variable e"),
+                        Collections.singletonList("No index given in return n°2 for variable e"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_missingRegisterName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.MISSING_REGISTER_NAME),
-                        Collections.singletonList("Expected register name in register n° 1"),
+                        Collections.singletonList("Expected register name in register n°1"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_missingRegisterValue.json",
                         Arrays.asList(DecorationTableParsingErrorType.MISSING_REGISTER_VALUE, DecorationTableParsingErrorType.MISSING_REGISTER_VALUE),
-                        Arrays.asList("Expected register value in register n° 1", "Expected register value in register n° 2"),
+                        Arrays.asList("Expected register value in register n°1", "Expected register value in register n°2"),
                         2, false
                 },
                 new Object[] {
                         "convertTest_bothRegisterFunctionAndVariableInValue.json",
                         Collections.singletonList(DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE),
-                        Collections.singletonList("Both function and variable declaration in register value n° 2"),
+                        Collections.singletonList("Both function and variable declaration in register value n°2"),
                         1, false
                 },
                 new Object[] {
@@ -114,9 +114,9 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                                 DecorationTableParsingErrorType.BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE,
                                 DecorationTableParsingErrorType.BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE),
                         Arrays.asList(
-                                "Both function and variable declaration in register value n° 1",
-                                "Both function and variable declaration in return statement value n° 1",
-                                "Both function and variable declaration in return statement value n° 2"),
+                                "Both function and variable declaration in register value n°1",
+                                "Both function and variable declaration in return statement value n°1",
+                                "Both function and variable declaration in return statement value n°2"),
                         3, false
                 },
                 new Object[] {
@@ -126,64 +126,65 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                                 DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME,
                                 DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME),
                         Arrays.asList(
-                                "Function missing name in REGISTER n° 1",
-                                "Function missing name in REGISTER n° 2",
-                                "Function missing name in RETURN n° 1"),
+                                "Function missing name in REGISTER n°1",
+                                "Function missing name in REGISTER n°2",
+                                "Function missing name in RETURN n°1"),
                         3, false
                 },
                 new Object[] {
                         "convertTest_functionMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_MISSING_NAME),
-                        Collections.singletonList("Function element in JSON, missing name for semantic letter found(end) in UPDATE"),
+                        Collections.singletonList("Function element in JSON, missing name for semantic letter \"found(end)\" in UPDATE"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_functionInvalidParameterType.json",
                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE),
-                        Collections.singletonList("Invalid parameter type given to function delta in semantic letter found(end) in GUARD"),
+                        Collections.singletonList("Invalid parameter type given to function delta in semantic letter \"found(end)\" in GUARD"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_bothReturnFunctionAndVariableInValue.json",
                         Collections.singletonList(DecorationTableParsingErrorType.BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE),
-                        Collections.singletonList("Both function and variable declaration in return statement value n° 2"),
+                        Collections.singletonList("Both function and variable declaration in return statement value n°2"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_bothFunctionAndVariableInValue.json",
                         Collections.singletonList(DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE),
-                        Collections.singletonList("Both function and variable declaration in value in GUARD for semantic letter in"),
+                        Collections.singletonList("Both function and variable declaration in value in GUARD for semantic letter \"in\""),
                         1, false
                 },
                 new Object[] {
                         "convertTest_instructionMissingSemanticLetter.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER),
-                        Collections.singletonList("Semantic letter missing in table element n° 12"),
+                        Collections.singletonList("Semantic letter missing in table element n°12"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_instructionInvalidSemanticLetter.json",
                         Collections.singletonList(DecorationTableParsingErrorType.INSTRUCTION_INVALID_SEMANTIC_LETTER),
-                        Collections.singletonList("Invalid given semantic letter in table line n° 11\n" +
-                                "- expected: [found, found(end), maybe(before), maybe(after), out(reset), in, out(after), out], actual: invalidSemanticLetter"),
+                        Collections.singletonList("Invalid given semantic letter in table line n°11" +
+                                "\n- Expected: [found, found(end), maybe(before), maybe(after), out(reset), in, out(after), out]" +
+                                "\n- Actual: invalidSemanticLetter"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_variableValueMissing.json",
                         Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING),
-                        Collections.singletonList("\"value\" field missing in JSON for semantic letter in UPDATE for semantic letter found(end)"),
+                        Collections.singletonList("\"value\" field missing in JSON for semantic letter in UPDATE for semantic letter \"found(end)\""),
                         1, false
                 },
                 new Object[] {
                         "convertTest_variableValueMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING_NAME),
-                        Collections.singletonList("Missing \"value\" field in JSON in GUARD at semantic letter in"),
+                        Collections.singletonList("Missing \"value\" field in JSON in GUARD at semantic letter \"in\""),
                         1, false // in GUARD 2
                 },
                 new Object[] {
                         "convertTest_variableMissingName.json",
                         Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_MISSING_NAME),
-                        Collections.singletonList("Missing \"name\" in \"variable\" in JSON in GUARD n° 1 for semantic letter in"),
+                        Collections.singletonList("Missing \"name\" in \"variable\" in JSON in GUARD n°1 for semantic letter \"in\""),
                         1, false
                 },
                 new Object[] {
@@ -192,20 +193,20 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                                 DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX,
                                 DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX),
                         Arrays.asList(
-                                "Invalid index given for variable f for semantic letter in in GUARD",
-                                "Invalid index given for variable e for semantic letter in in GUARD"),
+                                "Invalid index given for variable f for semantic letter \"in\" in GUARD",
+                                "Invalid index given for variable e for semantic letter \"in\" in GUARD"),
                         2, false
                 },
                 new Object[] {
                         "convertTest_functionInvalidParameterTypeFunction.json",
                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE),
-                        Collections.singletonList("Invalid parameter type given to function phi in semantic letter found(end) in GUARD"),
+                        Collections.singletonList("Invalid parameter type given to function phi in semantic letter \"found(end)\" in GUARD"),
                         1, false
                 },
                 new Object[] {
                         "convertTest_functionParameterAsFunction.json",
                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE),
-                        Collections.singletonList("Invalid parameter type given to function delta in semantic letter maybe(after) in UPDATE"),
+                        Collections.singletonList("Invalid parameter type given to function delta in semantic letter \"maybe(after)\" in UPDATE"),
                         1, false
                 }
         );
@@ -219,6 +220,7 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
     // TODO - guillmet autour semantic letter value in message
 
     /**
+     * FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION
      * TODO
      * ,
      *                 new Object[] {
@@ -250,7 +252,7 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
         File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_DECORATION_TABLE_PARSER.getValue() + file);
         DecorationTableParsingResult res = DecorationTableConverter.convert(jsonFile);
 
-        //System.out.println("Parsing result: " + res);
+        System.out.println("Parsing result: " + res);
         assertEquals("No parsing because parse errors", !this.majorParsingErrors, res.getResult().isPresent());
         assertTrue("Parsing KO so errors", res.hasErrors());
         assertEquals("Error amount checking", this.errorAmount, res.getParsingErrors().size());

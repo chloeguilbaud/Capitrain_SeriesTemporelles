@@ -46,10 +46,10 @@ public class DecorationTableContentMapper {
             Optional<ArcSemanticLetter> semanticLetter = ArcSemanticLetter.fromLabel(letter);
 
             if (letter == null) {
-                manageError(res, DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER, "in table element n° " + (tabIndex+1));
+                manageError(res, DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER, (tabIndex+1));
             } else if (!semanticLetter.isPresent()) {
                 manageError(res, DecorationTableParsingErrorType.INSTRUCTION_INVALID_SEMANTIC_LETTER,
-                        "in table line n° " + (tabIndex+1) + "\n- expected: " + ArcSemanticLetter.valuesAsList() + ", actual: " + letter);
+                        (tabIndex+1), letter);
             } else {
 
                 String semanticLetterLab = semanticLetter.get().getLabel();
@@ -77,7 +77,7 @@ public class DecorationTableContentMapper {
     private static Variable mapToVariable(String tabColumn, int guardIndex, String semanticLetter, String pojoName, Optional<String> pojoIndex, DecorationTableParsingResult res) {
         if(pojoName == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_MISSING_NAME,
-                    "in " + tabColumn + " n° " + (guardIndex+1) + " for semantic letter " + semanticLetter);
+                    tabColumn, (guardIndex+1), semanticLetter);
         }
         else if (!pojoIndex.isPresent()) {
             return new Variable(pojoName);

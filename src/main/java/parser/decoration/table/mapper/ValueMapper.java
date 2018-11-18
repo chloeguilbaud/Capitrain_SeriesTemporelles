@@ -19,14 +19,14 @@ class ValueMapper {
 
     static Element mapValue(String tabColumn, String tabIndexSemanticLetter, ValuePOJO pojo, DecorationTableParsingResult res) {
         if (pojo == null) {
-            manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
+            manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, tabColumn, tabIndexSemanticLetter);
         } else {
             VariablePOJO var = pojo.getVariable();
             FunctionPOJO func = pojo.getFunction();
             if (func == null && var == null) {
-                manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
+                manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, tabColumn, tabIndexSemanticLetter);
             } else if (func != null && var != null) {
-                manageError(res, DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE, "in " + tabColumn + " for semantic letter " + tabIndexSemanticLetter);
+                manageError(res, DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE, tabColumn, tabIndexSemanticLetter);
             } else if (var != null) {
                 return mapValueToVariable(tabColumn, tabIndexSemanticLetter, var, res);
             } else {
@@ -39,7 +39,7 @@ class ValueMapper {
     private static Variable mapValueToVariable(String tabColumn, String tabIndexSemanticLetter, VariablePOJO pojo, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING_NAME,
-                    "in " + tabColumn + " at semantic letter " + tabIndexSemanticLetter);
+                    tabColumn, tabIndexSemanticLetter);
         } else if (pojo.getIndex() == null) {
             return new Variable(pojo.getName());
         } else {
@@ -51,9 +51,9 @@ class ValueMapper {
 
     public static Function mapValueToFunction(FunctionPOJO pojo, String semanticLetter, String tabColumn, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
-            manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,"for semantic letter " + semanticLetter + " in " + tabColumn);
+            manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,semanticLetter, tabColumn);
         } else {
-            String invalidFunctionParamTypeErrMsg = pojo.getName() + " in semantic letter " + semanticLetter + " in " + tabColumn;
+            Object[] invalidFunctionParamTypeErrMsg = {pojo.getName(), semanticLetter, tabColumn};
             Function function = new Function(pojo.getName());
             if(pojo.getParameters() != null) {
                 try {
@@ -152,7 +152,7 @@ class ValueMapper {
         try {
             if(elem.isEmpty()) {
                 manageError(res, DecorationTableParsingErrorType.FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION,
-                        " in function " + functionName + " for semantic letter " + semanticLetter + ", given parameter " + param);
+                        functionName, semanticLetter, param);
                 return Optional.empty();
             }
             return Optional.of(new IntegerVal(Integer.parseInt(elem)));
@@ -177,7 +177,7 @@ class ValueMapper {
             try {
                 return Integer.parseInt(tmp2);
             } catch (NumberFormatException ex) {
-                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName + " for semantic letter " + semanticLetter + " in " + tabColumn);
+                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName, semanticLetter, tabColumn);
                 return Integer.MAX_VALUE;
             }
         } else if (indexedStr.contains("-")) {
@@ -187,7 +187,7 @@ class ValueMapper {
                 Integer varIndex = Integer.parseInt(tmp2);
                 return -varIndex;
             } catch (NumberFormatException ex) {
-                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName + " for semantic letter " + semanticLetter + " in " + tabColumn);
+                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName, semanticLetter, tabColumn);
                 return Integer.MAX_VALUE;
             }
         } else {
