@@ -1,21 +1,17 @@
 package parser.decoration.table;
 
-import conf.TestConfiguration;
+import utils.TestConfiguration;
 import model.decoration.table.DecorationTable;
 
 import model.decoration.table.Instruction;
 import model.decoration.table.InstructionKey;
-import model.seed.transducer.ArcSemanticLetter;
 import org.junit.Test;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import parser.decoration.table.process.DecorationTableParsingResult;
-import utils.Comparator;
 import utils.DecorationTableMock;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Optional;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;

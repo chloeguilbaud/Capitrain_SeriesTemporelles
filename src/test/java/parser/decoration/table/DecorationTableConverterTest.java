@@ -1,7 +1,7 @@
 package parser.decoration.table;
 
 
-import conf.TestConfiguration;
+import utils.TestConfiguration;
 import org.junit.Test;
 import parser.decoration.table.process.DecorationTableParsingResult;
 

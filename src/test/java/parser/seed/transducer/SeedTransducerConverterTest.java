@@ -1,6 +1,6 @@
 package parser.seed.transducer;
 
-import conf.TestConfiguration;
+import utils.TestConfiguration;
 import model.seed.transducer.SeedTransducer;
 import org.junit.Test;
 import parser.seed.transducer.errors.SeedTransducerParsingErrorType;

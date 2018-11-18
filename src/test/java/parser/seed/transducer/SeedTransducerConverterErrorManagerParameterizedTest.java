@@ -1,6 +1,6 @@
 package parser.seed.transducer;
 
-import conf.TestConfiguration;
+import utils.TestConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
