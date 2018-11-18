@@ -1,6 +1,5 @@
 # Conception
 
-
 ## General
 
 Cette application a été conçu 
@@ -56,10 +55,11 @@ Concernant ces éléments :
 
 Un élément est un objet pouvant prendre plusieurs formes, de la variable jusqu'à un calcul en passant par une affectation. On peut ainsi les imbriquer pour former des expressions complexes, et les donner comme guard ou update dans une Table de décoration ou une Instruction.
 
-// TODO
+Tous les élements héritent de la superclasse **`Element`**. On y retrouve une autre classe abstraite en héritant directement : **`Operation`**. Cette classe définit toutes les opérations comme fonction entre deux élements. En hérite : **`Somme`**, **`Soustraction`**, **`Produit`** et **`Division`**. Autre classe héritant directement de **`Element`** : **`Variable`**. Cette classe représente une variable, définie par son _`nom`_. Une variante existe, héritant de **`Variable`** : **`IndexedVariable`**. Cette classe représente une variable, avec un index, représenté par un attribut _`Distance relative`_, qui représente la distance entre l'index voulu et l'index courant. Ainsi, une variable v(i+1) sera notée IndexVariable("v", 1).
 
+Enfin, on retrouve d'autres implémentations de **`Element`**, tels que **`IntegerVal`** représentant juste un integer, par sa _`valeur`_, **`Function`** qui représente une fonction par son _`nom`_ et ses _`paramètres`_ sous la forme d'une liste, et enfin **`Affectation`** qui associe un **`Element`** à une **`Variable`**.
 
-#### Diagramme de classe du l'architecture des Elements :
+#### Diagramme de classe de l'architecture des Elements :
 
 ![Element](img/Element.png)
 
