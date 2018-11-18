@@ -4,6 +4,9 @@
 ## General
 
 Cette application a été conçu 
+- modèle
+    - table de décoration
+    - transducteur
 - parser
     - transducteur
     - table de décoration
@@ -11,6 +14,12 @@ Cette application a été conçu
 - générateur
 
 Chaque module expose une classe utilitaire qui en constitue le point d'entrée.
+
+## Modèle
+
+### Table de décoration
+
+![Série temporelle](img/SeedTransducer.png)
 
 ## Module de parsing
 
