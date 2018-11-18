@@ -1,5 +1,9 @@
 package parser.decoration.table.model;
 
+/**
+ * POJO used for guard representation from Decoration table JSON file. Enables easy mapping.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class GuardPOJO {
 
     private String variable;

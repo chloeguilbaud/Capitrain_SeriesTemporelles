@@ -12,8 +12,19 @@ import java.util.ArrayList;
 
 import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
+/**
+ * Decoration table mapper enabling pojo transformation to model for initialisation elements like register and return statements.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class InitialisationMapper {
 
+    /**
+     * Maps return elements from the given {@link DecorationTablePOJO} object and adds them to {@link DecorationTable} object.
+     * Errors are added to {@link DecorationTableParsingResult}.
+     * @param pojo The {@link DecorationTablePOJO} to map from
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @param decorationTable The {@link DecorationTable} parsed result object (modified by process)
+     */
     public static void mapReturns(DecorationTablePOJO pojo, DecorationTableParsingResult res, DecorationTable decorationTable) {
         // Parsing returns
         for (int index = 0; index < pojo.getReturns().size(); index++) {
@@ -41,6 +52,13 @@ public class InitialisationMapper {
         }
     }
 
+    /**
+     * Maps register elements from the given {@link DecorationTablePOJO} object and adds them to {@link DecorationTable} object.
+     * Errors are added to {@link DecorationTableParsingResult}.
+     * @param pojo The {@link DecorationTablePOJO} to map from
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @param decorationTable The {@link DecorationTable} parsed result object (modified by process)
+     */
     public static void mapRegisters(DecorationTablePOJO pojo, DecorationTableParsingResult res, DecorationTable decorationTable) {
         for (int index = 0; index < pojo.getRegisters().size(); index++) {
             RegistersPOJO item = pojo.getRegisters().get(index);
@@ -66,6 +84,15 @@ public class InitialisationMapper {
         }
     }
 
+    /**
+     * Maps functions used in initialisation to {@link Function} model.
+     * Errors are added to {@link DecorationTableParsingResult}.
+     * @param pojo The {@link FunctionPOJO} to map from
+     * @param tabColumn The concerned column in the decoration table (Register or Return).
+     * @param tabIndex The table line corresponding to this instruction
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @return The model mapped {@link Function}
+     */
     private static Function parseInitValueToFunction(FunctionPOJO pojo, String tabColumn, int tabIndex, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
             manageError(res, DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME ,tabColumn, (tabIndex + 1));
@@ -77,7 +104,15 @@ public class InitialisationMapper {
         return new Function(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_ERROR.getLabel(), new ArrayList<>());
     }
 
-    // index interdit
+    /**
+     * Maps register {@link VariablePOJO} to model {@link Variable}
+     * Errors are added to {@link DecorationTableParsingResult}.
+     * Indexed variables are forbidden.
+     * @param pojo The {@link VariablePOJO} to map from
+     * @param registerIndex The register index corresponding
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @return The model mapped {@link Variable}
+     */
     private static Variable mapRegisterValueToVariable(VariablePOJO pojo, int registerIndex, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
             manageError(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_MISSING_NAME,
@@ -93,7 +128,15 @@ public class InitialisationMapper {
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
 
-    // index obligatoire
+    /**
+     * Maps return {@link VariablePOJO} to model {@link Variable}
+     * Errors are added to {@link DecorationTableParsingResult}.
+     * Indexed variables are needed.
+     * @param pojo The {@link VariablePOJO} to map from
+     * @param index The return index corresponding
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @return The model mapped {@link Variable}
+     */
     private static Variable mapReturnValueToVariable(VariablePOJO pojo, int index, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
             manageError(res, DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_NAME,

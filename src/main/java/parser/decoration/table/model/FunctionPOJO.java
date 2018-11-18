@@ -2,6 +2,10 @@ package parser.decoration.table.model;
 
 import java.util.List;
 
+/**
+ * POJO used for function representation from Decoration table JSON file. Enables easy mapping.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class FunctionPOJO {
 
     private String name;

@@ -1,9 +1,11 @@
 package parser.decoration.table.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 
+/**
+ * POJO used for Decoration Table JSON file representation. Enables easy mapping.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class DecorationTablePOJO {
 
     private String name;

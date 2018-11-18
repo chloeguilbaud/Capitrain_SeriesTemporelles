@@ -1,8 +1,9 @@
 package parser.decoration.table.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
+/**
+ * POJO used for register representation from Decoration table JSON file. Enables easy mapping.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class RegistersPOJO {
 
     private String name;

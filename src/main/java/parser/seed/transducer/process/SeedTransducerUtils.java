@@ -3,6 +3,10 @@ package parser.seed.transducer.process;
 import parser.seed.transducer.errors.SeedTransducerParsingError;
 import parser.seed.transducer.errors.SeedTransducerParsingErrorType;
 
+/**
+ * Seed Transducer functional util class
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class SeedTransducerUtils {
 
     /**

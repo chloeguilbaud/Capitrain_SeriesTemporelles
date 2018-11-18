@@ -3,6 +3,10 @@ package parser.decoration.table.process;
 import parser.decoration.table.errors.DecorationTableParsingError;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
 
+/**
+ * Decoration Table functional util class
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class DecorationTableUtils {
 
     /**
