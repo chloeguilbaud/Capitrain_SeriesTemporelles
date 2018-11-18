@@ -187,12 +187,6 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                         1, false
                 },
                 new Object[] {
-                        "convertTest_variableValueUnexpectedIndex_updateValue.json",
-                        Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_VALUE_UNEXPECTED_INDEX),
-                        Collections.singletonList("TODO"),
-                        1
-                },
-                new Object[] {
                         "convertTest_variableInvalidIndex.json",
                         Arrays.asList(
                                 DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX,
@@ -253,7 +247,7 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
         File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_DECORATION_TABLE_PARSER.getValue() + file);
         DecorationTableParsingResult res = DecorationTableConverter.convert(jsonFile);
 
-        System.out.println("Parsing result: " + res);
+        //System.out.println("Parsing result: " + res);
         assertEquals("No parsing because parse errors", !this.majorParsingErrors, res.getResult().isPresent());
         assertTrue("Parsing KO so errors", res.hasErrors());
         assertEquals("Error amount checking", this.errorAmount, res.getParsingErrors().size());
