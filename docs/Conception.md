@@ -2,15 +2,31 @@
 
 ## General
 
-Cette application a été conçu 
-- modèle
-    - transducteur
-    - table de décoration
-- parser
-    - transducteur
-    - table de décoration
-- manager
-- générateur
+Cette application a été conçu modulaire, avec un couplage le plus faible possible entre les différents modules, pour pouvoir être ajoutés, supprimés ou remplacés facilement. On peut ainsi distinguer les modules suivantes :
+
+#### Modèle (package model)
+
+Ce module renferme l'implémentation des tables de décoration et des transduceurs. Il est la base sur laquelle tous les autres modules vont se greffer pour fonctionner.
+
+#### Parseur (package parser)
+
+Ce module contient les parseurs utilisés pour transformer les tables de décoration et transduceurs fournis via du JSON, en une instance du modèle.
+
+#### Générateur (package generator)
+
+Ce module contient les interfaces nécessaires pour pouvoir générer le code. Il est le module sur lequel tous les modules de génération vont hériter pour pouvoir offrir la même interface pour l'utilisateur. C'est via ce module qu'on génèrera le code.
+
+#### Java (package language.java)
+
+Ce module contient les classes pour générer le code JAVA du modèle. Il s'appuie sur le package `generator`, dont il tire l'interface.
+
+#### Manager (package manager)
+
+Ce module permet aux différents modules de fonctionner ensemble. Ainsi, il parse les fichiers d'entrée en utilisant `parser`, et génère le code via le module `generator` en lui envoyant l'instance de `model` créée.
+
+Cette application est faite en sorte qu'on puisse ajouter des parseurs, si l'on veut instancier le modèle via un autre langage que le JSON, ou encore ajouter des générateurs, si l'on souhaite générer le code correspondant en un autre langage que le JAVA. L'architecture est schematisé ci-dessous :
+
+![SeedTransducer](img/Program.png)
 
 Chaque module expose une classe utilitaire qui en constitue le point d'entrée.
 
@@ -96,4 +112,13 @@ Aussi si l'ont souhaite s'en servir dans un autre programme ou y brancher une in
 
 ### Table de décoration
 
-## Module 
+
+## Module de génération
+
+// Todo
+
+## Module de génération Java
+
+// Todo
+
+## // TODO: Autres modules
