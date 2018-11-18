@@ -47,16 +47,4 @@ public class DecorationTableParserTest {
         DecorationTableParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "decorationTableExampleComplet_features.json"));
     }
 
-
-
-    /**
-     * TODO
-     * this att or this att
-     * parameters typing
-     * unexeoected element in json
-     * Mappe parser errors
-     * InitVaruablesPOJO : var or function
-     * double définition pour une meme lettre sémantique
-     * nom de fonction utilisée
-     */
 }

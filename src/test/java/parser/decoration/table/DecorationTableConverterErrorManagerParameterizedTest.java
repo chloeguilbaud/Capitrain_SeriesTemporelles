@@ -215,31 +215,6 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
         );
     }
 
-    // TODO - given semantic letter has to be valid and not given before
-
-    /*
-     * ,
-     *                 new Object[] {
-     *                         "convertTest_invalidVariableName_variableNameWhenError.json",
-     *                         Collections.singletonList(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR),
-     *                         Collections.singletonList("TODO"),
-     *                         1
-     *                 },
-     *
-     *
-     *                 ,
-     *                 new Object[] {
-     *                         "convertTest_functionMissingName_functionNameError.json",
-     *                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_ERROR),
-     *                         Collections.singletonList("TODO"),
-     *                         1
-     *                 },
-     */
-
-    /*
-    TODO - parsing empty si erreur
-     */
-
     @Test
     public void checkHasError() {
 
