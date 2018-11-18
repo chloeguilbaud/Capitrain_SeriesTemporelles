@@ -8,7 +8,7 @@ import java.io.IOException;
 
 class DecorationTableParser {
 
-    static DecorationTableParsingResult parse(File jsonFile) throws IOException {
+    static DecorationTableParsingResult parse(File jsonFile) {
         return DecorationTableConverter.convert(jsonFile);
     }
 

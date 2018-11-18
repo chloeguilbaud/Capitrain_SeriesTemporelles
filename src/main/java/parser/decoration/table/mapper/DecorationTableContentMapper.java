@@ -25,8 +25,6 @@ public class DecorationTableContentMapper {
     public static final String tabColumnReturn = "RETURN";
     public static final String tabColumnRegister = "REGISTER";
 
-    // TODO - add semantic letter in parser
-
     /**
      * tt les erreurs sont remonté, continuer parsing jusqua pb bloquant
      * @param pojo

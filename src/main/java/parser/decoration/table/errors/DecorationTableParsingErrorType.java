@@ -4,8 +4,6 @@ import model.seed.transducer.ArcSemanticLetter;
 
 public enum DecorationTableParsingErrorType {
 
-    // TODO - utliser {} pour valeur msg à compléter
-
     UNKNOWN_ERROR("Unknown JSON parsing error\n%s"),
     UNRECOGNIZED_PROPERTY("Unexpected JSON element in file\n%s"),
     JSON_MAPPING_EXCEPTION("One of the JSON element has not the right type\n%s"),
