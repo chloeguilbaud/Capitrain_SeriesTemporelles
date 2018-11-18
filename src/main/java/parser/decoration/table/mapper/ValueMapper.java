@@ -151,8 +151,7 @@ class ValueMapper {
     private static Optional<Element> parseOperationElement(String elem, String param, String functionName, String semanticLetter, DecorationTableParsingResult res) {
         try {
             if(elem.isEmpty()) {
-                manageError(res, DecorationTableParsingErrorType.FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION,
-                        functionName, semanticLetter, param);
+                manageError(res, DecorationTableParsingErrorType.FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION, functionName, semanticLetter, param);
                 return Optional.empty();
             }
             return Optional.of(new IntegerVal(Integer.parseInt(elem)));

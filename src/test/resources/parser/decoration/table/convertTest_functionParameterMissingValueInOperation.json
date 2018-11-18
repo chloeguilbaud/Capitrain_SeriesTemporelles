@@ -1,0 +1,80 @@
+{
+  "name": "feature",
+  "registers": [
+    {
+      "name": "C",
+      "value": {
+        "function": {
+          "name": "id"
+        }
+      }
+    },
+    {
+      "name": "D",
+      "value": {
+        "function": {
+          "name": "id"
+        }
+      }
+    }
+  ],
+  "returns": [
+    {
+      "name": "f",
+      "index": "n",
+      "value": {
+        "function": {
+          "name": "default"
+        }
+      }
+    },
+    {
+      "name": "e",
+      "index": "n",
+      "value": {
+        "variable": {
+          "name": "C"
+        }
+      }
+    }
+  ],
+  "table": [
+    {
+      "letter": "maybe(before)",
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "phi",
+              "parameters": ["D", {
+                "function": {
+                  "name": "delta",
+                  "parameters": ["i+"]
+                }
+              }]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

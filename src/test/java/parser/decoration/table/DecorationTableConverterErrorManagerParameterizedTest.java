@@ -208,16 +208,17 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
                         Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE),
                         Collections.singletonList("Invalid parameter type given to function delta in semantic letter \"maybe(after)\" in UPDATE"),
                         1, false
+                },
+                new Object[] {
+                        "convertTest_functionParameterMissingValueInOperation.json",
+                        Collections.singletonList(DecorationTableParsingErrorType.FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION),
+                        Collections.singletonList("A parameter given to function UPDATE is missing a value on the side of an operation (-, +, / or x) for semantic letter \"maybe(before)\" (given parameter: i+)"),
+                        1, false
                 }
         );
     }
 
-    // TODO - cf if de mappers
-    // TODO - several errors
-    // TODO - vars in table = vars in declaration - idem for updates
     // TODO - given semantic letter has to be valid and not given before
-    // TODO - pojo elements where only one attribute should be set
-    // TODO - guillmet autour semantic letter value in message
 
     /**
      * FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION

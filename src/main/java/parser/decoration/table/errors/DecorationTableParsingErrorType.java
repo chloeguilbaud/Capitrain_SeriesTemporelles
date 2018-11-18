@@ -35,7 +35,7 @@ public enum DecorationTableParsingErrorType {
     FUNCTION_MISSING_NAME("Function element in JSON, missing name for semantic letter \"%s\" in %s"),
     FUNCTION_INVALID_PARAMETER_TYPE("Invalid parameter type given to function %s in semantic letter \"%s\" in %s"),
     FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION("A parameter given to function %s is missing a value on the side of an operation (-, +, / or x) " +
-            "in function %s for semantic letter %s, given parameter %s"),
+            "for semantic letter \"%s\" (given parameter: %s)"),
 
     VARIABLE_NAME_WHEN_ERROR("Error in variable JSON definition"),
     VARIABLE_MISSING_NAME("Missing \"name\" in \"variable\" in JSON " +
