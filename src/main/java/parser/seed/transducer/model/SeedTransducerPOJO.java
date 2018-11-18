@@ -12,6 +12,8 @@ import java.util.LinkedHashMap;
 public class SeedTransducerPOJO {
 
     private String name;
+    private Integer after;
+    private Integer before;
     private String init_state;
     private ArrayList<String> states;
     private ArrayList<LinkedHashMap> arcs;
@@ -48,10 +50,28 @@ public class SeedTransducerPOJO {
         this.arcs = arcs;
     }
 
+    public Integer getAfter() {
+        return after;
+    }
+
+    public void setAfter(Integer after) {
+        this.after = after;
+    }
+
+    public Integer getBefore() {
+        return before;
+    }
+
+    public void setBefore(Integer before) {
+        this.before = before;
+    }
+
     @Override
     public String toString() {
         return "SeedTransducerPOJO{" +
                 "name='" + name + '\'' +
+                ", after=" + after +
+                ", before=" + before +
                 ", init_state='" + init_state + '\'' +
                 ", states=" + states +
                 ", arcs=" + arcs +

@@ -17,6 +17,8 @@ public enum SeedTransducerParsingErrorType {
     MISSING_PROPERTY_IN_ARC("Expecting elements in arc field : "
             + SeedTransducerJSONElements.SEED_TEMPLATE_ARC_FROM + ", " + SeedTransducerJSONElements.SEED_TEMPLATE_ARC_TO + ", "
             + SeedTransducerJSONElements.SEED_TEMPLATE_ARC_OPERATOR + ", " + SeedTransducerJSONElements.SEED_TEMPLATE_ARC_LETTER),
+    MISSING_PROPERTY_AFTER("Missing seed transducer after field in JSON"),
+    MISSING_PROPERTY_BEFORE("Missing seed transducer before field in JSON"),
 
     INVALID_INIT_STATE("The given init state for the transducer is not registered in the state list"),
     INVALID_FROM_STATE_IN_ARC("The given state \"from\" of an arc is not registered in the state list"),

@@ -81,6 +81,10 @@ public class SeedTransducerConverter {
 
         SeedTransducer seed = new SeedTransducer(name);
 
+        // Setting before and after states
+        setBeforeInSeedTransducer(pojo, res, seed);
+        setAfterInSeedTransducer(pojo, res, seed);
+
         // Adding states to seed transducer
         addStatesToSeedTransducer(pojo, res, seed);
 
@@ -98,6 +102,28 @@ public class SeedTransducerConverter {
         }
 
         return res;
+    }
+
+    private static void setBeforeInSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res, SeedTransducer seed) {
+        Integer before = pojo.getBefore();
+        if (before == null) {
+            manageError(res,
+                    SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE,
+                    SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER.getLabel() + " in " + pojo.getName());
+        } else {
+            seed.setBefore(before);
+        }
+    }
+
+    private static void setAfterInSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res, SeedTransducer seed) {
+        Integer after = pojo.getAfter();
+        if (after == null) {
+            manageError(res,
+                    SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE,
+                    SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER.getLabel() + " in " + pojo.getName());
+        } else {
+            seed.setAfter(after);
+        }
     }
 
     /**
