@@ -14,9 +14,21 @@ import java.util.Optional;
 
 import static parser.decoration.table.process.DecorationTableUtils.manageError;
 
+/**
+ * Decoration table mapper specialized in value processing.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 class ValueMapper {
 
-
+    /**
+     * Mapper from {@link ValuePOJO} to model {@link Element}.
+     * Errors are added to {@link DecorationTableParsingResult}.
+     * @param tabColumn The concerned column in the decoration table (Update or Guard).
+     * @param tabIndexSemanticLetter The semantic letter corresponding to this instruction
+     * @param pojo The pojo to map from
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @return The model mapped {@link Element}
+     */
     static Element mapValue(String tabColumn, String tabIndexSemanticLetter, ValuePOJO pojo, DecorationTableParsingResult res) {
         if (pojo == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, tabColumn, tabIndexSemanticLetter);
@@ -36,6 +48,15 @@ class ValueMapper {
         return new Variable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel());
     }
 
+    /**
+     * Mapper from {@link VariablePOJO} to model {@link Variable}.
+     * Errors are added to {@link DecorationTableParsingResult}.
+     * @param tabColumn The concerned column in the decoration table (Update or Guard).
+     * @param tabIndexSemanticLetter The semantic letter corresponding to this instruction
+     * @param pojo The pojo to map from
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @return The model mapped {@link Variable}
+     */
     private static Variable mapValueToVariable(String tabColumn, String tabIndexSemanticLetter, VariablePOJO pojo, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
             manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING_NAME,
@@ -49,7 +70,16 @@ class ValueMapper {
         return new IndexedVariable(DecorationTableParsingErrorType.VARIABLE_NAME_WHEN_ERROR.getLabel(), Integer.MAX_VALUE);
     }
 
-    public static Function mapValueToFunction(FunctionPOJO pojo, String semanticLetter, String tabColumn, DecorationTableParsingResult res) {
+    /**
+     * Mapper from {@link FunctionPOJO} to model {@link Function}.
+     * Errors are added to {@link DecorationTableParsingResult}.
+     * @param pojo The pojo to map from
+     * @param semanticLetter The semantic letter corresponding to this instruction
+     * @param tabColumn The concerned column in the decoration table (Update or Guard).
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @return The model mapped {@link Function}
+     */
+    private static Function mapValueToFunction(FunctionPOJO pojo, String semanticLetter, String tabColumn, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
             manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,semanticLetter, tabColumn);
         } else {
@@ -57,6 +87,7 @@ class ValueMapper {
             Function function = new Function(pojo.getName());
             if(pojo.getParameters() != null) {
                 try {
+                    // Parsing parameters
                     pojo.getParameters().forEach((param) -> {
                         if (param instanceof String) {
                             Optional<Operation> op = parseIndexedParameter((String) param, tabColumn, semanticLetter, res);
@@ -100,6 +131,15 @@ class ValueMapper {
         return new Function(DecorationTableParsingErrorType.FUNCTION_NAME_WHEN_ERROR.getLabel(), new ArrayList<>());
     }
 
+    /**
+     * Enables parsing for indexed parameters (ex: "i+1").
+     * Errors are added to {@link DecorationTableParsingResult}.
+     * @param param The parameter to parse
+     * @param functionName The function name having the given parameter
+     * @param semanticLetter The semantic letter corresponding to this instruction
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @return The model mapped {@link Operation} corresponding to the given parameter. If an error occurs it will be empty
+     */
     private static Optional<Operation> parseIndexedParameter(String param, String functionName, String semanticLetter, DecorationTableParsingResult res) {
         Optional<Operation> op = Optional.empty();
         if (param.contains("+")) {
@@ -116,6 +156,15 @@ class ValueMapper {
         return op;
     }
 
+    /**
+     * Maps indexed parameter to model {@link Operation}
+     * @param operationStr The string operation representation (+, -, / or x)
+     * @param param The parameter to parse
+     * @param functionName The function name having the given parameter
+     * @param semanticLetter The semantic letter corresponding to this instruction
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @return The model mapped {@link Operation} corresponding to the given parameter. If an error occurs it will be empty
+     */
     private static Optional<Operation> parseToOperation(String operationStr, String param, String functionName, String semanticLetter, DecorationTableParsingResult res) {
         int tmp1 = param.indexOf(operationStr);
         String leftVal = param.substring(0, tmp1);
@@ -125,6 +174,13 @@ class ValueMapper {
         return ((opLeftElem.isPresent() && opRightElem.isPresent()))?toOperation(operationStr, opLeftElem, opRightElem):Optional.empty();
     }
 
+    /**
+     * Transforming to model {@link Operation}
+     * @param operationStr The string operation representation
+     * @param opLeftElem The left element of the operation
+     * @param opRightElem The right element of the operation
+     * @return The model mapped {@link Operation} corresponding to the given parameter. If an error occurs it will be empty.
+     */
     private static Optional<Operation> toOperation(String operationStr, Optional<Element> opLeftElem, Optional<Element> opRightElem) {
         Optional<Operation> elem = Optional.empty();
         if (opLeftElem.isPresent() && opRightElem.isPresent()) {
@@ -148,6 +204,15 @@ class ValueMapper {
         return elem;
     }
 
+    /**
+     * Parse to model {@link Element}
+     * @param elem The string representation of left or right operation element.
+     * @param param The string representation of the indexed function parameter
+     * @param functionName The function name having the given parameter
+     * @param semanticLetter The semantic letter corresponding to this instruction
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @return The model mapped {@link Element} corresponding to the given parameter. If an error occurs it will be empty
+     */
     private static Optional<Element> parseOperationElement(String elem, String param, String functionName, String semanticLetter, DecorationTableParsingResult res) {
         try {
             if(elem.isEmpty()) {
@@ -162,11 +227,15 @@ class ValueMapper {
     }
 
     /**
-     * 0 si pas de i+ quelque chose
-     * val positive ou négative sinon
-     * @param indexedStr
-     * @param tabColumn
-     * @return
+     * Gets the index of the indexed function parameter.
+     * 0 if the right side of the operation is empty.
+     * Positive and negative indexes are possible.
+     * @param indexedStr The string index representation of the indexed function parameter
+     * @param semanticLetter The semantic letter corresponding to this instruction
+     * @param varName The variable name concerned by this indexed function parameter
+     * @param tabColumn The concerned column in the decoration table (Register, Return, Update or Guard).
+     * @param res The {@link DecorationTableParsingResult} parsing result (modified by process)
+     * @return The indexed function parameter value
      */
     public static Integer parseVariableIndex(String indexedStr, String semanticLetter, String varName, String tabColumn, DecorationTableParsingResult res) {
         int tmp1;
