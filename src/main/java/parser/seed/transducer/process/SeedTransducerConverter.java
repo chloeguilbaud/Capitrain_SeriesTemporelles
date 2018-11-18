@@ -75,8 +75,7 @@ public class SeedTransducerConverter {
         String name = pojo.getName();
         if(name == null) {
             manageError(res,
-                    SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER,
-                    SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER.getLabel() + " \"name\"");
+                    SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER, "\"name\"");
         }
 
         SeedTransducer seed = new SeedTransducer(name);
@@ -115,7 +114,7 @@ public class SeedTransducerConverter {
         if (before == null) {
             manageError(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE,
-                    SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE.getLabel() + " in " + pojo.getName());
+                     "in " + pojo.getName());
         } else {
             seed.setBefore(before);
         }
@@ -132,7 +131,7 @@ public class SeedTransducerConverter {
         if (after == null) {
             manageError(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_AFTER,
-                    SeedTransducerParsingErrorType.MISSING_PROPERTY_AFTER.getLabel() + " in " + pojo.getName());
+                    "in " + pojo.getName());
         } else {
             seed.setAfter(after);
         }
@@ -149,7 +148,7 @@ public class SeedTransducerConverter {
         if(pojo.getStates() == null) {
             manageError(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER,
-                    SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER.getLabel() + " \"states\"");
+                    "\"states\"");
         } else {
             for (String st : pojo.getStates()) {
                 seed.addState(new State(st));
@@ -170,15 +169,14 @@ public class SeedTransducerConverter {
         if(initState == null) {
             manageError(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER,
-                    SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER.getLabel() + " \"init_state\"");
+                    "\"init_state\"");
         } else {
             Optional<State> initStOp = seed.getStateFromName(initState);
             if (initStOp.isPresent()) {
                 seed.setInitState(initStOp.get());
             } else {
                 manageError(res, SeedTransducerParsingErrorType.INVALID_INIT_STATE,
-                        SeedTransducerParsingErrorType.INVALID_INIT_STATE.getLabel()
-                                + "\nInit state: " + pojo.getInit_state()
+                                "\nInit state: " + pojo.getInit_state()
                                 + "\nStates: " + pojo.getStates());
             }
         }
@@ -196,13 +194,12 @@ public class SeedTransducerConverter {
         if(pojo.getArcs() == null) {
             manageError(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER,
-                    SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER.getLabel() + " \"arcs\"");
+                    "\"arcs\"");
         } else {
             for (LinkedHashMap mp : pojo.getArcs()) {
                 if (mp.values().size() != 4) {
                     manageError(res, SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_ARC,
-                            SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_ARC
-                                    + "\nActual: " + mp.values());
+                                    "\nActual: " + mp.values());
 
                 } else {
 
@@ -235,8 +232,7 @@ public class SeedTransducerConverter {
             arc.setArcSemanticLetter(arcLetterOpt.get());
         } else {
             manageError(res, SeedTransducerParsingErrorType.INVALID_ARC_SEMANTIC_LETTER,
-                    SeedTransducerParsingErrorType.INVALID_ARC_SEMANTIC_LETTER
-                            + "\nArc: " + mp
+                            "\nArc: " + mp
                             + "\nValid semantic letters: " + ArcSemanticLetter.valuesAsList());
         }
 
@@ -256,8 +252,7 @@ public class SeedTransducerConverter {
             arc.setArcOperator(arcOpOpt.get());
         } else {
             manageError(res, SeedTransducerParsingErrorType.INVALID_ARC_OPERATOR,
-                    SeedTransducerParsingErrorType.INVALID_ARC_OPERATOR
-                            + "\nArc: " + mp
+                            "\nArc: " + mp
                             + "\nValid operators: " + ArcOperator.valuesAsList());
         }
     }
@@ -278,8 +273,7 @@ public class SeedTransducerConverter {
             arc.setFrom(fromStateOpt.get());
         } else {
             manageError(res, SeedTransducerParsingErrorType.INVALID_FROM_STATE_IN_ARC,
-                    SeedTransducerParsingErrorType.INVALID_FROM_STATE_IN_ARC
-                            + "\nArc: " + mp
+                      "\nArc: " + mp
                             + "\nSeed transducer states: " + pojo.getStates());
         }
     }
@@ -300,8 +294,7 @@ public class SeedTransducerConverter {
             arc.setTo(toStateOpt.get());
         } else {
             manageError(res, SeedTransducerParsingErrorType.INVALID_TO_STATE_IN_ARC,
-                    SeedTransducerParsingErrorType.INVALID_TO_STATE_IN_ARC
-                            + "\nArc: " + mp
+                    "\nArc: " + mp
                             + "\nSeed transducer states: " + pojo.getStates());
         }
     }
@@ -313,7 +306,7 @@ public class SeedTransducerConverter {
      * @param msg The related error message
      */
     private static void manageError(SeedTransducerParsingResult res, SeedTransducerParsingErrorType err, String msg) {
-        res.addParsingError(new SeedTransducerParsingError(err, err.getLabel()  + msg));
+        res.addParsingError(new SeedTransducerParsingError(err, err.getLabel()  + " " + msg));
     }
 
 }
