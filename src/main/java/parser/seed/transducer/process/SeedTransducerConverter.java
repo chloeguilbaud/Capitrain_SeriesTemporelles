@@ -4,10 +4,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import model.seed.transducer.*;
-import parser.seed.transducer.errors.SeedTransducerParsingError;
 import parser.seed.transducer.errors.SeedTransducerParsingErrorType;
 import parser.seed.transducer.model.SeedTransducerPOJO;
-import parser.seed.transducer.model.SeedTransducerParsingResult;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.Optional;
 
 import static parser.seed.transducer.json.SeedTransducerJSONElements.*;
+import static parser.seed.transducer.process.SeedTransducerUtils.manageError;
 
 /**
  * Enables Seed Transducer's transformation from JSON to POJO.
@@ -114,7 +113,7 @@ public class SeedTransducerConverter {
         if (before == null) {
             manageError(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE,
-                     "in " + pojo.getName());
+                     pojo.getName());
         } else {
             seed.setBefore(before);
         }
@@ -131,7 +130,7 @@ public class SeedTransducerConverter {
         if (after == null) {
             manageError(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_AFTER,
-                    "in " + pojo.getName());
+                    pojo.getName());
         } else {
             seed.setAfter(after);
         }
@@ -176,8 +175,7 @@ public class SeedTransducerConverter {
                 seed.setInitState(initStOp.get());
             } else {
                 manageError(res, SeedTransducerParsingErrorType.INVALID_INIT_STATE,
-                                "\nInit state: " + pojo.getInit_state()
-                                + "\nStates: " + pojo.getStates());
+                                pojo.getInit_state(), "" + pojo.getStates());
             }
         }
     }
@@ -199,7 +197,7 @@ public class SeedTransducerConverter {
             for (LinkedHashMap mp : pojo.getArcs()) {
                 if (mp.values().size() != 4) {
                     manageError(res, SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_ARC,
-                                    "\nActual: " + mp.values());
+                                    "" + mp.values());
 
                 } else {
 
@@ -232,8 +230,7 @@ public class SeedTransducerConverter {
             arc.setArcSemanticLetter(arcLetterOpt.get());
         } else {
             manageError(res, SeedTransducerParsingErrorType.INVALID_ARC_SEMANTIC_LETTER,
-                            "\nArc: " + mp
-                            + "\nValid semantic letters: " + ArcSemanticLetter.valuesAsList());
+                            mp.toString(), ArcSemanticLetter.valuesAsList().toString());
         }
 
     }
@@ -252,8 +249,7 @@ public class SeedTransducerConverter {
             arc.setArcOperator(arcOpOpt.get());
         } else {
             manageError(res, SeedTransducerParsingErrorType.INVALID_ARC_OPERATOR,
-                            "\nArc: " + mp
-                            + "\nValid operators: " + ArcOperator.valuesAsList());
+                            mp.toString(), ArcOperator.valuesAsList().toString());
         }
     }
 
@@ -273,8 +269,7 @@ public class SeedTransducerConverter {
             arc.setFrom(fromStateOpt.get());
         } else {
             manageError(res, SeedTransducerParsingErrorType.INVALID_FROM_STATE_IN_ARC,
-                      "\nArc: " + mp
-                            + "\nSeed transducer states: " + pojo.getStates());
+                    mp.toString(), "" + pojo.getStates());
         }
     }
 
@@ -294,19 +289,8 @@ public class SeedTransducerConverter {
             arc.setTo(toStateOpt.get());
         } else {
             manageError(res, SeedTransducerParsingErrorType.INVALID_TO_STATE_IN_ARC,
-                    "\nArc: " + mp
-                            + "\nSeed transducer states: " + pojo.getStates());
+                    "" + mp, "" + pojo.getStates());
         }
-    }
-
-    /**
-     * Enables parsing error management.
-     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
-     * @param err The {@link SeedTransducerParsingErrorType} occurred error
-     * @param msg The related error message
-     */
-    private static void manageError(SeedTransducerParsingResult res, SeedTransducerParsingErrorType err, String msg) {
-        res.addParsingError(new SeedTransducerParsingError(err, err.getLabel()  + " " + msg));
     }
 
 }

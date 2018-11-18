@@ -1,7 +1,7 @@
 package parser.seed.transducer;
 
 import model.seed.transducer.SeedTransducer;
-import parser.seed.transducer.model.SeedTransducerParsingResult;
+import parser.seed.transducer.process.SeedTransducerParsingResult;
 import parser.seed.transducer.process.SeedTransducerConverter;
 
 import java.io.File;

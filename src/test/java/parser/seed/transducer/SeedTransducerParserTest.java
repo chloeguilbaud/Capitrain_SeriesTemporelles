@@ -4,7 +4,7 @@ import conf.TestConfiguration;
 import model.seed.transducer.*;
 
 import org.junit.Test;
-import parser.seed.transducer.model.SeedTransducerParsingResult;
+import parser.seed.transducer.process.SeedTransducerParsingResult;
 import utils.Comparator;
 import utils.SeedTransducerMock;
 

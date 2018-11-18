@@ -5,10 +5,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import parser.seed.transducer.errors.SeedTransducerParsingErrorType;
-import parser.seed.transducer.model.SeedTransducerParsingResult;
+import parser.seed.transducer.process.SeedTransducerParsingResult;
 import parser.seed.transducer.process.SeedTransducerConverter;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
@@ -47,7 +46,7 @@ public class SeedTransducerConverterErrorManagerParameterizedTest {
                 new Object[] {
                         "convertTest_missingElementInSeedTransducer.json",
                         Collections.singletonList(SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER),
-                        Collections.singletonList("\"init_state\""),
+                        Collections.singletonList("Expecting seed transducer element \"init_state\" but missing in JSON file"),
                         1
                 },
                 new Object[] {
@@ -154,6 +153,8 @@ public class SeedTransducerConverterErrorManagerParameterizedTest {
     @Test
     public void checkHasError() {
 
+        System.out.println("************** " + file + " **************");
+
         File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_SEED_TRANSDUCER_PARSER.getValue() + file);
         SeedTransducerParsingResult res = SeedTransducerConverter.convert(jsonFile);
 
@@ -165,6 +166,7 @@ public class SeedTransducerConverterErrorManagerParameterizedTest {
         for(int i = 0; i < errorTypes.size(); i++) {
             assertEquals("Error checking n°" + i, errorTypes.get(i), res.getParsingErrors().get(i).getErrorType());
             assertTrue("Error message n°" + i, res.getParsingErrors().get(i).getErrorMsg().contains(errorMsgContents.get(i)));
+            assertTrue("Error message n°" + i, !res.getParsingErrors().get(i).getErrorMsg().contains("%s"));
         }
 
     }

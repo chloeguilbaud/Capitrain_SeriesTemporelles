@@ -21,7 +21,7 @@ public class Test {
 
     }*/
 
-    public static void main (String[] args) {
+    /*public static void main (String[] args) {
         String str = "a+";
         int tmp1 = str.indexOf("+");
             String leftVal = str.substring(0, tmp1);
@@ -29,5 +29,12 @@ public class Test {
         System.out.println(rightVal.isEmpty());
             System.out.println(Integer.parseInt(leftVal));
 
+    }*/
+
+    public static void main (String[] args) {
+        String str = "coucou %s";
+        System.out.println(String.format(str, "Hello"));
+
     }
+
 }

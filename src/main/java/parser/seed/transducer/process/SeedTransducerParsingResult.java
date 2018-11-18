@@ -1,4 +1,4 @@
-package parser.seed.transducer.model;
+package parser.seed.transducer.process;
 
 import parser.common.ParsingResult;
 import parser.seed.transducer.errors.SeedTransducerParsingError;
