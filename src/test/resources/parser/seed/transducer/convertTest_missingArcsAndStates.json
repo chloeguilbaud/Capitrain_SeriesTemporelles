@@ -1,4 +1,6 @@
 {
   "name": "test_seed",
+  "before": 0,
+  "after": 0,
   "init_state": "s"
 }

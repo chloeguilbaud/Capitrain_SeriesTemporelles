@@ -1,5 +1,7 @@
 {
   "init_state": "s",
+  "before": 0,
+  "after": 0,
   "states": ["s", "r", "t", "u", "v"],
   "arcs": [
     {

@@ -1,5 +1,7 @@
 {
   "name": "test_seed",
+  "before": 2,
+  "after": 1,
   "init_state": "s",
   "states": ["s", "r", "t", "u", "v"],
   "arcs": [

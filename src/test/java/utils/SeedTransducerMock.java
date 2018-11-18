@@ -10,6 +10,9 @@ public class SeedTransducerMock {
 
         SeedTransducer seed = new SeedTransducer("test_seed", 1, 1);
 
+        seed.setBefore(2);
+        seed.setAfter(1);
+
         seed.addState(new State("s"));
         seed.addState(new State("r"));
         seed.addState(new State("t"));
