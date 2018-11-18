@@ -238,6 +238,9 @@ public class DecorationTableConverterErrorManagerParameterizedTest {
      *                 },
      */
 
+    /*
+    TODO - parsing empty si erreur
+     */
 
     @Test
     public void checkHasError() {

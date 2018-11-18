@@ -8,6 +8,7 @@ import parser.seed.transducer.errors.SeedTransducerParsingErrorType;
 import parser.seed.transducer.model.SeedTransducerParsingResult;
 import parser.seed.transducer.process.SeedTransducerConverter;
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
@@ -53,6 +54,18 @@ public class SeedTransducerConverterErrorManagerParameterizedTest {
                         "convertTest_missingSTName.json",
                         Collections.singletonList(SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER),
                         Collections.singletonList("\"name\""),
+                        1
+                },
+                new Object[] {
+                        "convertTest_missingSTBefore.json",
+                        Collections.singletonList(SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE),
+                        Collections.singletonList("before"),
+                        1
+                },
+                new Object[] {
+                        "convertTest_missingSTAfter.json",
+                        Collections.singletonList(SeedTransducerParsingErrorType.MISSING_PROPERTY_AFTER),
+                        Collections.singletonList("after"),
                         1
                 },
                 new Object[] {
@@ -144,6 +157,7 @@ public class SeedTransducerConverterErrorManagerParameterizedTest {
         File jsonFile = new File(TestConfiguration.TEST_FILE_PATH_SEED_TRANSDUCER_PARSER.getValue() + file);
         SeedTransducerParsingResult res = SeedTransducerConverter.convert(jsonFile);
 
+        System.out.println(res);
         assertFalse("No parsing because errors", res.getResult().isPresent());
         assertTrue("Parsing KO so errors", res.hasErrors());
         assertEquals("Error amount checking", this.errorAmount, res.getParsingErrors().size());
