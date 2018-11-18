@@ -5,8 +5,8 @@
 
 Cette application a été conçu 
 - modèle
-    - table de décoration
     - transducteur
+    - table de décoration
 - parser
     - transducteur
     - table de décoration
@@ -17,9 +17,51 @@ Chaque module expose une classe utilitaire qui en constitue le point d'entrée.
 
 ## Modèle
 
+Le modèle est séparé en deux parties principales fortement liés. La première concerne le Transducteur, et la seconde la table de décoration.
+
+### Transducteur
+
+Le Transducteur est composé des classes java suivantes : 
+- SeedTransducteur
+- State
+- Arc
+
+ainsi que des énumérations suivantes :
+- ArcSemanticLetter
+- ArcOperator
+
+Il représente un transducteur de la manière suivante : La classe **`SeedTransducteur`** possède son _`nom`_, la valeur de son _`before`_ et de son _`after`_, ses _`états`_ sous la forme d'une HasMap, avec comme clé le nom de l'état, ses _`arcs`_ sous la forme d'un HashSet, et enfin son _`état d'initialisation`_.
+
+Les états, quand à eux, sont représentés dans la classe **`State`**, contenant leur _`nom`_.
+
+Enfin, les arcs sont modélisés via la classe **`Arc`**, qui possède l'état de départ et l'état d'arrivée. Un arc est pondéré par un _`opérateur`_, représenté par l'énumération **`ArcOperator`**, et par une _`lettre sémantique`_ représentée par l'énumération **`ArcSemanticLetter`**.
+
+#### Diagramme de classe de l'architecture d'un Transducteur :
+
+![SeedTransducer](img/SeedTransducer.png)
+
 ### Table de décoration
 
-![Série temporelle](img/SeedTransducer.png)
+La table de décoration est représentée principalement par la class **`DecorationTable`**, qui contient son _`nom`_, et _`registres`_ sous la forme d'une HashMap d'**`Element`** dont la clé est le nom du registre, et dont l'élement est la valeur à l'initialisation. Même procédé pour les variables _`returns`_. Les instructions sont, elles, définies dans une HashMap d'**`Instruction`** avec comme clé un objet **`InstructionKey`**.
+
+Cet classe **`InstructionKey`** est composée de deux éléments, une _`Lettre Sémantique`_ (définie dans la partie prédédente) et d'une valeur (optionelle) pour l'_`after`_.
+
+Les instructions sont implémentés par la classe **`Instruction`**. Cette classe est composée d'une HashMap d'**`Element`** représentant les guards, et dont la clé est l'identifiant de la variable modifiée, et d'une HashMap d'**`Element`** pour représenter les updates, fonctionnant de la même manière.
+
+#### Diagramme de classe de l'architecture d'une Table de Décoration :
+
+![DecorationTable](img/DecorationTable.png)
+
+Concernant ces éléments : 
+
+Un élément est un objet pouvant prendre plusieurs formes, de la variable jusqu'à un calcul en passant par une affectation. On peut ainsi les imbriquer pour former des expressions complexes, et les donner comme guard ou update dans une Table de décoration ou une Instruction.
+
+// TODO
+
+
+#### Diagramme de classe du l'architecture des Elements :
+
+![Element](img/Element.png)
 
 ## Module de parsing
 
