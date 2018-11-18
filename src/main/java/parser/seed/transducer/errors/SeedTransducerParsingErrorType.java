@@ -37,9 +37,5 @@ public enum SeedTransducerParsingErrorType {
         return label;
     }
 
-    @Override
-    public String toString() {
-        return label;
-    }
 
 }

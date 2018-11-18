@@ -115,7 +115,7 @@ public class SeedTransducerConverter {
         if (before == null) {
             manageError(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE,
-                    SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER.getLabel() + " in " + pojo.getName());
+                    SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE.getLabel() + " in " + pojo.getName());
         } else {
             seed.setBefore(before);
         }
@@ -131,8 +131,8 @@ public class SeedTransducerConverter {
         Integer after = pojo.getAfter();
         if (after == null) {
             manageError(res,
-                    SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE,
-                    SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER.getLabel() + " in " + pojo.getName());
+                    SeedTransducerParsingErrorType.MISSING_PROPERTY_AFTER,
+                    SeedTransducerParsingErrorType.MISSING_PROPERTY_AFTER.getLabel() + " in " + pojo.getName());
         } else {
             seed.setAfter(after);
         }
@@ -313,7 +313,7 @@ public class SeedTransducerConverter {
      * @param msg The related error message
      */
     private static void manageError(SeedTransducerParsingResult res, SeedTransducerParsingErrorType err, String msg) {
-        res.addParsingError(new SeedTransducerParsingError(err, msg));
+        res.addParsingError(new SeedTransducerParsingError(err, err.getLabel()  + msg));
     }
 
 }
