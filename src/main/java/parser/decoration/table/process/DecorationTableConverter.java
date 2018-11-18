@@ -5,20 +5,35 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import model.decoration.table.DecorationTable;
 import parser.decoration.table.errors.DecorationTableParsingErrorType;
-import parser.decoration.table.mapper.DecorationTableContentMapper;
 import parser.decoration.table.model.DecorationTablePOJO;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Optional;
 
 import static parser.decoration.table.process.DecorationTableUtils.manageError;
 import static parser.decoration.table.mapper.DecorationTableContentMapper.mapDecorationTableContent;
 import static parser.decoration.table.mapper.InitialisationMapper.mapRegisters;
 import static parser.decoration.table.mapper.InitialisationMapper.mapReturns;
 
+/**
+ * Enables Decoration table's transformation from JSON to POJO.
+ * It is then transformed into a {@link DecorationTableParsingResult} containing the {@link DecorationTable}
+ * or errors.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class DecorationTableConverter {
 
+    /**
+     * Transforms decoration table JSON file into POJO before creating a {@link DecorationTableParsingResult}.
+     * If a parsing error occurs the result will not contain ant {@link DecorationTable}.
+     * Errors are added to the result.
+     * If the error is not a proper parsing error, processing errors can be notified.
+     * @param jsonFile - path to the seed transducer JSON file representation
+     * @return {@link DecorationTableParsingResult} containing the {@link DecorationTable} result or an empty {@link Optional}
+     *         object and errors if the parsing did't go through
+     */
     public static DecorationTableParsingResult convert(File jsonFile) {
 
         DecorationTableParsingResult res = new DecorationTableParsingResult();
@@ -48,6 +63,13 @@ public class DecorationTableConverter {
 
     }
 
+    /**
+     * Process the parsing and converting.
+     * @param pojo The mapped {@link DecorationTablePOJO} related to the Seed Transducer JSON file.
+     * @param res The {@link DecorationTableParsingResult} parsing result
+     * @return {@link DecorationTableParsingResult} containing the {@link DecorationTable} result or an empty {@link Optional}
+     *      object and errors if the parsing did't go through
+     */
     private static DecorationTableParsingResult process(DecorationTablePOJO pojo, DecorationTableParsingResult res) {
 
         DecorationTable decorationTable = new DecorationTable(pojo.getName());
