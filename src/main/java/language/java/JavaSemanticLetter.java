@@ -6,6 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Java code representation of an {@link ArcSemanticLetter}
+ * Convert all letters into java-compatible letters
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public enum JavaSemanticLetter {
 
     FOUND("found", ArcSemanticLetter.FOUND),
@@ -17,7 +22,13 @@ public enum JavaSemanticLetter {
     OUT_AFTER("out_after", ArcSemanticLetter.OUT_AFTER),
     OUT("out", ArcSemanticLetter.OUT);
 
+    /**
+     * Java name of the {@link JavaSemanticLetter}
+     */
     private String label;
+    /**
+     * Related {@link ArcSemanticLetter}
+     */
     private ArcSemanticLetter semanticLetter;
 
     JavaSemanticLetter(String lab, ArcSemanticLetter semanticLetter) {

@@ -1,4 +1,4 @@
 /**
- * Package contenant le générateur de code Java.
+ * Package containing the generator of java code.
  */
 package language.java;

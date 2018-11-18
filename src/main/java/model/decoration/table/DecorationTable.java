@@ -2,7 +2,6 @@ package model.decoration.table;
 
 import java.util.HashMap;
 import java.util.Objects;
-import java.util.Optional;
 
 import model.decoration.table.element.Element;
 import model.seed.transducer.ArcSemanticLetter;

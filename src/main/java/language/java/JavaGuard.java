@@ -1,17 +1,39 @@
 package language.java;
 
+import java.util.Hashtable;
+
+import model.decoration.table.DecorationTable;
 import model.decoration.table.element.Affectation;
 import model.decoration.table.element.Element;
 
+/**
+ * Java code generator for a {@link DecorationTable}'s guard
+ * Generate a lambda function, and add it into a {@link Hashtable} by the 
+ * name of the impacted variable
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class JavaGuard {
 
+    /**
+     * Base {@link Affectation} of the guard
+     */
     private Affectation baseAffectation;
+    /**
+     * Java Expression (as a {@link JavaElement}) for the guard
+     */
     private JavaElement javaExpression;
+    /**
+     * Name of the generated lambda function in order to be unique
+     */
     private String uniqueLambdaName;
 
+    /**
+     * Constructor
+     * @param baseElement   Guard {@link Affectation} to convert into java code
+     */
     public JavaGuard(Element baseElement) {
         if (!(baseElement instanceof Affectation)) {
-            System.err.println("Exception : l'élément de base doit être une affectation");
+            System.err.println("Exception : l'élément de base doit être une affectation"); // TODO
             return;
         }
         this.baseAffectation = (Affectation) baseElement;
@@ -19,8 +41,15 @@ public class JavaGuard {
         this.javaExpression = new JavaElement(this.baseAffectation.getValue());
     }
 
+    /**
+     * Generate java code of the object
+     * @param indent {@link String}: Base indentation to have cleaner code
+     * @param buffer {@link StringBuffer}: Append code to this buffer
+     */
     public void appendCode(String indent, StringBuffer buffer) {
+        // Instantiating lambda expression
         buffer.append(indent + "I " + this.uniqueLambdaName + " = () -> " + this.javaExpression + ";\n");
+        // Adding it to the HashTable
         buffer.append(indent + "this.indexedVariablesFunctions.get(\""+this.baseAffectation.getVariable().getName()+"\").set(i, " + this.uniqueLambdaName + ");\n");
     }
 

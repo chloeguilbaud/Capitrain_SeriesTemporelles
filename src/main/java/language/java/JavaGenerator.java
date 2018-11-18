@@ -4,28 +4,54 @@ import generator.Generator;
 import model.decoration.table.DecorationTable;
 import model.seed.transducer.SeedTransducer;
 
+/**
+ * Entry point for generating a java code for a given
+ * {@link SeedTransducer} and {@link DecorationTable}
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class JavaGenerator implements Generator {
 
+    /**
+     * Generate the java code 
+     * @param seedTransducer    {@link SeedTransducer} to generate
+     * @param decorationTable   linked {@link DecorationTable} to generate
+     * @return  {@link StringBuffer} filled by the whole generated code
+     */
     public StringBuffer generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable) {
+        // Buffer to fill with java code
         StringBuffer javaBuffer = new StringBuffer();
 
+        // Translate SeedTransducer into JavaSeedTransducer
         JavaSeedTransducer javaSeedTransducer = new JavaSeedTransducer(seedTransducer);
+        // Translate DecorationTable into JavaDecorationTable
         JavaDecorationTable javaDecorationTable = new JavaDecorationTable(decorationTable, seedTransducer.getAfter());
 
-        // Imports
+        // Add package generation (to change depending on when the class will be used)
+        javaBuffer.append("package default;\n\n");
+
+        // Add needed imports to code
         javaBuffer.append("import java.util.HashMap;\n");
         javaBuffer.append("import java.util.ArrayList;\n\n");
 
-        javaBuffer.append("public class " + seedTransducer.getName() + "_" + decorationTable.getName() + " {\n\n");
+        // Class declaration named with concatenation of seed transducer name and decoration table name
+        javaBuffer.append("public class " + seedTransducer.getName().substring(0, 1).toUpperCase()
+                                            + seedTransducer.getName().substring(1)
+                                            + "_" + decorationTable.getName() + " {\n\n");
+
+        // Declaration of constants used for Features values
         javaBuffer.append("\tpublic static final String FEATURE_ONE = \"one\";\n");
         javaBuffer.append("\tpublic static final String FEATURE_WIDTH = \"width\";\n");
         javaBuffer.append("\tpublic static final String FEATURE_SURF = \"surf\";\n");
         javaBuffer.append("\tpublic static final String FEATURE_MAX = \"max\";\n");
         javaBuffer.append("\tpublic static final String FEATURE_MIN = \"min\";\n");
         javaBuffer.append("\tpublic static final String FEATURE_RANGE = \"range\";\n");
+
+        // Declaration of an interface in order to use it with lambda functions in code
         javaBuffer.append("\n\tinterface I {\n");
         javaBuffer.append("\t\tint func();\n");
         javaBuffer.append("\t}\n\n");
+
+        // Declaration of all class values
         javaBuffer.append("\tprivate int[] timeSerie;\n");
         javaBuffer.append("\tprivate int i;\n");
         javaBuffer.append("\tprivate String feature;\n");
@@ -36,8 +62,8 @@ public class JavaGenerator implements Generator {
         javaBuffer.append("\tprivate HashMap<String, ArrayList<Integer>> results;\n");
         javaBuffer.append("\t\n");
 
-        // Main function
-        javaBuffer.append("\tpublic HashMap<String, ArrayList<Integer>> entryPoint(int[] timeSerie, String feature, int default_value) {\n");
+        // Add main function
+        javaBuffer.append("\tpublic HashMap<String, ArrayList<Integer>> resolve(int[] timeSerie, String feature, int default_value) {\n");
         javaBuffer.append("\t\tthis.timeSerie = timeSerie;\n");
         javaBuffer.append("\t\tthis.feature = feature;\n");
         javaBuffer.append("\t\tthis.default_value = default_value;\n");
@@ -47,6 +73,7 @@ public class JavaGenerator implements Generator {
         javaBuffer.append("\t\tthis.indexedVariablesFunctions = new HashMap<>();\n");
         javaBuffer.append("\t\tthis.registers = new HashMap<>();\n");
         
+        // Declare variables of decoration table
         decorationTable.getReturns().forEach((key, value) -> {
             javaBuffer.append("\t\tArrayList<I> listI" + key + " = new ArrayList<I>();\n");
             javaBuffer.append("\t\tfor(int i = 0; i < timeSerie.length; i++) {\n");
@@ -59,6 +86,8 @@ public class JavaGenerator implements Generator {
             javaBuffer.append("\t\t}\n");
             javaBuffer.append("\t\tthis.results.put(\"" + key + "\", listInt" + key + ");\n");
         });
+
+        // Declare registers of decoration table
         decorationTable.getRegisters().forEach((key, value) -> {
             javaBuffer.append("\t\tArrayList<Integer> listInt" + key + " = new ArrayList<Integer>();\n");
             javaBuffer.append("\t\tfor(int i = 0; i < timeSerie.length; i++) {\n");
@@ -68,20 +97,29 @@ public class JavaGenerator implements Generator {
             javaBuffer.append("\t\tthis.results.put(\"" + key + "\", listInt" + key + ");\n");
         });
 
-        // Traitement
+        // Processing loop
         javaBuffer.append("\t\twhile(this.i < timeSerie.length - 1) {\n");
+        // Append seed transducer code (States code)
         javaSeedTransducer.appendCode("\t\t\t", javaBuffer);
         javaBuffer.append("\t\t}\n");
 
+        // Resolve all lambda functions by descending indexes
         javaBuffer.append("\t\tthis.indexedVariablesFunctions.forEach((key, value) -> {\n");
         javaBuffer.append("\t\t\tfor (int i = value.size() - 1; i >= 0; i--) {\n");
         javaBuffer.append("\t\t\t\tthis.results.get(key).set(i, value.get(i).func());\n");
         javaBuffer.append("\t\t\t}\n");
         javaBuffer.append("\t\t});\n");
+
+        // Return results of process
         javaBuffer.append("\t\treturn this.results;\n");
 
+        // Close main function
         javaBuffer.append("\t}\n");
+
+        // Append DecorationTable code (SemanticLetter functions)
         javaDecorationTable.appendCode("\t", javaBuffer);
+
+        // Now implements all known functions depending on feature value
 
         // Function id
         javaBuffer.append("\n\tprivate int id(String feature) {\n");
@@ -208,8 +246,10 @@ public class JavaGenerator implements Generator {
         javaBuffer.append("\t\treturn this.default_value;\n");
         javaBuffer.append("\t}\n");
 
+        // Close class
         javaBuffer.append("}");
 
+        // Return buffer
         return javaBuffer;
     }
 

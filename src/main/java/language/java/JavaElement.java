@@ -10,17 +10,32 @@ import model.decoration.table.element.Substraction;
 import model.decoration.table.element.Sum;
 import model.decoration.table.element.Variable;
 
+/**
+ * Generate the java code for an {@link Element}
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class JavaElement {
 
+    /**
+     * Java code for the {@link Element}
+     */
     private String javaCode;
 
+    /**
+     * Constructor
+     * @param e  {@link Element} to translate into java code
+     */
     public JavaElement(Element e) {
         this.javaCode = parseToJava(e);
     }
 
-    // Reccursive
+    /**
+     * Reccursive function to translate an {@link Element} into java code
+     * @param e     {@link Element} to translate
+     * @return      {@link String}: Java code of the {@link Element}
+     */
     private String parseToJava(Element e) {
-        // Construit le calcul en java
+        // Depending of the type of the object
         switch (e.getClass().getName()) {
             case "model.decoration.table.element.Variable":
                 return ((Variable) e).getName();
@@ -51,7 +66,7 @@ public class JavaElement {
                 parametersBuffer.append(")");
                 return parametersBuffer.toString();
             default:
-                // System.err.println("Erreur de parsing");
+                // TODO: handle error here
                 return e.getClass().getName();
         }
     }
