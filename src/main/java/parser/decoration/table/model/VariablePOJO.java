@@ -1,5 +1,9 @@
 package parser.decoration.table.model;
 
+/**
+ * POJO used for variable representation from Decoration table JSON file. Enables easy mapping.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public class VariablePOJO {
 
     private String name;
