@@ -54,8 +54,6 @@ public class DecorationTableContentMapper {
 
                 String semanticLetterLab = semanticLetter.get().getLabel();
 
-                // Parsing after statement
-
                 // Getting table line guards
                 mapGuards(res, tabItem, inst, semanticLetterLab);
 
@@ -68,6 +66,7 @@ public class DecorationTableContentMapper {
                     decorationTable.addInstruction(semanticLetter.get(), inst);
 
                 }
+
             }
 
         }

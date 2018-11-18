@@ -59,8 +59,12 @@ public class DecorationTableConverter {
         // Parsing table
         mapDecorationTableContent(pojo, res, decorationTable);
 
-        // Saving result
-        res.setResult(decorationTable);
+        // If their is some errors, then the seed transducer Optional object is set to empty
+        if (res.hasErrors()) {
+            res.removeParsingResult();
+        } else {
+            res.setResult(decorationTable);;
+        }
 
         return res;
     }

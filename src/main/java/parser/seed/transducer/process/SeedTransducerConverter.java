@@ -92,7 +92,7 @@ public class SeedTransducerConverter {
         // Converting and checking arcs
         checkAndConvertArcs(pojo, seed, res);
 
-        // If their is some errors, then the seed transducer Optional object is set to empty
+        // If their are some errors, then the seed transducer Optional object is set to empty
         if (res.hasErrors()) {
             res.removeParsingResult();
         } else {
