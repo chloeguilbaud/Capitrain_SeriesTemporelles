@@ -104,6 +104,12 @@ public class SeedTransducerConverter {
         return res;
     }
 
+    /**
+     * Sets the seed transducer's before value.
+     * @param pojo The mapped {@link SeedTransducerPOJO} extracted from seed transducer JSON file
+     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
+     * @param seed The {@link SeedTransducer} to produce (modified)
+     */
     private static void setBeforeInSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res, SeedTransducer seed) {
         Integer before = pojo.getBefore();
         if (before == null) {
@@ -115,6 +121,12 @@ public class SeedTransducerConverter {
         }
     }
 
+    /**
+     * Sets the seed transducer's after value.
+     * @param pojo The mapped {@link SeedTransducerPOJO} extracted from seed transducer JSON file
+     * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
+     * @param seed The {@link SeedTransducer} to produce (modified)
+     */
     private static void setAfterInSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res, SeedTransducer seed) {
         Integer after = pojo.getAfter();
         if (after == null) {
