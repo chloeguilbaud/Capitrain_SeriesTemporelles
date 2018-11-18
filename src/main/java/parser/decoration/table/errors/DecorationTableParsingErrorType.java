@@ -2,6 +2,10 @@ package parser.decoration.table.errors;
 
 import model.seed.transducer.ArcSemanticLetter;
 
+/**
+ * Decoration table parsing error type enumeration.
+ * @author Chloé GUILBAUD & Maël MAINCHAIN
+ */
 public enum DecorationTableParsingErrorType {
 
     UNKNOWN_ERROR("Unknown JSON parsing error\n%s"),
