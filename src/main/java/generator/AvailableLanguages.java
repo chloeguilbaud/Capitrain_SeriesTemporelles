@@ -5,6 +5,10 @@ import language.java.JavaGenerator;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration of the possible languages that the programme can generate from a decoration table and seed transducer.
+ * This enumeration links the language to an instance of it's generator.
+ */
 public enum AvailableLanguages {
 
     JAVA("Java", new JavaGenerator());
