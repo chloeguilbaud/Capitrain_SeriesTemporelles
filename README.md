@@ -29,6 +29,8 @@ Une serie temporelle est une séquence d’entiers correspondant à des mesures 
 
 ![Série temporelle](docs/img/serie_temporelle.png)
 
+## Documentation
+Le code source à entièrement été commenté en anglais et nous vous invitons à en consulter la JavaDoc. 
 
 ## Liens
 
