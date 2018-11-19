@@ -16,6 +16,9 @@ L'un de nous ses occupé de la génération de code et de la définition du mode
 à la conception, l'implémentation des parser de transducer et de table de décoration et la gestion des erreurs.
 La définition des formats de données JSON ont été définit selon la compréhension mutuelle du sujet et de la thèse.
 
+Protocoles de rédaction de documentations et d'écriture de code sources ont été établit afin d'assurer la
+cohérence globale du projet.
+
 Des rapports hebdomadaires et de réunions ont été établit. La documentation a été rédigée au fur et à mesure de l'avancement.
 
 Chacun des parties ces chargées de l'implémentation des tests unitaires, de performances et de la documentation assosiée aux modules
