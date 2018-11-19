@@ -10,10 +10,13 @@ import java.io.File;
  * Utils class and entry point to the {@link SeedTransducer} parser extracting data from the given JSON file.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-class SeedTransducerParser {
+public class SeedTransducerParser {
 
+    public static SeedTransducerParsingResult parse(String jsonFilePath) {
+        return parse(new File(jsonFilePath));
+    }
 
-    static SeedTransducerParsingResult parse(File jsonFile) {
+    public static SeedTransducerParsingResult parse(File jsonFile) {
         return SeedTransducerConverter.convert(jsonFile);
     }
 
