@@ -109,9 +109,12 @@ Il est aussi aisé de le remplacer par un autre en cas de besoin.
 Aussi si l'ont souhaite s'en servir dans un autre programme ou y brancher une interface graphique, tout les 
 éléments sont disponible y compris les informations de traitement. 
 
-
 ### Table de décoration
 
+## Module 
+
+parse ne stop pas si pas gros pb, permet de remonter tt les erreurs en une seul fois
+=======
 
 ## Module de génération
 
