@@ -1,6 +1,4 @@
 /**
- * Package contenant le gestionnaire principal permettant
- * parse de decoration table et seed transducer pour en généré
- * un programme dans le langage souhaité.
+ * Package containing the main handle used to parse decoration table and seed transducer in order to generate code in wanted language
  */
 package manager;
