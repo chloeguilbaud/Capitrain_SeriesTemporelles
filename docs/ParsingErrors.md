@@ -1,4 +1,4 @@
-# Erreur de parsing
+# Erreurs de parsing
 
 ## Transducteur
 
