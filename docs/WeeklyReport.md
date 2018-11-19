@@ -1,6 +1,6 @@
 # Comptes rendus hebdomadaires
 
-## Avancement
+## Avancements
 
 1. [Semaine du 22-10-18 au 26-10-18](comptes/rendus/hebdomadaires/avancements/Compte_Rendu_Avancement_02_11_2018.pdf)
 2. [Semaine du 29-10-18 au 02-11-18](comptes/rendus/hebdomadaires/avancements/Compte_Rendu_Avancement_02_11_2018.pdf)
