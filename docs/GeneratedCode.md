@@ -115,7 +115,8 @@ FIN_TANT_QUE
 
 En ce qui concerne les variables utilisés et leur définition, elle sont définies comme suit :
 - Une HashMap contenant des listes de fonctions temporaires, stockées selon la variable à laquelle elle sont rattachées.
-Exemple : ![SeedTransducer](img/Footprint_variablesindexes.png)
+Exemple :
+![SeedTransducer](img/Footprint_variablesindexes.png)
 Dans ce cas, les p(i) = EXPRESSION ne peuvent pas forcément être calculés directement puisqu'ils peuvent dépendre d'un p(i+1) pas encore calculé. Ainsi, pour cette table de décoration, la HashMap de fonctions ressemblera à ça :
 ```
 Hashmap fonctions["p" -> Fonction[
@@ -126,13 +127,140 @@ Hashmap fonctions["p" -> Fonction[
                          ]
                  ]
 ```
+- Une HashMap contenant, pour chaque registre, sa valeur courante. Pour l'exemple précédent, elle sera définie de la manière suivante :
+```
+Hashmap registers["C" -> valeur_courante]
+```
+- Une HashMap contenant, pour chaque registres et chaque variable, sa valeur à chaque pas. C'est cette HashMap qui sera renvoyée par l'algorighme. Pour l'exemple précédent, elle sera définie de la manière suivante : 
+```
+Hashmap results["C" -> Entier[
+                            0 -> entier_1,
+                            1 -> entier_2,
+                            ...
+                            n -> entier_n;
+                         ],
+                  "p" -> Entier[
+                            0 -> entier_1,
+                            1 -> entier_2,
+                            ...
+                            n -> entier_n;
+                         ]
+                 ]
+```
 
+Concernant les fonctions relatives aux lettres sémantiques, leurs instructions découlent directement de la table de décoration associée. Par exemple pour la table FEATURE suivante, et la fonction maybe_before :
+
+![SeedTransducer](img/Feature_maybeb.png)
+
+Son résultat en pseudo-code est le suivant :
+
+```
+Fonction maybe_before() {
+    // Définitions de variables avec une portée locale pour les fonctions à exécuter plus tard
+    Entier i <- currentI
+    Entier C <- registers["C"]
+    Entier D <- registers["D"]
+    // Définition des fonctions a exécuter plus tard
+    Fonction fonction1 <- (() -> results["e"][i+1])
+    fonctions["e"][i] <- fonction1
+    Fonction fonction2 <- (() -> default_fun(this.feature))
+    fonctions["f"][i] <- fonction2
+    // Mise à jour des registres
+    registers["D"] <- phi(feature, D, delta(feature, i))
+    results["C"][i] <- registers["C"]
+    results["D"][i] <- registers["D"]
+Fin_Fonction
+```
+
+Les fonctions pré-définies sont connues du programme et dépendent de la feature. Elles sont les suivantes :
+
+![SeedTransducer](img/FeatureTable.png)
+
+Dans le code généré, elles sont toutes implémentés de la même manière. Ainsi prenons l'exemple de la fonction max, implémentée de la sorte :
+
+```
+Fonction max(feature : Feature) : Entier
+    SELON(feature)
+        CAS FEATURE.ONE:
+            retourner 1;
+        CAS FEATURE.WIDTH:
+            retourner longueur(série) + 1
+        CAS FEATURE.SURF:
+            retourner INFINITY
+        CAS FEATURE.MAX:
+            retourner INFINITY
+        CAS FEATURE.MIN:
+            retourner INFINITY
+        CAS FEATURE.RANGE:
+            retourner INFINITY
+    FIN_SELON
+Fin_Fonction
+```
+
+Autre exemple, celui de la fonction delta :
+
+```
+Fonction delta(feature : Feature, int index) : Entier
+    SELON(feature)
+        CAS FEATURE_ONE:
+            retourner 1
+        CAS FEATURE_WIDTH:
+            retourner 1
+        CAS FEATURE_SURF:
+            retourner série[index]
+        CAS FEATURE_MAX:
+            retourner série[index]
+        CAS FEATURE_MIN:
+            retourner série[index]
+        CAS FEATURE_RANGE:
+            retourner série[index]
+    FIN_SELON
+Fin_Fonction
+```
+
+Enfin, la dernière partie du programme consiste en l'exécution de toutes les fonctions stockés, par indice décroissant. C'est fait de la manière suivante :
+
+```
+// Pour toutes les listes de fonctions dans fonctions
+POUR(variable ET valeurs DE fonctions)
+    // Pour toutes les fonctions de la liste (par index décroissant)
+    POUR(i décroissant de taille(valeurs) -1 à 0)
+        // Exécution de la fonction située dans valeurs[i]
+        results[variable][i] <- valeurs[i]()
+    FIN_POUR
+FIN_POUR
+```
+
+**Complexité**
+
+L'algorithme parcours deux fois la série temporelle, une fois pour traiter l'ensemble des lettres sémantiques et stocker les fonctions dans, et une autre fois pour résoudre toutes ces fonctions. La complexité de cet algorithme est donc de O(2n).
 
 ## Tests de performances
 
-// Todo
+Nous avons effectués des tests de performance du code en sortie.
+Initialisation du test : 
+- Le code généré est en Java ;
+- La taille de la série temporelle a varié de 10 éléments à 5 millions d'éléments ;
+- Les tests ont été réalisés avec un intel code i7 6500U cadencé à 2,50GHz (2 coeurs physiques, 4 coeurs virtuels), une mémoire vive de 2Go attribuée à la Java Virtual Machine, via le logiciel IntelliJ IDEA (version 2018.1) ;
+- Les tests ont été réalisé avec deux codes générés différents :
+    - L'un à base du transducteur `peak` et de la table `footprint` ;
+    - L'autre à base du transducteur `peak` et de la table `feature`.
+
+Les résultats de ces tests de performance sont visibles sur le graphique suivant :
 
 ![SeedTransducer](img/Performances.png)
+
+Comme montré par les lignes `Tendances`, le temps de traitement croit linéairement en fonction du nombre d'éléments dans la série temporelle.
+
+**Limite**
+
+Dans le cas présent, il est impossible de calculer le temps de traitement pour une série temporelle supérieure à 2 millions d'entrées, car la mémoire attribuée à la JVM était pleine. Ainsi, avec 2Go de mémoire vive, il est possible d'analyser une série de 2 millions d'entrée.
+
+**Perspectives**
+
+Il n'est certainement pas impossible d'optimiser encore plus l'algorithme. Sa une complexité plus qu'acceptable, car linéaire. Seulement, niveau mémoire utilisé, il est certainement possible d'améliorer encore, pour pouvoir traiter plus de données dans avec une mémoire équivalente.
+
+Le temps de traitement pourrait cependant être amélioré, en parallélisant des taches, pour gagner quelques millisecondes pour une petite série temporelle, qui pourrait donner un gain de temps encore plus gros lors d'une mise à l'échelle de plusieurs millions voir milliards de données.
 
 ## Tests de validation
 
