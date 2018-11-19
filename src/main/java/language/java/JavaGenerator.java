@@ -27,7 +27,7 @@ public class JavaGenerator implements Language {
         JavaDecorationTable javaDecorationTable = new JavaDecorationTable(decorationTable, seedTransducer.getAfter());
 
         // Add package generation (to change depending on when the class will be used)
-        javaBuffer.append("package default;\n\n");
+        javaBuffer.append("package generated;\n\n");
 
         // Add needed imports to code
         javaBuffer.append("import java.util.HashMap;\n");

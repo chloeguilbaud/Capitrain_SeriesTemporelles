@@ -23,6 +23,6 @@ public class AppManager {
 
         // StringBuffer javaCode = generator.generateCode(Generator.JAVA, seedTransducer, decorationTable);
 
-       //  System.out.println(javaCode.toString());
+        // System.out.println(javaCode.toString());
     }
 }
