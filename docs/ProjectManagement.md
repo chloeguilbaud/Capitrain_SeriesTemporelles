@@ -6,13 +6,16 @@ En terme de gestion de projet Git, la branche `dev` à servie au développement 
 Lorsque cela était jugé nécessaire, une branche `evol` pouvait être utilisée et ensuite détruite après merge sur `dev`. 
 Une fois stabilisée, une version a été merge sur la branche `master`.  
 
+
 ## Suivi et cohérence
+
 Sur Trello, un Kmban a été mit en place et mit à jour au cours des travaux. Nous avons convenu de réunions 
 quasi hebdomadaire avec l'encadrant au cours desquelles nous avons rendu compte de l'avancement et posé les
 questions necessaires à l'aboutissement du projet, aussi bien du point de vue de la compréhension du sujet
 que de la définition du périmètre d'intervention. 
 
 Des rapports hebdomadaires et de réunions ont été établit. La documentation a été rédigée au fur et à mesure de l'avancement.
+
 
 ## Conception
 
@@ -23,6 +26,7 @@ La définition des formats de données JSON ont été définit selon la compréh
 
 Chacun des parties ces chargées de l'implémentation des tests unitaires, de performances et de la documentation assosiée aux modules
 dont il était responsable.
+
 
 ## Méthodes de travail, volonté commune et cohérence
 
@@ -43,3 +47,8 @@ Nous avons eux une réelle volonté de créer un projet très modulaire avec div
 facilitant ainsi la maintenance mais aussi les éventuelles remplacements ou évolutions souhaités. Le projet 
 a été conçu dans la persective d'évolutions futures.
 
+
+
+Ces choix de gestion ont permis un suivit général, régulier et précis. Cela à permis de le mener à bien et de répondre aux
+échéances. Les rapports hebdomadaires ainsi qu'un accès au Trello de l'équipe ont offert à l'encadrant une vision de l'avancement
+et de l'orientation du projet. La philosophie et volonté commune ont assurées une cohérence générale du projet. 
