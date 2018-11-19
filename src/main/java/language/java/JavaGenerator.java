@@ -167,7 +167,7 @@ public class JavaGenerator implements Language {
         javaBuffer.append("\t\t\tcase FEATURE_ONE:\n");
         javaBuffer.append("\t\t\t\treturn 1;\n");
         javaBuffer.append("\t\t\tcase FEATURE_WIDTH:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: (n+1) <- what is n?\n");
+        javaBuffer.append("\t\t\t\treturn this.timeSerie.length + 1;\n");
         javaBuffer.append("\t\t\tcase FEATURE_SURF:\n");
         javaBuffer.append("\t\t\t\treturn Integer.MAX_VALUE;\n");
         javaBuffer.append("\t\t\tcase FEATURE_MAX:\n");
