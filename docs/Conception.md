@@ -166,19 +166,27 @@ Il est aussi aisé de le remplacer par un autre en cas de besoin.
 Aussi si l'ont souhaite s'en servir dans un autre programme ou y brancher une interface graphique, tout les 
 éléments sont disponible y compris les informations de traitement, le résultat de parsing tout comme la liste des erreurs. 
 
-
-
 ## Module de génération
 
-// Todo
+Le module de génération est constitué des classe suivantes :
+- `AvailableLanguages.java` : énumération des langages connus via leur implémentation de leurs classes exposées (héritant de `LanguageGenerator`)
+- `GeneratorManager.java` : classe abstraite ne servant qu'à exposer la fonction de génération, prenant en paramètre le `langage` cible, une `table de décoration` et un `transducteur`
+- `LanguageGenerator.java` : interface d'une classe servant à générer du code. Tous les modules de générations de langages doivent avoir leur classe exposé implémentant cette interface.
 
 ## Module de génération Java
 
-// Todo
+Le module de génération en code Java est un peu construit comme un reflet du `modèle`. Sa structure est la suivante :
+
+![Generator model](img/Generator.png)
+
+Le point d'entrée est `JavaGenarator` via la fonction `generateCode()` prenant en paramètre une `table de décoration` et un `transducer`.
+Cette classe génère le corps principale de la classe, ainsi que toutes les fonctions connues (phi, max, id, etc...), initialise les variables, et, à l'aide des classes `JavaSeedTransducer` et `JavaDecorationTable`, implémente l'algorithme.
+
+Les autres classes ne sont que des traductions des classes du `modèle` en code Java.
 
 ## Module manager
 
-## // TODO: Autres modules
+// TODO
 
 ## Module et indépendance
 - point centrale (model objet)
