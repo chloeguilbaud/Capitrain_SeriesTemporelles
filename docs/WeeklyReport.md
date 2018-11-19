@@ -9,6 +9,6 @@
 
 ## Réunions
 
-1. [Semaine du 22-10-18 au 26-10-18](comptes/rendus/hebdomadaires/reunions/Compte_Rendu_Avancement_29_10_2018.pdf)
-2. [Semaine du 29-10-18 au 02-11-18](comptes/rendus/hebdomadaires/reunions/Compte_Rendu_Avancement_12_10_2018.pdf)
-3. [Semaine du 12-11-18 au 18-11-18](comptes/rendus/hebdomadaires/reunions/Compte_Rendu_Avancement_15_11_2018.pdf)
+1. [Semaine du 22-10-18 au 26-10-18](comptes/rendus/hebdomadaires/reunions/Compte_Rendu_Reunion_29_10_2018.pdf)
+2. [Semaine du 29-10-18 au 02-11-18](comptes/rendus/hebdomadaires/reunions/Compte_Rendu_Reunion_12_10_2018.pdf)
+3. [Semaine du 12-11-18 au 18-11-18](comptes/rendus/hebdomadaires/reunions/Compte_Rendu_Reunion_15_11_2018.pdf)
