@@ -264,4 +264,65 @@ Le temps de traitement pourrait cependant être amélioré, en parallélisant de
 
 ## Tests de validation
 
-// Todo
+Pour valider le code généré, des tests doivent-être faits sur les résultats de l'exécution de ce code. Ainsi, il faut définir, pour une série, un transducteur et une table de décoration donnée, des résultats.
+
+Exemple avec le transducteur `PEAK`, la table de décoration `FOOTPRINT`, et la série temporelle suivante : `{4, 4, 2, 2, 3, 5, 5, 6, 3, 1, 1, 2, 2, 2, 2, 2, 2, 1}`.
+
+Voici ce que donne le transducteur, une fois décoré par la table de décoration :
+
+![Peak_footprint_sheme](img/Peak_footprint.png)
+
+Lorsque l'algorithme est déroulé, cela donne la figure suivante :
+
+![Peak_footprint_results](img/testPeakFootprint.png)
+
+Ce qui nous donne en résultats pour les variables `p` et `C` :
+
+`C = {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 0}`
+
+`p = {0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 2, 2, 2, 2, 2, 2, 0}`
+
+**Note :** la valeur `0` est ajoutée à la fin, pour se prémunir d'une éventuelle opération à `i=n`, faisant référence à un i+1 non défini.
+
+Le test consiste donc à vérifier que les résultats en sortie de `C` et `p` correspondent aux résultats attentus. Ainsi le test en Java donne :
+
+```
+public void testPeakFootprintSample() {
+    int[] timeSerie = {4, 4, 2, 2, 3, 5, 5, 6, 3, 1, 1, 2, 2, 2, 2, 2, 2, 1};
+    int[] results_c = {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 0};
+    int[] results_p = {0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 2, 2, 2, 2, 2, 2, 0};
+
+    Peak_footprint generatedCode = new Peak_footprint();
+    HashMap<String, ArrayList<Integer>> results = generatedCode.resolve(timeSerie, Peak_footprint.FEATURE_ONE, 0);
+
+    results.forEach((key, table) -> {
+        if (key.equals("C")) {
+            int i = 0;
+            for (int value : table) {
+                assertEquals(value, results_c[i]);
+                i++;
+            }
+        } else if (key.equals("p")) {
+            int i = 0;
+            for (int value : table) {
+                assertEquals(value, results_p[i]);
+                i++;
+            }
+        }
+    });
+}
+```
+
+Le code réussit avec succès ce test.
+
+**Améliorations**
+
+Pour avoir des tests plus poussés et plus représentatif de la précision du code généré, il faudrait réitérer le processus de création de test pour d'autres combinaisons `Transducteur` /  `Table de décoration`, ce qui implique de :
+- Créer une série temporelle qui fait apparaitre le pattern,
+- Dérouler l'algorithme dessus,
+- Faire un tableau de résultats,
+- Générer le code correspondant,
+- Ecrire le test,
+- L'implémenter avec le code généré.
+
+Notre volonté était de bien tester le code généré, seulement l'échéance du projet nous a limité en temps pour implémenter plus de tests.

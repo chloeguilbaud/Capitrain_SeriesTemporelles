@@ -17,24 +17,21 @@ public class GeneratedPeak_footprintTest {
 
         Peak_footprint generatedCode = new Peak_footprint();
         HashMap<String, ArrayList<Integer>> results = generatedCode.resolve(timeSerie, Peak_footprint.FEATURE_ONE, 0);
-        StringBuffer buf = new StringBuffer();
 
         results.forEach((key, table) -> {
             if (key.equals("C")) {
                 int i = 0;
                 for (int value : table) {
-                    assertEquals("MESSAGE "+i, value, results_c[i]);
+                    assertEquals(value, results_c[i]);
                     i++;
                 }
             } else if (key.equals("p")) {
                 int i = 0;
                 for (int value : table) {
-                    assertEquals("MESSAGE "+i, value, results_p[i]);
+                    assertEquals(value, results_p[i]);
                     i++;
                 }
             }
         });
-
-        System.out.println(buf.toString());
     }
 }

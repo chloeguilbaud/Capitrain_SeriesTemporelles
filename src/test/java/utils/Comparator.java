@@ -2,7 +2,6 @@ package utils;
 
 import model.seed.transducer.Arc;
 import model.seed.transducer.SeedTransducer;
-import org.junit.Assert;
 
 public class Comparator {
 
