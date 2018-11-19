@@ -34,7 +34,7 @@ Le champs `letter` peut prendre les valeurs suivantes :
 ## Exemple 
 
 Le JSON suivant décrit un exemple de représentation du transducer bump on decreasing sequence.
-![Série temporelle](img/SeedTransducer_bumpOnDecreasingSequence.jpeg)
+![Bump On Decreasing Sequence](img/SeedTransducer_bumpOnDecreasingSequence.jpeg)
 
 ```json
 {
