@@ -176,4 +176,10 @@ Aussi si l'ont souhaite s'en servir dans un autre programme ou y brancher une in
 
 // Todo
 
+## Module manager
+
 ## // TODO: Autres modules
+
+## Module et indépendance
+- point centrale (model objet)
+- point d'entrée par module (classe utilitaire)
