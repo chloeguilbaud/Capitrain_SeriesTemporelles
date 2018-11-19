@@ -104,6 +104,8 @@ peak.addArc(tt1);
 peak.addArc(tt2);
 ```
 
+(Pour plus de détails sur l'architecture, se référer à la JavaDoc de l'application)
+
 ### Instranciation d'une table de décoration
 
 Pour implémenter une table de décoration, il faut utiliser le package `modele.decoration.table`.
@@ -240,3 +242,5 @@ feature.addInstruction(ArcSemanticLetter.IN, 1, in1);
 feature.addInstruction(ArcSemanticLetter.FOUND_END, 0, founde0);
 feature.addInstruction(ArcSemanticLetter.FOUND_END, 1, founde1);
 ```
+
+(Pour plus de détails sur l'architecture, se référer à la JavaDoc de l'application)
