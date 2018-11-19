@@ -30,7 +30,7 @@ Cette application est faite en sorte qu'on puisse ajouter des parseurs, si l'on 
 
 Chaque module expose une classe utilitaire qui en constitue le point d'entrée.
 
-## Modèle
+## Modèle 
 
 Le modèle est séparé en deux parties principales fortement liés. La première concerne le Transducteur, et la seconde la table de décoration.
 
@@ -86,6 +86,47 @@ Tout deuc produisent des objets résultats contenant les données parsée ainsi 
 
 Ils présentent tout deux une indépendance totale.
 
+### Table de décoration
+
+#### Model
+
+Le module de parse de la table de décoration prend en entrée un ficher JSON. Ce dernier est mappé 
+automatiquement selon l'architecture suivante : 
+
+![Decoration Table POJO model](img/DecorationTablePOJOModel.png)
+
+### Architecture général du parser
+
+Le diagramme suivant décrit l'architecture général du parser de table de décoration. Ce dernier est principalement constitué
+de classes utilitaires :
+ 
+![Decoration Table POJO model](img/DecorationTableParser.png)
+
+#### Mappers
+
+Trois mappers interviennent alors et vont utilisés pour transformer ces POJO en model (décrit précédement) utilisable par le générateur.
+La classe utilitaire `DecorationTableContentMapper` permet de parser les données de la table de décoration dans son ensemble en se basant sur 
+`InitialisationMapper` et `ValueMapper` respectivement chargés de mapper les données propres à l'initialisation (`name`, `registers` et `returns`)
+et aux valeurs (tel que `variable`, `functions`,...).
+C'est ici que les données sont également vérifiées et validées. 
+
+#### Gestion des erreurs
+
+Lorsque les données sont transformées en model, des erreurs peuvent être constatées tel que le mauvais typage de paramètre de fonction par exemple.
+Les types d'erreurs sont toutes référencées dans l'énumération `DecorationTableParsingErrorType`. `DecorationTableParsingError` lie
+le type d'erreur à un message adaptée à l'erreur constatée au cours du traitement.
+
+Au moment où les données sont converties depuis le model POJO vers le model général, le converter `DecorationTableConverter` parse les données et 
+remonte les éventuelles erreurs ou incohérences constatées via un object résultat `DecorationTableParsingResult`. Ce dernier comprend la table de décoration 
+obtenue si aucune erreur n'a été constatée.
+
+Il arrive qu'une ou plusieurs erreurs surviennent au cours du processus.
+Si une erreur de parsing majeur survient, tel que la présence d'un champs non définit dans le JSON par exemple, le parsing s'arrête et l'utilisateur doit effectuer la correction.
+S'il est question d'une erreur propres au données renseignées, tel que l'oublie d'un nom de variable par exemple, 
+le problème est signalé mais le parsing se poursuit. Ainsi, à la fin du processus, l'utilisateur à une vision globale 
+de toute les erreurs ou incohérences de son fichier JSON. Il peux alors effectuer l'ensemble des corrections sans avoir 
+à relancer le processus et réitérer les corrections. 
+
 ### Transducteur
 
 Le parser présente la classe utilitaire `SeedTransducerParser`. La seul méthode présentée fait appel au `SeedTransducerConverter` 
@@ -109,12 +150,23 @@ Il est aussi aisé de le remplacer par un autre en cas de besoin.
 Aussi si l'ont souhaite s'en servir dans un autre programme ou y brancher une interface graphique, tout les 
 éléments sont disponible y compris les informations de traitement. 
 
-### Table de décoration
+### Points d'entrées
 
-## Module 
+Chacun de ces deux modules de parsing propre au transducer ou à la table de décoration présente une classes utilitaires constituant le 
+point d'entrée du module à savoir respectivement `DecorationTableParser` et `SeedTransducerParser`. 
+Les fonctionnements et architectures sont similaires.
 
-parse ne stop pas si pas gros pb, permet de remonter tt les erreurs en une seul fois
-=======
+Les types d'erreurs sont centralisé dans des énumérations. Cela en facilite grandement la maintenance
+via une centralisation des messages d'erreurs. Il est donc simple de les adapter en cas de besoins ou 
+de les traduires.
+
+Ces deux modules retournent des objets résultats. Ils sont tout deux indépendant et il est facile de remplacer l'un ou l'autre
+(dans la mesure ou les protocoles de communication entre module sont respectés). 
+Il est aussi aisé de le remplacer par un autre en cas de besoin. 
+Aussi si l'ont souhaite s'en servir dans un autre programme ou y brancher une interface graphique, tout les 
+éléments sont disponible y compris les informations de traitement, le résultat de parsing tout comme la liste des erreurs. 
+
+
 
 ## Module de génération
 
