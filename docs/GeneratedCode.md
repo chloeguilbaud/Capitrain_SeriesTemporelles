@@ -233,7 +233,7 @@ FIN_POUR
 
 **Complexité**
 
-L'algorithme parcours deux fois la série temporelle, une fois pour traiter l'ensemble des lettres sémantiques et stocker les fonctions dans, et une autre fois pour résoudre toutes ces fonctions. La complexité de cet algorithme est donc de O(2n).
+L'algorithme parcours deux fois la série temporelle, une fois pour traiter l'ensemble des lettres sémantiques et stocker les fonctions à exécuter, et une autre fois pour résoudre toutes ces fonctions. La complexité de cet algorithme est donc de O(2n).
 
 ## Tests de performances
 
@@ -274,7 +274,7 @@ Voici ce que donne le transducteur, une fois décoré par la table de décoratio
 
 Lorsque l'algorithme est déroulé, cela donne la figure suivante :
 
-![Peak_footprint_results](img/testPeakFootprint.png)
+![Peak_footprint_results](img/TestPeakFootprint.png)
 
 Ce qui nous donne en résultats pour les variables `p` et `C` :
 
