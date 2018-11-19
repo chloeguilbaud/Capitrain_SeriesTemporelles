@@ -52,7 +52,7 @@ La table de décoration est formalisé sous forme d'un objet JSON décrivant :
                     - `index` `""` : index de la variable (facultatif)
 
 ### Lettres sémantiques
-Le champ `letter` peut prendre les valeurs suivantes :
+Le champs `letter` peut prendre les valeurs suivantes :
 - `found`
 - `found(end)`
 - `maybe(before)`
