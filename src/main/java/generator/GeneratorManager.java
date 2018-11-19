@@ -1,31 +1,24 @@
 package generator;
 
-import language.java.JavaGenerator;
 import model.decoration.table.DecorationTable;
 import model.seed.transducer.SeedTransducer;
 
 /**
  * Handle all the generators and offers a black box program
- * for every user of the languages generations
+ * for every user of the languages generations.
+ * Interface of a Generator.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class GeneratorManager implements Generator {
+public abstract class GeneratorManager {
 
     /**
      * Function that generate the code in the given language
-     * @param language    The target language
+     * @param targetLanguage    The target language
      * @param seedTransducer    The {@link SeedTransducer}
      * @param decorationTable   The {@link DecorationTable}
      * @return a {@link StringBuffer} of the whole generated code
      */
-    public StringBuffer generateCode(String targetLanguage, SeedTransducer seedTransducer, DecorationTable decorationTable) {
-        switch(targetLanguage) {
-            case Generator.JAVA:
-                Language java = new JavaGenerator();
-                return java.generateCode(seedTransducer, decorationTable);
-            default:
-                // TODO: throw error
-                return null;
-        }
+    public static StringBuffer generateCode(AvailableLanguages targetLanguage, SeedTransducer seedTransducer, DecorationTable decorationTable) {
+        return targetLanguage.getLanguageGenerator().generateCode(seedTransducer, decorationTable);
     }
 }

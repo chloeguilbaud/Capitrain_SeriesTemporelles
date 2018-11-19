@@ -1,6 +1,6 @@
 package language.java;
 
-import generator.Language;
+import generator.LanguageGenerator;
 import model.decoration.table.DecorationTable;
 import model.seed.transducer.SeedTransducer;
 
@@ -9,7 +9,7 @@ import model.seed.transducer.SeedTransducer;
  * {@link SeedTransducer} and {@link DecorationTable}
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class JavaGenerator implements Language {
+public class JavaGenerator extends LanguageGenerator {
 
     /**
      * Generate the java code 
