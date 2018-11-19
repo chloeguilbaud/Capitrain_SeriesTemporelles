@@ -1,1 +1,5 @@
-- séperation mock et JSON + parser
+# Testing
+
+- couverture 
+- élément tester
+- protocole et méthodes d'établissement
