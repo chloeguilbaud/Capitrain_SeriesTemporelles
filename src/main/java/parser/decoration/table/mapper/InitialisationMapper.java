@@ -95,7 +95,7 @@ public class InitialisationMapper {
      */
     private static Function parseInitValueToFunction(FunctionPOJO pojo, String tabColumn, int tabIndex, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
-            manageError(res, DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME ,tabColumn, (tabIndex + 1));
+            manageError(res, DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME, tabColumn, (tabIndex + 1));
         } else if (pojo.getParameters() != null) {
             manageError(res, DecorationTableParsingErrorType.FUNCTION_UNEXPECTED_PARAMETER_IN_INITIALISATION, pojo.getName());
         } else {

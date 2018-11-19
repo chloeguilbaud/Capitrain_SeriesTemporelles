@@ -29,7 +29,7 @@ La table de décoration est formalisé sous forme d'un objet JSON décrivant :
                 - `value` `{}` : valeur à affecter
                     - soit `fonction` `{}` : objet fonction
                         - `name` `""` : nom de la fonction
-                        - `parameters` `[]` : (facultatif) liste des paramètres à fournir en entré de la fonction, il peux s'agir de :  
+                        - `parameters` `[]` : (facultatif) liste des paramètres à fournir en entrée de la fonction, il peut s'agir de :  
                             - `""` : référence à une variable
                             - `""` : un index
                             - `fonction` `{}` (`name` et `parameters`) : résultat d'une fonction
@@ -37,12 +37,12 @@ La table de décoration est formalisé sous forme d'un objet JSON décrivant :
                     - soit `variable` `{}` : objet variable
                         - `name` `""` : nom de la variable
                         - `index` `""` : index de la variable (facultatif)
-        - `updates` `[{}]` : (facultatif) liste des mises à jours affectant les registres
+        - `updates` `[{}]` : (facultatif) liste des mises à jour affectant les registres
             - `variable` `""` : nom du registre à affecter
             - `value` `{}` : valeur à affecter
                 - soit `fonction` `{}` : objet fonction
                     - `name` `""` : nom de la fonction
-                    - `parameters` `[]` : (facultatif) liste des paramètres à fournir en entré de la fonction, il peux s'agir de :  
+                    - `parameters` `[]` : (facultatif) liste des paramètres à fournir en entrée de la fonction, il peut s'agir de :  
                         - `""` : référence à une variable
                         - `""` : un index
                         - `fonction` `{}` (`name` et `parameters`) : résultat d'une fonction
@@ -52,7 +52,7 @@ La table de décoration est formalisé sous forme d'un objet JSON décrivant :
                     - `index` `""` : index de la variable (facultatif)
 
 ### Lettres sémantiques
-Le champs `letter` peut prendre les valeurs suivantes :
+Le champ `letter` peut prendre les valeurs suivantes :
 - `found`
 - `found(end)`
 - `maybe(before)`
@@ -63,16 +63,16 @@ Le champs `letter` peut prendre les valeurs suivantes :
 - `out`
 
 ### Fonction prédéfinit
-Un autre élément peux aussi être utilisé au cours de la définition du JSON de représentation de la table de décoration`default`. 
-La valeur de ce dernier sera à fournir en entré du code généré par le générateur à partir du transducer et de la table de décoration fournis. 
+Un autre élément peut aussi être utilisé au cours de la définition du JSON de représentation de la table de décoration`default`. 
+La valeur de ce dernier sera à fournir en entrée du code généré par le générateur à partir du transducer et de la table de décoration fournis. 
 
-Les fonctions donner dans le JSON peuvent utilisé le nom d'une des fonction présenté dans le tableau suivant et connu du générateur : 
+Les fonctions données dans le JSON peuvent utiliser le nom d'une des fonctions présentées dans le tableau suivant et connu du générateur : 
 ![Série temporelle](img/FeatureTable.png)
-La première colonne correspond à la feature donné en entré au programme généré et définiera l'implémentation de la fonction référencée.
+La première colonne correspond à la feature donnée en entrée au programme généré et définira l'implémentation de la fonction référencée.
 
 ## Exemple
 
-Le JSON suivant décrit un example de représentation de la table de décoration Feature.
+Le JSON suivant décrit un exemple de représentation de la table de décoration Feature.
 ![Série temporelle](img/FeatureDecorationTable.png)
  
 ```json
