@@ -1,6 +1,6 @@
 package parser.common;
 
-public class ParsingError<T> {
+public abstract class ParsingError<T> {
 
     private T errorType;
     private String errorMsg;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ParsingResult<T, E> {
+public abstract class ParsingResult<T, E> {
 
     private Optional<T> result;
     private List<E> parsingErrors;

@@ -1,5 +1,6 @@
 package generator;
 
+import generator.error.GeneratorResult;
 import model.decoration.table.DecorationTable;
 import model.seed.transducer.SeedTransducer;
 
@@ -14,8 +15,8 @@ public abstract class LanguageGenerator {
      * Function that generate the code
      * @param seedTransducer    The {@link SeedTransducer}
      * @param decorationTable   The {@link DecorationTable}
-     * @return a {@link StringBuffer} of the whole generated code
+     * @return a {@link GeneratorResult} of the whole generated code containing the generated code or errors
      */
-    protected abstract StringBuffer generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable);
+    protected abstract GeneratorResult generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable);
 
 }
