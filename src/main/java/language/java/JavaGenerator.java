@@ -1,8 +1,11 @@
 package language.java;
 
 import generator.LanguageGenerator;
+import generator.error.GeneratorResult;
 import model.decoration.table.DecorationTable;
 import model.seed.transducer.SeedTransducer;
+
+import java.util.Optional;
 
 /**
  * Entry point for generating a java code for a given
@@ -17,7 +20,10 @@ public class JavaGenerator extends LanguageGenerator {
      * @param decorationTable   linked {@link DecorationTable} to generate
      * @return  {@link StringBuffer} filled by the whole generated code
      */
-    public StringBuffer generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable) {
+    public GeneratorResult generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable) {
+
+        GeneratorResult result = new GeneratorResult();
+
         // Buffer to fill with java code
         StringBuffer javaBuffer = new StringBuffer();
 
@@ -100,7 +106,7 @@ public class JavaGenerator extends LanguageGenerator {
         // Processing loop
         javaBuffer.append("\t\twhile(this.i < timeSerie.length - 1) {\n");
         // Append seed transducer code (States code)
-        javaSeedTransducer.appendCode("\t\t\t", javaBuffer);
+        javaSeedTransducer.appendCode("\t\t\t", javaBuffer, result);
         javaBuffer.append("\t\t}\n");
 
         // Resolve all lambda functions by descending indexes
@@ -250,7 +256,11 @@ public class JavaGenerator extends LanguageGenerator {
         javaBuffer.append("}");
 
         // Return buffer
-        return javaBuffer;
+        // If errors, the result value is empty
+        if (!result.hasErrors()) {
+            result.setResult(Optional.of(javaBuffer));
+        }
+        return result;
     }
 
     

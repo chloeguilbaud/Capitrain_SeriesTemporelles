@@ -2,6 +2,7 @@ package language.java;
 
 import java.util.HashMap;
 
+import generator.error.GeneratorResult;
 import model.seed.transducer.SeedTransducer;
 
 /**
@@ -35,8 +36,9 @@ public class JavaSeedTransducer {
      * Generate java code of the object
      * @param indent {@link String}: Base indentation to have cleaner code
      * @param buffer {@link StringBuffer}: Append code to this buffer
+     * @param result
      */
-    public void appendCode(String indent, StringBuffer buffer) {
+    public void appendCode(String indent, StringBuffer buffer, GeneratorResult result) {
         buffer.append(indent);
         this.states.forEach((key, value) -> {
             value.appendCode(indent, buffer);
