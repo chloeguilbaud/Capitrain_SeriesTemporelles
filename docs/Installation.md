@@ -27,3 +27,5 @@ Pour cela, selon votre environnment, voici les étapes à suivrent :
     - Click Browse and select the folder that is the root of the Maven project (probably contains the pom.xml file)
     - Click Next.
     - Click Finish.
+
+[Retour](../README.md)

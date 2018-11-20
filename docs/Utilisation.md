@@ -1,10 +1,33 @@
 # Utilisation
 
-## Application
+## Lancer l'application
 
-// TODO
-- actuelle
-- brancher une interface
+Pour lancer l'application, il faut renseigner 3 arguments au programme :
+- Le chemin du fichier json ([syntaxe ici](SeedTransducer.md)) du transducteur ;
+- Le chemin du fichier json ([syntaxe ici](DecorationTable.md)) de la table de décoration ;
+- Le langage cible du code à générer, en l'état, seul Java est implémenté(renseigner : `Java` comme argument).
+
+Un quatrième argument peut-être renseigné :
+- Le chemin de dossier dans lequel générer le fichier.
+
+Ces arguments doivent-êtres fournis dans cet ordre à la fonction `main` de `app.App`.
+
+Pour les fournir :
+
+**Eclipse :**
+
+- Cliquer sur `Run` puis `Run Configuration`
+- Selectionner `Java Application`
+- Cliquer sur `Nouveau`
+- Dans l'onglet `Arguments`, indiquer les arguments dans le champ de texte 
+`Program Arguments`. Un argument par ligne.
+
+Ajouter tout d'abord le chemin de votre fichier json du transducteur, puis passez une ligne, ajouter celui du fichier json de la table de décoration, puis repassez une ligne, notez le langage cible voulu,
+Puis (optionel), passez une ligne, ajoutez le chemin de destination du fichier généré (de base : src/main/java/generated).
+
+**IntelliJ:**
+- Cliquer sur `run/debug configuration`
+- Dans l'onglet `Configuration`, ajouter les arguments dans `Program arguments`
 
 ## Ajouter un langage de génération
 
@@ -244,3 +267,5 @@ feature.addInstruction(ArcSemanticLetter.FOUND_END, 1, founde1);
 ```
 
 (Pour plus de détails sur l'architecture, se référer à la JavaDoc de l'application)
+
+[Retour](../README.md)

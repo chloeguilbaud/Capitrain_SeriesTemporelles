@@ -186,8 +186,12 @@ Les autres classes ne sont que des traductions des classes du `modèle` en code 
 
 ## Module manager
 
-// TODO
+Le module `manager` expose la classe `manager.Manager` qui permet, via la fonction `process()` de générer le code d'un transducteur et d'une table de décoration dont les implémentations en .json passées en paramètre. Le choix du langage est aussi passé en paramètre, ainsi que, optionellement, le chemin de destination du fichier généré.
+
+Cette classe renvoie un objet `manager.model.ManagerResult`, gérant le résultat de la génération, ou les erreurs si la génération n'a pas pu avoir lieu.
 
 ## Module et indépendance
 - point centrale (model objet)
 - point d'entrée par module (classe utilitaire)
+
+[Retour](../README.md)

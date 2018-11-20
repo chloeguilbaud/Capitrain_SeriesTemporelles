@@ -31,12 +31,12 @@ public class App {
         } else if (args.length == 4) {
             Optional<GeneratorAvailableLanguages> languageOp = GeneratorAvailableLanguages.fromLabel(args[2]);
             if(languageOp.isPresent()) {
-                Manager.process(args[0], args[1], args[3], languageOp.get());
+                Manager.process(args[0], args[1], args[3
+                ], languageOp.get());
             } else {
                 throw new RuntimeException("Undefined given language: " + args[2]);
             }
         } else {
-            // TODO
             throw new RuntimeException("Invalid amount of arguments given to program, expecting...");
         }
 

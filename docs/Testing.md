@@ -1,5 +1,76 @@
 # Testing
 
-- couverture 
-- élément tester
-- protocole et méthodes d'établissement
+Sur l'ensemble de l'application, des tests ont été ralisés avec `JUnit`.
+Les tests sont situés dans `src/test`.
+
+Concernant les tests sur le code **généré**, une [partie de cette documentation](GeneratedCode.md) y est dédiée.
+
+## Package Generator
+
+Situés dans `src/test/java/generator`.
+
+Les tests effectués sont les suivants :
+- Génération de code JAVA pour le Transducteur `PEAK` et la table `FOOTPRINT`
+- Génération de code JAVA pour le Transducteur `PEAK` et la table `FEATURE`
+
+## Package Language.Java
+
+Situés dans `src/test/java/language/java`.
+
+Les tests effectués sont les suivants :
+- Levée de l'erreur `JAVA_ELEMENT_UNKNOW_ELEMENT_SUBCLASS`
+- Levée de l'erreur `JAVA_GUARD_PARAMETER_NOT_AN_AFFECTATION`
+- Levée de l'erreur `JAVA_UPDATE_PARAMETER_NOT_AN_AFFECTATION`
+
+## Package Parser
+
+Situés dans `src/test/java/parser`
+
+Pour la table de décoration, les tests effectués sont les suivants :
+- Levée de l'erreur `UNRECOGNIZED_PROPERTY`
+- Levée de l'erreur `JSON_MAPPING_EXCEPTION`
+- Levée de l'erreur `FILE_NOT_FOUND`
+- Levée de l'erreur `INITIALISATION_REGISTER_VALUE_VARIABLE_UNEXPECTED_INDEX`
+- Levée de l'erreur `INITIALISATION_REGISTER_VALUE_VARIABLE_MISSING_NAME`
+- Levée de l'erreur `INITIALISATION_RETURN_VARIABLE_MISSING_NAME`
+- Levée de l'erreur `INITIALISATION_RETURN_VARIABLE_MISSING_VALUE`
+- Levée de l'erreur `INITIALISATION_RETURN_VARIABLE_MISSING_INDEX`
+- Levée de l'erreur `MISSING_REGISTER_NAME`
+- Levée de l'erreur `MISSING_REGISTER_VALUE`
+- Levée de l'erreur `BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE`
+- Levée de l'erreur `BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE`
+- Levée de l'erreur `INITIALISATION_VALUE_FUNCTION_MISSING_NAME`
+- Levée de l'erreur `FUNCTION_MISSING_NAME`
+- Levée de l'erreur `FUNCTION_INVALID_PARAMETER_TYPE`
+- Levée de l'erreur `BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE`
+- Levée de l'erreur `BOTH_FUNCTION_AND_VARIABLE_IN_VALUE`
+- Levée de l'erreur `INSTRUCTION_MISSING_SEMANTIC_LETTER`
+- Levée de l'erreur `INSTRUCTION_INVALID_SEMANTIC_LETTER`
+- Levée de l'erreur `VARIABLE_VALUE_MISSING`
+- Levée de l'erreur `VARIABLE_VALUE_MISSING_NAME`
+- Levée de l'erreur `VARIABLE_MISSING_NAME`
+- Levée de l'erreur `VARIABLE_INVALID_INDEX`
+- Levée de l'erreur `FUNCTION_INVALID_PARAMETER_TYPE`
+- Levée de l'erreur `FUNCTION_INVALID_PARAMETER_TYPE`
+- Levée de l'erreur `FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION`
+- Variable avec un index négatif
+- Modèle
+- Parsing général
+
+Pour le transducteur, les tests effectués sont les suivants :
+- Levée de l'erreur `UNRECOGNIZED_PROPERTY`
+- Levée de l'erreur `MISSING_PROPERTY_BEFORE`
+- Levée de l'erreur `MISSING_PROPERTY_AFTER`
+- Levée de l'erreur `INVALID_INIT_STATE`
+- Levée de l'erreur `INVALID_FROM_STATE_IN_ARC`
+- Levée de l'erreur `INVALID_TO_STATE_IN_ARC`
+- Levée de l'erreur `INVALID_ARC_SEMANTIC_LETTER`
+- Levée de l'erreur `INVALID_ARC_OPERATOR`
+- Levée de l'erreur `INVALID_TO_STATE_IN_ARC`
+- Levée de l'erreur `MISSING_PROPERTY_IN_SEED_TRANSDUCER`
+- Levée de l'erreur `JSON_MAPPING_EXCEPTION`
+- Levée de l'erreur `FILE_NOT_FOUND`
+- Parsing général
+- Etats manquants
+
+[Retour](../README.md)

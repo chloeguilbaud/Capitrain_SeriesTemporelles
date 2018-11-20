@@ -51,4 +51,6 @@ a été conçu dans la persective d'évolutions futures.
 
 Ces choix de gestion ont permis un suivit général, régulier et précis. Cela à permis de le mener à bien et de répondre aux
 échéances. Les rapports hebdomadaires ainsi qu'un accès au Trello de l'équipe ont offert à l'encadrant une vision de l'avancement
-et de l'orientation du projet. La philosophie et volonté commune ont assurées une cohérence générale du projet. 
+et de l'orientation du projet. La philosophie et volonté commune ont assurées une cohérence générale du projet.
+
+[Retour](../README.md)

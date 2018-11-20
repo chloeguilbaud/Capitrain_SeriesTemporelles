@@ -326,3 +326,10 @@ Pour avoir des tests plus poussés et plus représentatif de la précision du co
 - L'implémenter avec le code généré.
 
 Notre volonté était de bien tester le code généré, seulement l'échéance du projet nous a limité en temps pour implémenter plus de tests.
+
+Le code généré a été testé pour le transducer PEAK, et pour les tables :
+- FOOTPRINT
+- FEATURE avec les features :
+    - MAX
+
+[Retour](../README.md)
