@@ -1,11 +1,12 @@
 package language.java;
 
-import generator.error.GeneratorError;
-import generator.error.GeneratorResult;
+import generator.error.GeneratorErrorType;
 
-public enum JavaGeneratorErrorType {
+public enum JavaGeneratorErrorType implements GeneratorErrorType {
 
-    UNKNOWN_ERROR("Unknown JSON parsing error\n%s");
+    JAVA_ELEMENT_UNKNOW_ELEMENT_SUBCLASS("Unknown subclass of model.element used\n%s"),
+    JAVA_GUARD_PARAMETER_NOT_AN_AFFECTATION("Element passed in parameter to a Java Guard is not an affectation\n%s"),
+    JAVA_UPDATE_PARAMETER_NOT_AN_AFFECTATION("Element passed in parameter to a Java Update is not an affectation\n%s");
 
     private String label;
 
@@ -15,10 +16,6 @@ public enum JavaGeneratorErrorType {
 
     public String getLabel() {
         return label;
-    }
-
-    public static void manageError(GeneratorResult res, JavaGeneratorErrorType err, Object...msg) {
-        res.addError(new GeneratorError<JavaGeneratorErrorType>(err, String.format(err.getLabel(), msg)));
     }
 
 }

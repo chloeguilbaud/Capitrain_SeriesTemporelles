@@ -20,7 +20,7 @@ public class GeneratorManagerTest {
         DecorationTable table = DecorationTableMock.getFeatures();
         try {
             PrintWriter writer = new PrintWriter(new File("src/test/java/generated/Peak_feature.java"));
-            writer.println(GeneratorManager.generateCode(AvailableLanguages.JAVA, seed, table).toString());
+            writer.println(GeneratorManager.generateCode(AvailableLanguages.JAVA, seed, table).getResult().toString());
             writer.close();
         } catch (Exception e) {
             assertTrue(e.getMessage(), false);
@@ -33,7 +33,7 @@ public class GeneratorManagerTest {
         DecorationTable table = DecorationTableMock.getFootprint();
         try {
             PrintWriter writer = new PrintWriter(new File("src/test/java/generated/Peak_footprint.java"));
-            writer.println(GeneratorManager.generateCode(AvailableLanguages.JAVA, seed, table).toString());
+            writer.println(GeneratorManager.generateCode(AvailableLanguages.JAVA, seed, table).getResult().toString());
             writer.close();
         } catch (Exception e) {
             assertTrue(e.getMessage(), false);

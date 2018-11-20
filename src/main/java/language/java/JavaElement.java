@@ -1,5 +1,7 @@
 package language.java;
 
+import generator.error.GeneratorErrorHandler;
+import generator.error.GeneratorResult;
 import model.decoration.table.element.Division;
 import model.decoration.table.element.Element;
 import model.decoration.table.element.Function;
@@ -25,8 +27,8 @@ public class JavaElement {
      * Constructor
      * @param e  {@link Element} to translate into java code
      */
-    public JavaElement(Element e) {
-        this.javaCode = parseToJava(e);
+    public JavaElement(Element e, GeneratorResult result) {
+        this.javaCode = parseToJava(e, result);
     }
 
     /**
@@ -34,7 +36,7 @@ public class JavaElement {
      * @param e     {@link Element} to translate
      * @return      {@link String}: Java code of the {@link Element}
      */
-    private String parseToJava(Element e) {
+    private String parseToJava(Element e, GeneratorResult result) {
         // Depending of the type of the object
         switch (e.getClass().getName()) {
             case "model.decoration.table.element.Variable":
@@ -44,13 +46,13 @@ public class JavaElement {
             case "model.decoration.table.element.IntegerVal":
                 return ((IntegerVal) e).getValue() + "";
             case "model.decoration.table.element.Sum":
-                return "(" + parseToJava(((Sum) e).getLeft()) + " + " + parseToJava(((Sum) e).getRight()) + ")";
+                return "(" + parseToJava(((Sum) e).getLeft(), result) + " + " + parseToJava(((Sum) e).getRight(), result) + ")";
             case "model.decoration.table.element.Soustraction":
-                return "(" + parseToJava(((Substraction) e).getLeft()) + " - " + parseToJava(((Substraction) e).getRight()) + ")";
+                return "(" + parseToJava(((Substraction) e).getLeft(), result) + " - " + parseToJava(((Substraction) e).getRight(), result) + ")";
             case "model.decoration.table.element.Product":
-                return "(" + parseToJava(((Product) e).getLeft()) + " * " + parseToJava(((Product) e).getRight()) + ")";
+                return "(" + parseToJava(((Product) e).getLeft(), result) + " * " + parseToJava(((Product) e).getRight(), result) + ")";
             case "model.decoration.table.element.Division":
-                return "(" + parseToJava(((Division) e).getLeft()) + " / " + parseToJava(((Division) e).getRight()) + ")";
+                return "(" + parseToJava(((Division) e).getLeft(), result) + " / " + parseToJava(((Division) e).getRight(), result) + ")";
             case "model.decoration.table.element.Function":
                 StringBuffer parametersBuffer = new StringBuffer();
                 Function f = (Function) e;
@@ -61,12 +63,13 @@ public class JavaElement {
                 }
                 for (Element parameter : f.getParameters()) {
                     parametersBuffer.append(", ");
-                    parametersBuffer.append(parseToJava(parameter));
+                    parametersBuffer.append(parseToJava(parameter, result));
                 }
                 parametersBuffer.append(")");
                 return parametersBuffer.toString();
             default:
-                // TODO: handle error here
+                GeneratorErrorHandler.handle(result, JavaGeneratorErrorType.JAVA_ELEMENT_UNKNOW_ELEMENT_SUBCLASS, e.getClass().getName());
+                
                 return e.getClass().getName();
         }
     }

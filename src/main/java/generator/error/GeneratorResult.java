@@ -7,7 +7,7 @@ import java.util.Optional;
 public class GeneratorResult {
 
     private Optional<StringBuffer> result;
-    private List<GeneratorError> errors;
+    private List<GeneratorError<GeneratorErrorType>> errors;
 
     public GeneratorResult() {
         this.result = Optional.empty();
@@ -18,15 +18,15 @@ public class GeneratorResult {
         this.result = result;
     }
 
-    public Optional<StringBuffer> getResult() {
-        return result;
+    public StringBuffer getResult() {
+        return result.get();
     }
 
-    public List<GeneratorError> getErrors() {
+    public List<GeneratorError<GeneratorErrorType>> getErrors() {
         return errors;
     }
 
-    public void addError(GeneratorError err) {
+    protected void addError(GeneratorError<GeneratorErrorType> err) {
         this.errors.add(err);
     }
 

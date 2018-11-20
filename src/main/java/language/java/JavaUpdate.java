@@ -1,5 +1,7 @@
 package language.java;
 
+import generator.error.GeneratorErrorHandler;
+import generator.error.GeneratorResult;
 import model.decoration.table.DecorationTable;
 import model.decoration.table.element.Affectation;
 import model.decoration.table.element.Element;
@@ -23,13 +25,13 @@ public class JavaUpdate {
      * Constructor
      * @param baseElement   Update {@link Affectation} to convert into java code
      */
-    public JavaUpdate(Element baseElement) {
+    public JavaUpdate(Element baseElement, GeneratorResult result) {
         if (!(baseElement instanceof Affectation)) {
-            System.err.println("Exception : l'élément de base doit être une affectation"); // TODO
+            GeneratorErrorHandler.handle(result, JavaGeneratorErrorType.JAVA_UPDATE_PARAMETER_NOT_AN_AFFECTATION, baseElement.toString());
             return;
         }
         this.baseAffectation = (Affectation) baseElement;
-        this.javaExpression = new JavaElement(this.baseAffectation.getValue());
+        this.javaExpression = new JavaElement(this.baseAffectation.getValue(), result);
     }
 
     /**

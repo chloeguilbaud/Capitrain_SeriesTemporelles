@@ -1,5 +1,6 @@
 package generator;
 
+import generator.error.GeneratorResult;
 import model.decoration.table.DecorationTable;
 import model.seed.transducer.SeedTransducer;
 
@@ -16,9 +17,9 @@ public abstract class GeneratorManager {
      * @param targetLanguage    The target language
      * @param seedTransducer    The {@link SeedTransducer}
      * @param decorationTable   The {@link DecorationTable}
-     * @return a {@link StringBuffer} of the whole generated code
+     * @return a {@link GeneratorResult} of the whole generated code
      */
-    public static StringBuffer generateCode(AvailableLanguages targetLanguage, SeedTransducer seedTransducer, DecorationTable decorationTable) {
+    public static GeneratorResult generateCode(AvailableLanguages targetLanguage, SeedTransducer seedTransducer, DecorationTable decorationTable) {
         return targetLanguage.getLanguageGenerator().generateCode(seedTransducer, decorationTable);
     }
 }

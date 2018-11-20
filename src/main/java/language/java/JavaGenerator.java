@@ -18,10 +18,11 @@ public class JavaGenerator extends LanguageGenerator {
      * Generate the java code 
      * @param seedTransducer    {@link SeedTransducer} to generate
      * @param decorationTable   linked {@link DecorationTable} to generate
-     * @return  {@link StringBuffer} filled by the whole generated code
+     * @return  {@link GeneratorResult} filled by the whole generated code
      */
     public GeneratorResult generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable) {
 
+        // Initialize Result
         GeneratorResult result = new GeneratorResult();
 
         // Buffer to fill with java code
@@ -99,7 +100,7 @@ public class JavaGenerator extends LanguageGenerator {
             javaBuffer.append("\t\tfor(int i = 0; i < timeSerie.length; i++) {\n");
             javaBuffer.append("\t\t\tlistInt" + key + ".add(new Integer(0));\n");
             javaBuffer.append("\t\t}\n");
-            javaBuffer.append("\t\tthis.registers.put(\"" + key + "\", " + new JavaElement(value) + ");\n");
+            javaBuffer.append("\t\tthis.registers.put(\"" + key + "\", " + new JavaElement(value, result) + ");\n");
             javaBuffer.append("\t\tthis.results.put(\"" + key + "\", listInt" + key + ");\n");
         });
 
@@ -123,7 +124,7 @@ public class JavaGenerator extends LanguageGenerator {
         javaBuffer.append("\t}\n");
 
         // Append DecorationTable code (SemanticLetter functions)
-        javaDecorationTable.appendCode("\t", javaBuffer);
+        javaDecorationTable.appendCode("\t", javaBuffer, result);
 
         // Now implements all known functions depending on feature value
 

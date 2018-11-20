@@ -1,7 +1,9 @@
 package generator.error;
 
-public abstract class GeneratorErrorHandler<T> {
+public abstract class GeneratorErrorHandler {
 
-    public abstract void manageError(GeneratorResult res, T err, String... msg);
+    public static void handle(GeneratorResult res, GeneratorErrorType errType, Object...msg) {
+        res.addError(new GeneratorError<GeneratorErrorType>(errType, String.format(errType.getLabel(), msg)));
+    }
 
 }

@@ -2,6 +2,7 @@ package language.java;
 
 import java.util.HashMap;
 
+import generator.error.GeneratorResult;
 import model.decoration.table.DecorationTable;
 import model.decoration.table.Instruction;
 import model.decoration.table.InstructionKey;
@@ -45,7 +46,7 @@ public class JavaDecorationTable {
      * @param indent {@link String}: Base indentation to have cleaner code
      * @param buffer {@link StringBuffer}: Append code to this buffer
      */
-    public void appendCode(String indent, StringBuffer buffer) {
+    public void appendCode(String indent, StringBuffer buffer, GeneratorResult result) {
         buffer.append(indent + "\n");
         // For each instruction
         this.instructions.forEach((key, value) -> {
@@ -62,11 +63,11 @@ public class JavaDecorationTable {
                 });
                 // Adding all guards instructions to do for this SemanticLetter
                 value.getGuards().forEach((variable, instruction) -> {
-                    (new JavaGuard(instruction)).appendCode(indent + "\t", buffer);
+                    (new JavaGuard(instruction, result)).appendCode(indent + "\t", buffer);
                 });
                 // Adding all updates instructions to do for this SemanticLetter
                 value.getUpdates().forEach((registre, instruction) -> {
-                    (new JavaUpdate(instruction)).appendCode(indent + "\t", buffer);
+                    (new JavaUpdate(instruction, result)).appendCode(indent + "\t", buffer);
                 });
                 // Save all new values for each registers
                 this.registers.forEach((variable, init) -> {

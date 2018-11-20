@@ -2,6 +2,8 @@ package language.java;
 
 import java.util.Hashtable;
 
+import generator.error.GeneratorErrorHandler;
+import generator.error.GeneratorResult;
 import model.decoration.table.DecorationTable;
 import model.decoration.table.element.Affectation;
 import model.decoration.table.element.Element;
@@ -31,14 +33,14 @@ public class JavaGuard {
      * Constructor
      * @param baseElement   Guard {@link Affectation} to convert into java code
      */
-    public JavaGuard(Element baseElement) {
+    public JavaGuard(Element baseElement, GeneratorResult result) {
         if (!(baseElement instanceof Affectation)) {
-            System.err.println("Exception : l'élément de base doit être une affectation"); // TODO
+            GeneratorErrorHandler.handle(result, JavaGeneratorErrorType.JAVA_GUARD_PARAMETER_NOT_AN_AFFECTATION, baseElement.toString());
             return;
         }
         this.baseAffectation = (Affectation) baseElement;
         this.uniqueLambdaName = "lambda" + System.identityHashCode(this);
-        this.javaExpression = new JavaElement(this.baseAffectation.getValue());
+        this.javaExpression = new JavaElement(this.baseAffectation.getValue(), result);
     }
 
     /**
