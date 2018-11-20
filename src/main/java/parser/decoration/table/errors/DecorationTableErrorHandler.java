@@ -6,7 +6,7 @@ import parser.decoration.table.process.DecorationTableParsingResult;
  * Decoration Table parsing error handler
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class DecorationTableErrorHandler {
+public abstract class DecorationTableErrorHandler {
 
     /**
      * Enables parsing error management.

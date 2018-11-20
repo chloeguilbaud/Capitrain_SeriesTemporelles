@@ -10,7 +10,7 @@ import parser.decoration.table.errors.DecorationTableParsingError;
  * be listed. In that cas, the {@link java.util.Optional} {@link DecorationTable} should be empty.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class DecorationTableParsingResult extends ParsingResult<DecorationTable, DecorationTableParsingError> {
+public abstract class DecorationTableParsingResult extends ParsingResult<DecorationTable, DecorationTableParsingError> {
 
     public DecorationTableParsingResult() {
         super();

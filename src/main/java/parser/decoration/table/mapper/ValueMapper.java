@@ -18,7 +18,7 @@ import static parser.decoration.table.errors.DecorationTableErrorHandler.handle;
  * Decoration table mapper specialized in value processing.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-class ValueMapper {
+abstract class ValueMapper {
 
     /**
      * Mapper from {@link ValuePOJO} to model {@link Element}.

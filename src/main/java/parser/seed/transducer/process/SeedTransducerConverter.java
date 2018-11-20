@@ -22,7 +22,7 @@ import static parser.seed.transducer.errors.SeedTransducerErrorHandler.handle;
  * or errors.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class SeedTransducerConverter {
+public abstract class SeedTransducerConverter {
 
     /**
      * Transforms seed transducer JSON file into POJO before creating a {@link SeedTransducerParsingResult}.

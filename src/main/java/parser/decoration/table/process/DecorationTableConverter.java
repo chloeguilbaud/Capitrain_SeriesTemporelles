@@ -23,7 +23,7 @@ import static parser.decoration.table.mapper.InitialisationMapper.mapReturns;
  * or errors.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class DecorationTableConverter {
+public abstract class DecorationTableConverter {
 
     /**
      * Transforms decoration table JSON file into POJO before creating a {@link DecorationTableParsingResult}.

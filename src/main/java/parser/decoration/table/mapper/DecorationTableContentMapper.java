@@ -22,7 +22,7 @@ import static parser.decoration.table.errors.DecorationTableErrorHandler.handle;
  * Decoration table mapper enabling pojo transformation to model.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class DecorationTableContentMapper {
+public abstract class DecorationTableContentMapper {
 
     private static final String tabColumnGuard = "GUARD";
     private static final String tabColumnUpdate = "UPDATE";

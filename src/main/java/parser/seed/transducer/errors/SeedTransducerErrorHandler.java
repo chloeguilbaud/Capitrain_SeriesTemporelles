@@ -6,7 +6,7 @@ import parser.seed.transducer.process.SeedTransducerParsingResult;
  * Seed Transducer parsing error handler
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class SeedTransducerErrorHandler {
+public abstract class SeedTransducerErrorHandler {
 
     /**
      * Enables parsing error management.

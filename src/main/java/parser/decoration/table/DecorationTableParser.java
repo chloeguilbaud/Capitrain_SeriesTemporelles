@@ -10,7 +10,7 @@ import java.io.File;
  * Utils class and entry point to the {@link DecorationTable} parser extracting data from the given JSON file.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class DecorationTableParser {
+public abstract class DecorationTableParser {
 
     public static DecorationTableParsingResult parse(String jsonFilePath) {
         return parse(new File(jsonFilePath));

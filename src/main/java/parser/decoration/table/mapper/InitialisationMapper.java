@@ -16,7 +16,7 @@ import static parser.decoration.table.errors.DecorationTableErrorHandler.handle;
  * Decoration table mapper enabling pojo transformation to model for initialisation elements like register and return statements.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class InitialisationMapper {
+public abstract class InitialisationMapper {
 
     /**
      * Maps return elements from the given {@link DecorationTablePOJO} object and adds them to {@link DecorationTable} object.
