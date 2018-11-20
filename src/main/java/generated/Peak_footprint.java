@@ -181,9 +181,9 @@ public class Peak_footprint {
 			case FEATURE_SURF:
 				return 0;
 			case FEATURE_MAX:
-				return Integer.MAX_VALUE;
-			case FEATURE_MIN:
 				return Integer.MIN_VALUE;
+			case FEATURE_MIN:
+				return Integer.MAX_VALUE;
 			case FEATURE_RANGE:
 				return 0;
 			default:

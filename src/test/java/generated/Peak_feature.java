@@ -66,45 +66,53 @@ public class Peak_feature {
 		}
 		this.registers.put("D", id(this.feature));
 		this.results.put("D", listIntD);
+		System.out.println("Youho");
 		while(this.i < timeSerie.length - 1) {
 			if (currentState.equals("r")) {
 				if (timeSerie[i] <= timeSerie[i+1]) {
+					System.out.println("maybe_before");
 					maybe_before();
 					i++;
 					currentState = "r";
 				}
 				else
 				if (timeSerie[i] > timeSerie[i+1]) {
+					System.out.println("found");
 					found();
 					i++;
 					currentState = "t";
 				}
 			} else if (currentState.equals("d")) {
 				if (timeSerie[i] < timeSerie[i+1]) {
+					System.out.println("out");
 					out();
 					i++;
 					currentState = "r";
 				}
 				else
 				if (timeSerie[i] >= timeSerie[i+1]) {
+					System.out.println("out");
 					out();
 					i++;
 					currentState = "d";
 				}
 			} else if (currentState.equals("t")) {
 				if (timeSerie[i] > timeSerie[i+1]) {
+					System.out.println("in");
 					in();
 					i++;
 					currentState = "t";
 				}
 				else
 				if (timeSerie[i] < timeSerie[i+1]) {
+					System.out.println("out_after");
 					out_after();
 					i++;
 					currentState = "r";
 				}
 				else
 				if (timeSerie[i] == timeSerie[i+1]) {
+					System.out.println("maybe_after");
 					maybe_after();
 					i++;
 					currentState = "t";
@@ -237,9 +245,9 @@ public class Peak_feature {
 			case FEATURE_SURF:
 				return 0;
 			case FEATURE_MAX:
-				return Integer.MAX_VALUE;
-			case FEATURE_MIN:
 				return Integer.MIN_VALUE;
+			case FEATURE_MIN:
+				return Integer.MAX_VALUE;
 			case FEATURE_RANGE:
 				return 0;
 			default:

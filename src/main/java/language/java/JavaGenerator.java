@@ -138,9 +138,9 @@ public class JavaGenerator extends LanguageGenerator {
         javaBuffer.append("\t\t\tcase FEATURE_SURF:\n");
         javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t\tcase FEATURE_MAX:\n");
-        javaBuffer.append("\t\t\t\treturn Integer.MAX_VALUE;\n");
-        javaBuffer.append("\t\t\tcase FEATURE_MIN:\n");
         javaBuffer.append("\t\t\t\treturn Integer.MIN_VALUE;\n");
+        javaBuffer.append("\t\t\tcase FEATURE_MIN:\n");
+        javaBuffer.append("\t\t\t\treturn Integer.MAX_VALUE;\n");
         javaBuffer.append("\t\t\tcase FEATURE_RANGE:\n");
         javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t\tdefault:\n");
