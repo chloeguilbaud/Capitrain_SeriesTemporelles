@@ -12,7 +12,7 @@ import java.util.Optional;
  * be listed. In that cas, the {@link Optional} {@link SeedTransducer} should be empty.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public abstract class SeedTransducerParsingResult extends ParsingResult<SeedTransducer, SeedTransducerParsingError> {
+public class SeedTransducerParsingResult extends ParsingResult<SeedTransducer, SeedTransducerParsingError> {
 
     public SeedTransducerParsingResult() {
         super();
