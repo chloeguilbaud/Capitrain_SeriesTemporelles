@@ -1,3 +1,3 @@
 # Capitrain_SeriesTemporelles
 
-Test
+Chloé GUILBAUD && Maël MAINCHAIN
