@@ -1,13 +1,12 @@
-package parser.decoration.table.process;
+package parser.decoration.table.errors;
 
-import parser.decoration.table.errors.DecorationTableParsingError;
-import parser.decoration.table.errors.DecorationTableParsingErrorType;
+import parser.decoration.table.process.DecorationTableParsingResult;
 
 /**
- * Decoration Table functional util class
+ * Decoration Table parsing error handler
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class DecorationTableUtils {
+public class DecorationTableErrorHandler {
 
     /**
      * Enables parsing error management.
@@ -15,7 +14,7 @@ public class DecorationTableUtils {
      * @param err The {@link DecorationTableParsingErrorType} occurred error
      * @param msg The related error message
      */
-    public static void manageError(DecorationTableParsingResult res, DecorationTableParsingErrorType err, Object...msg) {
+    public static void handle(DecorationTableParsingResult res, DecorationTableParsingErrorType err, Object...msg) {
         res.addParsingError(new DecorationTableParsingError(err, String.format(err.getLabel(), msg)));
     }
 

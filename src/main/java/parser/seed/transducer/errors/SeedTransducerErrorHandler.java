@@ -1,14 +1,12 @@
 package parser.seed.transducer.errors;
 
-import parser.seed.transducer.errors.SeedTransducerParsingError;
-import parser.seed.transducer.errors.SeedTransducerParsingErrorType;
 import parser.seed.transducer.process.SeedTransducerParsingResult;
 
 /**
- * Seed Transducer functional util class
+ * Seed Transducer parsing error handler
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public class SeedTransducerUtils {
+public class SeedTransducerErrorHandler {
 
     /**
      * Enables parsing error management.
@@ -16,7 +14,7 @@ public class SeedTransducerUtils {
      * @param err The {@link SeedTransducerParsingErrorType} occurred error
      * @param msg The related error message
      */
-    public static void manageError(SeedTransducerParsingResult res, SeedTransducerParsingErrorType err, String...msg) {
+    public static void handle(SeedTransducerParsingResult res, SeedTransducerParsingErrorType err, String...msg) {
         res.addParsingError(new SeedTransducerParsingError(err, String.format(err.getLabel(), msg)));
     }
 

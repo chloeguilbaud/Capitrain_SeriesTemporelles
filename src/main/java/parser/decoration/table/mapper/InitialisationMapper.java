@@ -10,7 +10,7 @@ import parser.decoration.table.model.*;
 
 import java.util.ArrayList;
 
-import static parser.decoration.table.process.DecorationTableUtils.manageError;
+import static parser.decoration.table.errors.DecorationTableErrorHandler.handle;
 
 /**
  * Decoration table mapper enabling pojo transformation to model for initialisation elements like register and return statements.
@@ -32,16 +32,16 @@ public class InitialisationMapper {
             String name = item.getName();
             ValuePOJO val = item.getValue();
             if (name == null) {
-                manageError(res,
+                handle(res,
                         DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_NAME, (index + 1));
             } else if (item.getIndex() == null) {
-                manageError(res,
+                handle(res,
                         DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_INDEX, (index + 1), name);
             } else if (val == null) {
-                manageError(res,
+                handle(res,
                         DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_VALUE, (index + 1));
             } else if ((val.getFunction() == null) == (val.getVariable() == null)) {
-                manageError(res,
+                handle(res,
                         DecorationTableParsingErrorType.BOTH_RETURN_FUNCTION_AND_VARIABLE_IN_VALUE, (index + 1));
             } else if (val.getFunction() != null) {
                 decorationTable.addReturn(name, parseInitValueToFunction(val.getFunction(), DecorationTableContentMapper.tabColumnReturn, index, res));
@@ -65,15 +65,15 @@ public class InitialisationMapper {
             String name = item.getName();
             ValuePOJO val = item.getValue();
             if (name == null) {
-                manageError(res,
+                handle(res,
                         DecorationTableParsingErrorType.MISSING_REGISTER_NAME,
                         (index + 1));
             } else if (val == null) {
-                manageError(res,
+                handle(res,
                         DecorationTableParsingErrorType.MISSING_REGISTER_VALUE,
                         (index + 1));
             } else if ((val.getFunction() == null) == (val.getVariable() == null)) {
-                manageError(res,
+                handle(res,
                         DecorationTableParsingErrorType.BOTH_REGISTER_FUNCTION_AND_VARIABLE_IN_VALUE, (index + 1));
             } else if (val.getFunction() != null) {
                 decorationTable.addRegister(name, parseInitValueToFunction(val.getFunction(), DecorationTableContentMapper.tabColumnRegister, index, res));
@@ -95,9 +95,9 @@ public class InitialisationMapper {
      */
     private static Function parseInitValueToFunction(FunctionPOJO pojo, String tabColumn, int tabIndex, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
-            manageError(res, DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME, tabColumn, (tabIndex + 1));
+            handle(res, DecorationTableParsingErrorType.INITIALISATION_VALUE_FUNCTION_MISSING_NAME, tabColumn, (tabIndex + 1));
         } else if (pojo.getParameters() != null) {
-            manageError(res, DecorationTableParsingErrorType.FUNCTION_UNEXPECTED_PARAMETER_IN_INITIALISATION, pojo.getName());
+            handle(res, DecorationTableParsingErrorType.FUNCTION_UNEXPECTED_PARAMETER_IN_INITIALISATION, pojo.getName());
         } else {
             return new Function(pojo.getName(), new ArrayList<>());
         }
@@ -115,10 +115,10 @@ public class InitialisationMapper {
      */
     private static Variable mapRegisterValueToVariable(VariablePOJO pojo, int registerIndex, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
-            manageError(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_MISSING_NAME,
+            handle(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_MISSING_NAME,
                     (registerIndex + 1));
         } else if (pojo.getIndex() != null) {
-            manageError(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_UNEXPECTED_INDEX,
+            handle(res, DecorationTableParsingErrorType.INITIALISATION_REGISTER_VALUE_VARIABLE_UNEXPECTED_INDEX,
                     pojo.getName());
         } else {
             return new IndexedVariable(pojo.getName(),
@@ -139,7 +139,7 @@ public class InitialisationMapper {
      */
     private static Variable mapReturnValueToVariable(VariablePOJO pojo, int index, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
-            manageError(res, DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_NAME,
+            handle(res, DecorationTableParsingErrorType.INITIALISATION_RETURN_VARIABLE_MISSING_NAME,
                     (index+1));
         } else {
             return new Variable(pojo.getName());

@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.Optional;
 
 import static parser.seed.transducer.json.SeedTransducerJSONElements.*;
-import static parser.seed.transducer.errors.SeedTransducerUtils.manageError;
+import static parser.seed.transducer.errors.SeedTransducerErrorHandler.handle;
 
 /**
  * Enables Seed Transducer's transformation from JSON to POJO.
@@ -41,19 +41,19 @@ public class SeedTransducerConverter {
                     .readValue(jsonFile, SeedTransducerPOJO.class);
             return process(pojo, res);
         } catch (UnrecognizedPropertyException ex) {
-            manageError(res,
+            handle(res,
                     SeedTransducerParsingErrorType.UNRECOGNIZED_PROPERTY,
                     ex.getMessage());
         } catch (JsonMappingException ex) {
-            manageError(res,
+            handle(res,
                     SeedTransducerParsingErrorType.JSON_MAPPING_EXCEPTION,
                     ex.getMessage());
         } catch (FileNotFoundException ex) {
-            manageError(res,
+            handle(res,
                     SeedTransducerParsingErrorType.FILE_NOT_FOUND,
                     ex.getMessage());
         } catch (IOException ex) {
-            manageError(res,
+            handle(res,
                     SeedTransducerParsingErrorType.UNKNOWN_ERROR,
                     ex.getMessage());
         }
@@ -73,7 +73,7 @@ public class SeedTransducerConverter {
         // Seed Transducer initialisation
         String name = pojo.getName();
         if(name == null) {
-            manageError(res,
+            handle(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER, "\"name\"");
         }
 
@@ -111,7 +111,7 @@ public class SeedTransducerConverter {
     private static void setBeforeInSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res, SeedTransducer seed) {
         Integer before = pojo.getBefore();
         if (before == null) {
-            manageError(res,
+            handle(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE,
                      pojo.getName());
         } else {
@@ -128,7 +128,7 @@ public class SeedTransducerConverter {
     private static void setAfterInSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res, SeedTransducer seed) {
         Integer after = pojo.getAfter();
         if (after == null) {
-            manageError(res,
+            handle(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_AFTER,
                     pojo.getName());
         } else {
@@ -145,7 +145,7 @@ public class SeedTransducerConverter {
      */
     private static void addStatesToSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res, SeedTransducer seed) {
         if(pojo.getStates() == null) {
-            manageError(res,
+            handle(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER,
                     "\"states\"");
         } else {
@@ -166,7 +166,7 @@ public class SeedTransducerConverter {
         String initState = pojo.getInit_state();
         // Checking if the initial state given in the JSON File
         if(initState == null) {
-            manageError(res,
+            handle(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER,
                     "\"init_state\"");
         } else {
@@ -174,7 +174,7 @@ public class SeedTransducerConverter {
             if (initStOp.isPresent()) {
                 seed.setInitState(initStOp.get());
             } else {
-                manageError(res, SeedTransducerParsingErrorType.INVALID_INIT_STATE,
+                handle(res, SeedTransducerParsingErrorType.INVALID_INIT_STATE,
                                 pojo.getInit_state(), "" + pojo.getStates());
             }
         }
@@ -190,13 +190,13 @@ public class SeedTransducerConverter {
     private static void checkAndConvertArcs(SeedTransducerPOJO pojo, SeedTransducer seed, SeedTransducerParsingResult res) {
         // Checking if arcs are given in the JSON File
         if(pojo.getArcs() == null) {
-            manageError(res,
+            handle(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER,
                     "\"arcs\"");
         } else {
             for (LinkedHashMap mp : pojo.getArcs()) {
                 if (mp.values().size() != 4) {
-                    manageError(res, SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_ARC,
+                    handle(res, SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_ARC,
                                     "" + mp.values());
 
                 } else {
@@ -229,7 +229,7 @@ public class SeedTransducerConverter {
         if(arcLetterOpt.isPresent()) {
             arc.setArcSemanticLetter(arcLetterOpt.get());
         } else {
-            manageError(res, SeedTransducerParsingErrorType.INVALID_ARC_SEMANTIC_LETTER,
+            handle(res, SeedTransducerParsingErrorType.INVALID_ARC_SEMANTIC_LETTER,
                             mp.toString(), ArcSemanticLetter.valuesAsList().toString());
         }
 
@@ -248,7 +248,7 @@ public class SeedTransducerConverter {
         if(arcOpOpt.isPresent()) {
             arc.setArcOperator(arcOpOpt.get());
         } else {
-            manageError(res, SeedTransducerParsingErrorType.INVALID_ARC_OPERATOR,
+            handle(res, SeedTransducerParsingErrorType.INVALID_ARC_OPERATOR,
                             mp.toString(), ArcOperator.valuesAsList().toString());
         }
     }
@@ -268,7 +268,7 @@ public class SeedTransducerConverter {
         if(fromStateOpt.isPresent()) {
             arc.setFrom(fromStateOpt.get());
         } else {
-            manageError(res, SeedTransducerParsingErrorType.INVALID_FROM_STATE_IN_ARC,
+            handle(res, SeedTransducerParsingErrorType.INVALID_FROM_STATE_IN_ARC,
                     mp.toString(), "" + pojo.getStates());
         }
     }
@@ -288,7 +288,7 @@ public class SeedTransducerConverter {
         if(toStateOpt.isPresent()) {
             arc.setTo(toStateOpt.get());
         } else {
-            manageError(res, SeedTransducerParsingErrorType.INVALID_TO_STATE_IN_ARC,
+            handle(res, SeedTransducerParsingErrorType.INVALID_TO_STATE_IN_ARC,
                     "" + mp, "" + pojo.getStates());
         }
     }

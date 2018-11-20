@@ -16,7 +16,7 @@ import parser.decoration.table.model.UpdatePOJO;
 import java.util.List;
 import java.util.Optional;
 
-import static parser.decoration.table.process.DecorationTableUtils.manageError;
+import static parser.decoration.table.errors.DecorationTableErrorHandler.handle;
 
 /**
  * Decoration table mapper enabling pojo transformation to model.
@@ -50,9 +50,9 @@ public class DecorationTableContentMapper {
             Optional<ArcSemanticLetter> semanticLetter = ArcSemanticLetter.fromLabel(letter);
 
             if (letter == null) {
-                manageError(res, DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER, (tabIndex+1));
+                handle(res, DecorationTableParsingErrorType.INSTRUCTION_MISSING_SEMANTIC_LETTER, (tabIndex+1));
             } else if (!semanticLetter.isPresent()) {
-                manageError(res, DecorationTableParsingErrorType.INSTRUCTION_INVALID_SEMANTIC_LETTER,
+                handle(res, DecorationTableParsingErrorType.INSTRUCTION_INVALID_SEMANTIC_LETTER,
                         (tabIndex+1), letter);
             } else {
 
@@ -90,7 +90,7 @@ public class DecorationTableContentMapper {
      */
     private static Variable mapToVariable(String tabColumn, int tabLine, String semanticLetter, String pojoName, Optional<String> pojoIndex, DecorationTableParsingResult res) {
         if(pojoName == null) {
-            manageError(res, DecorationTableParsingErrorType.VARIABLE_MISSING_NAME,
+            handle(res, DecorationTableParsingErrorType.VARIABLE_MISSING_NAME,
                     tabColumn, (tabLine+1), semanticLetter);
         }
         else if (!pojoIndex.isPresent()) {

@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Optional;
 
-import static parser.decoration.table.process.DecorationTableUtils.manageError;
+import static parser.decoration.table.errors.DecorationTableErrorHandler.handle;
 import static parser.decoration.table.mapper.DecorationTableContentMapper.mapDecorationTableContent;
 import static parser.decoration.table.mapper.InitialisationMapper.mapRegisters;
 import static parser.decoration.table.mapper.InitialisationMapper.mapReturns;
@@ -42,19 +42,19 @@ public class DecorationTableConverter {
             DecorationTablePOJO pojo = mapper.readValue(jsonFile, DecorationTablePOJO.class);
             return process(pojo, res);
         } catch (UnrecognizedPropertyException ex) {
-            manageError(res,
+            handle(res,
                     DecorationTableParsingErrorType.UNRECOGNIZED_PROPERTY,
                     ex.getMessage());
         } catch (JsonMappingException ex) {
-            manageError(res,
+            handle(res,
                     DecorationTableParsingErrorType.JSON_MAPPING_EXCEPTION,
                     ex.getMessage());
         } catch (FileNotFoundException ex) {
-            manageError(res,
+            handle(res,
                     DecorationTableParsingErrorType.FILE_NOT_FOUND,
                     ex.getMessage());
         } catch (IOException ex) {
-            manageError(res,
+            handle(res,
                     DecorationTableParsingErrorType.UNKNOWN_ERROR,
                     ex.getMessage());
         }

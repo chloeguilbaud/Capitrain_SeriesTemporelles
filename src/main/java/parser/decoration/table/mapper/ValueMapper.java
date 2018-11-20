@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Optional;
 
-import static parser.decoration.table.process.DecorationTableUtils.manageError;
+import static parser.decoration.table.errors.DecorationTableErrorHandler.handle;
 
 /**
  * Decoration table mapper specialized in value processing.
@@ -31,14 +31,14 @@ class ValueMapper {
      */
     static Element mapValue(String tabColumn, String tabIndexSemanticLetter, ValuePOJO pojo, DecorationTableParsingResult res) {
         if (pojo == null) {
-            manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, tabColumn, tabIndexSemanticLetter);
+            handle(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, tabColumn, tabIndexSemanticLetter);
         } else {
             VariablePOJO var = pojo.getVariable();
             FunctionPOJO func = pojo.getFunction();
             if (func == null && var == null) {
-                manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, tabColumn, tabIndexSemanticLetter);
+                handle(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING, tabColumn, tabIndexSemanticLetter);
             } else if (func != null && var != null) {
-                manageError(res, DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE, tabColumn, tabIndexSemanticLetter);
+                handle(res, DecorationTableParsingErrorType.BOTH_FUNCTION_AND_VARIABLE_IN_VALUE, tabColumn, tabIndexSemanticLetter);
             } else if (var != null) {
                 return mapValueToVariable(tabColumn, tabIndexSemanticLetter, var, res);
             } else {
@@ -59,7 +59,7 @@ class ValueMapper {
      */
     private static Variable mapValueToVariable(String tabColumn, String tabIndexSemanticLetter, VariablePOJO pojo, DecorationTableParsingResult res) {
         if(pojo.getName() == null) {
-            manageError(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING_NAME,
+            handle(res, DecorationTableParsingErrorType.VARIABLE_VALUE_MISSING_NAME,
                     tabColumn, tabIndexSemanticLetter);
         } else if (pojo.getIndex() == null) {
             return new Variable(pojo.getName());
@@ -81,7 +81,7 @@ class ValueMapper {
      */
     private static Function mapValueToFunction(FunctionPOJO pojo, String semanticLetter, String tabColumn, DecorationTableParsingResult res) {
         if (pojo.getName() == null ){
-            manageError(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,semanticLetter, tabColumn);
+            handle(res, DecorationTableParsingErrorType.FUNCTION_MISSING_NAME ,semanticLetter, tabColumn);
         } else {
             Object[] invalidFunctionParamTypeErrMsg = {pojo.getName(), semanticLetter, tabColumn};
             Function function = new Function(pojo.getName());
@@ -99,7 +99,7 @@ class ValueMapper {
                         } else if (param instanceof Integer) {
                             function.addParameter(new IntegerVal((Integer) param));
                         } else if (((LinkedHashMap) param).values().size() != 1) {
-                            manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
+                            handle(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
                         } else if (((LinkedHashMap) param).get("function") instanceof LinkedHashMap) {
                             ObjectMapper mapper = new ObjectMapper();
                             LinkedHashMap function2 = (LinkedHashMap) ((LinkedHashMap) param).get("function");
@@ -107,7 +107,7 @@ class ValueMapper {
                                 FunctionPOJO function2Pojo = mapper.convertValue(function2, FunctionPOJO.class);
                                 function.addParameter(ValueMapper.mapValueToFunction(function2Pojo, semanticLetter, tabColumn, res));
                             } catch (IllegalArgumentException ex ) {
-                                manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
+                                handle(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
                             }
                         } else if (((LinkedHashMap) param).get("variable") instanceof LinkedHashMap) {
                             ObjectMapper mapper = new ObjectMapper();
@@ -116,14 +116,14 @@ class ValueMapper {
                                 VariablePOJO var2 = mapper.convertValue(variable, VariablePOJO.class);
                                 function.addParameter(ValueMapper.mapValueToVariable(tabColumn, semanticLetter, var2, res));
                             } catch (IllegalArgumentException ex ) {
-                                manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
+                                handle(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
                             }
                         } else {
-                            manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
+                            handle(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
                         }
                     });
                 } catch (ClassCastException ex) {
-                    manageError(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
+                    handle(res, DecorationTableParsingErrorType.FUNCTION_INVALID_PARAMETER_TYPE, invalidFunctionParamTypeErrMsg);
                 }
             }
             return function;
@@ -216,7 +216,7 @@ class ValueMapper {
     private static Optional<Element> parseOperationElement(String elem, String param, String functionName, String semanticLetter, DecorationTableParsingResult res) {
         try {
             if(elem.isEmpty()) {
-                manageError(res, DecorationTableParsingErrorType.FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION, functionName, semanticLetter, param);
+                handle(res, DecorationTableParsingErrorType.FUNCTION_PARAMETER_MISSING_VALUE_IN_OPERATION, functionName, semanticLetter, param);
                 return Optional.empty();
             }
             return Optional.of(new IntegerVal(Integer.parseInt(elem)));
@@ -245,7 +245,7 @@ class ValueMapper {
             try {
                 return Integer.parseInt(tmp2);
             } catch (NumberFormatException ex) {
-                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName, semanticLetter, tabColumn);
+                handle(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName, semanticLetter, tabColumn);
                 return Integer.MAX_VALUE;
             }
         } else if (indexedStr.contains("-")) {
@@ -255,7 +255,7 @@ class ValueMapper {
                 Integer varIndex = Integer.parseInt(tmp2);
                 return -varIndex;
             } catch (NumberFormatException ex) {
-                manageError(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName, semanticLetter, tabColumn);
+                handle(res, DecorationTableParsingErrorType.VARIABLE_INVALID_INDEX, varName, semanticLetter, tabColumn);
                 return Integer.MAX_VALUE;
             }
         } else {
