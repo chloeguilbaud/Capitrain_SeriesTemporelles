@@ -14,7 +14,7 @@ Tout d'abord créer un module pour le nouveau langage en question. (Exemple: `la
 
 Ensuite, créer la classe d'exposition de ce nouveau langage (Exemple : `langage.python.PythonGenerator`). Elle doit étendre `generator.LanguageGenerator`, et ainsi implémenter la fonction `StringBuffer generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable)`, c'est le point d'entrée de la génération pour l'application.
 
-Enfin, la dernière étape est d'enregistrer son langage dans l'énumération `generator.AvailableLanguages` en y ajoutant votre langage en tant que nouvel element de cet énumération (Exemple : `PYTHON("Python", new PythonGenerator);`).
+Enfin, la dernière étape est d'enregistrer son langage dans l'énumération `generator.GeneratorAvailableLanguages` en y ajoutant votre langage en tant que nouvel element de cet énumération (Exemple : `PYTHON("Python", new PythonGenerator);`).
 
 Votre langage est maintenant enregistré. Il vous reste à implémenter la génération de code correspondant dans votre nouveau module, à partir de la classe d'exposition que vous venez d'enregistrer.
 

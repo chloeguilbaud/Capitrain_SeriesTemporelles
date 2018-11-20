@@ -19,7 +19,7 @@ public abstract class GeneratorManager {
      * @param decorationTable   The {@link DecorationTable}
      * @return a {@link GeneratorResult} of the whole generated code
      */
-    public static GeneratorResult generateCode(AvailableLanguages targetLanguage, SeedTransducer seedTransducer, DecorationTable decorationTable) {
+    public static GeneratorResult generateCode(GeneratorAvailableLanguages targetLanguage, SeedTransducer seedTransducer, DecorationTable decorationTable) {
         return targetLanguage.getLanguageGenerator().generateCode(seedTransducer, decorationTable);
     }
 }

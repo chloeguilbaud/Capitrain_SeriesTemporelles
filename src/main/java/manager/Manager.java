@@ -1,6 +1,6 @@
 package manager;
 
-import generator.AvailableLanguages;
+import generator.GeneratorAvailableLanguages;
 import generator.GeneratorManager;
 import manager.model.ManagerResult;
 import model.decoration.table.DecorationTable;
@@ -24,7 +24,7 @@ public class Manager {
      */
     public static ManagerResult process(
             String seedTransducerFilePath, String decorationTableFilePath,
-            String generateCodeTargetFolder, AvailableLanguages languages) {
+            String generateCodeTargetFolder, GeneratorAvailableLanguages languages) {
 
         // TODO - logs
 

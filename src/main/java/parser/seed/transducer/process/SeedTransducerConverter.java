@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.Optional;
 
 import static parser.seed.transducer.json.SeedTransducerJSONElements.*;
-import static parser.seed.transducer.process.SeedTransducerUtils.manageError;
+import static parser.seed.transducer.errors.SeedTransducerUtils.manageError;
 
 /**
  * Enables Seed Transducer's transformation from JSON to POJO.

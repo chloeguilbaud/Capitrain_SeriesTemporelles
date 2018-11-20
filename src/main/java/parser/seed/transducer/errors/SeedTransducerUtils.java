@@ -1,7 +1,8 @@
-package parser.seed.transducer.process;
+package parser.seed.transducer.errors;
 
 import parser.seed.transducer.errors.SeedTransducerParsingError;
 import parser.seed.transducer.errors.SeedTransducerParsingErrorType;
+import parser.seed.transducer.process.SeedTransducerParsingResult;
 
 /**
  * Seed Transducer functional util class
