@@ -1,7 +1,10 @@
 package manager.model;
 
+import generator.error.GeneratorResult;
 import parser.decoration.table.process.DecorationTableParsingResult;
 import parser.seed.transducer.process.SeedTransducerParsingResult;
+
+import java.util.Optional;
 
 /**
  * Program result containing the results from the seed transducer and decoration table parsing
@@ -12,12 +15,22 @@ public class ManagerResult {
 
     private DecorationTableParsingResult decorationTableParsingResult;
     private SeedTransducerParsingResult seedTransducerParsingResult;
-    private boolean processSuccess;
+    private Optional<GeneratorResult> generatorResult;
 
-    public ManagerResult(DecorationTableParsingResult decorationTableParsingResult, SeedTransducerParsingResult seedTransducerParsingResult, boolean processSuccess) {
+    public ManagerResult(DecorationTableParsingResult decorationTableParsingResult, SeedTransducerParsingResult seedTransducerParsingResult, GeneratorResult generatorResult) {
         this.decorationTableParsingResult = decorationTableParsingResult;
         this.seedTransducerParsingResult = seedTransducerParsingResult;
-        this.processSuccess = processSuccess;
+        this.generatorResult = Optional.of(generatorResult);
+    }
+
+    public ManagerResult(DecorationTableParsingResult decorationTableParsingResult, SeedTransducerParsingResult seedTransducerParsingResult) {
+        this.decorationTableParsingResult = decorationTableParsingResult;
+        this.seedTransducerParsingResult = seedTransducerParsingResult;
+        this.generatorResult = Optional.empty();
+    }
+
+    public GeneratorResult getGeneratorResult() {
+        return generatorResult.get();
     }
 
     public DecorationTableParsingResult getDecorationTableParsingResult() {
@@ -28,8 +41,16 @@ public class ManagerResult {
         return seedTransducerParsingResult;
     }
 
-    public boolean isProcessSuccess() {
-        return processSuccess;
+    public boolean parsingSuccess() {
+        return !(decorationTableParsingResult.hasErrors() || seedTransducerParsingResult.hasErrors());
+    }
+
+    public boolean generationSuccess() {
+        return generatorResult.filter(generatorResult1 -> !generatorResult1.hasErrors()).isPresent();
+    }
+
+    public boolean processSuccess() {
+        return parsingSuccess() && generationSuccess();
     }
 
     @Override
@@ -37,7 +58,7 @@ public class ManagerResult {
         return "ManagerResult{" +
                 "decorationTableParsingResult=" + decorationTableParsingResult +
                 ", seedTransducerParsingResult=" + seedTransducerParsingResult +
-                ", processSuccess=" + processSuccess +
+                ", generatorResult=" + generatorResult +
                 '}';
     }
 }

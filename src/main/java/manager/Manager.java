@@ -2,6 +2,7 @@ package manager;
 
 import generator.GeneratorAvailableLanguages;
 import generator.GeneratorManager;
+import generator.error.GeneratorResult;
 import manager.model.ManagerResult;
 import model.decoration.table.DecorationTable;
 import model.seed.transducer.SeedTransducer;
@@ -27,6 +28,27 @@ public class Manager {
             String generateCodeTargetFolder, GeneratorAvailableLanguages languages) {
 
         // TODO - logs
+        ManagerResult managerResult = process(seedTransducerFilePath, decorationTableFilePath, languages);
+
+        writeGenerationInFolder(generateCodeTargetFolder, managerResult);
+
+        return managerResult;
+    }
+
+    private static void writeGenerationInFolder(String generateCodeTargetFolder, ManagerResult managerResult) {
+        // TODO
+        throw new RuntimeException("not implemented yet");
+    }
+
+    /**
+     * Entry point of the program enabling code generation from seed transducer and decoration table.
+     * @param seedTransducerFilePath Path to the seed transducer JSON file
+     * @param decorationTableFilePath Path to the decoration table JSON file
+     */
+    public static ManagerResult process(
+            String seedTransducerFilePath, String decorationTableFilePath, GeneratorAvailableLanguages languages) {
+
+        // TODO - logs
 
         // Parse
         DecorationTableParsingResult decorationTableParsingResult = DecorationTableParser.parse(decorationTableFilePath);
@@ -36,10 +58,10 @@ public class Manager {
         if (!(decorationTableParsingResult.hasErrors() && seedTransducerParsingResult.hasErrors())) {
             SeedTransducer seedTransducer = seedTransducerParsingResult.getResult().get();
             DecorationTable decorationTable = decorationTableParsingResult.getResult().get();
-            GeneratorManager.generateCode(languages, seedTransducer, decorationTable);
-            return new ManagerResult(decorationTableParsingResult, seedTransducerParsingResult, false);
+            GeneratorResult generatorResult = GeneratorManager.generateCode(languages, seedTransducer, decorationTable);
+            return new ManagerResult(decorationTableParsingResult, seedTransducerParsingResult, generatorResult);
         } else {
-            return new ManagerResult(decorationTableParsingResult, seedTransducerParsingResult, false);
+            return new ManagerResult(decorationTableParsingResult, seedTransducerParsingResult);
         }
 
     }
