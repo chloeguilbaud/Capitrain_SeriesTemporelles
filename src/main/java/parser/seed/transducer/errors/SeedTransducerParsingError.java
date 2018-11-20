@@ -7,7 +7,7 @@ import parser.common.ParsingError;
  * and error message.
  * @author Chloé GUILBAUD & Maël MAINCHAIN
  */
-public abstract class SeedTransducerParsingError extends ParsingError<SeedTransducerParsingErrorType> {
+public class SeedTransducerParsingError extends ParsingError<SeedTransducerParsingErrorType> {
 
     public SeedTransducerParsingError(SeedTransducerParsingErrorType errorType, String errorMsg) {
         super(errorType, errorMsg);
