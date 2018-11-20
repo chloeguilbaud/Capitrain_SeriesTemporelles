@@ -2,7 +2,6 @@ package manager;
 
 import generator.AvailableLanguages;
 import generator.GeneratorManager;
-import generator.LanguageGenerator;
 import manager.model.ManagerResult;
 import model.decoration.table.DecorationTable;
 import model.seed.transducer.SeedTransducer;

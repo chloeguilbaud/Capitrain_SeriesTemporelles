@@ -1,4 +1,4 @@
-package APP;
+package app;
 
 import generator.GeneratorManager;
 
