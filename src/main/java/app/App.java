@@ -1,9 +1,7 @@
 package app;
 
 import generator.GeneratorAvailableLanguages;
-import generator.GeneratorManager;
 import manager.Manager;
-import sun.util.locale.provider.AvailableLanguageTags;
 
 import java.util.Optional;
 
@@ -13,9 +11,14 @@ import java.util.Optional;
  */
 public class App {
 
+    /**
+     * Entry point of the program
+     * @param args[0] : Seed Transducer File Path
+     * @param args[1] : Decoration Table File Path
+     * @param args[2] : Target Language
+     * @param args[3] : (Optionnal) Generation path
+     */
     public static void main (String[] args) {
-
-        // TODO: get transducer and table from file
 
         if(args.length == 3) {
             Optional<GeneratorAvailableLanguages> languageOp = GeneratorAvailableLanguages.fromLabel(args[2]);
@@ -28,7 +31,7 @@ public class App {
         } else if (args.length == 4) {
             Optional<GeneratorAvailableLanguages> languageOp = GeneratorAvailableLanguages.fromLabel(args[2]);
             if(languageOp.isPresent()) {
-                Manager.process(args[0], args[1], args[2], languageOp.get());
+                Manager.process(args[0], args[1], args[3], languageOp.get());
             } else {
                 throw new RuntimeException("Undefined given language: " + args[2]);
             }
