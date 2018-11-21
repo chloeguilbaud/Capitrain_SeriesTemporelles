@@ -11,7 +11,7 @@ import org.junit.runners.Suite;
         DecorationTableConverterErrorManagerParameterizedTest.class
 })
 
-public class DecorationTableTestSuite {
+public class DecorationTableParserTestSuite {
 
 
 }
