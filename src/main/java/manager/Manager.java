@@ -26,14 +26,6 @@ public class Manager {
 
     private static Logger logger = Logger.getLogger(Manager.class);
 
-    public static void main(String[] args) {
-        logger.debug("msg de debogage");
-        logger.info("msg d'information");
-        logger.warn("msg d'avertissement");
-        logger.error("msg d'erreur");
-        logger.fatal("msg d'erreur fatale");
-    }
-
     /**
      * Entry point of the program enabling code generation from seed transducer and decoration table.
      * @param seedTransducerFilePath Path to the seed transducer JSON file
