@@ -29,6 +29,8 @@ Puis (optionel), passez une ligne, ajoutez le chemin de destination du fichier g
 - Cliquer sur `run/debug configuration`
 - Dans l'onglet `Configuration`, ajouter les arguments dans `Program arguments`
 
+N'oublié pas d'activer l'affichage des logs.
+
 ## Ajouter un langage de génération
 
 Pour ajouter un langage de génération, trois étapes sont nécessaires :
