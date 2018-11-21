@@ -19,7 +19,7 @@ public class SeedTransducerParserTest {
 
         SeedTransducer seed = SeedTransducerMock.get();
         
-        SeedTransducerParsingResult res = SeedTransducerParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "seedTransducerExample_peak.json"));
+        SeedTransducerParsingResult res = SeedTransducerParser.parse(new File(TestConfiguration.TEST_FILE_PATH_SEED_TRANSDUCER_PARSER.getValue() + "convertTest.json"));
         assertTrue("Seed is present so no errors", res.getResult().isPresent());
         assertFalse("Parsing OK so no errors", res.hasErrors());
         assertEquals("Seed Name", seed.getName(), res.getResult().get().getName());
