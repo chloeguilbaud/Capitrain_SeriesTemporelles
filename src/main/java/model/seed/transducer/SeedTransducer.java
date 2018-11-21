@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Java representation of a Seed Transducer. It is mainly a list of {@link State},
  * with a list of {@link Arc} and before/after value
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class SeedTransducer {
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Seed transducer enumeration listing the seed transducer JSON file's elements.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public enum SeedTransducerJSONElements {
 

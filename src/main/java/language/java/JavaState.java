@@ -9,7 +9,7 @@ import model.seed.transducer.Arc;
  * Java code of a {@link State}
  * Basically an if statement of the state followed by
  * many instructions depending on the current index value
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class JavaState {
 

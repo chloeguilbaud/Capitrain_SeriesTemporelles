@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  * Java code representation of an {@link ArcSemanticLetter}
  * Convert all letters into java-compatible letters
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public enum JavaSemanticLetter {
 

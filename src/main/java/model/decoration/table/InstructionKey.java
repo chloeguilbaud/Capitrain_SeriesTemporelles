@@ -9,7 +9,7 @@ import java.util.Optional;
  * Key for {@link java.util.HashMap}, array an instruction
  * by it's {@link ArcSemanticLetter} and ({@link Optional})
  * an After value
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class InstructionKey {
 

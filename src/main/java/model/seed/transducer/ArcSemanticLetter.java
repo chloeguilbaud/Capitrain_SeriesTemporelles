@@ -6,7 +6,7 @@ import java.util.Optional;
 
 /**
  * SemanticLetter associated to an {@link Arc} in a {@link SeedTransducer}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public enum ArcSemanticLetter {
 

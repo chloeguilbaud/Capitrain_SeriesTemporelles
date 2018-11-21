@@ -2,7 +2,7 @@ package parser.decoration.table.model;
 
 /**
  * POJO used for register representation from Decoration table JSON file. Enables easy mapping.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class RegistersPOJO {
 

@@ -20,7 +20,7 @@ import static parser.seed.transducer.errors.SeedTransducerErrorHandler.handle;
  * Enables Seed Transducer's transformation from JSON to POJO.
  * It is then transformed into a {@link SeedTransducerParsingResult} containing the {@link SeedTransducer}
  * or errors.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public abstract class SeedTransducerConverter {
 

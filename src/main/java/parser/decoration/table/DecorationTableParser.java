@@ -8,7 +8,7 @@ import java.io.File;
 
 /**
  * Utils class and entry point to the {@link DecorationTable} parser extracting data from the given JSON file.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public abstract class DecorationTableParser {
 

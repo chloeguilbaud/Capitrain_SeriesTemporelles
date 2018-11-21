@@ -10,7 +10,7 @@ import java.util.Optional;
 /**
  * Entry point for generating a java code for a given
  * {@link SeedTransducer} and {@link DecorationTable}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class JavaGenerator extends LanguageGenerator {
 

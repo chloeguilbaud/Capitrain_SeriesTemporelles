@@ -9,7 +9,7 @@ import model.seed.transducer.ArcSemanticLetter;
 /**
  * Java implementation of a Decoration Table
  * Basically a list of {@link Instruction} with a list of Register and Returns
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class DecorationTable {
 

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * Details of a state
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class State {
 

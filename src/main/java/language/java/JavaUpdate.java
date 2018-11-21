@@ -8,7 +8,7 @@ import model.decoration.table.element.Element;
 
 /**
  * Java code of an update of a {@link DecorationTable}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class JavaUpdate {
 

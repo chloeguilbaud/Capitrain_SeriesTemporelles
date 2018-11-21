@@ -7,7 +7,7 @@ import java.util.Optional;
 
 /**
  * Soft application.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp; Mael MAINCHAIN
  */
 public class App {
 

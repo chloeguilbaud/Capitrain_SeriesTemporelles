@@ -3,8 +3,6 @@ package app;
 import org.junit.Test;
 import utils.TestConfiguration;
 
-import static org.junit.Assert.*;
-
 public class AppTest {
 
     private final String path = TestConfiguration.TEST_FILE_PATH_APP.getValue();
@@ -25,7 +23,7 @@ public class AppTest {
                 path + "SeedTransducerPeak.json",
                 path + "DecorationTableFeature.json",
                 "Java",
-                path});
+                "src/test/java/generated"});
     }
 
     @Test(expected = RuntimeException.class)

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Generation result representation containing generation result and list of errors
+ * @author Chloe GUILBAUD &amp; Mael MAINCHAIN
+ */
 public class GeneratorResult {
 
     private Optional<StringBuffer> result;

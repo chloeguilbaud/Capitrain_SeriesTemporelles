@@ -76,7 +76,7 @@ public class ManagerTest {
         ManagerResult managerResult = Manager.process(
                 path + "SeedTransducerPeak.json",
                 path + "DecorationTableFeature.json",
-                path,
+                "src/test/java/generated",
                 GeneratorAvailableLanguages.JAVA);
 
         assertTrue("Parsing success", managerResult.parsingSuccess());

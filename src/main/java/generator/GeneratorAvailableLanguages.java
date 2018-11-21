@@ -9,6 +9,7 @@ import java.util.Optional;
 /**
  * Enumeration of the possible languages that the programme can generate from a decoration table and seed transducer.
  * This enumeration links the language to an instance of it's generator.
+ * @author Chloe GUILBAUD &amp; Mael MAINCHAIN
  */
 public enum GeneratorAvailableLanguages {
 

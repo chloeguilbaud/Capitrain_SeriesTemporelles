@@ -7,7 +7,7 @@ import model.seed.transducer.SeedTransducer;
 
 /**
  * Java code representation of a {@link SeedTransducer}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class JavaSeedTransducer {
 

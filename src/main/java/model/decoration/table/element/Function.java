@@ -8,7 +8,7 @@ import java.util.Objects;
  * Implementation of a function
  * A Function is an {@link Element}
  * Is described by its name and a {@link List} of parameters
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class Function extends Element {
 

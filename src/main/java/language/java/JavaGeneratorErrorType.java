@@ -2,6 +2,10 @@ package language.java;
 
 import generator.error.GeneratorErrorType;
 
+/**
+ * Generation possible error types enumeration
+ * @author Chloe GUILBAUD &amp; Mael MAINCHAIN
+ */
 public enum JavaGeneratorErrorType implements GeneratorErrorType {
 
     JAVA_ELEMENT_UNKNOW_ELEMENT_SUBCLASS("Unknown subclass of model.element used\n%s"),

@@ -8,7 +8,7 @@ import model.seed.transducer.SeedTransducer;
  * Handle all the generators and offers a black box program
  * for every user of the languages generations.
  * Interface of a Generator.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public abstract class GeneratorManager {
 

@@ -16,7 +16,7 @@ import static parser.decoration.table.errors.DecorationTableErrorHandler.handle;
 
 /**
  * Decoration table mapper specialized in value processing.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 abstract class ValueMapper {
 

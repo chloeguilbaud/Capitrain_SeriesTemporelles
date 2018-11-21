@@ -14,7 +14,7 @@ import model.decoration.table.element.Variable;
 
 /**
  * Generate the java code for an {@link Element}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class JavaElement {
 

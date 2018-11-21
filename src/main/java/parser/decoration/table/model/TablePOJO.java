@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * POJO used for table section representation from Decoration table JSON file. Enables easy mapping.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class TablePOJO {
 

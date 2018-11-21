@@ -4,7 +4,7 @@ import model.seed.transducer.ArcSemanticLetter;
 
 /**
  * Decoration table parsing error type enumeration.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public enum DecorationTableParsingErrorType {
 

@@ -6,7 +6,7 @@ import java.util.Objects;
  * Implementation of an Affection
  * An Affectation is an {@link Element}
  * It's also an affectation of an {@link Element} in a {@link Variable}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class Affectation extends Element {
 

@@ -21,7 +21,7 @@ import static parser.decoration.table.mapper.InitialisationMapper.mapReturns;
  * Enables Decoration table's transformation from JSON to POJO.
  * It is then transformed into a {@link DecorationTableParsingResult} containing the {@link DecorationTable}
  * or errors.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public abstract class DecorationTableConverter {
 

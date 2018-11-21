@@ -1,5 +1,10 @@
 package generator.error;
 
+/**
+ * Error Generator object representation registering error type and message.
+ * @param <T> The error enumeration type
+ * @author Chloe GUILBAUD &amp; Mael MAINCHAIN
+ */
 public class GeneratorError<T> {
 
         private T errorType;

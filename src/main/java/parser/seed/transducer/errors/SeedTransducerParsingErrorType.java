@@ -4,7 +4,7 @@ import parser.seed.transducer.json.SeedTransducerJSONElements;
 
 /**
  * Seed transducer parsing error type enumeration.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public enum SeedTransducerParsingErrorType {
 

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Parsing result representation containing generation result and list of errors
+ * @author Chloe GUILBAUD &amp; Mael MAINCHAIN
+ */
 public abstract class ParsingResult<T, E> {
 
     private Optional<T> result;

@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  * Program result containing the results from the seed transducer and decoration table parsing
  * as well as success state.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class ManagerResult {
 

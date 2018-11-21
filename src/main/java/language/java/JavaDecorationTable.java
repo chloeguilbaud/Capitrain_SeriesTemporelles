@@ -13,7 +13,7 @@ import model.seed.transducer.SeedTransducer;
  * Java class for generating Decoration Table's java code
  * Reflect the model's {@link DecorationTable} class
  * Call appendCode(String, Stringbuffer) to generate code
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class JavaDecorationTable {
 

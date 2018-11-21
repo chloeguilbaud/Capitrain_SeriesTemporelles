@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Implementation of a Variable as {@link Element}
  * Identified by a name
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class Variable extends Element {
 

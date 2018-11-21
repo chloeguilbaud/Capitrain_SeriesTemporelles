@@ -7,7 +7,7 @@ import model.seed.transducer.SeedTransducer;
 /**
  * Interface of a Language.
  * This interface is required for every file that assume to be a Language generator of code
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public abstract class LanguageGenerator {
 

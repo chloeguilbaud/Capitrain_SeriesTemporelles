@@ -12,7 +12,7 @@ import model.decoration.table.element.Element;
  * Java code generator for a {@link DecorationTable}'s guard
  * Generate a lambda function, and add it into a {@link Hashtable} by the 
  * name of the impacted variable
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class JavaGuard {
 

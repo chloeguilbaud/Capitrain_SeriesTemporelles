@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 
 /**
  * POJO used for {@link SeedTransducer} JSON file representation. Enables easy mapping.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class SeedTransducerPOJO {
 

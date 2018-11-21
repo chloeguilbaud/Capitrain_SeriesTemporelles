@@ -6,7 +6,7 @@ import java.util.Optional;
 
 /**
  * Operators Enumeration that characterise an {@link Arc} in a {@link SeedTransducer}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public enum ArcOperator {
 

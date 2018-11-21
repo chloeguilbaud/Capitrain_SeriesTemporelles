@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * Implentation of a product between two {@link Element}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class Product extends Operation {
 

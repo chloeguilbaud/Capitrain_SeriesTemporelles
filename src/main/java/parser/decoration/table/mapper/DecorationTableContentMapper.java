@@ -20,7 +20,7 @@ import static parser.decoration.table.errors.DecorationTableErrorHandler.handle;
 
 /**
  * Decoration table mapper enabling pojo transformation to model.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public abstract class DecorationTableContentMapper {
 

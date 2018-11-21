@@ -4,7 +4,7 @@ import parser.seed.transducer.process.SeedTransducerParsingResult;
 
 /**
  * Seed Transducer parsing error handler
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public abstract class SeedTransducerErrorHandler {
 

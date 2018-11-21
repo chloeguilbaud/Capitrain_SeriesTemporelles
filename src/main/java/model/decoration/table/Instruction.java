@@ -8,7 +8,7 @@ import model.decoration.table.element.Element;
 /**
  * Instruction of a {@link DecorationTable}
  * Contains many guards and updates (As {@link Element})
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class Instruction {
 

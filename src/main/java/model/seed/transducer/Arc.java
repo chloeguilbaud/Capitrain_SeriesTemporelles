@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * Arc java class representing a state change for a {@link SeedTransducer}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class Arc {
 

@@ -1,5 +1,9 @@
 package parser.common;
 
+/**
+ * Parsing error representation containing the error type and the related message
+ * @param <T> The error type enumeration
+ */
 public abstract class ParsingError<T> {
 
     private T errorType;

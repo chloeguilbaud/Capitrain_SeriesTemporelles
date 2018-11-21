@@ -9,7 +9,7 @@ import model.seed.transducer.ArcOperator;
 /**
  * Java generation of a Comparator
  * (eg. equals, less than, greater than, less or equals, greater or equals)
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public enum JavaComparator {
 

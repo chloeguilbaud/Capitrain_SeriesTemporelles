@@ -5,7 +5,7 @@ import parser.common.ParsingError;
 /**
  * Decoration table parsing error representation containing error type ({@link DecorationTableParsingErrorType})
  * and error message.
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class DecorationTableParsingError extends ParsingError<DecorationTableParsingErrorType> {
 

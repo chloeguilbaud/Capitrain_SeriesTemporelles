@@ -20,7 +20,7 @@ import parser.seed.transducer.process.SeedTransducerParsingResult;
 /**
  * Manager of the whole soft.
  * Handle the main process using parser and generator
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class Manager {
 

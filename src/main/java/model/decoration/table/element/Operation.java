@@ -2,7 +2,7 @@ package model.decoration.table.element;
 
 /**
  * Implentation of an operation between two {@link Element}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public abstract class Operation extends Element {
 

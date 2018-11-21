@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * Implentation of a sum between two {@link Element}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class Sum extends Operation {
 

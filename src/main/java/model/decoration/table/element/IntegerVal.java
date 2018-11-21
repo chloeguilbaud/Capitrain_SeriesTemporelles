@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Implementation of an integer as an {@link Element}
  * Basically just an {@link Integer}, but also an {@link Element}
- * @author Chloé GUILBAUD & Maël MAINCHAIN
+ * @author Chloe GUILBAUD &amp Maël MAINCHAIN
  */
 public class IntegerVal extends Element {
 
