@@ -1,0 +1,526 @@
+{
+  "name": "feature",
+  "registers": [
+    {
+      "name": "C",
+      "value": {
+        "function": {
+          "name": "id"
+        }
+      }
+    },
+    {
+      "name": "D",
+      "value": {
+        "function": {
+          "name": "id"
+        }
+      }
+    }
+  ],
+  "returns": [
+    {
+      "name": "f",
+      "index": "n",
+      "value": {
+        "function": {
+          "name": "default"
+        }
+      }
+    },
+    {
+      "name": "e",
+      "index": "n",
+      "value": {
+        "variable": {
+          "name": "C"
+        }
+      }
+    }
+  ],
+  "table": [
+    {
+      "letter": "out",
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      },
+        {
+          "variable": "e",
+          "index": "i",
+          "value": {
+            "function": {
+              "name": "default"
+            }
+          }
+        }]
+    },
+    {
+      "letter": "out(reset)",
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      },{
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "id"
+            }
+          }
+        }]
+    },
+    {
+      "letter": "out(after)",
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      },
+        {
+          "variable": "e",
+          "index": "i",
+          "value": {
+            "variable": {
+              "name": "C"
+            }
+          }
+        }],
+      "updates": [{
+        "variable": "C",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }}, {
+        "variable": "D",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }]
+    },
+    {
+      "letter": "maybe(before)",
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "phi",
+              "parameters": ["D", {
+                "function": {
+                  "name": "delta",
+                  "parameters": ["i"]
+                }
+              }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "letter": "maybe(after)",
+      "after": 0,
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "phi",
+              "parameters": ["D", {
+                "function": {
+                  "name": "delta",
+                  "parameters": [{
+                    "guard": "coucou"
+                  }]
+                }
+              }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "letter": "maybe(after)",
+      "after": 1,
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "phi",
+              "parameters": ["D", {
+                "function": {
+                  "name": "delta",
+                  "parameters": ["i"]
+                }
+              }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "letter": "found",
+      "after": 0,
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i"
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "C",
+          "value": {
+            "function": {
+              "name": "delta",
+              "parameters": [{
+                "function": {
+                  "name": "delta",
+                  "parameters": ["D", {
+                    "function": {
+                      "name": "delta",
+                      "parameters": ["i+1"]
+                    }
+                  }]
+                }
+              }, {
+                "function": {
+                  "name": "delta",
+                  "parameters": ["i+1"]
+                }
+              }]
+            }
+          }
+        }, {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "id"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "letter": "found",
+      "after": 1,
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i"
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "C",
+          "value": {
+            "function": {
+              "name": "phi",
+              "parameters": ["D", {
+                "function": {
+                  "name": "delta",
+                  "parameters": ["i"]
+                }
+              }]
+            }
+          }
+        }, {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "id"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "letter": "in",
+      "after": 0,
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "C",
+          "value": {
+            "function": {
+              "name": "phi",
+              "parameters": ["C",
+                {"function": {
+                  "name": "phi",
+                  "parameters": ["D", {
+                    "function": {
+                      "name": "delta",
+                      "parameters": ["i+1"]
+                    }
+                  }]
+                }}]
+            }
+          }
+        }, {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "id"
+            }
+          }
+        }
+      ]
+    },{
+      "letter": "in",
+      "after": 1,
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "variable": {
+            "name": "e",
+            "index": "i+1"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "C",
+          "value": {
+            "function": {
+              "name": "phi",
+              "parameters": ["C",
+                {"function": {
+                  "name": "phi",
+                  "parameters": ["D", {
+                    "function": {
+                      "name": "delta",
+                      "parameters": ["i"]
+                    }
+                  }]
+                }}]
+            }
+          }
+        }, {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "id"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "letter": "found(end)",
+      "after": 0,
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "phi",
+            "parameters": [{
+              "function": {
+                "name": "phi",
+                "parameters": ["d", {
+                  "function": {
+                    "name": "delta",
+                    "parameters": ["i"]
+                  }
+                }]
+              }
+            }, {
+              "function": {
+                "name": "delta",
+                "parameters": ["i+1"]
+              }
+            }]
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }],
+      "updates": [{
+        "variable": "D",
+        "value": {
+          "function": {
+            "name": "id",
+            "parameters": ["f"]
+          }
+        }
+      }
+      ]
+    },
+    {
+      "letter": "found(end)",
+      "after": 1,
+      "guards": [{
+        "variable": "f",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "phi",
+            "parameters": ["d", {
+              "function": {
+                "name": "delta",
+                "parameters": ["i"]
+              }
+            }]
+          }
+        }
+      }, {
+        "variable": "e",
+        "index": "i",
+        "value": {
+          "function": {
+            "name": "default"
+          }
+        }
+      }],
+      "updates": [
+        {
+          "variable": "D",
+          "value": {
+            "function": {
+              "name": "id"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

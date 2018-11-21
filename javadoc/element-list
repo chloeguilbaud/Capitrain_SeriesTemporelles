@@ -1,0 +1,24 @@
+unnamed package
+app
+generated
+generator
+generator.error
+language.java
+manager
+manager.model
+model.decoration.table
+model.decoration.table.element
+model.seed.transducer
+parser
+parser.common
+parser.decoration.table
+parser.decoration.table.errors
+parser.decoration.table.mapper
+parser.decoration.table.model
+parser.decoration.table.process
+parser.seed.transducer
+parser.seed.transducer.errors
+parser.seed.transducer.json
+parser.seed.transducer.model
+parser.seed.transducer.process
+utils

@@ -1,0 +1,81 @@
+{
+  "name": "peak",
+  "before": 2,
+  "after": 1,
+  "init_state": "s",
+  "states": ["s", "r", "t", "u", "v"],
+  "arcs": [
+    {
+      "from": "s",
+      "to": "s",
+      "operator": "leq",
+      "letter": "out"
+    },
+    {
+      "from": "s",
+      "to": "r",
+      "operator": "gt",
+      "letter": "out"
+    },
+    {
+      "from": "r",
+      "to": "s",
+      "operator": "leq",
+      "letter": "out"
+    },
+    {
+      "from": "r",
+      "to": "t",
+      "operator": "gt",
+      "letter": "out(after)"
+    },
+    {
+      "from": "t",
+      "to": "u",
+      "operator": "lt",
+      "letter": "maybe(before)"
+    },
+    {
+      "from": "u",
+      "to": "s",
+      "operator": "leq",
+      "letter": "out(reset)"
+    },
+    {
+      "from": "u",
+      "to": "v",
+      "operator": "gt",
+      "letter": "maybe(before)"
+    },
+    {
+      "from": "v",
+      "to": "s",
+      "operator": "leq",
+      "letter": "out(reset)"
+    },
+    {
+      "from": "v",
+      "to": "t",
+      "operator": "gt",
+      "letter": "found(end)"
+    },
+    {
+      "from": "v",
+      "to": "t",
+      "operator": "eq",
+      "letter": "found"
+    },
+    {
+      "from": "v",
+      "to": "t",
+      "operator": "geq",
+      "letter": "in"
+    },
+    {
+      "from": "v",
+      "to": "t",
+      "operator": "gt",
+      "letter": "maybe(after)"
+    }
+  ]
+}

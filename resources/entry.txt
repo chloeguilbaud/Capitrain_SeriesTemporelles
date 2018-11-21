@@ -1,0 +1,358 @@
+table(footprint,vars,_,-,[c]).
+table(footprint,init,_,-,[0]).
+table(footprint,final,_,-,'Fn' #= 0).
+table(footprint,out,_,'Fi' #= 0,[c]).
+table(footprint,out(r),_,'Fi' #= 0,[c]).
+table(footprint,out(a),_,'Fi' #= 0, [c]).
+table(footprint,maybe(b),_,'Fi' #= 'Fj', [c]).
+table(footprint,maybe(a),_,'Fi' #= 'Fj', [c]).
+table(footprint,found_end,_,'Fi' #= 'C'+1, [c+1]).
+table(footprint,found,_,'Fi' #= 'C'+1, [c+1]).
+table(footprint,in,_,'Fi' #= 'C' ,[c]).
+
+table(features,vars,_,-,[c,d]).
+table(features,init,_,-,[neutral,neutral]).
+table(features,final,_,-,[fn #= default_f, en #= cn]).
+table(features,out,_,[fi #=default_f, ei #= default_f], [c,d]).
+table(features,out(r),_, [fi #=default_f, ei #= default_f], [c,neutral]).
+table(features,out(a),_, [fi #=default_f, ei #=c], [default,neutral]).
+table(features,maybe(b),_, [fi #=default_f, ei #= ej], [c,f(d,delta)]).
+table(features,maybe(a),_-0, [fi #=default_f, ei #= ej], [c,f(d,deltaprime)]).
+table(features,maybe(a),_-1, [fi #=default_f, ei #= ej], [c,f(d,delta)]).
+table(features,found,_-0, [fi #=ei, ei #=ej], [f(f(d,delta),deltaprime),neutral]).
+table(features,found,_-1, [fi #=ei, ei #=ej], [f(d,delta),neutral]).
+table(features,in,_-0, [fi #=default_f, ei #= ej], [f(c,f(d,deltaprime)),neutral]).
+table(features,in,_-1, [fi #=default_f, ei #= ej], [f(c,f(d,delta)),neutral]).
+table(features,found_end,_-0, [fi #= f(f(d,delta),deltaprime), ei #= default_f], [c,neutral]).
+table(features,found_end,_-1, [fi #= f(d,delta), ei #= default_f], [c,neutral]).
+
+
+
+
+/*
+seed_template(name,starting state,states,links,node distance)
+states is a list of terms state(name,property) or
+                          return(node decor[,node decor])
+links is a list of terms arc(from,sig,to,letter[,link decoration][,label decor])
+arc link decoration can be
+no_show = do not show arc in figure
+no_update = do not show variable updates in figure
+'' nothing is applied
+tikz code like 'loop above' or 'bend left'
+
+arc label decoration decribes the placement of the link label
+this should be tikz code including sloped (label follows the direction
+ of arc) which is not applied if no variable updates are shown
+*/
+seed_template(bump_on_decreasing_sequence, s,
+              [state(s,initial(left)),
+	       state(r,'right of=s'),
+	       state(t,'right of=r'),
+	       state(u,at('4.5,-6.2')),
+	       state(v,at('4.5,-2.5')),
+               return(at(3.7,-1.2))],
+              [arc(s,leq,s,out,'loop above'),
+	       arc(s,gt,r,out,'bend angle=10,bend left'),
+	       arc(r,leq,s,out,'bend angle=10,bend left'),
+	       arc(r,gt,t,out),
+	       arc(t,gt,t,out,'loop above'),
+	       arc(t,eq,s,out,'bend angle=35,bend right','above=1pt'),
+	       arc(t,lt,u,maybe(b),'bend angle=30,bend left','below=2pt,sloped'),
+	       arc(u,leq,s,out(r),'bend angle=30,bend left','below=2pt,sloped'),
+	       arc(u,gt,v,maybe(b),'','above=2pt,sloped,pos=0.55'),
+	       arc(v,leq,s,out(r),'','below=2pt,sloped,pos=0.3'),
+	       arc(v,gt,t,found_end, '','below=2pt,sloped,pos=0.35')],
+	      48).
+
+seed_template(decreasing, s,
+              [state(s,initial(above)),
+               return(at(0,-1.5))],
+              [arc(s,gt,s,found_end,'loop left'),
+               arc(s,leq,s,out,'loop right')],30).
+
+seed_template(decreasing_sequence, s,
+              [state(s,initial(above)),
+               state(t,'below of=s'),
+               return(at('$(s)!0.5!(t)$'),'rotate=90')],
+              [arc(s,gt,t,found,'bend left'),
+               arc(s,leq,s,out,'loop right'),
+               arc(t,gt,t,in,'loop right'),
+               arc(t,eq,t,maybe(a),'loop left'),
+               arc(t,lt,s,out(a),'bend left')],30).
+
+seed_template(decreasing_terrace, s,
+              [state(s,initial(left)),
+               state(r,'below of=s'),
+               state(t,at('$(r)-(5,0)$')),
+               return(at(-2,-1.5))],
+              [arc(s,leq,s,out,'loop right'),
+	       arc(s,gt,r,out,'','left=0.5,sloped'),
+               arc(r,gt,r,out,'loop right'),
+               arc(r,eq,t,maybe(b),'above'),
+               arc(r,lt,s,out,'bend angle=20,bend right','right=2'),
+               arc(t,eq,t,maybe(b),'loop left'),
+               arc(t,gt,r,found_end,'bend angle=18,bend right','left=2,below,sloped'),
+               arc(t,lt,s,out(r),'bend angle=20,bend left','left=2,above,sloped')],
+              32).
+
+seed_template(dip_on_increasing_sequence, s,
+              [state(s,initial(left)),
+	       state(r,'right of=s'),
+	       state(t,'right of=r'),
+	       state(u,at('4.5,-6.2')),
+	       state(v,at('4.5,-2.5')),
+               return(at(3.7,-1.2))],
+              [arc(s,geq,s,out,'loop above'),
+	       arc(s,lt,r,out,'bend angle=10,bend left'),
+	       arc(r,geq,s,out,'bend angle=10,bend left'),
+	       arc(r,lt,t,out),
+	       arc(t,lt,t,out,'loop above'),
+	       arc(t,eq,s,out,'bend angle=35,bend right','above=1pt'),
+	       arc(t,gt,u,maybe(b),'bend angle=30,bend left','below=2pt,sloped'),
+	       arc(u,geq,s,out(r),'bend angle=30,bend left','below=2pt,sloped'),
+	       arc(u,lt,v,maybe(b),'','above=2pt,sloped,pos=0.55'),
+	       arc(v,geq,s,out(r),'','below=2pt,sloped,pos=0.3'),
+	       arc(v,lt,t,found_end, '','below=2pt,sloped,pos=0.35')],
+	      48).
+
+seed_template(gorge, s,
+              [state(s,initial(left)),
+               state(r,'right of=s'),
+               state(t,'below right of=r'),
+               state(u,at('$(s)!0.4!(r)-(0,4.5)$')),
+               return(at('$(s)!0.4!(r)-(0,0.4)$'))],
+              [arc(s,leq,s,out,'loop above'),
+               arc(s,gt,r,out,'bend angle=10,bend left'),
+               arc(r,gt,r,maybe(b),'loop above'),
+               arc(r,lt,t,found,'bend angle=10,bend left','very near start'),
+               arc(r,eq,u,maybe(b),'bend angle=10,bend left','very near end'),
+               arc(t,eq,t,maybe(a),'loop above','right'),
+               arc(t,lt,t,in,'loop below','near start,right'),
+               arc(t,gt,r,out(a),'bend angle=10,bend left','sloped,below=2pt,near start'),
+               arc(u,eq,u,maybe(b),'loop below'),
+	       arc(u,gt,r,maybe(b),'bend angle=10,bend left','above=2,sloped'),
+               arc(u,lt,s,out(r),'bend angle=10,bend left','left=2')],
+              40).
+
+seed_template(increasing, s,
+              [state(s,initial(above)),
+               return(at(0,-1.5))],
+              [arc(s,geq,s,out,'loop right'),
+               arc(s,lt,s,found_end,'loop left')],
+              30).
+
+seed_template(increasing_sequence, s,
+              [state(s,initial(above)),
+               state(t,'below of=s'),
+               return(at('$(s)!0.5!(t)$'),'rotate=90')],
+              [arc(s,geq,s,out,'loop right'),
+               arc(s,lt,t,found,'bend left'),
+               arc(t,gt,s,out(a),'bend left'),
+               arc(t,eq,t,maybe(a),'loop left'),
+               arc(t,lt,t,in,'loop right')],
+              30).
+
+seed_template(increasing_terrace, s,
+              [state(s,initial(left)),
+               state(r,'below of=s'),
+               state(t,at('$(r)-(5,0)$')),
+               return(at(-2,-1.5))],
+              [arc(s,geq,s,out,'loop right'),
+               arc(s,lt,r,out,'','left=0.5,sloped'),
+               arc(r,lt,r,out,'loop right'),
+               arc(r,eq,t,maybe(b),'above'),
+               arc(r,gt,s,out,'bend angle=20,bend right','right=2'),
+               arc(t,eq,t,maybe(b),'loop left'),
+	       arc(t,lt,r,found_end,'bend angle=18,bend right','left=2,below,sloped'),
+               arc(t,gt,s,out(r),'bend angle=20,bend left','left=2,above,sloped')],
+              32).
+
+seed_template(inflexion, s,
+              [state(s,initial(left)),
+               state(r,'below left of=s'),
+               state(t,'below right of=s'),
+               return(at(0,-1.1))],
+              [arc(s,eq,s,out,'in=30,out=0,loop','right'),
+	       arc(s,gt,t,out,'bend left','right'),
+               arc(s,lt,r,out,'bend right','left'),
+               arc(r,gt,t,found_end,'no_update','bend angle=10,bend left'),
+               arc(r,leq,r,maybe(b),'loop left'),
+               arc(t,geq,t,maybe(b),'loop right'),
+               arc(t,lt,r,found_end,'bend angle=15,bend left')],
+              30).
+
+seed_template(peak, s,
+              [state(s,initial(left)),
+               state(r,'below left of=s'),
+               state(t,'below right of=s'),
+               return(at(0,-1))],
+              [arc(s,geq,s,out,'loop right'),
+               arc(s,lt,r,out,'bend right','left'),
+               arc(r,gt,t,found),
+               arc(r,leq,r,maybe(b),'loop left'),
+               arc(t,gt,t,in,'loop right'),
+               arc(t,eq,t,maybe(a),'loop below'),
+               arc(t,lt,r,out(a),'bend left','below,pos=0.6')],
+              40).
+
+seed_template(plain, s,
+              [state(s,initial(right)),
+               state(r,'below of=s'),
+               state(t,at('$(r)-(5,0)$')),
+               return(at(-2.2,-1.2))],
+              [arc(s,leq,s,out,'in=228,out=258,loop,','below'),
+               arc(s,gt,r,out,'','left,pos=0.7'),
+               arc(r,gt,r,out,'loop right'),
+               arc(r,eq,t,maybe(b),'bend angle=18,bend right,above'),
+               arc(r,lt,s,found_end,'bend right','right=2'),
+               arc(t,gt,r,out(r),'','left=2,below,sloped'),
+               arc(t,eq,t,maybe(b),'loop left'),
+               arc(t,lt,s,found_end,'bend left','left=2,above,sloped')],
+              32).
+
+seed_template(plateau, s,
+              [state(s,initial(right)),
+               state(r,'below of=s'),
+               state(t,at('$(r)-(5,0)$')),
+               return(at(-2.2,-1.2))],
+              [arc(s,geq,s,out,'in=228,out=258,loop,','below'),
+               arc(s,lt,r,out,'','left,pos=0.7'),
+               arc(r,lt,r,out,'loop right'),
+               arc(r,eq,t,maybe(b),'bend angle=18,bend right,above'),
+               arc(r,gt,s,found_end,'bend right','right=2'),
+               arc(t,lt,r,out(r),'','left=2,below,sloped'),
+               arc(t,eq,t,maybe(b),'loop left'),
+               arc(t,gt,s,found_end,'bend left','left=2,above,sloped')],
+              32).
+
+seed_template(proper_plain, s,
+              [state(s,initial(right)),
+               state(r,'below of=s'),
+               state(t,at('$(r)-(5,0)$')),
+               return(at(-2.2,-1.2))],
+              [arc(s,leq,s,out,'in=228,out=258,loop,','below'),
+	       arc(s,gt,r,out,'','left,pos=0.7'),
+               arc(r,gt,r,out,'loop right'),
+               arc(r,eq,t,maybe(b),'bend angle=18,bend right,above'),
+               arc(r,lt,s,out,'bend right','right=2'),
+	       arc(t,eq,t,maybe(b),'loop left'),
+               arc(t,gt,r,out(r),'','left=2,below,sloped'),
+               arc(t,lt,s,found_end,'bend left','left=2,above,sloped')],
+              32).
+
+seed_template(proper_plateau, s,
+              [state(s,initial(right)),
+               state(r,'below of=s'),
+               state(t,at('$(r)-(5,0)$')),
+               return(at(-2.2,-1.2))],
+              [arc(s,geq,s,out,'in=228,out=258,loop,','below'),
+               arc(s,lt,r,out,'','left,pos=0.7'),
+               arc(r,lt,r,out,'loop right'),
+               arc(r,eq,t,maybe(b),'bend angle=18,bend right,above'),
+               arc(r,gt,s,out,'bend right','right=2'),
+               arc(t,eq,t,maybe(b),'loop left'),
+               arc(t,lt,r,out(r),'','left=2,below,sloped'),
+	       arc(t,gt,s,found_end,'bend left','left=2,above,sloped')],
+              32).
+
+seed_template(steady, s,
+              [state(s,initial(above)),
+               return(at(0,-1.5))],
+              [arc(s,neq,s,out,'loop right'),
+               arc(s,eq,s,found_end,'loop left')],
+              30).
+
+seed_template(steady_sequence, s,
+              [state(s,initial(above)),
+               state(r,'below of=s'),
+               return(at('$(s)!0.5!(r)$'),'rotate=90')],
+              [arc(s,neq,s,out,'loop right'),
+               arc(s,eq,r,found,'bend left'),
+               arc(r,neq,s,out(a),'bend left'),
+               arc(r,eq ,r,in,'loop right')],
+              30).
+
+seed_template(strictly_decreasing_sequence, s,
+              [state(s,initial(above)),
+               state(r,'below of=s'),
+               return(at('$(s)!0.5!(r)$'),'rotate=90')],
+              [arc(s,gt,r,found,'bend left'),
+               arc(s,leq,s,out,'loop right'),
+               arc(r,gt,r,in,'loop right'),
+               arc(r,leq,s,out(a),'bend left')],
+              30).
+
+seed_template(strictly_increasing_sequence, s,
+              [state(s,initial(above)),
+               state(r,'below of=s'),
+               return(at('$(s)!0.5!(r)$'),'rotate=90')],
+              [arc(s,geq,s,out,'loop right'),
+               arc(s,lt,r,found,'bend left'),
+               arc(r,geq,s,out(a),'bend left'),
+               arc(r,lt,r,in,'loop right')],
+              30).
+
+seed_template(summit, s,
+              [state(s,initial(left)),
+               state(r,'right of=s'),
+               state(t,'below right of=r'),
+               state(u,at('$(s)!0.4!(r)-(0,4.5)$')),
+               return(at('$(s)!0.4!(r)-(0,0.4)$'))],
+              [arc(s,geq,s,out,'loop above'),
+               arc(s,lt,r,out,'bend angle=10,bend left'),
+               arc(r,lt,r,maybe(b),'loop above'),
+               arc(r,gt,t,found,'bend angle=10,bend left','very near start'),
+               arc(r,eq,u,maybe(b),'bend angle=10,bend left','very near end'),
+               arc(t,eq,t,maybe(a),'loop above','right'),
+               arc(t,gt,t,in,'loop below','near start,right'),
+               arc(t,lt,r,out(a),'bend angle=10,bend left','sloped,below=2pt,near start'),
+               arc(u,eq,u,maybe(b),'loop below'),
+               arc(u,lt,r,maybe(b),'bend angle=10,bend left','above=2,sloped'),
+               arc(u,gt,s,out(r),'bend angle=10,bend left','below=2,sloped')],
+              40).
+
+seed_template(valley, s,
+              [state(s,initial(left)),
+               state(r,'below left of=s'),
+               state(t,'below right of=s'),
+               return(at(0,-1))],
+              [arc(s,gt,r,out,'bend right','left'),
+               arc(s,leq,s,out,'loop right'),
+               arc(r,geq,r,maybe(b),'loop left'),
+               arc(r,lt,t,found),
+               arc(t,gt,r,out(a),'bend left','below,pos=0.6'),
+               arc(t,eq,t,maybe(a),'loop below'),
+               arc(t,lt,t,in,'loop right')],
+              40).
+
+seed_template(zigzag, s,
+	      [state(s,initial(left)),
+               state(a,'below left of=s'),
+               state(b,'below of=a'),
+               state(c,'below of=b'),
+               state(d,'below right of=s'),
+               state(e,'below of=d'),
+               state(f,'below of=e'),
+               return(at(0,-8.51))],
+              [arc(s,gt,d,out,'bend left','right'),
+               arc(s,eq,s,out,'loop above'),
+               arc(s,lt,a,out,'bend right','left'),
+               arc(a,gt,b,maybe(b),'','sloped,below=2pt,pos=0.6'),
+               arc(a,eq,s,out,no_show),
+               arc(a,lt,a,out,'loop left'),
+               arc(b,gt,d,out(r),'bend angle=10,bend left','sloped,above,very near end'),
+               arc(b,eq,s,out(r),no_show),
+               arc(b,lt,c,found,'','sloped,below=2pt,pos=0.4'),
+               arc(c,gt,f,in,'draw=violet','above=2pt'),
+               arc(c,eq,s,out(a),no_show),
+               arc(c,lt,a,out(a),'bend angle=35,bend left','left'),
+               arc(d,gt,d,out,'loop right'),
+               arc(d,eq,s,out,no_show),
+               arc(d,lt,e,maybe(b),'','sloped,below=2pt,pos=0.6'),
+               arc(e,gt,f,found,'','sloped,below=2pt,pos=0.4'),
+               arc(e,eq,s,out(r),no_show),
+               arc(e,lt,a,out(r),'bend angle=10,bend right','sloped,above,very near end'),
+               arc(f,gt,d,out(a),'bend angle=35,bend right','right'),
+               arc(f,eq,s,out(a),no_show),
+               arc(f,lt,c,in,'bend angle=25,bend left,draw=violet','sloped,below=2pt')],
+              50).
