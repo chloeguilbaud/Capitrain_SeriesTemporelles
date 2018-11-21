@@ -52,16 +52,16 @@ public class Peak_footprint {
 		this.results.put("C", listIntC);
 		while(this.i < timeSerie.length - 1) {
 			if (currentState.equals("r")) {
-				if (timeSerie[i] <= timeSerie[i+1]) {
-					maybe_before();
-					i++;
-					currentState = "r";
-				}
-				else
 				if (timeSerie[i] > timeSerie[i+1]) {
 					found();
 					i++;
 					currentState = "t";
+				}
+				else
+				if (timeSerie[i] <= timeSerie[i+1]) {
+					maybe_before();
+					i++;
+					currentState = "r";
 				}
 			} else if (currentState.equals("d")) {
 				if (timeSerie[i] >= timeSerie[i+1]) {

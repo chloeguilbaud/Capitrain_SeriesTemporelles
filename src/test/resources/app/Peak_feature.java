@@ -98,16 +98,16 @@ public class Peak_feature {
 					currentState = "t";
 				}
 				else
-				if (timeSerie[i] == timeSerie[i+1]) {
-					maybe_after();
+				if (timeSerie[i] < timeSerie[i+1]) {
+					out_after();
 					i++;
 					currentState = "t";
 				}
 				else
-				if (timeSerie[i] < timeSerie[i+1]) {
-					out_after();
+				if (timeSerie[i] == timeSerie[i+1]) {
+					maybe_after();
 					i++;
-					currentState = "r";
+					currentState = "t";
 				}
 			} else {
 				break;
