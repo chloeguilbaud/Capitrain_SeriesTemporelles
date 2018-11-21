@@ -19,8 +19,9 @@ N. Beldiceanu, TASC (CNRS) IMT Atlantique, France, nicolas.beldiceanu@imt-atlant
 8. [Code généré](docs/GeneratedCode.md)
 9. [Contrôle qualité](docs/Testing.md)
 10. [Gestion de projet](docs/ProjectManagement.md)
-11. [Compte rendu hebdomadaire](docs/WeeklyReport.md)
-12. [Librairies](docs/Library.md)
+11. [Retour sur expérience](docs/Conclusion.md)
+12. [Compte rendu hebdomadaire](docs/WeeklyReport.md)
+13. [Librairies](docs/Library.md)
 
 
 ## Contexte
