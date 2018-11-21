@@ -68,28 +68,28 @@ public class Peak_feature {
 		this.results.put("D", listIntD);
 		while(this.i < timeSerie.length - 1) {
 			if (currentState.equals("r")) {
-				if (timeSerie[i] <= timeSerie[i+1]) {
-					maybe_before();
-					i++;
-					currentState = "r";
-				}
-				else
 				if (timeSerie[i] > timeSerie[i+1]) {
 					found();
 					i++;
 					currentState = "t";
 				}
-			} else if (currentState.equals("d")) {
-				if (timeSerie[i] >= timeSerie[i+1]) {
-					out();
-					i++;
-					currentState = "d";
-				}
 				else
+				if (timeSerie[i] <= timeSerie[i+1]) {
+					maybe_before();
+					i++;
+					currentState = "r";
+				}
+			} else if (currentState.equals("d")) {
 				if (timeSerie[i] < timeSerie[i+1]) {
 					out();
 					i++;
 					currentState = "r";
+				}
+				else
+				if (timeSerie[i] >= timeSerie[i+1]) {
+					out();
+					i++;
+					currentState = "d";
 				}
 			} else if (currentState.equals("t")) {
 				if (timeSerie[i] > timeSerie[i+1]) {
@@ -98,16 +98,16 @@ public class Peak_feature {
 					currentState = "t";
 				}
 				else
-				if (timeSerie[i] < timeSerie[i+1]) {
-					out_after();
-					i++;
-					currentState = "r";
-				}
-				else
 				if (timeSerie[i] == timeSerie[i+1]) {
 					maybe_after();
 					i++;
 					currentState = "t";
+				}
+				else
+				if (timeSerie[i] < timeSerie[i+1]) {
+					out_after();
+					i++;
+					currentState = "r";
 				}
 			} else {
 				break;
@@ -126,10 +126,10 @@ public class Peak_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda341748265 = () -> this.results.get("e").get(i+1);
-		this.indexedVariablesFunctions.get("e").set(i, lambda341748265);
-		I lambda364604394 = () -> default_fun(this.feature);
-		this.indexedVariablesFunctions.get("f").set(i, lambda364604394);
+		I lambda344560770 = () -> this.results.get("e").get(i+1);
+		this.indexedVariablesFunctions.get("e").set(i, lambda344560770);
+		I lambda559450121 = () -> default_fun(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda559450121);
 		this.registers.put("D", phi(this.feature, D, delta(this.feature, (i + 1))));
 		this.results.get("C").set(i, this.registers.get("C"));
 		this.results.get("D").set(i, this.registers.get("D"));
@@ -139,10 +139,10 @@ public class Peak_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda48914743 = () -> this.results.get("e").get(i+1);
-		this.indexedVariablesFunctions.get("e").set(i, lambda48914743);
-		I lambda1106131243 = () -> default_fun(this.feature);
-		this.indexedVariablesFunctions.get("f").set(i, lambda1106131243);
+		I lambda2001112025 = () -> this.results.get("e").get(i+1);
+		this.indexedVariablesFunctions.get("e").set(i, lambda2001112025);
+		I lambda314265080 = () -> default_fun(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda314265080);
 		this.registers.put("D", phi(this.feature, D, delta(this.feature, i)));
 		this.results.get("C").set(i, this.registers.get("C"));
 		this.results.get("D").set(i, this.registers.get("D"));
@@ -152,10 +152,10 @@ public class Peak_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda510109769 = () -> this.results.get("e").get(i+1);
-		this.indexedVariablesFunctions.get("e").set(i, lambda510109769);
-		I lambda1473611564 = () -> this.results.get("e").get(i+0);
-		this.indexedVariablesFunctions.get("f").set(i, lambda1473611564);
+		I lambda1288141870 = () -> this.results.get("e").get(i+1);
+		this.indexedVariablesFunctions.get("e").set(i, lambda1288141870);
+		I lambda2054881392 = () -> this.results.get("e").get(i+0);
+		this.indexedVariablesFunctions.get("f").set(i, lambda2054881392);
 		this.registers.put("C", phi(this.feature, phi(this.feature, D, delta(this.feature, i)), delta(this.feature, (i + 1))));
 		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
@@ -166,10 +166,10 @@ public class Peak_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda107456312 = () -> this.results.get("e").get(i+1);
-		this.indexedVariablesFunctions.get("e").set(i, lambda107456312);
-		I lambda921760190 = () -> default_fun(this.feature);
-		this.indexedVariablesFunctions.get("f").set(i, lambda921760190);
+		I lambda966808741 = () -> this.results.get("e").get(i+1);
+		this.indexedVariablesFunctions.get("e").set(i, lambda966808741);
+		I lambda1908153060 = () -> default_fun(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda1908153060);
 		this.registers.put("C", phi(this.feature, C, phi(this.feature, D, delta(this.feature, (i + 1)))));
 		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
@@ -180,10 +180,10 @@ public class Peak_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda360067785 = () -> default_fun(this.feature);
-		this.indexedVariablesFunctions.get("e").set(i, lambda360067785);
-		I lambda1860250540 = () -> default_fun(this.feature);
-		this.indexedVariablesFunctions.get("f").set(i, lambda1860250540);
+		I lambda116211441 = () -> default_fun(this.feature);
+		this.indexedVariablesFunctions.get("e").set(i, lambda116211441);
+		I lambda607635164 = () -> default_fun(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda607635164);
 		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
 		this.results.get("D").set(i, this.registers.get("D"));
@@ -193,10 +193,10 @@ public class Peak_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda1426329391 = () -> default_fun(this.feature);
-		this.indexedVariablesFunctions.get("e").set(i, lambda1426329391);
-		I lambda1690859824 = () -> phi(this.feature, phi(this.feature, D, delta(this.feature, i)), delta(this.feature, (i + 1)));
-		this.indexedVariablesFunctions.get("f").set(i, lambda1690859824);
+		I lambda529116035 = () -> default_fun(this.feature);
+		this.indexedVariablesFunctions.get("e").set(i, lambda529116035);
+		I lambda242481580 = () -> phi(this.feature, phi(this.feature, D, delta(this.feature, i)), delta(this.feature, (i + 1)));
+		this.indexedVariablesFunctions.get("f").set(i, lambda242481580);
 		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
 		this.results.get("D").set(i, this.registers.get("D"));
@@ -206,10 +206,10 @@ public class Peak_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda1074593562 = () -> C;
-		this.indexedVariablesFunctions.get("e").set(i, lambda1074593562);
-		I lambda660017404 = () -> default_fun(this.feature);
-		this.indexedVariablesFunctions.get("f").set(i, lambda660017404);
+		I lambda1627800613 = () -> C;
+		this.indexedVariablesFunctions.get("e").set(i, lambda1627800613);
+		I lambda2065530879 = () -> default_fun(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda2065530879);
 		this.registers.put("C", default_fun(this.feature));
 		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
@@ -220,10 +220,10 @@ public class Peak_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda1381965390 = () -> default_fun(this.feature);
-		this.indexedVariablesFunctions.get("e").set(i, lambda1381965390);
-		I lambda1979313356 = () -> default_fun(this.feature);
-		this.indexedVariablesFunctions.get("f").set(i, lambda1979313356);
+		I lambda697960108 = () -> default_fun(this.feature);
+		this.indexedVariablesFunctions.get("e").set(i, lambda697960108);
+		I lambda943010986 = () -> default_fun(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda943010986);
 		this.results.get("C").set(i, this.registers.get("C"));
 		this.results.get("D").set(i, this.registers.get("D"));
 	}
@@ -243,7 +243,7 @@ public class Peak_feature {
 			case FEATURE_RANGE:
 				return 0;
 			default:
-				return 0; // TODO: throw error
+				return 0;
 		}
 	}
 
@@ -262,7 +262,7 @@ public class Peak_feature {
 			case FEATURE_RANGE:
 				return 0;
 			default:
-				return 0; // TODO: throw error
+				return 0;
 		}
 	}
 
@@ -281,7 +281,7 @@ public class Peak_feature {
 			case FEATURE_RANGE:
 				return Integer.MAX_VALUE;
 			default:
-				return 0; // TODO: throw error
+				return 0;
 		}
 	}
 
@@ -298,9 +298,9 @@ public class Peak_feature {
 			case FEATURE_MIN:
 				return Math.min(arg1, arg2);
 			case FEATURE_RANGE:
-				return 0; // TODO: throw error
+				return 0;
 			default:
-				return 0; // TODO: throw error;
+				return 0;
 		}
 	}
 
@@ -319,7 +319,7 @@ public class Peak_feature {
 			case FEATURE_RANGE:
 				return this.timeSerie[index];
 			default:
-				return 0; // TODO: throw error
+				return 0;
 		}
 	}
 
@@ -332,13 +332,13 @@ public class Peak_feature {
 			case FEATURE_SURF:
 				return (-1) * this.timeSerie[index];
 			case FEATURE_MAX:
-				return 0; // TODO: throw error
+				return 0;
 			case FEATURE_MIN:
-				return 0; // TODO: throw error
+				return 0;
 			case FEATURE_RANGE:
-				return 0; // TODO: throw error
+				return 0;
 			default:
-				return 0; // TODO: throw error
+				return 0;
 		}
 	}
 

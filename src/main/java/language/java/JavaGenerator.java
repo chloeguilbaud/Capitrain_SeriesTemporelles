@@ -144,7 +144,7 @@ public class JavaGenerator extends LanguageGenerator {
         javaBuffer.append("\t\t\tcase FEATURE_RANGE:\n");
         javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t\tdefault:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: throw error\n");
+        javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t}\n");
         javaBuffer.append("\t}\n");
 
@@ -164,7 +164,7 @@ public class JavaGenerator extends LanguageGenerator {
         javaBuffer.append("\t\t\tcase FEATURE_RANGE:\n");
         javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t\tdefault:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: throw error\n");
+        javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t}\n");
         javaBuffer.append("\t}\n");
 
@@ -184,7 +184,7 @@ public class JavaGenerator extends LanguageGenerator {
         javaBuffer.append("\t\t\tcase FEATURE_RANGE:\n");
         javaBuffer.append("\t\t\t\treturn Integer.MAX_VALUE;\n");
         javaBuffer.append("\t\t\tdefault:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: throw error\n");
+        javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t}\n");
         javaBuffer.append("\t}\n");
 
@@ -202,9 +202,9 @@ public class JavaGenerator extends LanguageGenerator {
         javaBuffer.append("\t\t\tcase FEATURE_MIN:\n");
         javaBuffer.append("\t\t\t\treturn Math.min(arg1, arg2);\n");
         javaBuffer.append("\t\t\tcase FEATURE_RANGE:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: throw error\n");
+        javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t\tdefault:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: throw error;\n");
+        javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t}\n");
         javaBuffer.append("\t}\n");
 
@@ -224,7 +224,7 @@ public class JavaGenerator extends LanguageGenerator {
         javaBuffer.append("\t\t\tcase FEATURE_RANGE:\n");
         javaBuffer.append("\t\t\t\treturn this.timeSerie[index];\n");
         javaBuffer.append("\t\t\tdefault:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: throw error\n");
+        javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t}\n");
         javaBuffer.append("\t}\n");
 
@@ -238,13 +238,13 @@ public class JavaGenerator extends LanguageGenerator {
         javaBuffer.append("\t\t\tcase FEATURE_SURF:\n");
         javaBuffer.append("\t\t\t\treturn (-1) * this.timeSerie[index];\n");
         javaBuffer.append("\t\t\tcase FEATURE_MAX:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: throw error\n");
+        javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t\tcase FEATURE_MIN:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: throw error\n");
+        javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t\tcase FEATURE_RANGE:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: throw error\n");
+        javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t\tdefault:\n");
-        javaBuffer.append("\t\t\t\treturn 0; // TODO: throw error\n");
+        javaBuffer.append("\t\t\t\treturn 0;\n");
         javaBuffer.append("\t\t}\n");
         javaBuffer.append("\t}\n");
 

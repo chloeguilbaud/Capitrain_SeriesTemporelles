@@ -72,12 +72,14 @@ public abstract class SeedTransducerConverter {
 
         // Seed Transducer initialisation
         String name = pojo.getName();
+        int after = pojo.getAfter();
+        int before = pojo.getBefore();
         if(name == null) {
             handle(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER, "\"name\"");
         }
 
-        SeedTransducer seed = new SeedTransducer(name);
+        SeedTransducer seed = new SeedTransducer(name, before, after);
 
         // Setting before and after states
         setBeforeInSeedTransducer(pojo, res, seed);
