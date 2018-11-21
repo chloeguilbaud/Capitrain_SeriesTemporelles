@@ -2,14 +2,14 @@
 
 ## Format
 Le Seed Transducer est formalisé sous forme d'un objet JSON décrivant : 
-    - `name` : nom
-    - `init_state` : état initial
-    - `states` : liste des états
-    - `arcs` : liste des arcs
-        - `from` : état de départ
-        - `to` : état d'arrivé
-        - `arcOperator`: opérateur 
-        - `letter` : lettre de l'alphabet syntaxique
+- `name` : nom
+- `init_state` : état initial
+- `states` : liste des états
+- `arcs` : liste des arcs
+    - `from` : état de départ
+    - `to` : état d'arrivé
+    - `arcOperator`: opérateur 
+    - `letter` : lettre de l'alphabet syntaxique
 
 ### Opérateurs
 Le champs `arcOperator` peut prendre les valeurs suivantes :
