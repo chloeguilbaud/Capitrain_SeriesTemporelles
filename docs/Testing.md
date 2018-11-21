@@ -12,7 +12,7 @@ du code. En moyenne, les tests couvrent 83% du code et en garantissent
 le bon fonctionnement. Au total 63 tests ont été établit.
 
 |           Modules         |     Classes    |   Méthodes  | Lignes      |
-| ------------------------- |: ------------: | :---------: | :---------: |
+| :---                      | :---:          | :---:       | :---:       |
 | app                       |       100%     |    100%     |    84%      |
 | generator                 |       66%      |    47%      |    53%      |
 | generated                 |       100%     |    90%      |    94%      |
