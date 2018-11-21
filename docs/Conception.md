@@ -161,6 +161,13 @@ Le module de génération est constitué des classes suivantes :
 - `GeneratorManager.java` : classe abstraite ne servant qu'à exposer la fonction de génération, prenant en paramètre le `langage` cible, une `table de décoration` et un `transducteur`
 - `LanguageGenerator.java` : interface d'une classe servant à générer du code. Tous les modules de générations de langages doivent avoir leur classe exposée implémentant cette interface.
 
+#### Gestion des erreurs
+
+Lorsque le modèle est transformé en code, des erreurs peuvent être constatées si le modèle a été mal instancié.
+Les types d'erreurs sont tous référencées dans des énumérations étendant'énumération `Generator.error.GeneratorErrorType`.
+
+A chaque erreur que le développeur décidera de lever dans son code, il pourra utiliser la fonction `GeneratorErrorHandler.handle(GeneratorResult result, GeneratorErrorType error, String message);`. Les erreurs seront gérés automatiquement, et l'objet `GeneratorResult` contiendra le résultat de la génération, et les erreurs qui auront été levés.
+
 ## Module de génération Java
 
 Le module de génération en code Java est un peu construit comme un reflet du `modèle`. Sa structure est la suivante :
