@@ -52,16 +52,16 @@ public class Peak_footprint {
 		this.results.put("C", listIntC);
 		while(this.i < timeSerie.length - 1) {
 			if (currentState.equals("r")) {
-				if (timeSerie[i] <= timeSerie[i+1]) {
-					maybe_before();
-					i++;
-					currentState = "r";
-				}
-				else
 				if (timeSerie[i] > timeSerie[i+1]) {
 					found();
 					i++;
 					currentState = "t";
+				}
+				else
+				if (timeSerie[i] <= timeSerie[i+1]) {
+					maybe_before();
+					i++;
+					currentState = "r";
 				}
 			} else if (currentState.equals("d")) {
 				if (timeSerie[i] >= timeSerie[i+1]) {
@@ -76,16 +76,16 @@ public class Peak_footprint {
 					currentState = "r";
 				}
 			} else if (currentState.equals("t")) {
-				if (timeSerie[i] == timeSerie[i+1]) {
-					maybe_after();
-					i++;
-					currentState = "t";
-				}
-				else
 				if (timeSerie[i] < timeSerie[i+1]) {
 					out_after();
 					i++;
 					currentState = "r";
+				}
+				else
+				if (timeSerie[i] == timeSerie[i+1]) {
+					maybe_after();
+					i++;
+					currentState = "t";
 				}
 				else
 				if (timeSerie[i] > timeSerie[i+1]) {
@@ -109,24 +109,24 @@ public class Peak_footprint {
 	private void maybe_after() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1486566962 = () -> this.results.get("p").get(i+1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda1486566962);
+		I lambda1704237553 = () -> this.results.get("p").get(i+1);
+		this.indexedVariablesFunctions.get("p").set(i, lambda1704237553);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 	
 	private void maybe_before() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1173643169 = () -> this.results.get("p").get(i+1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda1173643169);
+		I lambda1374066265 = () -> this.results.get("p").get(i+1);
+		this.indexedVariablesFunctions.get("p").set(i, lambda1374066265);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 	
 	private void found() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1282287470 = () -> (C + 1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda1282287470);
+		I lambda1206051975 = () -> (C + 1);
+		this.indexedVariablesFunctions.get("p").set(i, lambda1206051975);
 		this.registers.put("C", (C + 1));
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
@@ -134,24 +134,24 @@ public class Peak_footprint {
 	private void in() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1397616978 = () -> C;
-		this.indexedVariablesFunctions.get("p").set(i, lambda1397616978);
+		I lambda538592647 = () -> C;
+		this.indexedVariablesFunctions.get("p").set(i, lambda538592647);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 	
 	private void out_reset() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1390835631 = () -> 0;
-		this.indexedVariablesFunctions.get("p").set(i, lambda1390835631);
+		I lambda1627396964 = () -> 0;
+		this.indexedVariablesFunctions.get("p").set(i, lambda1627396964);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 	
 	private void found_end() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda889729797 = () -> (C + 1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda889729797);
+		I lambda70323523 = () -> (C + 1);
+		this.indexedVariablesFunctions.get("p").set(i, lambda70323523);
 		this.registers.put("C", (C + 1));
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
@@ -159,16 +159,16 @@ public class Peak_footprint {
 	private void out_after() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda148912029 = () -> 0;
-		this.indexedVariablesFunctions.get("p").set(i, lambda148912029);
+		I lambda1420232606 = () -> 0;
+		this.indexedVariablesFunctions.get("p").set(i, lambda1420232606);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 	
 	private void out() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda874217650 = () -> 0;
-		this.indexedVariablesFunctions.get("p").set(i, lambda874217650);
+		I lambda652433136 = () -> 0;
+		this.indexedVariablesFunctions.get("p").set(i, lambda652433136);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 

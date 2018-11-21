@@ -24,8 +24,4 @@ public class DecorationTableConverterTest {
 
     }
 
-    // TODO - given semantic letter has to be valid and not given before
-    // TODO - given function names have to be known by the programme
-    // TODO - unique semantic letter definition
-
 }
