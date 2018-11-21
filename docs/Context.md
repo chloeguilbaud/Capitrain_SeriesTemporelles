@@ -23,16 +23,9 @@ Transducers for Describing and Synthesising Structural Time-Series Constraints
 Constraints Journal 2015", de Nicolas Beldiceanu, Mats Carlsson, Remi Douence
 et Helmut Simonis (<a href="http://google.com">https://link.springer.com/article/10.1007%2Fs10601-015-9200-3</a>).
 
-2. Dans un deuxieme temps le travail consistera à implémenter un générateur de code 
-genérant le code C, Java ou Python (au choix) des fonctions calculant les positions
-de toutes les occurrences d’un patron donne dans une série temporelle, ainsi que,
-par la suite, la valeur d’un feature donne pour toutes les occurrences d’un patron. et 
-a tester votre code sur des séries temporelles qui vous seront fournies. Le processus 
-de genération de code doit utiliser les tables de décorations qui vous seront fournies. 
+2. Dans un deuxième temps le travail consistera à implémenter un générateur de code générant le code C, Java ou Python (au choix) des fonctions calculant les positions de toutes les occurrences d’un patron donne dans une série temporelle, ainsi que, par la suite, la valeur d’un feature donne pour toutes les occurrences d’un patron, et à tester votre code sur des séries temporelles qui vous seront fournies. Le processus de génération de code doit utiliser les tables de décorations qui vous seront fournies. 
 
-3. Dans un troisieme temps vous utiliserez le code que vous avez généré pour extraire 
-des informations sur des donnees de votre choix.
-L’article mis a part, vous pouvez aussi consulter les transparents présentant cet article.
+3. Dans un troisième temps vous utiliserez le code que vous avez généré pour extraire des informations sur des données de votre choix. L’article mis a part, vous pouvez aussi consulter les transparents présentant cet article.
 
 
 ## Travail attendu

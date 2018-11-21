@@ -1,7 +1,7 @@
 # Installation
 
-Ce projet est basé sur une architecture Maven. Pour installer l'outil, il suffit d'intaller les dépendances Maven.
-Pour cela, selon votre environnment, voici les étapes à suivrent : 
+Ce projet est basé sur une architecture Maven. Pour installer l'outil, il suffit d'installer les dépendances Maven.
+Pour cela, selon votre environnement, voici les étapes à suivre : 
 - IntelliJ (en anglais selon la documentation officielle) :
     - On the main menu, select File | Open.
     - In the dialog that opens, select the pom.xml of the project you want to import. Click OK.

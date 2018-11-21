@@ -17,13 +17,13 @@ Pour les fournir :
 **Eclipse :**
 
 - Cliquer sur `Run` puis `Run Configuration`
-- Selectionner `Java Application`
+- Sélectionner `Java Application`
 - Cliquer sur `Nouveau`
 - Dans l'onglet `Arguments`, indiquer les arguments dans le champ de texte 
 `Program Arguments`. Un argument par ligne.
 
 Ajouter tout d'abord le chemin de votre fichier json du transducteur, puis passez une ligne, ajouter celui du fichier json de la table de décoration, puis repassez une ligne, notez le langage cible voulu,
-Puis (optionel), passez une ligne, ajoutez le chemin de destination du fichier généré (de base : src/main/java/generated).
+Puis (optionnel), passez une ligne, ajoutez le chemin de destination du fichier généré (de base : src/main/java/generated).
 
 **IntelliJ:**
 - Cliquer sur `run/debug configuration`
@@ -39,11 +39,11 @@ Tout d'abord créer un module pour le nouveau langage en question. (Exemple: `la
 
 Ensuite, créer la classe d'exposition de ce nouveau langage (Exemple : `langage.python.PythonGenerator`). Elle doit étendre `generator.LanguageGenerator`, et ainsi implémenter la fonction `StringBuffer generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable)`, c'est le point d'entrée de la génération pour l'application.
 
-Enfin, la dernière étape est d'enregistrer son langage dans l'énumération `generator.GeneratorAvailableLanguages` en y ajoutant votre langage en tant que nouvel element de cet énumération (Exemple : `PYTHON("Python", new PythonGenerator);`).
+Enfin, la dernière étape est d'enregistrer son langage dans l'énumération `generator.GeneratorAvailableLanguages` en y ajoutant votre langage en tant que nouvel élement de cet énumération (Exemple : `PYTHON("Python", new PythonGenerator);`).
 
 Votre langage est maintenant enregistré. Il vous reste à implémenter la génération de code correspondant dans votre nouveau module, à partir de la classe d'exposition que vous venez d'enregistrer.
 
-Pour l'utiliser, il vous suffit d'appeller la fonction `process(String, String, String AvailableLanguages)` de la classe `manager.Manager` avec comme paramètres :
+Pour l'utiliser, il vous suffit d'appeler la fonction `process(String, String, String AvailableLanguages)` de la classe `manager.Manager` avec comme paramètres :
 - Le chemin du fichier .json d'un Transducteur
 - Le chemin du fichier .json d'une Table de Décoration
 - Le chemin de destination du fichier généré
