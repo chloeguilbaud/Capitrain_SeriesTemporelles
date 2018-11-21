@@ -77,11 +77,11 @@ public abstract class SeedTransducerConverter {
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_IN_SEED_TRANSDUCER, "\"name\"");
         }
 
-        SeedTransducer seed = new SeedTransducer(name);
-
         // Setting before and after states
-        setBeforeInSeedTransducer(pojo, res, seed);
-        setAfterInSeedTransducer(pojo, res, seed);
+        int before = getBeforeInSeedTransducer(pojo, res);
+        int after = getAfterInSeedTransducer(pojo, res);
+
+        SeedTransducer seed = new SeedTransducer(name, before, after);
 
         // Adding states to seed transducer
         addStatesToSeedTransducer(pojo, res, seed);
@@ -106,34 +106,36 @@ public abstract class SeedTransducerConverter {
      * Sets the seed transducer's before value.
      * @param pojo The mapped {@link SeedTransducerPOJO} extracted from seed transducer JSON file
      * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
-     * @param seed The {@link SeedTransducer} to produce (modified)
+     * @return Seed transducer before value
      */
-    private static void setBeforeInSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res, SeedTransducer seed) {
+    private static int getBeforeInSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res) {
         Integer before = pojo.getBefore();
         if (before == null) {
             handle(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_BEFORE,
                      pojo.getName());
         } else {
-            seed.setBefore(before);
+            return before;
         }
+        return Integer.MAX_VALUE;
     }
 
     /**
      * Sets the seed transducer's after value.
      * @param pojo The mapped {@link SeedTransducerPOJO} extracted from seed transducer JSON file
      * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
-     * @param seed The {@link SeedTransducer} to produce (modified)
+     * @return Seed transducer before value
      */
-    private static void setAfterInSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res, SeedTransducer seed) {
+    private static int getAfterInSeedTransducer(SeedTransducerPOJO pojo, SeedTransducerParsingResult res) {
         Integer after = pojo.getAfter();
         if (after == null) {
             handle(res,
                     SeedTransducerParsingErrorType.MISSING_PROPERTY_AFTER,
                     pojo.getName());
         } else {
-            seed.setAfter(after);
+            return after;
         }
+        return Integer.MAX_VALUE;
     }
 
     /**

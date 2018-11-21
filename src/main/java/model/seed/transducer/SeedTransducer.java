@@ -48,12 +48,6 @@ public class SeedTransducer {
         this.arcs = new HashSet<>();
     }
 
-    public SeedTransducer(String name) {
-        this.name = name;
-        this.states = new HashMap<>();
-        this.arcs = new HashSet<>();
-    }
-
     public void setName(String name) {
         this.name = name;
     }

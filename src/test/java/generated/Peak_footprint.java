@@ -187,7 +187,7 @@ public class Peak_footprint {
 			case FEATURE_RANGE:
 				return 0;
 			default:
-				return 0; // TODO: throw error
+				return 0;
 		}
 	}
 
@@ -206,7 +206,7 @@ public class Peak_footprint {
 			case FEATURE_RANGE:
 				return 0;
 			default:
-				return 0; // TODO: throw error
+				return 0;
 		}
 	}
 
@@ -225,7 +225,7 @@ public class Peak_footprint {
 			case FEATURE_RANGE:
 				return Integer.MAX_VALUE;
 			default:
-				return 0; // TODO: throw error
+				return 0;
 		}
 	}
 
@@ -242,9 +242,9 @@ public class Peak_footprint {
 			case FEATURE_MIN:
 				return Math.min(arg1, arg2);
 			case FEATURE_RANGE:
-				return 0; // TODO: throw error
+				return 0;
 			default:
-				return 0; // TODO: throw error;
+				return 0;
 		}
 	}
 
@@ -263,7 +263,7 @@ public class Peak_footprint {
 			case FEATURE_RANGE:
 				return this.timeSerie[index];
 			default:
-				return 0; // TODO: throw error
+				return 0;
 		}
 	}
 
@@ -276,13 +276,13 @@ public class Peak_footprint {
 			case FEATURE_SURF:
 				return (-1) * this.timeSerie[index];
 			case FEATURE_MAX:
-				return 0; // TODO: throw error
+				return 0;
 			case FEATURE_MIN:
-				return 0; // TODO: throw error
+				return 0;
 			case FEATURE_RANGE:
-				return 0; // TODO: throw error
+				return 0;
 			default:
-				return 0; // TODO: throw error
+				return 0;
 		}
 	}
 
