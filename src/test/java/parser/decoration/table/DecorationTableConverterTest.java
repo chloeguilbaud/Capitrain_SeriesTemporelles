@@ -16,7 +16,7 @@ public class DecorationTableConverterTest {
     @Test
     public void convertTest_negativeVariableIndex() {
 
-        DecorationTableParsingResult res = DecorationTableParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "decorationTableExampleComplete_feature.json"));
+        DecorationTableParsingResult res = DecorationTableParser.parse(new File(TestConfiguration.TEST_FILE_PATH.getValue() + "decorationTableExample_feature.json"));
 
         assertFalse("Parsing OK so no errors", res.hasErrors());
         assertTrue("Decoration table is present so no errors", res.getResult().isPresent());
