@@ -117,7 +117,7 @@ public class Manager {
         logger.info("Parsing finished");
 
         // Generate code
-        if (!(decorationTableParsingResult.hasErrors() && seedTransducerParsingResult.hasErrors())) {
+        if (!(decorationTableParsingResult.hasErrors() || seedTransducerParsingResult.hasErrors())) {
 
             logger.info("Code generation from Decoration table and Seed transducer for \"" + language + "\" starting...");
 
