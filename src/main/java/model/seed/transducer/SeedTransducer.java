@@ -125,4 +125,22 @@ public class SeedTransducer {
         return arcs;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SeedTransducer that = (SeedTransducer) o;
+        return before == that.before &&
+                after == that.after &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(initState, that.initState) &&
+                Objects.equals(states, that.states) &&
+                Objects.equals(arcs, that.arcs);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, before, after, initState, states, arcs);
+    }
 }
