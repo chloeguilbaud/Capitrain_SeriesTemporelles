@@ -47,9 +47,9 @@ public class Manager {
 
             // Writing generation code in file
             String filename = seedTransducer.getName().substring(0, 1).toUpperCase()
-                    + seedTransducer.getName().substring(1)
-                    + "_" + decorationTable.getName();
-
+                                + seedTransducer.getName().substring(1)
+                                + "_" + decorationTable.getName()
+                                + ".java";
             logger.info("Writing generated code in " + generateCodeTargetFolder);
             writeGenerationInFolder(generateCodeTargetFolder + "/" + filename, managerResult);
             logger.info("Generated code written in " + generateCodeTargetFolder);
@@ -68,7 +68,7 @@ public class Manager {
     private static void writeGenerationInFolder(String generateCodeTargetFolder, ManagerResult managerResult) {
         try {
             PrintWriter writer = new PrintWriter(new File(generateCodeTargetFolder));
-            writer.println(managerResult.getGeneratorResult().toString());
+            writer.println(managerResult.getGeneratorResult().getResult().toString());
             writer.close();
         } catch(FileNotFoundException e) {
             throw new RuntimeException("Target generation path incorrect");

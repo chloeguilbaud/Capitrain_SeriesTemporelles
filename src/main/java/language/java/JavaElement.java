@@ -56,7 +56,7 @@ public class JavaElement {
             case "model.decoration.table.element.Function":
                 StringBuffer parametersBuffer = new StringBuffer();
                 Function f = (Function) e;
-                if (f.getName() == "default") {
+                if (f.getName().equals("default")) {
                     parametersBuffer.append("default_fun(this.feature");
                 } else {
                     parametersBuffer.append(f.getName()).append("(this.feature");
