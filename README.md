@@ -1,5 +1,4 @@
 # Capitrain SeriesTemporelles
-=======
 
 Maël MAINCHAIN & Chloé GUILBAUD
 
