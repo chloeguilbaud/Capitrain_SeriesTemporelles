@@ -28,4 +28,10 @@ public class AppTest {
                 path});
     }
 
+    @Test(expected = RuntimeException.classg)
+    public void appTest_InvalidParameters() {
+        App.main(new String[] {
+                path + "SeedTransducerPeak.json"});
+    }
+
 }
