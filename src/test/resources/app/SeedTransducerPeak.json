@@ -1,0 +1,51 @@
+{
+  "name": "peak",
+  "before": 1,
+  "after": 0,
+  "init_state": "d",
+  "states": ["d", "r", "t"],
+  "arcs": [
+    {
+      "from": "d",
+      "to": "d",
+      "operator": "geq",
+      "letter": "out"
+    },
+    {
+      "from": "d",
+      "to": "r",
+      "operator": "lt",
+      "letter": "out"
+    },
+    {
+      "from": "r",
+      "to": "r",
+      "operator": "leq",
+      "letter": "maybe(before)"
+    },
+    {
+      "from": "r",
+      "to": "t",
+      "operator": "gt",
+      "letter": "found"
+    },
+    {
+      "from": "t",
+      "to": "r",
+      "operator": "lt",
+      "letter": "out(after)"
+    },
+    {
+      "from": "t",
+      "to": "t",
+      "operator": "gt",
+      "letter": "in"
+    },
+    {
+      "from": "t",
+      "to": "t",
+      "operator": "eq",
+      "letter": "maybe(after)"
+    }
+  ]
+}
