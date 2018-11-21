@@ -37,7 +37,17 @@ Pour ajouter un langage de génération, trois étapes sont nécessaires :
 
 Tout d'abord créer un module pour le nouveau langage en question. (Exemple: `language.python`)
 
-Ensuite, créer la classe d'exposition de ce nouveau langage (Exemple : `langage.python.PythonGenerator`). Elle doit étendre `generator.LanguageGenerator`, et ainsi implémenter la fonction `StringBuffer generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable)`, c'est le point d'entrée de la génération pour l'application.
+Ensuite, créer la classe d'exposition de ce nouveau langage (Exemple : `langage.python.PythonGenerator`). Elle doit étendre `generator.LanguageGenerator`, et ainsi implémenter la fonction `GeneratorResult generateCode(SeedTransducer seedTransducer, DecorationTable decorationTable)`, c'est le point d'entrée de la génération pour l'application.
+
+Le retour de cette fonction doit être de type `GeneratorResult`. Cette classe gère le résultat et les éventuelles erreurs.
+
+Une énumération doit être créée, implémentant `generator.error.GeneratorErrorType`, et y lister toutes les potentielles erreurs de votre générateur.
+
+Pour lever une erreur, utiliser la fonction :
+
+`GeneratorErrorHandler.handle(GeneratorResult result, GeneratorErrorType error, String message);`
+
+Chaque erreur levée sera gérée automatiquement.
 
 Enfin, la dernière étape est d'enregistrer son langage dans l'énumération `generator.GeneratorAvailableLanguages` en y ajoutant votre langage en tant que nouvel élement de cet énumération (Exemple : `PYTHON("Python", new PythonGenerator);`).
 
