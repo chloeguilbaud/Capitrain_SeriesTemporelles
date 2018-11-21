@@ -103,7 +103,7 @@ public abstract class SeedTransducerConverter {
     }
 
     /**
-     * Sets the seed transducer's before value.
+     * Gets the seed transducer's before value.
      * @param pojo The mapped {@link SeedTransducerPOJO} extracted from seed transducer JSON file
      * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
      * @return Seed transducer before value
@@ -121,7 +121,7 @@ public abstract class SeedTransducerConverter {
     }
 
     /**
-     * Sets the seed transducer's after value.
+     * Gets the seed transducer's after value.
      * @param pojo The mapped {@link SeedTransducerPOJO} extracted from seed transducer JSON file
      * @param res The {@link SeedTransducerParsingResult} parsing result object (modified)
      * @return Seed transducer before value
