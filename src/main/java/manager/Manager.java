@@ -44,7 +44,8 @@ public class Manager {
 
             String filename = seedTransducer.getName().substring(0, 1).toUpperCase()
                                 + seedTransducer.getName().substring(1)
-                                + "_" + decorationTable.getName();
+                                + "_" + decorationTable.getName()
+                                + ".java";
 
             writeGenerationInFolder(generateCodeTargetFolder + "/" + filename, managerResult);
 
@@ -62,7 +63,7 @@ public class Manager {
     private static void writeGenerationInFolder(String generateCodeTargetFolder, ManagerResult managerResult) {
         try {
             PrintWriter writer = new PrintWriter(new File(generateCodeTargetFolder));
-            writer.println(managerResult.getGeneratorResult().toString());
+            writer.println(managerResult.getGeneratorResult().getResult().toString());
             writer.close();
         } catch(FileNotFoundException e) {
             throw new RuntimeException("Target generation path incorrect");

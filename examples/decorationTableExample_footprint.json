@@ -1,0 +1,103 @@
+{
+  "name": "footprint",
+  "initialisation": [
+    {
+      "registers": [
+        {
+          "name": "C",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "variables": [
+        {
+          "name": "p",
+          "value": 0
+        }
+      ]
+    }
+  ],
+  "return": [{
+    "variable": "p",
+    "index": "n"
+  }],
+  "table": [
+    {
+      "letter": "out",
+      "guard": [{
+          "variable": "p",
+          "index": "i",
+          "value": 0
+        }]
+    },
+    {
+      "letter": "out(reset)",
+      "guard": [{
+        "variable": "p",
+        "index": "i",
+        "value": 0
+      }]
+    },
+    {
+      "letter": "out(after)",
+      "guard": [{
+        "variable": "p",
+        "index": "i",
+        "value": 0
+      }]
+    },
+    {
+      "letter": "maybe(before)",
+      "guard": [{
+        "variable": "p",
+        "index": "i+1",
+        "value": 0
+      }]
+    },
+    {
+      "letter": "maybe(after)",
+      "guard": [{
+        "variable": "p",
+        "index": "i+1",
+        "value": 0
+      }]
+    },
+    {
+      "letter": "found(end)",
+      "guard": [{
+        "variable": "p",
+        "index": "i+1",
+        "value": "C+1"
+      }],
+      "updates" : [
+        {
+          "variable": "C",
+          "value": "C+1"
+        }
+      ]
+    },
+    {
+      "letter": "found",
+      "guard": [{
+        "variable": "p",
+        "index": "i+1",
+        "value": "C+1"
+      }],
+      "updates" : [
+        {
+          "variable": "C",
+          "value": "C+1"
+        }
+      ]
+    },
+    {
+      "letter": "in",
+      "guard": [{
+        "variable": "p",
+        "index": "i",
+        "value": "C"
+      }]
+    }
+  ]
+}

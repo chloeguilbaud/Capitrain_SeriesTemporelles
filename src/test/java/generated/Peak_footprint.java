@@ -52,16 +52,16 @@ public class Peak_footprint {
 		this.results.put("C", listIntC);
 		while(this.i < timeSerie.length - 1) {
 			if (currentState.equals("r")) {
-				if (timeSerie[i] > timeSerie[i+1]) {
-					found();
-					i++;
-					currentState = "t";
-				}
-				else
 				if (timeSerie[i] <= timeSerie[i+1]) {
 					maybe_before();
 					i++;
 					currentState = "r";
+				}
+				else
+				if (timeSerie[i] > timeSerie[i+1]) {
+					found();
+					i++;
+					currentState = "t";
 				}
 			} else if (currentState.equals("d")) {
 				if (timeSerie[i] >= timeSerie[i+1]) {
@@ -82,14 +82,14 @@ public class Peak_footprint {
 					currentState = "r";
 				}
 				else
-				if (timeSerie[i] == timeSerie[i+1]) {
-					maybe_after();
+				if (timeSerie[i] > timeSerie[i+1]) {
+					in();
 					i++;
 					currentState = "t";
 				}
 				else
-				if (timeSerie[i] > timeSerie[i+1]) {
-					in();
+				if (timeSerie[i] == timeSerie[i+1]) {
+					maybe_after();
 					i++;
 					currentState = "t";
 				}
@@ -109,24 +109,24 @@ public class Peak_footprint {
 	private void maybe_after() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda195615004 = () -> this.results.get("p").get(i+1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda195615004);
+		I lambda1457410641 = () -> this.results.get("p").get(i+1);
+		this.indexedVariablesFunctions.get("p").set(i, lambda1457410641);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 	
 	private void maybe_before() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1935972447 = () -> this.results.get("p").get(i+1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda1935972447);
+		I lambda1100767002 = () -> this.results.get("p").get(i+1);
+		this.indexedVariablesFunctions.get("p").set(i, lambda1100767002);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 	
 	private void found() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda97652294 = () -> (C + 1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda97652294);
+		I lambda313540687 = () -> (C + 1);
+		this.indexedVariablesFunctions.get("p").set(i, lambda313540687);
 		this.registers.put("C", (C + 1));
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
@@ -134,24 +134,24 @@ public class Peak_footprint {
 	private void in() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1889248251 = () -> C;
-		this.indexedVariablesFunctions.get("p").set(i, lambda1889248251);
+		I lambda1990098664 = () -> C;
+		this.indexedVariablesFunctions.get("p").set(i, lambda1990098664);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 	
 	private void out_reset() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1027007693 = () -> 0;
-		this.indexedVariablesFunctions.get("p").set(i, lambda1027007693);
+		I lambda1383524016 = () -> 0;
+		this.indexedVariablesFunctions.get("p").set(i, lambda1383524016);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 	
 	private void found_end() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1783047508 = () -> (C + 1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda1783047508);
+		I lambda1907431275 = () -> (C + 1);
+		this.indexedVariablesFunctions.get("p").set(i, lambda1907431275);
 		this.registers.put("C", (C + 1));
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
@@ -159,16 +159,16 @@ public class Peak_footprint {
 	private void out_after() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda2146608740 = () -> 0;
-		this.indexedVariablesFunctions.get("p").set(i, lambda2146608740);
+		I lambda1637061418 = () -> 0;
+		this.indexedVariablesFunctions.get("p").set(i, lambda1637061418);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 	
 	private void out() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1381713434 = () -> 0;
-		this.indexedVariablesFunctions.get("p").set(i, lambda1381713434);
+		I lambda1686100174 = () -> 0;
+		this.indexedVariablesFunctions.get("p").set(i, lambda1686100174);
 		this.results.get("C").set(i, this.registers.get("C"));
 	}
 
@@ -181,9 +181,9 @@ public class Peak_footprint {
 			case FEATURE_SURF:
 				return 0;
 			case FEATURE_MAX:
-				return Integer.MAX_VALUE;
-			case FEATURE_MIN:
 				return Integer.MIN_VALUE;
+			case FEATURE_MIN:
+				return Integer.MAX_VALUE;
 			case FEATURE_RANGE:
 				return 0;
 			default:

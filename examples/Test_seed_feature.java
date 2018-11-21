@@ -3,7 +3,7 @@ package generated;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Peak_footprint {
+public class Test_seed_feature {
 
 	public static final String FEATURE_ONE = "one";
 	public static final String FEATURE_WIDTH = "width";
@@ -30,66 +30,112 @@ public class Peak_footprint {
 		this.feature = feature;
 		this.default_value = default_value;
 		this.i = 0;
-		this.currentState = "d";
+		this.currentState = "s";
 		this.results = new HashMap<>();
 		this.indexedVariablesFunctions = new HashMap<>();
 		this.registers = new HashMap<>();
-		ArrayList<I> listIp = new ArrayList<I>();
+		ArrayList<I> listIe = new ArrayList<I>();
 		for(int i = 0; i < timeSerie.length; i++) {
-			listIp.add(() -> 0);
+			listIe.add(() -> 0);
 		}
-		this.indexedVariablesFunctions.put("p", listIp);
-		ArrayList<Integer> listIntp = new ArrayList<Integer>();
+		this.indexedVariablesFunctions.put("e", listIe);
+		ArrayList<Integer> listInte = new ArrayList<Integer>();
 		for(int i = 0; i < timeSerie.length; i++) {
-			listIntp.add(new Integer(0));
+			listInte.add(new Integer(0));
 		}
-		this.results.put("p", listIntp);
+		this.results.put("e", listInte);
+		ArrayList<I> listIf = new ArrayList<I>();
+		for(int i = 0; i < timeSerie.length; i++) {
+			listIf.add(() -> 0);
+		}
+		this.indexedVariablesFunctions.put("f", listIf);
+		ArrayList<Integer> listIntf = new ArrayList<Integer>();
+		for(int i = 0; i < timeSerie.length; i++) {
+			listIntf.add(new Integer(0));
+		}
+		this.results.put("f", listIntf);
 		ArrayList<Integer> listIntC = new ArrayList<Integer>();
 		for(int i = 0; i < timeSerie.length; i++) {
 			listIntC.add(new Integer(0));
 		}
-		this.registers.put("C", 0);
+		this.registers.put("C", id(this.feature));
 		this.results.put("C", listIntC);
+		ArrayList<Integer> listIntD = new ArrayList<Integer>();
+		for(int i = 0; i < timeSerie.length; i++) {
+			listIntD.add(new Integer(0));
+		}
+		this.registers.put("D", id(this.feature));
+		this.results.put("D", listIntD);
 		while(this.i < timeSerie.length - 1) {
 			if (currentState.equals("r")) {
 				if (timeSerie[i] > timeSerie[i+1]) {
-					found();
+					out_after();
 					i++;
 					currentState = "t";
 				}
 				else
 				if (timeSerie[i] <= timeSerie[i+1]) {
-					maybe_before();
-					i++;
-					currentState = "r";
-				}
-			} else if (currentState.equals("d")) {
-				if (timeSerie[i] >= timeSerie[i+1]) {
 					out();
 					i++;
-					currentState = "d";
+					currentState = "s";
+				}
+			} else if (currentState.equals("s")) {
+				if (timeSerie[i] <= timeSerie[i+1]) {
+					out();
+					i++;
+					currentState = "s";
 				}
 				else
-				if (timeSerie[i] < timeSerie[i+1]) {
+				if (timeSerie[i] > timeSerie[i+1]) {
 					out();
 					i++;
 					currentState = "r";
 				}
 			} else if (currentState.equals("t")) {
 				if (timeSerie[i] < timeSerie[i+1]) {
-					out_after();
+					maybe_before();
 					i++;
-					currentState = "r";
+					currentState = "u";
+				}
+			} else if (currentState.equals("u")) {
+				if (timeSerie[i] > timeSerie[i+1]) {
+					maybe_before();
+					i++;
+					currentState = "v";
 				}
 				else
-				if (timeSerie[i] > timeSerie[i+1]) {
+				if (timeSerie[i] <= timeSerie[i+1]) {
+					out_reset();
+					i++;
+					currentState = "s";
+				}
+			} else if (currentState.equals("v")) {
+				if (timeSerie[i] <= timeSerie[i+1]) {
+					out_reset();
+					i++;
+					currentState = "s";
+				}
+				else
+				if (timeSerie[i] == timeSerie[i+1]) {
+					found();
+					i++;
+					currentState = "t";
+				}
+				else
+				if (timeSerie[i] >= timeSerie[i+1]) {
 					in();
 					i++;
 					currentState = "t";
 				}
 				else
-				if (timeSerie[i] == timeSerie[i+1]) {
+				if (timeSerie[i] > timeSerie[i+1]) {
 					maybe_after();
+					i++;
+					currentState = "t";
+				}
+				else
+				if (timeSerie[i] > timeSerie[i+1]) {
+					found_end();
 					i++;
 					currentState = "t";
 				}
@@ -106,70 +152,110 @@ public class Peak_footprint {
 	}
 	
 	
-	private void maybe_after() {
-		int i = this.i;
-		int C = this.registers.get("C");
-		I lambda1937962514 = () -> this.results.get("p").get(i+1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda1937962514);
-		this.results.get("C").set(i, this.registers.get("C"));
-	}
-	
 	private void maybe_before() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda274064559 = () -> this.results.get("p").get(i+1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda274064559);
+		int D = this.registers.get("D");
+		I lambda1938056729 = () -> this.results.get("e").get(i+1);
+		this.indexedVariablesFunctions.get("e").set(i, lambda1938056729);
+		I lambda1273765644 = () -> default(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda1273765644);
+		this.registers.put("D", phi(this.feature, D, delta(this.feature, i)));
 		this.results.get("C").set(i, this.registers.get("C"));
+		this.results.get("D").set(i, this.registers.get("D"));
 	}
 	
 	private void found() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1018081122 = () -> (C + 1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda1018081122);
-		this.registers.put("C", (C + 1));
+		int D = this.registers.get("D");
+		I lambda112061925 = () -> this.results.get("e").get(i+1);
+		this.indexedVariablesFunctions.get("e").set(i, lambda112061925);
+		I lambda764577347 = () -> this.results.get("e").get(i+0);
+		this.indexedVariablesFunctions.get("f").set(i, lambda764577347);
+		this.registers.put("C", phi(this.feature, D, delta(this.feature, i)));
+		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
+		this.results.get("D").set(i, this.registers.get("D"));
+	}
+	
+	private void maybe_after() {
+		int i = this.i;
+		int C = this.registers.get("C");
+		int D = this.registers.get("D");
+		I lambda1344645519 = () -> this.results.get("e").get(i+1);
+		this.indexedVariablesFunctions.get("e").set(i, lambda1344645519);
+		I lambda1234776885 = () -> default(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda1234776885);
+		this.registers.put("D", phi(this.feature, D, delta(this.feature, i)));
+		this.results.get("C").set(i, this.registers.get("C"));
+		this.results.get("D").set(i, this.registers.get("D"));
 	}
 	
 	private void in() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda242131142 = () -> C;
-		this.indexedVariablesFunctions.get("p").set(i, lambda242131142);
+		int D = this.registers.get("D");
+		I lambda540159270 = () -> this.results.get("e").get(i+1);
+		this.indexedVariablesFunctions.get("e").set(i, lambda540159270);
+		I lambda422250493 = () -> default(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda422250493);
+		this.registers.put("C", phi(this.feature, C, phi(this.feature, D, delta(this.feature, i))));
+		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
+		this.results.get("D").set(i, this.registers.get("D"));
 	}
 	
 	private void out_reset() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1782113663 = () -> 0;
-		this.indexedVariablesFunctions.get("p").set(i, lambda1782113663);
+		int D = this.registers.get("D");
+		I lambda1690287238 = () -> default(this.feature);
+		this.indexedVariablesFunctions.get("e").set(i, lambda1690287238);
+		I lambda1690254271 = () -> default(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda1690254271);
+		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
+		this.results.get("D").set(i, this.registers.get("D"));
 	}
 	
 	private void found_end() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1433867275 = () -> (C + 1);
-		this.indexedVariablesFunctions.get("p").set(i, lambda1433867275);
-		this.registers.put("C", (C + 1));
+		int D = this.registers.get("D");
+		I lambda1440047379 = () -> default(this.feature);
+		this.indexedVariablesFunctions.get("e").set(i, lambda1440047379);
+		I lambda343965883 = () -> phi(this.feature, D, delta(this.feature, i));
+		this.indexedVariablesFunctions.get("f").set(i, lambda343965883);
+		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
+		this.results.get("D").set(i, this.registers.get("D"));
 	}
 	
 	private void out_after() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda476800120 = () -> 0;
-		this.indexedVariablesFunctions.get("p").set(i, lambda476800120);
+		int D = this.registers.get("D");
+		I lambda230835489 = () -> C;
+		this.indexedVariablesFunctions.get("e").set(i, lambda230835489);
+		I lambda280884709 = () -> default(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda280884709);
+		this.registers.put("C", default(this.feature));
+		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
+		this.results.get("D").set(i, this.registers.get("D"));
 	}
 	
 	private void out() {
 		int i = this.i;
 		int C = this.registers.get("C");
-		I lambda1744347043 = () -> 0;
-		this.indexedVariablesFunctions.get("p").set(i, lambda1744347043);
+		int D = this.registers.get("D");
+		I lambda1847509784 = () -> default(this.feature);
+		this.indexedVariablesFunctions.get("e").set(i, lambda1847509784);
+		I lambda2114650936 = () -> default(this.feature);
+		this.indexedVariablesFunctions.get("f").set(i, lambda2114650936);
 		this.results.get("C").set(i, this.registers.get("C"));
+		this.results.get("D").set(i, this.registers.get("D"));
 	}
 
 	private int id(String feature) {
