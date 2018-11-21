@@ -11,7 +11,7 @@ import org.junit.runners.Suite;
         SeedTransducerParserTest.class
 })
 
-public class SeedTransducerTestSuite {
+public class SeedTransducerParserTestSuite {
 
 
 }

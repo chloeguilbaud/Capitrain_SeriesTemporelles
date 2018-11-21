@@ -158,7 +158,7 @@ public class Test_seed_feature {
 		int D = this.registers.get("D");
 		I lambda1938056729 = () -> this.results.get("e").get(i+1);
 		this.indexedVariablesFunctions.get("e").set(i, lambda1938056729);
-		I lambda1273765644 = () -> default(this.feature);
+		I lambda1273765644 = () -> default_fun(this.feature);
 		this.indexedVariablesFunctions.get("f").set(i, lambda1273765644);
 		this.registers.put("D", phi(this.feature, D, delta(this.feature, i)));
 		this.results.get("C").set(i, this.registers.get("C"));
@@ -185,7 +185,7 @@ public class Test_seed_feature {
 		int D = this.registers.get("D");
 		I lambda1344645519 = () -> this.results.get("e").get(i+1);
 		this.indexedVariablesFunctions.get("e").set(i, lambda1344645519);
-		I lambda1234776885 = () -> default(this.feature);
+		I lambda1234776885 = () -> default_fun(this.feature);
 		this.indexedVariablesFunctions.get("f").set(i, lambda1234776885);
 		this.registers.put("D", phi(this.feature, D, delta(this.feature, i)));
 		this.results.get("C").set(i, this.registers.get("C"));
@@ -198,7 +198,7 @@ public class Test_seed_feature {
 		int D = this.registers.get("D");
 		I lambda540159270 = () -> this.results.get("e").get(i+1);
 		this.indexedVariablesFunctions.get("e").set(i, lambda540159270);
-		I lambda422250493 = () -> default(this.feature);
+		I lambda422250493 = () -> default_fun(this.feature);
 		this.indexedVariablesFunctions.get("f").set(i, lambda422250493);
 		this.registers.put("C", phi(this.feature, C, phi(this.feature, D, delta(this.feature, i))));
 		this.registers.put("D", id(this.feature));
@@ -210,9 +210,9 @@ public class Test_seed_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda1690287238 = () -> default(this.feature);
+		I lambda1690287238 = () -> default_fun(this.feature);
 		this.indexedVariablesFunctions.get("e").set(i, lambda1690287238);
-		I lambda1690254271 = () -> default(this.feature);
+		I lambda1690254271 = () -> default_fun(this.feature);
 		this.indexedVariablesFunctions.get("f").set(i, lambda1690254271);
 		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
@@ -223,7 +223,7 @@ public class Test_seed_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda1440047379 = () -> default(this.feature);
+		I lambda1440047379 = () -> default_fun(this.feature);
 		this.indexedVariablesFunctions.get("e").set(i, lambda1440047379);
 		I lambda343965883 = () -> phi(this.feature, D, delta(this.feature, i));
 		this.indexedVariablesFunctions.get("f").set(i, lambda343965883);
@@ -238,9 +238,9 @@ public class Test_seed_feature {
 		int D = this.registers.get("D");
 		I lambda230835489 = () -> C;
 		this.indexedVariablesFunctions.get("e").set(i, lambda230835489);
-		I lambda280884709 = () -> default(this.feature);
+		I lambda280884709 = () -> default_fun(this.feature);
 		this.indexedVariablesFunctions.get("f").set(i, lambda280884709);
-		this.registers.put("C", default(this.feature));
+		this.registers.put("C", default_fun(this.feature));
 		this.registers.put("D", id(this.feature));
 		this.results.get("C").set(i, this.registers.get("C"));
 		this.results.get("D").set(i, this.registers.get("D"));
@@ -250,9 +250,9 @@ public class Test_seed_feature {
 		int i = this.i;
 		int C = this.registers.get("C");
 		int D = this.registers.get("D");
-		I lambda1847509784 = () -> default(this.feature);
+		I lambda1847509784 = () -> default_fun(this.feature);
 		this.indexedVariablesFunctions.get("e").set(i, lambda1847509784);
-		I lambda2114650936 = () -> default(this.feature);
+		I lambda2114650936 = () -> default_fun(this.feature);
 		this.indexedVariablesFunctions.get("f").set(i, lambda2114650936);
 		this.results.get("C").set(i, this.registers.get("C"));
 		this.results.get("D").set(i, this.registers.get("D"));
