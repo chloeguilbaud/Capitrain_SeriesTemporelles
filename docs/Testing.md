@@ -5,6 +5,24 @@ Les tests sont situés dans `src/test`.
 
 Concernant les tests sur le code **généré**, une [partie de cette documentation](GeneratedCode.md) y est dédiée.
 
+## Taux de couverture
+
+Les taux de couvertures décrit dans la table suivante illustrent la qualité
+du code. En moyenne, les tests couvrent 83% du code et en garantissent
+le bon fonctionnement. Au total 63 tests ont été établit.
+
+|           Modules         |     Classes    |   Méthodes  | Lignes      |
+| ------------------------- |: ------------: | :---------: | :---------: |
+| app                       |       100%     |    100%     |    84%      |
+| generator                 |       66%      |    47%      |    53%      |
+| generated                 |       100%     |    90%      |    94%      |
+| manager                   |       100%     |    84%      |    91%      |
+| parser                    |       100%     |    86%      |    88%      |
+| parser.decoration.table   |       100%     |    82%      |    84%      |
+| parser.seed.transducer    |       100%     |    90%      |    94%      | 
+| *MOYENNE*                 |       *95%*    |    *83%*    |    *83%*    | 
+
+
 ## Package Generator
 
 Situés dans `src/test/java/generator`.
