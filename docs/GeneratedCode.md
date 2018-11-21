@@ -6,10 +6,10 @@ Durant ce projet, deux algorithmes ont été pensés et testés. Le second étan
 
 ### Structure
 
-L'agorithme retenu réside dans le principe suivant :
-- Une **`fonction principale`**, servant de point d'entrée, de déclaration de variables, et contenant la boucle d'exécution principale qui parcours la série temporelle. Cette fonction prend en paramètre la `série temporelle`, la `feature`, et la valeur `default`, et retournant un tableau à deux dimensions correspondant à la liste des élements calculés à chaque pas de l'algorithme ;
-- Des **`fonctions correspondants aux Lettres Syntaxiques`** (maybe_before, out, after ...) et contenant les instructions définies dans la table de décoration pour chacune de ces lettres, et selon la valeur de l'after du transducteur ;
-- Des **`fonctions correspondants aux fonctions pré-définies`** (id, phi, delta ...) qui peuvent-être utilisés dans la table de décoration, et prenant en paramètre la `feature` choisie par l'utilisateur, et retournant une valeur entière.
+L'algorithme retenu réside dans le principe suivant :
+- Une **`fonction principale`**, servant de point d'entrée, de déclaration de variables, et contenant la boucle d'exécution principale qui parcours la série temporelle. Cette fonction prend en paramètre la `série temporelle`, la `feature`, et la valeur `default`, et retournant un tableau à deux dimensions correspondant à la liste des éléments calculés à chaque pas de l'algorithme ;
+- Des **`fonctions correspondantes aux Lettres Syntaxiques`** (maybe_before, out, after ...) et contenant les instructions définies dans la table de décoration pour chacune de ces lettres, et selon la valeur de l'after du transducteur ;
+- Des **`fonctions correspondantes aux fonctions pré-définies`** (id, phi, delta ...) qui peuvent-être utilisés dans la table de décoration, et prenant en paramètre la `feature` choisie par l'utilisateur, et retournant une valeur entière.
 
 Ce qui nous donne ceci :
 
@@ -131,7 +131,7 @@ Hashmap fonctions["p" -> Fonction[
 ```
 Hashmap registers["C" -> valeur_courante]
 ```
-- Une HashMap contenant, pour chaque registres et chaque variable, sa valeur à chaque pas. C'est cette HashMap qui sera renvoyée par l'algorighme. Pour l'exemple précédent, elle sera définie de la manière suivante : 
+- Une HashMap contenant, pour chaque registres et chaque variable, sa valeur à chaque pas. C'est cette HashMap qui sera renvoyée par l'algorithme. Pour l'exemple précédent, elle sera définie de la manière suivante : 
 ```
 Hashmap results["C" -> Entier[
                             0 -> entier_1,
@@ -172,11 +172,11 @@ Fonction maybe_before() {
 Fin_Fonction
 ```
 
-Les fonctions pré-définies sont connues du programme et dépendent de la feature. Elles sont les suivantes :
+Les fonctions prédéfinies sont connues du programme et dépendent de la feature. Elles sont les suivantes :
 
 ![SeedTransducer](img/FeatureTable.png)
 
-Dans le code généré, elles sont toutes implémentés de la même manière. Ainsi prenons l'exemple de la fonction max, implémentée de la sorte :
+Dans le code généré, elles sont toutes implémentées de la même manière. Ainsi prenons l'exemple de la fonction max, implémentée de la sorte :
 
 ```
 Fonction max(feature : Feature) : Entier
@@ -218,7 +218,7 @@ Fonction delta(feature : Feature, int index) : Entier
 Fin_Fonction
 ```
 
-Enfin, la dernière partie du programme consiste en l'exécution de toutes les fonctions stockés, par indice décroissant. C'est fait de la manière suivante :
+Enfin, la dernière partie du programme consiste en l'exécution de toutes les fonctions stockées, par indice décroissant. C'est fait de la manière suivante :
 
 ```
 // Pour toutes les listes de fonctions dans fonctions
@@ -237,7 +237,7 @@ L'algorithme parcours deux fois la série temporelle, une fois pour traiter l'en
 
 ## Tests de performances
 
-Nous avons effectués des tests de performance du code en sortie.
+Nous avons effectué des tests de performance du code en sortie.
 Initialisation du test : 
 - Le code généré est en Java ;
 - La taille de la série temporelle a varié de 10 éléments à 5 millions d'éléments ;
@@ -284,7 +284,7 @@ Ce qui nous donne en résultats pour les variables `p` et `C` :
 
 **Note :** la valeur `0` est ajoutée à la fin, pour se prémunir d'une éventuelle opération à `i=n`, faisant référence à un i+1 non défini.
 
-Le test consiste donc à vérifier que les résultats en sortie de `C` et `p` correspondent aux résultats attentus. Ainsi le test en Java donne :
+Le test consiste donc à vérifier que les résultats en sortie de `C` et `p` correspondent aux résultats attendus. Ainsi le test en Java donne :
 
 ```
 public void testPeakFootprintSample() {

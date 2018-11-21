@@ -1,6 +1,6 @@
 # Testing
 
-Sur l'ensemble de l'application, des tests ont été ralisés avec `JUnit`.
+Sur l'ensemble de l'application, des tests ont été réalisés avec `JUnit`.
 Les tests sont situés dans `src/test`.
 
 Concernant les tests sur le code **généré**, une [partie de cette documentation](GeneratedCode.md) y est dédiée.

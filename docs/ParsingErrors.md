@@ -2,7 +2,7 @@
 
 ## Transducteur
 
-Au moment du parsing du fichier JSON contenant le transducteur, plusieurs erreurs peuvent survenir. En voici une liste exaustive : 
+Au moment du parsing du fichier JSON contenant le transducteur, plusieurs erreurs peuvent survenir. En voici une liste exhaustive : 
 - `MISSING_PROPERTY_IN_SEED_TRANSDUCER`: 
     - Expecting seed transducer element but missing in JSON file
     - Seed Transducer manquant dans le fichier JSON
@@ -42,7 +42,7 @@ qui suivent et qui provoquent l'arrêt du processus :
 
 ## Table de décoration
 
-Au moment du parsing du fichier JSON contenant une table de décoration, plusieurs erreurs peuvent survenir. En voici une liste exaustive :
+Au moment du parsing du fichier JSON contenant une table de décoration, plusieurs erreurs peuvent survenir. En voici une liste exhaustive :
 - Erreur survenant au moment de l'initialisation (parse de `name`, `registers`, `returns`) 
     - `INITIALISATION_VALUE_FUNCTION_MISSING_NAME` : 
         - Function missing name in {register or return} n°{index}
