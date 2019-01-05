@@ -1,7 +1,3 @@
-# Capitrain_SeriesTemporelles
-
-Chloé GUILBAUD && Maël MAINCHAIN
-=======
 # Capitrain SeriesTemporelles
 
 Maël MAINCHAIN & Chloé GUILBAUD
